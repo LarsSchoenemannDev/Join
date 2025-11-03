@@ -1,86 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join</title>
 
-    <!-- adding Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/Favicon/favicon.ico" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="../assets/Favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="../assets/Favicon/favicon-16x16.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="../assets/Favicon/apple-touch-icon.png"
-    />
-    <link rel="manifest" href="../assets/Favicon/site.webmanifest" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join</title>
 
-    <!-- adding Main CSS Style-Sheet -->
-    <link rel="stylesheet" href="../css/main.css" />
-  </head>
+  <!-- adding Favicon-->
+  <link rel="icon" type="image/x-icon" href="../assets/Favicon/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/Favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/Favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/Favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="../assets/Favicon/site.webmanifest" />
 
-  <body>
-    <header class="header">
-      <div class="text">Kanban Project Management Tool</div>
-      <div class="icons">
-        <a href="../html/help.html" class="help">
-          <img src="../assets/img/help.svg" alt="help" id="help" />
+  <!-- adding Main CSS Style-Sheet -->
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="text">Kanban Project Management Tool</div>
+    <div class="icons">
+      <a href="../html/help.html" class="help">
+        <img src="../assets/img/help.svg" alt="help" id="help" />
+      </a>
+      <div class="user-icon"></div>
+    </div>
+    <div class="dropDown-menu hide">
+      <a href="../html/legal-notice.html">Legal notice</a>
+      <a href="../html/privacy-policy.html">Privacy Policy</a>
+      <a href="">Log Out</a>
+    </div>
+  </header>
+
+
+
+  <sidebar class="sidebar">
+    <div class="frame1">
+      <div class="logo">
+        <img src="../assets/img/join-logo.svg " alt="logo " />
+      </div>
+    </div>
+    <div class="frame2">
+      <div class="sideMenu">
+        <a href="../html/summary.html"><img src="../assets/img/summary-icon.svg " alt="summary " />Summary</a>
+        <a href="#" class="active"><img src="../assets/img/addTask-icon.svg " alt="add-task " />Add
+          Task
         </a>
-        <div class="user-icon"></div>
+        <a href="../html/board.html"><img src="../assets/img/board-icon.svg " alt="board " />Board</a>
+        <a href="../html/contacts.html"><img src="../assets/img/contacts-icon.svg " alt="contacts " />Contacts</a>
       </div>
-      <div class="dropDown-menu hide">
-        <a href="../html/legal-notice.html">Legal notice</a>
-        <a href="../html/privacy-policy.html">Privacy Policy</a>
-        <a href="">Log Out</a>
+    </div>
+    <div class="frame3">
+      <div class="footerMenu">
+        <a href="../html/privacy-policy.html ">Privacy Policy</a>
+        <a href="../html/legal-notice.html ">Legal notice</a>
       </div>
-    </header>
-    <sidebar class="sidebar">
-      <div class="frame1">
-        <div class="logo">
-          <img src="../assets/img/join-logo.svg " alt="logo " />
+    </div>
+  </sidebar>
+  <main class="main-content">
+    <div class="card-left">
+      <h1>Add Task</h1>
+      <form>
+        <div class="field">
+          <label for="title">
+            Title<span class="required">*</span>
+          </label>
+          <input id="title" type="text" placeholder="Enter a title">
         </div>
-      </div>
-      <div class="frame2">
-        <div class="sideMenu">
-          <a href="../html/summary.html"
-            ><img
-              src="../assets/img/summary-icon.svg "
-              alt="summary "
-            />Summary</a
-          >
-          <a href="#" class="active"
-            ><img src="../assets/img/addTask-icon.svg " alt="add-task " />Add
-            Task
-          </a>
-          <a href="../html/board.html"
-            ><img src="../assets/img/board-icon.svg " alt="board " />Board</a
-          >
-          <a href="../html/contacts.html"
-            ><img
-              src="../assets/img/contacts-icon.svg "
-              alt="contacts "
-            />Contacts</a
-          >
+        <div class="field">
+          <label for="description">Description</label>
+          <textarea id="description" placeholder="Enter a Description" style="height: 170px;"></textarea>
         </div>
-      </div>
-      <div class="frame3">
-        <div class="footerMenu">
-          <a href="../html/privacy-policy.html ">Privacy Policy</a>
-          <a href="../html/legal-notice.html ">Legal notice</a>
+        <div class="field">
+          <label for="due-date">
+            Due date<span class="required">*</span>
+          </label>
+          <div class="">
+            <input id="due-date" type="text" placeholder="dd/mm/yyyy">
+            <span class="" aria-hidden="true">
+            </span>
+          </div>
         </div>
-      </div>
-    </sidebar>
-    <main></main>
-  </body>
+      </form>
+    </div>
+    <div class="center-seperator">
+      <div class="seperator"></div>
+    </div>
+    <label for="Priority">Priority
+      <button class="btn-priority">Urgent</button>
+      <button class="btn-priority">Medium</button>
+      <button class="btn-priority">Low</button>
+    </label>
+
+
+  </main>
+</body>
+
 </html>
