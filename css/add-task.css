@@ -1,20 +1,38 @@
+/* .add-task.cotent{
+    height: calc(100vh - 96px);
+    padding: 80px 64px 24px 64px;
+    max-width: calc(1440px -232px);
+} */
+
+
 .main-content {
     display: flex;
-    flex-direction: column;
-    padding-top: 210px;
+    flex-direction: row;
     padding-left: 330px;
+    gap: 45px;
+    color: #2A3647;
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 1.25rem;
 }
 
-.card-left {
+.card {
     width: 100%;
     max-width: 440px;
     max-height: 376px;
 }
 
-.card-left h1 {
+h1 {
     font-size: 3.8rem;
     font-weight: 700;
     margin-bottom: 32px;
+}
+
+.h1-content {
+    display: flex;
+    flex-direction: row;
+    padding-top: 140px;
+    padding-left: 330px;
 }
 
 form {
@@ -59,12 +77,26 @@ textarea {
 
 input::placeholder,
 textarea::placeholder {
-    color: #9ca3af;
+    color: #D1D1D1;
 }
 
 input:focus,
 textarea:focus {
     border-color: #94d5f0;
+}
+
+.input-icon-arrow-down {
+    background-image: url("../assets/img/arrow_drop_down-icon.svg");
+    background-repeat: no-repeat;
+    background-position: bottom 50% right 20px;
+    background-size: 10px 10px;
+}
+
+.input-icon-calender {
+    background-image: url("../assets/img/calendar-icon.svg");
+    background-repeat: no-repeat;
+    background-position: bottom 50% right 20px;
+    background-size: 18px 20px;
 }
 
 .center-seperator {
@@ -78,10 +110,42 @@ textarea:focus {
     width: 1px;
     height: 424px;
     display: flex;
-    transform:  translateY(-271px);
-    margin-left: 160px;    
 }
 
-.btn-priority{
-    
+.button-priority {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-priority {
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    padding: 15px 26px;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.btn-priority-medium {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.btn-medium {
+    background-color: rgba(255, 168, 0, 1);
+    color: rgba(255, 255, 255, 1);  
+}
+
+.btn-priority-flex{
+    display: flex;
+    align-items: center;  
+    gap: 8px;  
+}
+
+.footer-add-task{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap:16px
 }

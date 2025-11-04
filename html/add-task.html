@@ -32,9 +32,6 @@
       <a href="">Log Out</a>
     </div>
   </header>
-
-
-
   <sidebar class="sidebar">
     <div class="frame1">
       <div class="logo">
@@ -58,43 +55,82 @@
       </div>
     </div>
   </sidebar>
-  <main class="main-content">
-    <div class="card-left">
-      <h1>Add Task</h1>
-      <form>
-        <div class="field">
-          <label for="title">
-            Title<span class="required">*</span>
-          </label>
-          <input id="title" type="text" placeholder="Enter a title">
-        </div>
-        <div class="field">
-          <label for="description">Description</label>
-          <textarea id="description" placeholder="Enter a Description" style="height: 170px;"></textarea>
-        </div>
-        <div class="field">
-          <label for="due-date">
-            Due date<span class="required">*</span>
-          </label>
-          <div class="">
-            <input id="due-date" type="text" placeholder="dd/mm/yyyy">
-            <span class="" aria-hidden="true">
-            </span>
+  <section class="add-task-content">
+    <h1 class="h1-content">Add Task</h1>
+    <main class="main-content">
+      <div class="card">
+        <form>
+          <div class="field">
+            <label for="title">
+              Title<span class="required">*</span>
+            </label>
+            <input id="title" type="text" placeholder="Enter a title">
           </div>
-        </div>
-      </form>
-    </div>
-    <div class="center-seperator">
-      <div class="seperator"></div>
-    </div>
-    <label for="Priority">Priority
-      <button class="btn-priority">Urgent</button>
-      <button class="btn-priority">Medium</button>
-      <button class="btn-priority">Low</button>
-    </label>
+
+          <div class="field">
+            <label for="description">Description</label>
+            <textarea id="description" placeholder="Enter a Description" style="height: 120px;"></textarea>
+          </div>
+          <div class="field">
+            <label for="due-date">
+              Due date<span class="required">*</span>
+            </label>
+            <div class="">
+              <input class="input-icon-calender" id="due-date" type="text" placeholder="dd/mm/yyyy">
+              <span class="" aria-hidden="true">
+              </span>
+            </div>
+            <span>*This field is required</span>
+          </div>
+        </form>
+      </div>
+      <div class="center-seperator">
+        <div class="seperator"></div>
+      </div>
+      <section class="card">
+        <form>
+          <div class="field">
+            <label for="Priority" class="field">Priority</label>
+            <div class="button-priority">
+              <button class="btn-priority btn-priority-flex">Urgent
+                <img src="../assets/img/PrioUP-icon.svg" alt=""></button>
+              <button class="btn-priority btn-medium btn-priority-medium btn-priority-flex">Medium
+                <img src="../assets/img/PrioMedium-icon.svg" alt=""></button>
+              <button class="btn-priority btn-priority-flex">Low
+                <img src="../assets/img/PrioDown-icon.svg" alt=""></button>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field">
+              <label for="assigned">Assigned to</label>
+              <input class="input-icon-arrow-down" id="assigned" type="text" placeholder="Select contacts to assign">
+            </div>
+          </div>
+          <div class="field">
+            <label for="category">
+              Category<span class="required">*</span>
+            </label>
+            <div>
+              <input class="input-icon-arrow-down" id="category" type="text" placeholder="Select task category">
+            </div>
+          </div>
+          </div>
+          <div class="field">
+            <div class="field">
+              <label for="subtask">Subtasks</label>
+              <input id="subtask" type="text" placeholder="Add new subtask">
+            </div>
+          </div>
+          <div class="footer-add-task">
+            <button class="btn-priority">Clear X</button>
+            <button class="btn-priority">Create Task </button>
+          </div>
+        </form>
+      </section>
+      <section class="add-task-content">
 
 
-  </main>
+    </main>
 </body>
 
 </html>
