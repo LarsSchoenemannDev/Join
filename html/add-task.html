@@ -58,7 +58,7 @@
   <section class="add-task-content">
     <h1 class="h1-content">Add Task</h1>
     <main class="main-content">
-      <div class="card">
+      <section class="card">
         <form>
           <div class="field">
             <label for="title">
@@ -66,24 +66,24 @@
             </label>
             <input id="title" type="text" placeholder="Enter a title">
           </div>
-
+        </form>
+        <form>
           <div class="field">
             <label for="description">Description</label>
             <textarea id="description" placeholder="Enter a Description" style="height: 120px;"></textarea>
           </div>
+        </form>
+        <form>
           <div class="field">
             <label for="due-date">
               Due date<span class="required">*</span>
             </label>
-            <div class="">
+            <div>
               <input class="input-icon-calender" id="due-date" type="text" placeholder="dd/mm/yyyy">
-              <span class="" aria-hidden="true">
-              </span>
             </div>
-            <span>*This field is required</span>
-          </div>
         </form>
-      </div>
+        </div>
+      </section>
       <div class="center-seperator">
         <div class="seperator"></div>
       </div>
@@ -94,18 +94,22 @@
             <div class="button-priority">
               <button class="btn-priority btn-priority-flex">Urgent
                 <img src="../assets/img/PrioUP-icon.svg" alt=""></button>
-              <button class="btn-priority btn-medium btn-priority-medium btn-priority-flex">Medium
-                <img src="../assets/img/PrioMedium-icon.svg" alt=""></button>
+              <button class="btn-priority  btn-priority-flex">Medium
+                <img src="../assets/img/PrioMedium-icon.svg" class="btn-priority-medium" alt=""></button>
               <button class="btn-priority btn-priority-flex">Low
                 <img src="../assets/img/PrioDown-icon.svg" alt=""></button>
             </div>
           </div>
+        </form>
+        <form>
           <div class="field">
             <div class="field">
               <label for="assigned">Assigned to</label>
               <input class="input-icon-arrow-down" id="assigned" type="text" placeholder="Select contacts to assign">
             </div>
           </div>
+        </form>
+        <form>
           <div class="field">
             <label for="category">
               Category<span class="required">*</span>
@@ -114,23 +118,22 @@
               <input class="input-icon-arrow-down" id="category" type="text" placeholder="Select task category">
             </div>
           </div>
-          </div>
+        </form>
+        <form>
           <div class="field">
-            <div class="field">
-              <label for="subtask">Subtasks</label>
-              <input id="subtask" type="text" placeholder="Add new subtask">
-            </div>
-          </div>
-          <div class="footer-add-task">
-            <button class="btn-priority">Clear X</button>
-            <button class="btn-priority">Create Task </button>
+            <label for="subtask">Subtasks</label>
+            <input id="subtask" type="text" placeholder="Add new subtask">
           </div>
         </form>
       </section>
-      <section class="add-task-content">
-
-
     </main>
+    <section class="footer-add-task">
+      <span>*This field is required</span>
+      <div>
+        <button class="btn-priority">Clear X</button>
+        <button class="btn-priority">Create Task </button>
+      </div>
+    </section>
 </body>
 
 </html>
