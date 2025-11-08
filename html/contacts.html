@@ -129,14 +129,14 @@
 
 
                         <div class="contactForm">
-                            <div id="nameInput" class="inputContainer"><input type="text" placeholder="Name" /> <img src="../assets/img/add-contact-person-icon.svg" alt=""></div>
-                            <div id="emailInput" class="inputContainer"><input type="email" placeholder="Email" /> <img src="../assets/img/add-contact-mail-icon.svg" alt=""></div>
-                            <div id="phoneInput" class="inputContainer"><input type="tel" placeholder="Phone" /> <img src="../assets/img/add-contact-call-icon.svg" alt=""></div>
+                            <div class="inputContainer"><input type="text" placeholder="Name" id="nameInput" required/> <img src="../assets/img/add-contact-person-icon.svg" alt=""></div>
+                            <div class="inputContainer"><input type="email" placeholder="Email" id="emailInput" required/> <img src="../assets/img/add-contact-mail-icon.svg" alt=""></div>
+                            <div class="inputContainer"><input type="number" placeholder="Phone" id="phoneInput" required/> <img src="../assets/img/add-contact-call-icon.svg" alt=""></div>
 
 
                             <div class="add-contact-buttons">
                                 <button class="secondary-btn-default-icon" id="cancel-btn" onclick="closePopupOverlay()">Cancel <img src="" alt="" /></button>
-                                <button class="primary-btn-default-icon" id="createContact-btn">Create contact<img src="../assets/img/create-contact-check.svg" alt="" /></button>
+                                <button class="primary-btn-default-icon" id="createContact-btn" onclick="addNewContact()">Create contact<img src="../assets/img/create-contact-check.svg" alt="" /></button>
                             </div>
                         </div>
                     </div>
