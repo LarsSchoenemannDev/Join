@@ -93,10 +93,14 @@ function UpdateIcon(input, iconDiv) {
         iconDiv.innerHTML = eyeClosed;
         iconDiv.onclick = () => togglePassword(input, iconDiv);
         iconDiv.classList.add("eye_switch")
-    } else{
+    } else if (input.value.length === 0) {
         iconDiv.innerHTML = lockIcon
-        iconDiv.removeAttribute("onclick")
+        iconDiv.onclick = null;
         iconDiv.classList.remove("eye_switch")
+    }
+
+    if (input.type !== "password") {
+      input.type = "password";
     }
 }
 // ===================== FUNCTION: togglePassword ===================== //
@@ -106,16 +110,15 @@ function UpdateIcon(input, iconDiv) {
 // - If type is "text" → hide the password and show closed-eye icon.
 
 function togglePassword(input, iconDiv) {
-  if (input.value.length > 0) {
-    
-    if (input.type === "password") {
+  if (!input.value) return; // Falls leer → nichts tun
+
+  if (input.type === "password") {
   input.type = "text";
   iconDiv.innerHTML = eyeOpen;
  }else{
   input.type = "password"
   iconDiv.innerHTML = eyeClosed;
  }
-}
 }
 
 // Test function for Password abglich
