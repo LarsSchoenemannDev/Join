@@ -90,23 +90,33 @@
       <section class="card">
         <form>
           <div class="field">
-            <label for="Priority" class="field">Priority</label>
-            <div class="button-priority">
-              <button class="btn-priority btn-priority-flex">Urgent
-                <img src="../assets/img/PrioUP-icon.svg" alt=""></button>
-              <button class="btn-priority  btn-priority-flex">Medium
-                <img src="../assets/img/PrioMedium-icon.svg" class="btn-priority-medium" alt=""></button>
-              <button class="btn-priority btn-priority-flex">Low
-                <img src="../assets/img/PrioDown-icon.svg" alt=""></button>
+            <label class="field-label">Priority</label>
+            <div class="button-priority">              
+              <input type="radio" id="prio-urgent" name="priority" value="urgent" class="prio-input" checked>
+              <label for="prio-urgent" class="btn-priority btn-priority-flex">
+                Urgent
+                <img src="../assets/img/PrioUP-icon.svg" alt="">
+              </label>              
+              <input type="radio" id="prio-medium" name="priority" value="medium" class="prio-input">
+              <label for="prio-medium" class="btn-priority btn-priority-flex">
+                Medium
+                <img src="../assets/img/PrioMedium-icon.svg" class="btn-priority-medium" alt="">
+              </label>              
+              <input type="radio" id="prio-low" name="priority" value="low" class="prio-input">
+              <label for="prio-low" class="btn-priority btn-priority-flex">
+                Low
+                <img src="../assets/img/PrioDown-icon.svg" alt="">
+              </label>
             </div>
           </div>
+
         </form>
         <form>
           <div class="field">
             <div class="field">
               <label>Assigned to </label>
               <!-- <input class="input-icon-arrow-down" id="assigned" type="text" placeholder="Select contacts to assign"> -->
-              <select class="input-icon-arrow-down custom-select-select" for="assigned">Assigned to
+              <select id="assigned" class="input-icon-arrow-down custom-select-select" for="assigned">Assigned to
                 <option>Select contacts to</option>
                 <option>Render Names#</option>
               </select>
@@ -118,7 +128,7 @@
             <label for="category">
               Category<span class="required">*</span>
             </label>
-            <select class="input-icon-arrow-down custom-select-select">
+            <select id="category" class="input-icon-arrow-down custom-select-select">
               <option>Select task category</option>
               <option>Technical Task</option>
               <option>User Story</option>
@@ -127,8 +137,8 @@
         </form>
         <form>
           <div class="field">
-            <label for="subtask">Subtasks</label>
-            <input id="subtask" type="text" class="input-icon-close input-icon-cheak" placeholder="Add new subtask">
+            <label for="subtasks">Subtasks</label>
+            <input id="subtasks" type="text" class="input-icon-close input-icon-cheak" placeholder="Add new subtask">
           </div>
         </form>
       </section>
@@ -144,6 +154,6 @@
     </section>
 
 </body>
-<script src="../javascript/add-task.js"></script>
+<script src="../script/add-task.js"></script>
 
 </html>
