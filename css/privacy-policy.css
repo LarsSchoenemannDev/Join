@@ -8,19 +8,53 @@ body{
 .body-div{
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    width: 100%;
     max-width: 1440px;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f6f7f8;
 }
 
 main{
     display: flex;
     flex: 1;
     width: 100%;
+    padding: 20px;
 
 }
 
+/* Enthält Sidebar + Hauptbereich */
+.content-wrapper {
+  display: flex;
+  flex-direction: row;
+}
 
-.privacy-policy-div{
-width: 200px;
-height: 200px;
+/* Sidebar bleibt links */
+.sidebar {
+  width: 230px;
+  background-color: #2A3647;
+  height: 100vh;
+  position: sticky; /* bleibt beim Scrollen sichtbar */
+  top: 0;
+  flex-shrink: 0;
+  z-index: 2; /* über Header, falls nötig */
+}
+
+/* Hauptbereich rechts daneben */
+.main-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Header nur im Main-Bereich */
+.header {
+  height: 96px;
+  background-color: #fff;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  z-index: 1; /* unter Sidebar, wenn überlappt */
 }
