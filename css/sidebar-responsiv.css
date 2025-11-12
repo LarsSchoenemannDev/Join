@@ -7,12 +7,13 @@
   .sidebar {
     order: 3; /* nach main und header */
     width: 100%;
-    height: 70px; /* z. B. für Bottom-Bar */
+    height: 80px; /* z. B. für Bottom-Bar */
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
     z-index: 10;
+    padding: 0px 0;
   }
 
   .sidebar .frame1,
@@ -23,20 +24,43 @@
   .sidebar .frame2 {
     margin: 0;
     width: 100%;
+    height: 80px;
   }
 
   .sidebar .frame2 .sideMenu {
     flex-direction: row;
     gap: 0;
+    justify-content: space-around;
+    height: 100%;
   }
 
   .sidebar .frame2 a {
-    flex: 1;
     justify-content: center;
     padding: 0;
+    flex-direction: column;
+    width: 110px;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  .frame2 a img {
+    width: 30px;
+    height: 30px;
   }
 
   .main-area {
-    margin-bottom: 70px; /* Platz für Bottom-Bar */
+    margin-bottom: 0px; /* Platz für Bottom-Bar */
   }
+
+  .text{
+    display: none;
+  }
+  
+  .help{
+    display: none;
+  }
+  
+  .join-icon{
+    display: flex;
+}
 }

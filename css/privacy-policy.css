@@ -58,3 +58,13 @@ main{
   padding: 20px 40px;
   z-index: 1; /* unter Sidebar, wenn überlappt */
 }
+
+
+
+.join-icon img{
+  width: 50px;
+  height: 55px;
+}
+.join-icon{
+  display: none;
+}
