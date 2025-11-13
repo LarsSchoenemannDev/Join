@@ -39,8 +39,7 @@
         <div class="logo">
           <img src="../assets/img/join-logo.svg " alt="logo " />
         </div>
-      </div>
-      <div class="frame2">
+        <div class="frame2">
         <div class="sideMenu">
           <a href="../html/summary.html"
             ><img
@@ -63,6 +62,7 @@
           >
         </div>
       </div>
+      </div>
       <div class="frame3">
         <div class="footerMenu">
           <a href="#" class="current">Privacy Policy</a>
@@ -80,9 +80,10 @@
         <a href="../html/help.html" class="help">
           <img src="../assets/img/help.svg" alt="help" id="help" />
         </a>
-        <div class="user-icon"></div>
+        <div class="user-icon" onclick="tooglemenu()"></div>
       </div>
-      <div class="dropDown-menu hide">
+      <div class="dropDown-menu" id="dropDown-menu">
+        <a href="../html/help.html" class="hide" id="switch_help">Help</a>
         <a href="../html/legal-notice.html">Legal notice</a>
         <a href="../html/privacy-policy.html">Privacy Policy</a>
         <a href="">Log Out</a>
@@ -93,4 +94,5 @@
     </div>
   </div>
 </body>
+<script src="../JS/sidebar_and_header_script.js"></script>
 </html>

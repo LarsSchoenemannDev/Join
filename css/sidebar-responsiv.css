@@ -16,7 +16,7 @@
     padding: 0px 0;
   }
 
-  .sidebar .frame1,
+  .sidebar .logo,
   .sidebar .frame3 {
     display: none; /* nur die Hauptnavigation zeigen */
   }
@@ -48,6 +48,10 @@
     height: 30px;
   }
 
+  .frame1{
+    width: 100%;
+  }
+
   .main-area {
     margin-bottom: 0px; /* Platz für Bottom-Bar */
   }
@@ -62,5 +66,9 @@
   
   .join-icon{
     display: flex;
+}
+
+.dropDown-menu{
+  top: 21%;
 }
 }

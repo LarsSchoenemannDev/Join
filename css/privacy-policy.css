@@ -68,3 +68,20 @@ main{
 .join-icon{
   display: none;
 }
+
+/*Später in Sidebar-style.css hinzufügen für alle*/
+.frame1{
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.frame2{
+    margin-bottom: 0px;
+    margin-top: 50px;
+}
+
+.logo{
+margin-bottom: 50px;
+}
