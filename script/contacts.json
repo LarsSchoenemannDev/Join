@@ -1,0 +1,51 @@
+[{
+        "name": "Anton Mayer",
+        "email": "antonm@gmail.com",
+        "phone": "+49 152 456789"
+    },
+    {
+        "name": "Anja Schulz",
+        "email": "schulz@hotmail.com",
+        "phone": "+49 152 789877"
+    },
+    {
+        "name": "Benedikt Ziegler",
+        "email": "benedikt@gmail.com",
+        "phone": "+49 176 978687"
+    },
+    {
+        "name": "David Eisenberg",
+        "email": "davidberg@gmail.com",
+        "phone": "+49 152 6597632"
+    },
+    {
+        "name": "Eva Fischer",
+        "email": "eva@gmail.com",
+        "phone": "+49 152 6546466"
+    },
+    {
+        "name": "Emmanuel Mauer",
+        "email": "emmanuel@hotmail.com",
+        "phone": "+49 176 6554653"
+    },
+    {
+        "name": "Marcel Bauer",
+        "email": "marcel.bauer@hotmail.com",
+        "phone": "+49 176 65464500"
+    },
+    {
+        "name": "Tatjana Wolf",
+        "email": "tatjana.wolf@hotmail.com",
+        "phone": "+49 111 23546534"
+    },
+    {
+        "name": "Paula Diomond",
+        "email": "paula.diomond@hotmail.com",
+        "phone": "+49 176 1112236"
+    },
+    {
+        "name": "Victoria Holzapfel",
+        "email": "victoria.holzapfel@gmail.com",
+        "phone": "+49 152 3366647"
+    }
+]
