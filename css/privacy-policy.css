@@ -19,7 +19,7 @@ main{
     display: flex;
     flex: 1;
     width: 100%;
-    padding: 20px;
+    padding: 30px;
 
 }
 
@@ -67,6 +67,67 @@ main{
 }
 .join-icon{
   display: none;
+}
+
+/*Datenschutz-style*/
+
+.datenschutz-container {
+    max-width: 900px;
+}
+
+/* Überschriften */
+.datenschutz-container h1 {
+    color: black;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.datenschutz-container h2 {
+    color: black;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 1.4em;
+}
+
+/* Absätze */
+.datenschutz-container p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Listen */
+.datenschutz-container ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+/* Tabelle */
+.datenschutz-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.datenschutz-container th, 
+.datenschutz-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.datenschutz-container th {
+    background-color: #49aae1;
+    color: #fff;
+}
+
+/* Links */
+.datenschutz-container a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.datenschutz-container a:hover {
+    text-decoration: underline;
 }
 
 /*Später in Sidebar-style.css hinzufügen für alle*/

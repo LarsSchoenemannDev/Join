@@ -5,6 +5,8 @@
   }
 
   .sidebar {
+    position: sticky;
+    bottom: 0;
     order: 3; /* nach main und header */
     width: 100%;
     height: 80px; /* z. B. für Bottom-Bar */
