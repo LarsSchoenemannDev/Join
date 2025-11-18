@@ -21,12 +21,13 @@ header{
   height: 170px;
   display: flex;
   align-items: center;
+  padding-top: 10px;
 }
 
 .header_img{
+  width: 100%;
   margin-left: 60px;
-  width: 101px;
-  height: 122px;
+  max-width: 90px;
 }
 
 .content{
@@ -34,7 +35,7 @@ header{
   justify-content: center;
   width: 100%;
   flex: 1;
-  padding: 10px;
+  padding: 15px 15px 0px 15px;
 }
 
 footer{
@@ -83,8 +84,8 @@ a{
 .back-arrow{
   display: flex;
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 30px;
+    left: 25px;
     height: 35px;
     width: 35px;
     justify-content: center;
@@ -96,6 +97,11 @@ a{
   background-color: #f1f1f1;
   border-radius: 100%;
 transform: scale(1.12)
+}
+
+.back-arrow a{
+  display: flex;
+  align-items: center;
 }
 
 .signup-container{
@@ -184,7 +190,7 @@ button {
       border-radius: 5px;
       cursor: pointer;
       font-size: 20px;
-      width: 100px;
+      width: 130px;
       height: 45px;
     }
 

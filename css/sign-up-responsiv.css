@@ -1,9 +1,10 @@
 @media (max-width: 768px) {
 .header_img{
-    height: 90px;
-    width: 80px;
+    max-width: 70px;
     margin-left: 30px;
 }
 
-
+.signup-heading h1{
+    font-size: 45px;
+}
 }
