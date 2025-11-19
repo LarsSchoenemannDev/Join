@@ -48,8 +48,7 @@ function validateInput(input) {
   } else {
     input.classList.add('error');
   }
-  
-  checkForm();
+  return isValid;
 }
 
 
