@@ -1,0 +1,315 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+}
+
+.body-div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1920px;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f6f7f8;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1;
+    width: 100%;
+    padding: 50px;
+}
+
+main .summary-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 50px;
+    .main-title {
+        font-size: 60px;
+        color: rgba(0, 0, 0, 1);
+        font-weight: 700;
+        margin: 0;
+    }
+    .second-title {
+        font-size: 24px;
+        color: rgba(42, 54, 71, 1);
+        font-weight: 400;
+        margin: 0;
+    }
+}
+
+main .summary-main-board {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .summary-overview {
+        width: 560px;
+        height: 560px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-flow: row wrap;
+        gap: 20px;
+    }
+}
+
+
+/* Ensure overview boxes have explicit base styles (avoid relying on nested/SCSS-like rules) */
+
+.summary-overview .overview-box-items {
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 30px;
+    height: 160px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.overview-box-items.box-1,
+.overview-box-items.box-2 {
+    width: 260px;
+    padding: 38px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    transition: all 100ms ease-in-out;
+    .task-number {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        span {
+            font-size: 64px;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 1);
+        }
+        .text {
+            font-size: 20px;
+            font-weight: 400;
+            color: rgba(42, 54, 71, 1);
+        }
+    }
+}
+
+.overview-box-items.box-1:hover,
+.overview-box-items.box-2:hover {
+    transform: scale(1.1);
+    background-color: rgba(42, 54, 71, 1);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    .task-number span,
+    .task-number .text {
+        color: rgba(255, 255, 255, 1);
+    }
+}
+
+.overview-box-items.box-1:hover img {
+    content: url(../assets/img/summary-edit-hovered.svg);
+}
+
+.overview-box-items.box-2:hover img {
+    content: url(../assets/img/summary-done-hovered.svg);
+}
+
+.overview-box-items.box-3 {
+    padding: 28px 48px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+    width: 100%;
+    transition: all 100ms ease-in-out;
+    .left-box {
+        display: flex;
+        flex-direction: row;
+        gap: 18px;
+        justify-content: space-between;
+        align-items: center;
+        .urgent-task {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            span {
+                font-size: 64px;
+                font-weight: 600;
+                color: rgba(0, 0, 0, 1);
+            }
+            h5 {
+                font-size: 20px;
+                font-weight: 400;
+                color: rgba(42, 54, 71, 1);
+            }
+        }
+    }
+    .right-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 15px;
+        h4 {
+            font-size: 20px;
+            font-weight: 700;
+            color: rgba(42, 54, 71, 1);
+        }
+        h5 {
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(42, 54, 71, 1);
+        }
+    }
+}
+
+.overview-box-items.box-3:hover {
+    transform: scale(1.08);
+    background-color: rgba(42, 54, 71, 1);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    .left-box .urgent-task span,
+    .left-box .urgent-task h5,
+    .right-box h4,
+    .right-box h5 {
+        color: rgba(255, 255, 255, 1);
+    }
+}
+
+.overview-box-items.box-4,
+.overview-box-items.box-5,
+.overview-box-items.box-6 {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 160px;
+    span {
+        font-size: 64px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 1);
+    }
+    .tasks-text {
+        font-size: 20px;
+        font-weight: 400;
+        color: rgba(42, 54, 71, 1);
+    }
+}
+
+.overview-box-items.box-4:hover,
+.overview-box-items.box-5:hover,
+.overview-box-items.box-6:hover {
+    transform: scale(1.1);
+    background-color: rgba(42, 54, 71, 1);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.overview-box-items.box-4:hover span,
+.overview-box-items.box-5:hover span,
+.overview-box-items.box-6:hover span,
+.overview-box-items.box-4:hover .tasks-text,
+.overview-box-items.box-5:hover .tasks-text,
+.overview-box-items.box-6:hover .tasks-text {
+    color: rgba(255, 255, 255, 1);
+}
+
+main .summary-main-board .welcome-user {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    .welcoming-message {
+        font-size: 46px;
+        font-weight: 500;
+        color: rgba(42, 54, 71, 1);
+    }
+    .user-name {
+        font-size: 64px;
+        font-weight: 700;
+        color: rgba(41, 171, 226, 1);
+    }
+}
+
+
+/* Enthält Sidebar + Hauptbereich */
+
+.content-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* Sidebar bleibt links */
+
+.sidebar {
+    width: 230px;
+    background-color: #2A3647;
+    height: 100vh;
+    position: sticky;
+    /* bleibt beim Scrollen sichtbar */
+    top: 0;
+    flex-shrink: 0;
+    z-index: 2;
+    /* über Header, falls nötig */
+}
+
+
+/* Hauptbereich rechts daneben */
+
+.main-area {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+
+/* Header nur im Main-Bereich */
+
+.header {
+    height: 96px;
+    background-color: #fff;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    z-index: 1;
+    /* unter Sidebar, wenn überlappt */
+    position: sticky;
+    top: 0;
+}
+
+.join-icon img {
+    width: 50px;
+    height: 55px;
+}
+
+.join-icon {
+    display: none;
+}
+
+
+/*Später in Sidebar-style.css hinzufügen für alle*/
+
+.frame1 {
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.frame2 {
+    margin-bottom: 0px;
+    margin-top: 50px;
+}
+
+.logo {
+    margin-bottom: 50px;
+}
