@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="../css/main.css" />
 </head>
 
-<body>
+<body onload="createTask()">
   <header class="header">
     <div class="text">Kanban Project Management Tool</div>
     <div class="icons">
@@ -113,13 +113,11 @@
         </form>
         <form>
           <div class="field">
-            <div class="field">
-              <label>Assigned to </label>
-              <!-- <input class="input-icon-arrow-down" id="assigned" type="text" placeholder="Select contacts to assign"> -->
-              <select id="assigned" class="input-icon-arrow-down custom-select-select" for="assigned">Assigned to
-                <option>Select contacts to</option>
-                <option>Render Names#</option>
-              </select>
+            <p>Assigned to </p>
+            <button type="button" onclick="toggelContacts()"
+              class="input-styling input-icon-arrow-down custom-select-select">Select
+              contacts to</button>            
+              <div id="selectContacts" class="dropdown">              
             </div>
           </div>
         </form>
@@ -142,6 +140,8 @@
           </div>
         </form>
       </section>
+      <div id="selectContacts"></div>
+
     </main>
     <section class="footer-add-task">
       <p class="required">*
@@ -152,6 +152,12 @@
         <button class="btn-priority" onclick=createTask()>Create Task </button>
       </div>
     </section>
+
+
+
+
+
+
 </body>
 <script src="../script/add-task.js"></script>
 

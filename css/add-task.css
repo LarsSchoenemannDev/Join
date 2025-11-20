@@ -44,7 +44,8 @@
      gap: 8px;
  }
 
- label {
+ label,
+ p {
      font-size: 1rem;
      font-weight: 400;
      font-style: regular;
@@ -83,6 +84,98 @@
      border: 0px;
  }
 
+ .input-styling {
+     width: 100%;
+     border-radius: 12px;
+     border: 1px solid #e5e7eb;
+     background: #ffffff;
+     padding: 14px 16px;
+     font-size: 1rem;
+     outline: none;
+ }
+
+ .name-list {
+     display: flex;
+     justify-content: space-between;
+ }
+
+ .contact-list {
+     list-style: none;
+     margin: 0;
+     padding: 0;
+ }
+
+ .contact-row {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 10px 16px;
+     border-bottom: 1px solid #f5f5f5;
+     cursor: pointer;
+ }
+
+ .contact-left {
+     display: flex;
+     align-items: center;
+     gap: 18px;
+ }
+
+ .contact-name {
+     font-size: 16px;
+     color: #2a3647;
+ }
+
+ .input-checkbox {
+     height: 18px;
+     width: 18px;
+ }
+
+ .dropdown {
+     display: block;
+     max-height: 0;
+     overflow: hidden;
+     opacity: 0;
+     transform: translateY(-8px);
+     transition: max-height .3s ease, opacity .3s ease, transform .1s ease;
+ }
+
+ .dropdown.hidden {
+     display: none;
+ }
+
+ .dropdown.open {
+     max-height: 260px;
+     opacity: 1;
+     transform: translateY(0);
+     overflow-y: auto;
+     background-color: #ffff;
+     transform: translate(0px, -5px);
+     border-radius: 12px;
+ }
+
+ .checkbox-input {
+     position: absolute;
+     opacity: 0;
+     width: 0;
+     height: 0;
+ }
+
+ .checkbox-box {
+     display: inline-block;
+     width: 24px;
+     height: 24px;
+     background-image: url("../assets/img/checkbox.svg");
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: 24px 24px;
+     cursor: pointer;
+ }
+
+ .checkbox-input:checked+.checkbox-box {
+     background-image: url("../assets/img/checkboxChecked.svg");
+     
+ }
+
  textarea {
      min-height: 120px;
      resize: vertical;
@@ -103,6 +196,7 @@
      background-repeat: no-repeat;
      background-position: bottom 50% right 20px;
      background-size: 10px 10px;
+     display: flex;
  }
 
  .input-icon-calender {
@@ -195,4 +289,86 @@
      align-items: end;
      gap: 530px;
      margin-top: 450px;
+ }
+
+ .assigned-to-contact {
+     width: 100%;
+     border-radius: 12px;
+     border: 1px solid #e5e7eb;
+     background: #ffffff;
+     padding: 14px 16px;
+     font-size: 1rem;
+     outline: none;
+ }
+
+ .initials-circle {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 32px;
+     height: 32px;
+     border-radius: 50%;
+     color: white;
+     font-size: 14px;
+     font-weight: 600;
+ }
+
+ .initials-Variant1 {
+     background-color: #FF7A00;
+ }
+
+ .initials-Variant2 {
+     background-color: #6E52FF;
+ }
+
+ .initials-Variant3 {
+     background-color: #9327FF;
+ }
+
+ .initials-Variant4 {
+     background-color: #00BEE8;
+ }
+
+ .initials-Variant5 {
+     background-color: #1FD7C1;
+ }
+
+ .initials-Variant6 {
+     background-color: #FF5EB3;
+ }
+
+ .initials-Variant7 {
+     background-color: #FF745E;
+ }
+
+ .initials-Variant8 {
+     background-color: #FFA35E;
+ }
+
+ .initials-Variant9 {
+     background-color: #FC71FF;
+ }
+
+ .initials-Variant10 {
+     background-color: #FFC701;
+ }
+
+ .initials-Variant11 {
+     background-color: #0038FF;
+ }
+
+ .initials-Variant12 {
+     background-color: #C3FF2B;
+ }
+
+ .initials-Variant13 {
+     background-color: #FFE62B;
+ }
+
+ .initials-Variant14 {
+     background-color: #FF4646;
+ }
+
+ .initials-Variant15 {
+     background-color: #FFBB2B;
  }
