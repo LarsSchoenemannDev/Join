@@ -1,14 +1,17 @@
-//Später wenn firebase rdy ist.
 
-//import { auth } from "./firebase-init.js";
-//import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+
+import { auth, db } from "./firebase-init.js";
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+import { ref, set } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
   const form = document.getElementById("signupForm");
+  const nameInput = document.getElementById("name");
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
   const confirmInput = document.getElementById("confirm-password");
+
   const errorBox = document.getElementById("error-message");
   const messageBox = document.getElementById("message");
 
@@ -17,11 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     errorBox.textContent = "";
 
+    const name = nameInput.value.trim();
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
     const confirm = confirmInput.value.trim();
 
-    // Sicherheit: Passwörter müssen matchen
+    // Passwort-Check
     if (password !== confirm) {
       errorBox.textContent = "Your passwords don't match. Please try again.";
       return;
@@ -35,10 +39,18 @@ document.addEventListener("DOMContentLoaded", () => {
         password
       );
 
-      console.log("User created:", userCredential.user);
+      const user = userCredential.user;
+      console.log("User created:", user);
+
+      // User-Daten in Realtime Database speichern
+      await set(ref(db, "users/" + user.uid + "/profile"), {
+        name: name,
+        email: email,
+        createdAt: Date.now()
+      });
 
       // Erfolg anzeigen
-      messageBox.classList.add("show");
+      messageBox?.classList.add("show");
 
       setTimeout(() => {
         window.location.href = "../html/login-site.html";
