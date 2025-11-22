@@ -15,10 +15,7 @@ const firebaseConfig = {
   apiKey: "DEIN_API_KEY",
   authDomain: "DEIN_PROJECT.firebaseapp.com",
   databaseURL: "https://DEIN_PROJECT-default-rtdb.europe-west1.firebasedatabase.app", // ❗ HINZUFÜGEN
-  projectId: "DEIN_PROJECT",
-  storageBucket: "DEIN_PROJECT.appspot.com",
-  messagingSenderId: "1234567890",
-  appId: "APP_ID"
+  projectId: "DEIN_PROJECT"
 };
 
 // Firebase initialisieren
