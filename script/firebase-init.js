@@ -13,9 +13,9 @@ import { getDatabase } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-
 // ==== HIER NUR DIE KONFIGURATION EINTRAGEN ====
 const firebaseConfig = {
   apiKey: "DEIN_API_KEY",
-  authDomain: "DEIN_PROJECT.firebaseapp.com",
-  databaseURL: "https://DEIN_PROJECT-default-rtdb.europe-west1.firebasedatabase.app", // ❗ HINZUFÜGEN
-  projectId: "DEIN_PROJECT"
+  authDomain: "DEIN_PROJECT.firebaseapp.com", // später eintragen
+  databaseURL: "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "joinproject"
 };
 
 // Firebase initialisieren
