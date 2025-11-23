@@ -28,7 +28,6 @@
     align-items: center;
     .summary-overview {
         width: 560px;
-        height: 560px;
         display: flex;
         justify-content: space-between;
         align-items: center;
