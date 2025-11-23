@@ -1,36 +1,13 @@
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    align-items: center;
-}
 
-.body-div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 1920px;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #f6f7f8;
-}
 
-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    flex: 1;
-    width: 100%;
-    padding: 50px;
-}
-
-main .summary-title {
+.summary-title {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     gap: 30px;
     margin-bottom: 50px;
+}
     .main-title {
         font-size: 60px;
         color: rgba(0, 0, 0, 1);
@@ -43,9 +20,8 @@ main .summary-title {
         font-weight: 400;
         margin: 0;
     }
-}
 
-main .summary-main-board {
+.summary-main-board {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -59,6 +35,12 @@ main .summary-main-board {
         flex-flow: row wrap;
         gap: 20px;
     }
+}
+
+.summary-div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 
@@ -221,7 +203,7 @@ main .summary-main-board {
     color: rgba(255, 255, 255, 1);
 }
 
-main .summary-main-board .welcome-user {
+.summary-main-board .welcome-user {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -235,81 +217,4 @@ main .summary-main-board .welcome-user {
         font-weight: 700;
         color: rgba(41, 171, 226, 1);
     }
-}
-
-
-/* Enthält Sidebar + Hauptbereich */
-
-.content-wrapper {
-    display: flex;
-    flex-direction: row;
-}
-
-
-/* Sidebar bleibt links */
-
-.sidebar {
-    width: 230px;
-    background-color: #2A3647;
-    height: 100vh;
-    position: sticky;
-    /* bleibt beim Scrollen sichtbar */
-    top: 0;
-    flex-shrink: 0;
-    z-index: 2;
-    /* über Header, falls nötig */
-}
-
-
-/* Hauptbereich rechts daneben */
-
-.main-area {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-
-/* Header nur im Main-Bereich */
-
-.header {
-    height: 96px;
-    background-color: #fff;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    z-index: 1;
-    /* unter Sidebar, wenn überlappt */
-    position: sticky;
-    top: 0;
-}
-
-.join-icon img {
-    width: 50px;
-    height: 55px;
-}
-
-.join-icon {
-    display: none;
-}
-
-
-/*Später in Sidebar-style.css hinzufügen für alle*/
-
-.frame1 {
-    padding: 0px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.frame2 {
-    margin-bottom: 0px;
-    margin-top: 50px;
-}
-
-.logo {
-    margin-bottom: 50px;
 }
