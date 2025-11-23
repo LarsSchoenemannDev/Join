@@ -1,3 +1,8 @@
+
+.d-none {
+        display: none !important;
+      }
+
 .contacts {
     display: flex;
     flex-direction: column;

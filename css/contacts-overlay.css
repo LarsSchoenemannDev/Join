@@ -169,6 +169,8 @@
 .add-contact-overlay .add-contact-container .add-contact-form .contactForm .inputContainer input {
     outline: none;
     border: none;
+    width: 100%;
+    height: 100%;
 }
 
 .add-contact-overlay .add-contact-container .add-contact-form .contactForm .inputContainer:focus-within {
