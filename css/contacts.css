@@ -1,7 +1,6 @@
-
 .d-none {
-        display: none !important;
-      }
+    display: none !important;
+}
 
 .contacts {
     display: flex;
@@ -144,7 +143,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 110px 110px 50px 55px;
+    padding: 50px 110px 50px 55px;
     overflow-y: auto;
 }
 

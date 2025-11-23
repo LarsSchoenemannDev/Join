@@ -6,9 +6,9 @@ const contactBadge = document.querySelector('.contacts .contact-list .contact-li
 const contactAlphabet = document.querySelector('.contacts .contact-list .contact-list-items .contact-alphabet');
 const cancelBtn = document.getElementById('cancel-btn');
 const createContactBtn = document.getElementById('createContact-btn');
-const nameInput = document.getElementById('nameInput');
-const emailInput = document.getElementById('emailInput');
-const phoneInput = document.getElementById('phoneInput');
+const nameInput = document.getElementById('name_input');
+const emailInput = document.getElementById('email_input');
+const phoneInput = document.getElementById('phone_input');
 const createMessage = document.querySelector('.popup-message');
 const editContactPopup = document.querySelector('.edit-contact-popup');
 
