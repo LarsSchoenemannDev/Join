@@ -1,6 +1,8 @@
 const BASE_URL = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/";
 let addTaskTemp = [];
 let FetchData = [];
+let Subtasks =[];
+
 
 async function createTask() {
     await getData();
@@ -30,7 +32,6 @@ function addtoTask(e) {
         title: get('title'),
         description: get('description'),
         duedate: get('due-date'),
-
         category: get('category'),
         subtasks: get('subtasks'),
         priority: document.querySelector('input[name="priority"]:checked')?.value ?? null
@@ -46,6 +47,9 @@ function clearInputs() {
     subtasks.value = '';
 }
 
+function PriorityBTN(){
+    BTNStyling = document.querySelector('input[name="priority"]:checked')
+}
 
 function renderContact() {
     const CONTACT_LIST_CONTAINER = document.getElementById("selectContacts");
@@ -90,29 +94,45 @@ function getRandomColorClass() {
 
 function renderContactHTML(contact, initials, colorClass) {
     return `    
-      <ul class="contact-row" id="BG-Change">
+       <ul class="contact-row" id="BG-Change">
         <div class="contact-left">
           <div class="initials-circle ${colorClass}">${initials}</div>
           <span class="contact-name">${contact.name}</span>
         </div>
-        <label class="checkbox"> 
-         <input id="checkboxValue" onclick="checkBox()" class="checkbox-input" type="checkbox" value="${contact.name}">
+        <label class="checkbox">
+         <input id="checkbox" onclick="checkBox(this)" class="checkbox-input" name="checked" type="checkbox" value="${contact.name}">
          <span class="checkbox-box"></span>
         </label>
-      </ul>    
+      </ul>
     `;
 }
 
 function toggelContacts() {
-    const dropdown = document.getElementById('selectContacts');
+    const dropdown = document.getElementById("selectContacts");
     dropdown.classList.toggle('open');
 }
 
-
-function checkBox(){
-    const checkBox = document.getElementById("checkboxValue");
-    const BgChange = document.getElementById("BG-Change")
-    if (checkBox.value !== "") {
-        BgChange.style.backgroundColor = '#2a3647';
+function checkBox(inputElement) {    
+    const BGChange = inputElement.closest(".contact-row");   
+    if (BGChange) {
+        const contactNameElement = BGChange.querySelector(".contact-name");              
+        if (inputElement.checked) {             
+            BGChange.style.borderRadius = "12px";
+            BGChange.style.backgroundColor = "#2A3647";  
+            if (contactNameElement) {                
+                 contactNameElement.style.color = "#ffff"; 
+            }               
+        } else {           
+            BGChange.style.backgroundColor = ""; 
+            BGChange.style.borderRadius = "";             
+            if (contactNameElement) {
+                contactNameElement.style.color = ""; 
+            }         
+        }
     }
+}
+
+
+function createSubtasks(){
+
 }

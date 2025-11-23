@@ -94,7 +94,7 @@
             <label class="field-label">Priority</label>
             <div class="button-priority">
               <input type="radio" name="priority" value="urgent" class="prio-input">
-              <label for="prio-urgent" id="prio-urgent" onclick="PrioBTN()" class="btn-priority btn-priority-flex">
+              <label for="prio-urgent" id="prio-urgent" class="btn-priority btn-priority-flex">
                 Urgent
                 <img src="../assets/img/PrioUP-icon.svg" id="prio-urgent-svg" alt="">
               </label>
@@ -116,8 +116,8 @@
             <p>Assigned to </p>
             <button type="button" onclick="toggelContacts()"
               class="input-styling input-icon-arrow-down custom-select-select">Select
-              contacts to</button>            
-              <div id="selectContacts" class="dropdown">              
+              contacts to</button>
+            <div id="selectContacts" class="dropdown">
             </div>
           </div>
         </form>
@@ -137,6 +137,9 @@
           <div class="field">
             <label for="subtasks">Subtasks</label>
             <input id="subtasks" type="text" class="input-icon-close input-icon-cheak" placeholder="Add new subtask">
+            <div id ="Subtask" class="Subtask">
+              <li>help</li>
+            </div>
           </div>
         </form>
       </section>

@@ -252,7 +252,7 @@ main .summary-main-board .welcome-user {
     width: 230px;
     background-color: #2A3647;
     height: 100vh;
-    position: sticky;
+    /* position: sticky; */
     /* bleibt beim Scrollen sichtbar */
     top: 0;
     flex-shrink: 0;
