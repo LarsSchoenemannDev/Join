@@ -52,6 +52,52 @@ main{
     top: 0;
 }
 
+.header .text {
+    font-size: 20px;
+    font-weight: 400;
+    color: #000;
+}
+
+.header .icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.header .icons .help {
+    width: 20px;
+    height: 20px;
+    color: #a8a8a8;
+    cursor: pointer;
+}
+
+.header .icons .help:hover img {
+    width: 24px;
+    height: 24px;
+}
+
+.header .icons .help img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header .icons .user-icon {
+    width: 56px;
+    height: 56px;
+    cursor: pointer;
+    background-image: url('../assets/img/user\ profile\ default.svg');
+    background-size: cover;
+    background-position: center;
+    transition: all 200ms linear;
+}
+
+.header .icons .user-icon:hover {
+    background-image: url('../assets/img/user\ profile\ hover.svg');
+}
+
 
 
 .join-icon img{
@@ -60,6 +106,47 @@ main{
 }
 .join-icon{
   display: none;
+}
+
+
+.dropDown-menu {
+    position: fixed;
+    right: -300px;
+    top: 19%;
+    transform: translateY(-50%);
+    transition: right 1.0s ease-in-out;
+    background-color: #2a3647;
+    width: 160px;
+    border-radius: 20px 0 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8px;
+}
+
+.dropDown-menu.show {
+  right: 0px; /* Endposition innerhalb des Bildschirms */
+}
+
+.dropDown-menu a {
+    font-weight: 400;
+    font-size: 16px;
+    color: #cdcdcd;
+    text-decoration: none;
+    padding: 8px 16px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropDown-menu a:hover{
+    background-color: #2A3D59;
+}
+
+.hide {
+    display: none !important;
 }
 
 /* Sidebar area */
