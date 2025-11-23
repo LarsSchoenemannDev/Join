@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
@@ -27,38 +27,24 @@
     <link rel="manifest" href="../assets/Favicon/site.webmanifest" />
 
     <!-- adding Main CSS Style-Sheet -->
-    <link rel="stylesheet" href="../css/main.css" />
-
-    <!-- style for contacts overlay -->
-    <style>
-      .d-none {
-        display: none;
-      }
-    </style>
+    <link rel="stylesheet" href="../css/standard.css" />
+    <link rel="stylesheet" href="../css/sidebar_and_header_main.css">
+    <link rel="stylesheet" href="../css/contact-predefinedClasses.css">
+    <link rel="stylesheet" href="../css/contacts-edit-overlay.css">
+    <link rel="stylesheet" href="../css/contacts.css">
+    <link rel="stylesheet" href="../css/contacts-overlay.css">
+    <link rel="stylesheet" href="../css/sidebar-responsiv.css">
+    
   </head>
-
-  <body onload="initContacts()">
-    <header class="header">
-      <div class="text">Kanban Project Management Tool</div>
-      <div class="icons">
-        <a href="../html/help.html" class="help">
-          <img src="../assets/img/help.svg" alt="help" id="help" />
-        </a>
-        <div class="user-icon"></div>
-      </div>
-      <div class="dropDown-menu hide">
-        <a href="../html/legal-notice.html">Legal notice</a>
-        <a href="../html/privacy-policy.html">Privacy Policy</a>
-        <a href="">Log Out</a>
-      </div>
-    </header>
-    <sidebar class="sidebar">
-      <div class="frame1">
+<body onload="initContacts()">
+   <div class="body-div">
+    <div class="content-wrapper">
+      <aside class="sidebar">
+        <div class="frame1">
         <div class="logo">
           <img src="../assets/img/join-logo.svg " alt="logo " />
         </div>
-      </div>
-      <div class="frame2">
+        <div class="frame2">
         <div class="sideMenu">
           <a href="../html/summary.html"
             ><img
@@ -66,30 +52,58 @@
               alt="summary "
             />Summary</a
           >
-          <a href="../html/add-task.html "
+          <a class="active" href="../html/add-task.html "
             ><img src="../assets/img/addTask-icon.svg " alt="add-task " />Add
             Task
           </a>
           <a href="../html/board.html "
             ><img src="../assets/img/board-icon.svg " alt="board " />Board</a
           >
-          <a href="#" class="active"
+          <a href="../html/contacts.html "
             ><img
-              src="../assets/img/contacts-icon.svg "
+              src="../assets/img/contacts-icon.svg"
               alt="contacts "
             />Contacts</a
           >
         </div>
+        <div class="sideMenu hide">
+          <a href="../html/contacts.html "
+            ><img
+              src="../assets/img/contacts-icon.svg "
+              alt="contacts "
+            />Login</a
+          >
+        </div>
+      </div>
       </div>
       <div class="frame3">
         <div class="footerMenu">
-          <a href="../html/privacy-policy.html ">Privacy Policy</a>
+          <a href="#" class="">Privacy Policy</a>
           <a href="../html/legal-notice.html ">Legal notice</a>
         </div>
       </div>
-    </sidebar>
-    <main>
-      <section class="contacts">
+      </aside>
+      <div class="main-area">
+        <header class="header">
+          <div class="join-icon">
+            <img src="../assets/img/Logo_for_Favicon_construction.png" alt="Join-logo">
+          </div>
+      <div class="text">Kanban Project Management Tool</div>
+      <div class="icons">
+        <a href="../html/help.html" class="help">
+          <img src="../assets/img/help.svg" alt="help" id="help" />
+        </a>
+        <div class="user-icon" onclick="tooglemenu()"></div>
+      </div>
+      <div class="dropDown-menu" id="dropDown-menu">
+        <a href="../html/help.html" class="hide" id="switch_help">Help</a>
+        <a href="../html/legal-notice.html">Legal notice</a>
+        <a href="../html/privacy-policy.html">Privacy Policy</a>
+        <a href="">Log Out</a>
+      </div>
+    </header>
+        <main>
+          <section class="contacts">
         <button
           id="add-contact"
           class="primary-btn-default-icon"
@@ -253,10 +267,14 @@
       </div>
 
       <div class="popup-message d-none"></div>
-    </main>
-    <script src="../script/firebaseStorage.js"></script>
+        </main>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../script/sidebar_and_header_script.js"></script>
+	<script src="../script/firebaseStorage.js"></script>
     <script src="../script/data-bank.js"></script>
     <script src="../script/contact-Templates.js"></script>
     <script src="../script/contacts.js"></script>
-  </body>
 </html>
