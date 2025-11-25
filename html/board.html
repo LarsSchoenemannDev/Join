@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
@@ -28,84 +28,90 @@
 
     <!-- adding Main CSS Style-Sheet -->
     <link rel="stylesheet" href="../css/standard.css" />
-    <link rel="stylesheet" href="../css/sidebar_and_header_main.css">
+    <link rel="stylesheet" href="../css/sidebar_and_header_main.css" />
     <!-- hier denn Style von Board reinmachen ohne bei Sidebar und so zuändern -->
-    <link rel="stylesheet" href="#">
-    <link rel="stylesheet" href="../css/sidebar-responsiv.css">
-    
+    <link rel="stylesheet" href="#" />
+    <link rel="stylesheet" href="../css/sidebar-responsiv.css" />
   </head>
-<body>
-   <div class="body-div">
-    <div class="content-wrapper">
-      <aside class="sidebar">
-        <div class="frame1">
-        <div class="logo">
-          <img src="../assets/img/join-logo.svg " alt="logo " />
-        </div>
-        <div class="frame2">
-        <div class="sideMenu">
-          <a href="../html/summary.html"
-            ><img
-              src="../assets/img/summary-icon.svg "
-              alt="summary "
-            />Summary</a
-          >
-          <a href="../html/add-task.html "
-            ><img src="../assets/img/addTask-icon.svg " alt="add-task " />Add
-            Task
-          </a>
-          <a href="../html/board.html "
-            ><img src="../assets/img/board-icon.svg " alt="board " />Board</a
-          >
-          <a href="../html/contacts.html "
-            ><img
-              src="../assets/img/contacts-icon.svg"
-              alt="contacts "
-            />Contacts</a
-          >
-        </div>
-        <div class="sideMenu hide">
-          <a href="../html/contacts.html "
-            ><img
-              src="../assets/img/contacts-icon.svg "
-              alt="contacts "
-            />Login</a
-          >
-        </div>
-      </div>
-      </div>
-      <div class="frame3">
-        <div class="footerMenu">
-          <a href="#" class="current">Privacy Policy</a>
-          <a href="../html/legal-notice.html ">Legal notice</a>
-        </div>
-      </div>
-      </aside>
-      <div class="main-area">
-        <header class="header">
-          <div class="join-icon">
-            <img src="../assets/img/Logo_for_Favicon_construction.png" alt="Join-logo">
+
+  <body>
+    <div class="body-div">
+      <div class="content-wrapper">
+        <aside class="sidebar">
+          <div class="frame1">
+            <div class="logo">
+              <img src="../assets/img/join-logo.svg" alt="logo" />
+            </div>
+            <div class="frame2">
+              <div class="sideMenu">
+                <a href="../html/summary.html"
+                  ><img
+                    src="../assets/img/summary-icon.svg "
+                    alt="summary "
+                  />Summary</a
+                >
+                <a href="../html/add-task.html"
+                  ><img
+                    src="../assets/img/addTask-icon.svg "
+                    alt="add-task "
+                  />Add Task
+                </a>
+                <a class="active" href="#"
+                  ><img
+                    src="../assets/img/board-icon.svg "
+                    alt="board "
+                  />Board</a
+                >
+                <a href="../html/contacts.html"
+                  ><img
+                    src="../assets/img/contacts-icon.svg"
+                    alt="contacts "
+                  />Contacts</a
+                >
+              </div>
+              <div class="sideMenu hide">
+                <a href="../html/contacts.html"
+                  ><img
+                    src="../assets/img/contacts-icon.svg "
+                    alt="contacts "
+                  />Login</a
+                >
+              </div>
+            </div>
           </div>
-      <div class="text">Kanban Project Management Tool</div>
-      <div class="icons">
-        <a href="../html/help.html" class="help">
-          <img src="../assets/img/help.svg" alt="help" id="help" />
-        </a>
-        <div class="user-icon" onclick="tooglemenu()"></div>
-      </div>
-      <div class="dropDown-menu" id="dropDown-menu">
-        <a href="../html/help.html" class="hide" id="switch_help">Help</a>
-        <a href="../html/legal-notice.html">Legal notice</a>
-        <a href="../html/privacy-policy.html">Privacy Policy</a>
-        <a href="">Log Out</a>
-      </div>
-    </header>
-        <main>
-          
-        </main>
+          <div class="frame3">
+            <div class="footerMenu">
+              <a href="../html/privacy-policy.html">Privacy Policy</a>
+              <a href="../html/legal-notice.html">Legal notice</a>
+            </div>
+          </div>
+        </aside>
+        <div class="main-area">
+          <header class="header">
+            <div class="join-icon">
+              <img
+                src="../assets/img/Logo_for_Favicon_construction.png"
+                alt="Join-logo"
+              />
+            </div>
+            <div class="text">Kanban Project Management Tool</div>
+            <div class="icons">
+              <a href="../html/help.html" class="help">
+                <img src="../assets/img/help.svg" alt="help" id="help" />
+              </a>
+              <div class="user-icon" onclick="tooglemenu()"></div>
+            </div>
+            <div class="dropDown-menu" id="dropDown-menu">
+              <a href="../html/help.html" class="hide" id="switch_help">Help</a>
+              <a href="../html/legal-notice.html">Legal notice</a>
+              <a href="../html/privacy-policy.html">Privacy Policy</a>
+              <a href="">Log Out</a>
+            </div>
+          </header>
+          <main></main>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-<script src="../script/sidebar_and_header_script.js"></script>
+  </body>
+  <script src="../script/sidebar_and_header_script.js"></script>
 </html>

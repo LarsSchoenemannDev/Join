@@ -46,9 +46,98 @@ function renderFloatingContactTemplate(foundContact) {
                     <h4 id="contact-email">Email</h4>
                     <span class="span-email" id="span-email">${foundContact.email}</span>
                     <h4 id="contact-phone">Phone</h4>
-                    <span>${foundContact.phone}</span>
+                    <span id="span-phone">${foundContact.phone}</span>
                 </div>
             </div>
     
+    `
+}
+
+function renderEditContactTemplate(foundContact) {
+    return `
+    
+              <div class="edit-contact-overlay">
+                <div class="edit-contact-overview">
+                  <div class="join-logo-contact">
+                    <img src="../assets/img/join-logo-add-contact.svg" alt="" />
+                  </div>
+                  <div class="edit-contact-text">
+                    <h2 class="edit-contact-title">Edit contact</h2>
+
+                    <div class="blue-vector">
+                      <img
+                        src="../assets/img/add-contact-blue-vector.svg"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="edit-contact-container">
+                  <div class="close-btn" onclick="closeEditContactOverlay()">
+                    <img
+                      src="../assets/img/add-contact-close-button.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="edit-contact-form">
+                    <div class="edit-contact-badge">
+                      <img src="../assets/img/add-contact-badge.svg" alt="" />
+                    </div>
+
+                    <div class="contactForm">
+                      <div class="inputContainer">
+                        <input type="text" placeholder="Name" id="nameInput" />
+                        <img
+                          src="../assets/img/add-contact-person-icon.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="inputContainer">
+                        <input
+                          type="email"
+                          placeholder="Email"
+                          id="emailInput"
+                        />
+                        <img
+                          src="../assets/img/add-contact-mail-icon.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="inputContainer">
+                        <input
+                          type="tel"
+                          placeholder="Phone"
+                          id="phoneInput"
+                        />
+                        <img
+                          src="../assets/img/add-contact-call-icon.svg"
+                          alt=""
+                        />
+                      </div>
+
+                      <div class="edit-contact-buttons">
+                        <button
+                          class="secondary-btn-default-icon"
+                          id="delete-btn"
+                          onclick="deleteData(event)"
+                        >
+                          Delete <img src="" alt="" />
+                        </button>
+                        <button
+                          class="primary-btn-default-icon"
+                          id="saveContact-btn"
+                          onclick="editExistingContact()"
+                        >
+                          Save<img
+                            src="../assets/img/create-contact-check.svg"
+                            alt=""
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
     `
 }

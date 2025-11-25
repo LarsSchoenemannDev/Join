@@ -6,9 +6,9 @@ const contactBadge = document.querySelector('.contacts .contact-list .contact-li
 const contactAlphabet = document.querySelector('.contacts .contact-list .contact-list-items .contact-alphabet');
 const cancelBtn = document.getElementById('cancel-btn');
 const createContactBtn = document.getElementById('createContact-btn');
-const nameInput = document.getElementById('nameInput');
-const emailInput = document.getElementById('emailInput');
-const phoneInput = document.getElementById('phoneInput');
+const nameInput = document.getElementById('name_input');
+const emailInput = document.getElementById('email_input');
+const phoneInput = document.getElementById('phone_input');
 const createMessage = document.querySelector('.popup-message');
 const editContactPopup = document.querySelector('.edit-contact-popup');
 
@@ -259,12 +259,52 @@ async function deleteData(event) {
 }
 
 function openEditContactOverlay() {
-    editContactPopup.classList.remove('d-none');
+    let foundContact = null;
+    let foundID = null;
+
+    for (const [id, data] of Object.entries(fetchedData)) {
+        if (data.name === document.getElementById('contact-name').textContent.trim() &&
+            data.email === document.getElementById('span-email').textContent.trim() &&
+            data.phone === document.getElementById('span-phone').textContent.trim()) {
+            foundContact = data;
+            foundID = id;
+            break;
+        }
+    }
+
+    if (foundContact) {
+        // Add ID to contact object for later use in edit/delete
+        foundContact.id = foundID;
+
+        // Set innerHTML FIRST, before accessing the overlay
+        editContactPopup.innerHTML = renderEditContactTemplate(foundContact);
+
+        // NOW get the overlay reference (after innerHTML is set)
+        const overlay = editContactPopup.querySelector('.edit-contact-overlay');
+
+        // Set input values with fallback for phone
+        document.getElementById('nameInput').value = foundContact.name || '';
+        document.getElementById('emailInput').value = foundContact.email || '';
+        document.getElementById('phoneInput').value = foundContact.phone || '';
+
+        // Show popup and trigger animation
+        editContactPopup.classList.remove('d-none');
+
+        // Force reflow to ensure animation works
+        overlay.offsetHeight;
+
+        overlay.classList.remove('slide-out');
+        overlay.classList.add('slide-in');
+    }
+}
+
+function closeEditContactOverlay() {
     const overlay = editContactPopup.querySelector('.edit-contact-overlay');
+    overlay.classList.remove('slide-in');
+    overlay.classList.add('slide-out');
 
-    // Force reflow
-    overlay.offsetHeight;
-
-    overlay.classList.remove('slide-out');
-    overlay.classList.add('slide-in');
+    // Wait for animation to finish before hiding
+    setTimeout(() => {
+        editContactPopup.classList.add('d-none');
+    }, 500);
 }
