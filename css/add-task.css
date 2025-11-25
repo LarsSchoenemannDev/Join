@@ -30,7 +30,7 @@
      justify-content: start;
  }
 
- form {
+ .div-field {
      display: flex;
      flex-direction: column;
      margin-bottom: 24px;
@@ -140,6 +140,10 @@
      display: none;
  }
 
+ .d-none {
+     display: block;
+ }
+
  .dropdown.open {
      max-height: 260px;
      opacity: 1;
@@ -210,11 +214,47 @@
      appearance: none;
  }
 
- .input-icon-cheak {
-     background-image: url("../assets/img/check-icon.svg");
-     background-repeat: no-repeat;
-     background-position: bottom 50% right 20px;
-     background-size: 24px 24px;
+ .img-container {
+     position: absolute;
+     display: none;
+     align-items: center;
+     gap: 8px;
+     right: 8px;
+ }
+
+ .input-wrapper {
+     position: relative;
+     display: flex;
+     align-items: center;
+ }
+
+ .seperator-small {
+     background-color: rgba(209, 209, 209, 1);
+     width: 1px;
+     height: 24px;
+     display: flex;
+ }
+
+ .display-flex {
+     display: flex;        
+     width: 81.5%;
+ }
+
+ .sub-container {     
+     display: flex;
+     justify-content: flex-start;
+     flex-direction: row;
+     align-items: center;
+     gap: 8px;
+     right: 8px;
+     padding-bottom: 8px;
+ }
+
+ .input-icon-cancel,
+ .input-icon-accept {
+     width: 24px;
+     height: 24px;
+     cursor: pointer;
  }
 
  .center-seperator {
@@ -281,8 +321,6 @@
      align-items: center;
      gap: 8px;
  }
-
- .subtask {}
 
  .footer-add-task {
      display: flex;

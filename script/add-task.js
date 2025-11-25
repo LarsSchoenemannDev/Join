@@ -1,7 +1,11 @@
 const BASE_URL = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/";
 let addTaskTemp = [];
 let FetchData = [];
-let Subtasks =[];
+let Subtasks = [];
+let subTaskInput = [];
+
+console.log(subtaskInput);
+
 
 
 async function createTask() {
@@ -47,7 +51,7 @@ function clearInputs() {
     subtasks.value = '';
 }
 
-function PriorityBTN(){
+function PriorityBTN() {
     BTNStyling = document.querySelector('input[name="priority"]:checked')
 }
 
@@ -112,27 +116,75 @@ function toggelContacts() {
     dropdown.classList.toggle('open');
 }
 
-function checkBox(inputElement) {    
-    const BGChange = inputElement.closest(".contact-row");   
+function checkBox(inputElement) {
+    const BGChange = inputElement.closest(".contact-row");
     if (BGChange) {
-        const contactNameElement = BGChange.querySelector(".contact-name");              
-        if (inputElement.checked) {             
+        const contactNameElement = BGChange.querySelector(".contact-name");
+        if (inputElement.checked) {
             BGChange.style.borderRadius = "12px";
-            BGChange.style.backgroundColor = "#2A3647";  
-            if (contactNameElement) {                
-                 contactNameElement.style.color = "#ffff"; 
-            }               
-        } else {           
-            BGChange.style.backgroundColor = ""; 
-            BGChange.style.borderRadius = "";             
+            BGChange.style.backgroundColor = "#2A3647";
             if (contactNameElement) {
-                contactNameElement.style.color = ""; 
-            }         
+                contactNameElement.style.color = "#ffff";
+            }
+        } else {
+            BGChange.style.backgroundColor = "";
+            BGChange.style.borderRadius = "";
+            if (contactNameElement) {
+                contactNameElement.style.color = "";
+            }
         }
     }
 }
 
 
-function createSubtasks(){
+function createSubtasks() {
+    const subtask = document.getElementById("showHidden");
+    subtask.style.display = "flex";
+}
 
+function addSubtask() {
+    let subTask = document.getElementById("subtasks");
+    let subTaskValue = subTask.value.trim()
+    if (subTaskValue.length <= 3) return;
+    subTaskInput.push(subTask.value);
+    renderSubtasks(subTaskValue);
+    subTask.value = ``;
+}
+
+function renderSubtasks() {
+    let subTaskContent = document.getElementById("SubtaskList");
+    let htmlContent = ``;
+    for (let i = 0; i < subTaskInput.length; i++) {
+        let subTaskNote = subTaskInput[i]
+        htmlContent += subTaskContentHMTL(subTaskNote, i);
+    }
+    subTaskContent.innerHTML = htmlContent;
+}
+
+function subTaskContentHMTL(subTaskInput, i) {
+    return `
+    <div class="sub-container" data-index="${i}">
+        <span class="display-flex">&bull; ${subTaskInput}</span>
+            <img src="../assets/img/Subtasks change.svg" class="input-icon-cancel" onclick="changeSubtask(${i})">
+            <div class="seperator-small"></div>
+                 <img src="../assets/img/SubTask delete.svg" class="input-icon-accept" onclick="deleteSubtask(${i})">
+    </div>
+    
+    `;
+}
+
+function changeSubtask(i){
+    let newSubtask = document.querySelector(`.sub-container[data-index="${i}"]`).innerText;
+    console.log(newSubtask);
+    
+}
+
+
+function deleteSubtask(i){
+    subTaskInput.splice(i, 1);
+    renderSubtasks();
+}
+
+function cancelSubtask() {
+    document.getElementById("subtasks").value = ``;d
 }

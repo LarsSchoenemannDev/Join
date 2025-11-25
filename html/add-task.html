@@ -1,205 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join</title>
 
-    <!-- adding Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/Favicon/favicon.ico" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="../assets/Favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="../assets/Favicon/favicon-16x16.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="../assets/Favicon/apple-touch-icon.png"
-    />
-    <link rel="manifest" href="../assets/Favicon/site.webmanifest" />
+  <!-- adding Favicon-->
+  <link rel="icon" type="image/x-icon" href="../assets/Favicon/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/Favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/Favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/Favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="../assets/Favicon/site.webmanifest" />
 
-    <!-- adding Main CSS Style-Sheet -->
-    <link rel="stylesheet" href="../css/standard.css" />
-    <link rel="stylesheet" href="../css/sidebar_and_header_main.css">
-    <link rel="stylesheet" href="../css/add-task.css">
-    <link rel="stylesheet" href="../css/sidebar-responsiv.css">
-    
-  </head>
-<body>
-   <div class="body-div">
+  <!-- adding Main CSS Style-Sheet -->
+  <link rel="stylesheet" href="../css/standard.css" />
+  <link rel="stylesheet" href="../css/sidebar_and_header_main.css">
+  <link rel="stylesheet" href="../css/add-task.css">
+  <link rel="stylesheet" href="../css/sidebar-responsiv.css">
+
+</head>
+
+<body onload="renderContact()">
+  <div class="body-div">
     <div class="content-wrapper">
       <aside class="sidebar">
         <div class="frame1">
-        <div class="logo">
-          <img src="../assets/img/join-logo.svg " alt="logo " />
+          <div class="logo">
+            <img src="../assets/img/join-logo.svg " alt="logo " />
+          </div>
+          <div class="frame2">
+            <div class="sideMenu">
+              <a class="" href="../html/summary.html"><img src="../assets/img/summary-icon.svg "
+                  alt="summary " />Summary</a>
+              <a class="active" href="../html/add-task.html "><img src="../assets/img/addTask-icon.svg "
+                  alt="add-task " />Add
+                Task
+              </a>
+              <a href="../html/board.html "><img src="../assets/img/board-icon.svg " alt="board " />Board</a>
+              <a href="../html/contacts.html "><img src="../assets/img/contacts-icon.svg" alt="contacts " />Contacts</a>
+            </div>
+            <div class="sideMenu hide">
+              <a href="../html/contacts.html "><img src="../assets/img/contacts-icon.svg " alt="contacts " />Login</a>
+            </div>
+          </div>
         </div>
-        <div class="frame2">
-        <div class="sideMenu">
-          <a class="" href="../html/summary.html"
-            ><img
-              src="../assets/img/summary-icon.svg "
-              alt="summary "
-            />Summary</a
-          >
-          <a class="active" href="../html/add-task.html "
-            ><img src="../assets/img/addTask-icon.svg " alt="add-task " />Add
-            Task
-          </a>
-          <a href="../html/board.html "
-            ><img src="../assets/img/board-icon.svg " alt="board " />Board</a
-          >
-          <a href="../html/contacts.html "
-            ><img
-              src="../assets/img/contacts-icon.svg"
-              alt="contacts "
-            />Contacts</a
-          >
+        <div class="frame3">
+          <div class="footerMenu">
+            <a href="#" class="">Privacy Policy</a>
+            <a href="../html/legal-notice.html ">Legal notice</a>
+          </div>
         </div>
-        <div class="sideMenu hide">
-          <a href="../html/contacts.html "
-            ><img
-              src="../assets/img/contacts-icon.svg "
-              alt="contacts "
-            />Login</a
-          >
-        </div>
-      </div>
-      </div>
-      <div class="frame3">
-        <div class="footerMenu">
-          <a href="#" class="">Privacy Policy</a>
-          <a href="../html/legal-notice.html ">Legal notice</a>
-        </div>
-      </div>
       </aside>
       <div class="main-area">
         <header class="header">
           <div class="join-icon">
             <img src="../assets/img/Logo_for_Favicon_construction.png" alt="Join-logo">
           </div>
-      <div class="text">Kanban Project Management Tool</div>
-      <div class="icons">
-        <a href="../html/help.html" class="help">
-          <img src="../assets/img/help.svg" alt="help" id="help" />
-        </a>
-        <div class="user-icon" onclick="tooglemenu()"></div>
-      </div>
-      <div class="dropDown-menu" id="dropDown-menu">
-        <a href="../html/help.html" class="hide" id="switch_help">Help</a>
-        <a href="../html/legal-notice.html">Legal notice</a>
-        <a href="../html/privacy-policy.html">Privacy Policy</a>
-        <a href="">Log Out</a>
-      </div>
-    </header>
+          <div class="text">Kanban Project Management Tool</div>
+          <div class="icons">
+            <a href="../html/help.html" class="help">
+              <img src="../assets/img/help.svg" alt="help" id="help" />
+            </a>
+            <div class="user-icon" onclick="tooglemenu()"></div>
+          </div>
+          <div class="dropDown-menu" id="dropDown-menu">
+            <a href="../html/help.html" class="hide" id="switch_help">Help</a>
+            <a href="../html/legal-notice.html">Legal notice</a>
+            <a href="../html/privacy-policy.html">Privacy Policy</a>
+            <a href="">Log Out</a>
+          </div>
+        </header>
         <main>
           <section class="add-task-content">
-    <h1 class="h1-content">Add Task</h1>
-    <main class="main-content">
-      <section class="card">
-        <form>
-          <div class="field">
-            <label for="title">
-              Title<span class="required">*</span>
-            </label>
-            <input id="title" type="text" placeholder="Enter a title" required>
-          </div>
-        </form>
-        <form>
-          <div class="field">
-            <label for="description">Description</label>
-            <textarea id="description" placeholder="Enter a Description" style="height: 120px;"></textarea>
-          </div>
-        </form>
-        <form>
-          <div class="field">
-            <label for="due-date">
-              Due date<span class="required">*</span>
-            </label>
-            <div>
-              <input class="input-icon-calender" id="duedate" type="date" placeholder="dd/mm/yyyy" required
-                min="2025-01-01" max="2030-12-31">
-            </div>
-        </form>
-        </div>
-      </section>
-      <div class="center-seperator">
-        <div class="seperator"></div>
-      </div>
-      <section class="card">
-        <form>
-          <div class="field">
-            <label class="field-label">Priority</label>
-            <div class="button-priority">
-              <input type="radio" name="priority" value="urgent" class="prio-input">
-              <label for="prio-urgent" id="prio-urgent" class="btn-priority btn-priority-flex">
-                Urgent
-                <img src="../assets/img/PrioUP-icon.svg" id="prio-urgent-svg" alt="">
-              </label>
-              <input type="radio" id="prio-medium" name="priority" value="medium" class="prio-input" checked>
-              <label for="prio-medium" class="btn-priority btn-priority-flex">
-                Medium
-                <img src="../assets/img/PrioMedium-icon.svg" class="btn-priority-medium" alt="">
-              </label>
-              <input type="radio" id="prio-low" name="priority" value="low" class="prio-input">
-              <label for="prio-low" class="btn-priority btn-priority-flex">
-                Low
-                <img src="../assets/img/PrioDown-icon.svg" alt="">
-              </label>
-            </div>
-          </div>
-        </form>
-        <form>
-          <div class="field">
-            <p>Assigned to </p>
-            <button type="button" onclick="toggelContacts()"
-              class="input-styling input-icon-arrow-down custom-select-select">Select
-              contacts to</button>
-            <div id="selectContacts" class="dropdown">
-            </div>
-          </div>
-        </form>
-        <form>
-          <div class="field">
-            <label for="category">
-              Category<span class="required">*</span>
-            </label>
-            <select id="category" class="input-icon-arrow-down custom-select-select" required>
-              <option>Select task category</option>
-              <option>Technical Task</option>
-              <option>User Story</option>
-            </select>
-          </div>
-        </form>
-        <form>
-          <div class="field">
-            <label for="subtasks">Subtasks</label>
-            <input id="subtasks" type="text" class="input-icon-close input-icon-cheak" placeholder="Add new subtask">
-            <div id ="Subtask" class="Subtask">
-              <li>help</li>
-            </div>
-          </div>
-        </form>
-      </section>
-      <div id="selectContacts"></div>
+            <h1 class="h1-content">Add Task</h1>
+            <main class="main-content">
+              <section class="card">
+                <div>
+                  <div class="field">
+                    <label for="title">
+                      Title<span class="required">*</span>
+                    </label>
+                    <input id="title" type="text" placeholder="Enter a title" required>
+                  </div>
+                </div>
+                <div>
+                  <div class="field">
+                    <label for="description">Description</label>
+                    <textarea id="description" placeholder="Enter a Description" style="height: 120px;"></textarea>
+                  </div>
+                </div>
+                <div>
+                  <div class="field">
+                    <label for="due-date">
+                      Due date<span class="required">*</span>
+                    </label>
+                    <div>
+                      <input class="input-icon-calender" id="duedate" type="date" placeholder="dd/mm/yyyy" required
+                        min="2025-01-01" max="2030-12-31">
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <div class="center-seperator">
+                <div class="seperator"></div>
+              </div>
+              <section class="card">
+                <div class="div-field">
+                  <div class="field">
+                    <label class="field-label">Priority</label>
+                    <div class="button-priority">
+                      <input type="radio" name="priority" value="urgent" class="prio-input">
+                      <label for="prio-urgent" id="prio-urgent" class="btn-priority btn-priority-flex">
+                        Urgent
+                        <img src="../assets/img/PrioUP-icon.svg" id="prio-urgent-svg" alt="">
+                      </label>
+                      <input type="radio" id="prio-medium" name="priority" value="medium" class="prio-input" checked>
+                      <label for="prio-medium" class="btn-priority btn-priority-flex">
+                        Medium
+                        <img src="../assets/img/PrioMedium-icon.svg" class="btn-priority-medium" alt="">
+                      </label>
+                      <input type="radio" id="prio-low" name="priority" value="low" class="prio-input">
+                      <label for="prio-low" class="btn-priority btn-priority-flex">
+                        Low
+                        <img src="../assets/img/PrioDown-icon.svg" alt="">
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="div-field">
+                  <div class="field">
+                    <p>Assigned to </p>
+                    <button type="button" onclick="toggelContacts()"
+                      class="input-styling input-icon-arrow-down custom-select-select">Select
+                      contacts to</button>
+                    <div id="selectContacts" class="dropdown">
+                    </div>
+                  </div>
+                </div>
+                <div class="div-field">
+                  <div class="field">
+                    <label for="category">
+                      Category<span class="required">*</span>
+                    </label>
+                    <select id="category" class="input-icon-arrow-down custom-select-select" required>
+                      <option>Select task category</option>
+                      <option>Technical Task</option>
+                      <option>User Story</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="div-field">
+                  <div class="field">
+                    <label for="subtasks">Subtasks</label>
+                    <div class="subtask-input-container">
+                      <div class="input-wrapper">
+                        <input id="subtasks" type="text" onclick="createSubtasks()" placeholder="Add new subtask">
+                        <div class="img-container" id="showHidden">
+                          <img src="../assets/img/Subtasks cancel.svg" class="input-icon-cancel"
+                            onclick="cancelSubtask()">
+                          <div class="seperator-small"></div>
+                          <img src="../assets/img/Subtasks accept.svg" class="input-icon-accept" onclick="addSubtask()">
+                        </div>
+                      </div>
+                    </div>
+                    <div id="SubtaskList" class="Subtask-List">
+                    </div>
+                  </div>
 
-    </main>
-    <section class="footer-add-task">
-      <p class="required">*
-        <span style="color: #000000;">This field is required</span>
-      </p>
-      <div>
-        <button class="btn-priority">Clear X</button>
-        <button class="btn-priority" onclick=createTask()>Create Task </button>
-      </div>
-    </section>
+                </div>
+              </section>
+              <div id="selectContacts"></div>
+
+            </main>
+            <section class="footer-add-task">
+              <p class="required">*
+                <span style="color: #000000;">This field is required</span>
+              </p>
+              <div>
+                <button class="btn-priority">Clear X</button>
+                <button class="btn-priority" onclick=createTask()>Create Task </button>
+              </div>
+            </section>
         </main>
       </div>
     </div>
@@ -207,4 +189,5 @@
 </body>
 <script src="../script/sidebar_and_header_script.js"></script>
 <script src="../script/add-task.js"></script>
+
 </html>
