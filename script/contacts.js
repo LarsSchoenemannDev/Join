@@ -55,13 +55,14 @@ function createContactList() {
     let lastInitial = '';
 
     sortedContacts.forEach((contact, index) => {
-        const color = colors[index % colors.length];
+        // Assign and store color with contact for consistency
+        contact.color = colors[index % colors.length];
         const currentInitial = contact.name ? contact.name.charAt(0).toUpperCase() : '#';
 
         // Only show alphabet header if it's different from the last one
         const showAlphabet = currentInitial !== lastInitial;
         lastInitial = currentInitial;
-        html += renderContactListTemplate(contact, color, showAlphabet);
+        html += renderContactListTemplate(contact, contact.color, showAlphabet);
     });
 
     // Render once after building complete HTML
@@ -100,12 +101,20 @@ function showFloatingCard(event) {
     // Reset search variables
     let foundContact = null;
     let foundId = null;
+    let contactColor = null;
 
     // Find the clicked contact container
     const clicked = event.target.closest('.contact-container');
     if (!clicked) {
         console.warn('No contact-container found');
         return;
+    }
+
+    // Get contact color from the badge in the DOM
+    const badge = clicked.querySelector('.contact-badge');
+    if (badge) {
+        contactColor = badge.style.backgroundColor;
+        console.log('Found color from DOM:', contactColor);
     }
 
     // Get contact name and email from the clicked element
@@ -131,7 +140,7 @@ function showFloatingCard(event) {
     if (foundContact) {
         // foundContact already has id property from loadDataBase
         console.log('Rendering contact:', foundContact);
-        container.innerHTML = renderFloatingContactTemplate(foundContact);
+        container.innerHTML = renderFloatingContactTemplate(foundContact, contactColor);
         container.classList.remove('d-none');
     } else {
         console.error('Contact not found:', contactName, contactEmail);
@@ -231,17 +240,42 @@ function popupMessage(message) {
     }, 2000);
 }
 
-async function deleteData(event) {
+// delete contacts when floating container is open
+async function deleteFloatingData(event) {
     let foundContact = null;
     let foundId = null;
-    const clicked = event.target.closest('.edit-delete-component-default');
-    const contactName = document.getElementById('contact-name').textContent.trim();
-    const contactEmail = document.getElementById('span-email').textContent.trim();
+    let contactName = null;
+    let contactEmail = null;
+
+    // Called from Floating Container - get values from display elements
+    const nameElement = document.getElementById('contact-name');
+    const emailElement = document.getElementById('span-email');
+
+    if (nameElement && emailElement) {
+        contactName = nameElement.textContent.trim();
+        contactEmail = emailElement.textContent.trim();
+        console.log('Delete from Floating Container - Name:', contactName, 'Email:', contactEmail);
+    }
+
+    if (!contactName || !contactEmail) {
+        console.error('Contact name or email is missing');
+        alert('Error: Contact information is missing');
+        return;
+    }
+
+    // Find contact in fetched data
+    console.log('Searching for - Name:', `"${contactName}"`, 'Email:', `"${contactEmail}"`);
+    console.log('fetchedData keys:', Object.keys(fetchedData));
+    console.log('fetchedData content:', fetchedData);
 
     for (const [id, data] of Object.entries(fetchedData)) {
+        console.log(`Comparing "${data.name}" === "${contactName}":`, data.name === contactName);
+        console.log(`Comparing "${data.email}" === "${contactEmail}":`, data.email === contactEmail);
+
         if (data.name === contactName && data.email === contactEmail) {
             foundContact = data;
             foundId = id;
+            console.log('✓ Match found! ID:', id);
             break;
         }
     }
@@ -251,16 +285,84 @@ async function deleteData(event) {
         await deleteContact(foundContact.id);
         await loadDataBase();
         createContactList();
+
         container.classList.add('d-none');
+
         popupMessage('Contact successfully deleted!');
     } else {
-        console.error('Contact not found for deletion');
+        console.error('Contact not found for deletion - Name:', contactName, 'Email:', contactEmail);
+        alert('Error: Contact could not be found');
     }
 }
 
+// delete contacts when edit overlay is open
+async function deleteDataFromEditOverlay(event) {
+    let foundContact = null;
+    let foundId = null;
+    let contactName = null;
+    let contactEmail = null;
+
+
+    const nameInputEdit = document.getElementById('nameInput');
+    const emailInputEdit = document.getElementById('emailInput');
+
+    if (nameInputEdit && emailInputEdit && nameInputEdit.value) {
+        // Called from Edit Overlay - get values from input fields
+        contactName = nameInputEdit.value.trim();
+        contactEmail = emailInputEdit.value.trim();
+        console.log('Delete from Edit Overlay - Name:', contactName, 'Email:', contactEmail);
+    }
+
+    if (!contactName || !contactEmail) {
+        console.error('Contact name or email is missing');
+        alert('Error: Contact information is missing');
+        return;
+    }
+
+    // Find contact in fetched data
+    console.log('Searching for - Name:', `"${contactName}"`, 'Email:', `"${contactEmail}"`);
+    console.log('fetchedData keys:', Object.keys(fetchedData));
+    console.log('fetchedData content:', fetchedData);
+
+    for (const [id, data] of Object.entries(fetchedData)) {
+        console.log(`Comparing "${data.name}" === "${contactName}":`, data.name === contactName);
+        console.log(`Comparing "${data.email}" === "${contactEmail}":`, data.email === contactEmail);
+
+        if (data.name === contactName && data.email === contactEmail) {
+            foundContact = data;
+            foundId = id;
+            console.log('✓ Match found! ID:', id);
+            break;
+        }
+    }
+
+    if (foundContact) {
+        // foundContact already has id property from loadDataBase
+        await deleteContact(foundContact.id);
+        await loadDataBase();
+        createContactList();
+
+        closeEditContactOverlay();
+
+        popupMessage('Contact successfully deleted!');
+    } else {
+        console.error('Contact not found for deletion - Name:', contactName, 'Email:', contactEmail);
+        alert('Error: Contact could not be found');
+    }
+}
+
+// Edit-Overlay functions:  
 function openEditContactOverlay() {
     let foundContact = null;
     let foundID = null;
+    let contactColor = null;
+
+    // Get color from the floating contact card's contact-symbol
+    const contactSymbol = document.getElementById('contact-symbol');
+    if (contactSymbol) {
+        contactColor = contactSymbol.style.backgroundColor;
+        console.log('Found color from floating card:', contactColor);
+    }
 
     for (const [id, data] of Object.entries(fetchedData)) {
         if (data.name === document.getElementById('contact-name').textContent.trim() &&
@@ -277,7 +379,7 @@ function openEditContactOverlay() {
         foundContact.id = foundID;
 
         // Set innerHTML FIRST, before accessing the overlay
-        editContactPopup.innerHTML = renderEditContactTemplate(foundContact);
+        editContactPopup.innerHTML = renderEditContactTemplate(foundContact, contactColor);
 
         // NOW get the overlay reference (after innerHTML is set)
         const overlay = editContactPopup.querySelector('.edit-contact-overlay');
@@ -299,7 +401,11 @@ function openEditContactOverlay() {
 }
 
 function closeEditContactOverlay() {
+    if (!editContactPopup) return;
+
     const overlay = editContactPopup.querySelector('.edit-contact-overlay');
+    if (!overlay) return;
+
     overlay.classList.remove('slide-in');
     overlay.classList.add('slide-out');
 
@@ -307,4 +413,67 @@ function closeEditContactOverlay() {
     setTimeout(() => {
         editContactPopup.classList.add('d-none');
     }, 500);
+}
+
+async function saveEditedContact() {
+    // Get edited values from input fields
+    const editedName = document.getElementById('nameInput').value.trim();
+    const editedEmail = document.getElementById('emailInput').value.trim();
+    const editedPhone = document.getElementById('phoneInput').value.trim();
+
+    // Validate that all fields are filled
+    if (!editedName || !editedEmail || !editedPhone) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    // Get the contact ID from the currently displayed contact
+    const contactName = document.getElementById('contact-name').textContent.trim();
+    const contactEmail = document.getElementById('span-email').textContent.trim();
+    const contactPhone = document.getElementById('span-phone').textContent.trim();
+
+    // Find the contact ID
+    let contactId = null;
+    for (const [id, data] of Object.entries(fetchedData)) {
+        if (data.name === contactName && data.email === contactEmail && data.phone === contactPhone) {
+            contactId = id;
+            break;
+        }
+    }
+
+    if (!contactId) {
+        alert('Contact not found');
+        return;
+    }
+
+    // Create updated contact object
+    const updatedContact = {
+        name: editedName,
+        email: editedEmail,
+        phone: editedPhone
+    };
+
+    try {
+        // Update contact in Firebase
+        await updateContactInFirebase(contactId, updatedContact);
+
+        // Reload data from Firebase
+        await loadDataBase();
+
+        // Update the contact list display
+        createContactList();
+
+        // Close the edit overlay
+        closeEditContactOverlay();
+
+        // Hide the floating contact card (since contact details changed)
+        container.classList.add('d-none');
+
+        // Show success message
+        popupMessage('Contact successfully saved!');
+
+    } catch (error) {
+        console.error('Error saving edited contact:', error);
+        alert('Failed to save contact. Please try again.');
+    }
 }

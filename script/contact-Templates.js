@@ -21,12 +21,15 @@ function renderContactListTemplate(contact, color, showAlphabet = true) {
     </div>`;
 }
 
-function renderFloatingContactTemplate(foundContact) {
+function renderFloatingContactTemplate(foundContact, color) {
     const initials = getInitials(foundContact.name);
+    console.log('Floating template - Color:', color, 'Contact:', foundContact.name);
+    // Fallback to default color if undefined
+    const backgroundColor = color || 'rgba(255, 122, 0, 1)';
     return `
     <div class="floating-contact">
                 <div id="contact-header">
-                    <div id="contact-symbol">${initials}</div>
+                    <div class="contact-badge" id="contact-symbol" style="background-color: ${backgroundColor}">${initials}</div>
                     <div id="contact-text">
                         <div id="contact-name">${foundContact.name}</div>
                         <div id="contact-edit-tools" >
@@ -34,7 +37,7 @@ function renderFloatingContactTemplate(foundContact) {
                                 <img src="" alt="" />
                                 <span>Edit</span>
                             </div>
-                            <div id="delete" class="edit-delete-component-default" onclick="deleteData(event)">
+                            <div id="delete" class="edit-delete-component-default" onclick="deleteFloatingData(event)">
                                 <img src="" alt="" />
                                 <span>Delete</span>
                             </div>
@@ -53,7 +56,11 @@ function renderFloatingContactTemplate(foundContact) {
     `
 }
 
-function renderEditContactTemplate(foundContact) {
+function renderEditContactTemplate(foundContact, color) {
+    const initials = getInitials(foundContact.name);
+    console.log('Edit template - Color:', color, 'Contact:', foundContact.name);
+    // Fallback to default color if undefined
+    const backgroundColor = color || 'rgba(255, 122, 0, 1)';
     return `
     
               <div class="edit-contact-overlay">
@@ -80,8 +87,8 @@ function renderEditContactTemplate(foundContact) {
                     />
                   </div>
                   <div class="edit-contact-form">
-                    <div class="edit-contact-badge">
-                      <img src="../assets/img/add-contact-badge.svg" alt="" />
+                    <div class="contact-badge" style="background-color: ${backgroundColor}">
+                      ${initials}
                     </div>
 
                     <div class="contactForm">
@@ -119,14 +126,14 @@ function renderEditContactTemplate(foundContact) {
                         <button
                           class="secondary-btn-default-icon"
                           id="delete-btn"
-                          onclick="deleteData(event)"
+                          onclick="deleteDataFromEditOverlay(event)"
                         >
                           Delete <img src="" alt="" />
                         </button>
                         <button
                           class="primary-btn-default-icon"
                           id="saveContact-btn"
-                          onclick="editExistingContact()"
+                          onclick="saveEditedContact()"
                         >
                           Save<img
                             src="../assets/img/create-contact-check.svg"

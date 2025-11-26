@@ -31,7 +31,7 @@ async function loadDataBase() {
     }
 }
 
-
+// Save new contact to Firebase realtime Database:
 async function saveContact(contact) {
     try {
         const response = await fetch(storageUrl + ".json", {
@@ -56,6 +56,7 @@ async function saveContact(contact) {
     }
 }
 
+// Delete contact from Firebase realtime Database:
 async function deleteContact(contactId) {
     try {
         const response = await fetch(`${storageUrl}/${contactId}.json`, {
@@ -65,13 +66,38 @@ async function deleteContact(contactId) {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const result = await response.json();
         console.log('Contact deleted:', contactId);
         return result;
 
     } catch (error) {
         console.error('Error deleting contact:', error);
+        throw error;
+    }
+}
+
+// Update existing contact in Firebase realtime Database:
+async function updateContactInFirebase(contactId, updatedContact) {
+    try {
+        const response = await fetch(`${storageUrl}/${contactId}.json`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedContact)
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log('Contact updated:', contactId);
+        return result;
+
+    } catch (error) {
+        console.error('Error updating contact:', error);
         throw error;
     }
 }
