@@ -259,7 +259,7 @@ button:disabled{
   font-size: 19px;
   position: fixed;
   right: -300px;
-  top: 50%;
+  top: 10%;
   transform: translateY(-50%);
   transition: right 1.0s ease-in-out;
 

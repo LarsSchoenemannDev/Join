@@ -1,4 +1,4 @@
-let BASE_URL = "#"
+let BASE_URL = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app"
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -12,18 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const errorBox = document.getElementById("error-message");
   const messageBox = document.getElementById("message");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    errorBox.textContent = "";
-
-    const name = nameInput.value.trim();
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-    const confirm = confirmInput.value.trim();
-    const hashedPassword = await hashPassword(password);
-
- // SHA-256 Hash-Funktion
+  // SHA-256 Hash-Funktion
   async function hashPassword(password) {
   const encoder = new TextEncoder();
   const data = encoder.encode(password);
@@ -37,18 +26,27 @@ document.addEventListener("DOMContentLoaded", () => {
   return hashHex;
 }
 
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    errorBox.textContent = "";
+
+    const trimName = nameInput.value.trim();
+    const trimEmail = emailInput.value.trim();
+    const trimPassword = passwordInput.value.trim();
+    const confirm = confirmInput.value.trim();
+    const hashedPassword = await hashPassword(trimPassword);
+
     // Passwort-Check
-    if (password !== confirm) {
+    if (trimPassword !== confirm) {
       errorBox.textContent = "Your passwords don't match. Please try again.";
       return;
     }
 
     const userData = {
-      name: name,
-      email: email,
-      password: hashedPassword,
-      todos: {},
-      contacts: {}
+      name: trimName,
+      email: trimEmail,
+      password: hashedPassword
     }
 
     try {
@@ -71,9 +69,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Erfolg anzeigen
       messageBox?.classList.add("show");
+      showSuccessMessage();
+
+      
+  form.reset();
+  button.disabled = true;
+  UpdateIcon(passwordInput, iconPasswordDivMain);
+  UpdateIcon(passwordConfirm, iconPasswordDivConfirm);
 
       setTimeout(() => {
-        window.location.href = "../html/login-site.html";
+        window.location.href = "#";
       }, 2000);
 
     } catch (err) {

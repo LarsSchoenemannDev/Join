@@ -64,23 +64,6 @@ checkbox.addEventListener('change', () => { //button.disabled = !checkbox.checke
   updateSubmitButtonState();
 });
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  if (passwordInput.value !== passwordConfirm.value) {
-    error.textContent = "Your passwords don't match. Please try again.";
-    passwordConfirmDiv.classList.add('error-input-red');
-    return;
-  }
-  showSuccessMessage();
-
-  // optional: Formular zurücksetzen
-  form.reset();
-  button.disabled = true;
-  UpdateIcon(passwordInput, iconPasswordDivMain);
-  UpdateIcon(passwordConfirm, iconPasswordDivConfirm);
-});
-
-
 // ===================== FUNCTION: UpdateIcon ===================== //
 // This function runs every time the input value changes.
 //
@@ -132,21 +115,16 @@ function togglePassword(input, iconDiv) {
 function checkPassword() {
   if (passwordConfirm.value.length === 0) {
     error.textContent = "";
-    button.disabled = true;
-    passwordConfirmDiv.classList.remove('error-input-red')
+    passwordConfirmDiv.classList.remove('error-input-red');
     return;
   }
 
   if (passwordInput.value === passwordConfirm.value) {
-    console.log("Passwort Stimmt überein");
     error.textContent = "";
-    passwordConfirmDiv.classList.remove('error-input-red')
+    passwordConfirmDiv.classList.remove('error-input-red');
   } else {
-    passwordConfirmDiv.classList.add('error-input-red')
-    error.textContent = "Your password don't match. Please try again.";
-    error.style.color = "red";
-    console.log("Passwort überstimmen nicht");
-    
+    error.textContent = "Your passwords don't match. Please try again.";
+    passwordConfirmDiv.classList.add('error-input-red');
   }
 }
 
