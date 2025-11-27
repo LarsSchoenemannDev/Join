@@ -14,21 +14,23 @@ const editContactPopup = document.querySelector('.edit-contact-popup');
 
 
 
-
-// Initialize app: load data from Firebase, then create contact list
+/**
+ * Load contacts from Firebase realtime Database, then create contact list
+ */
 async function initContacts() {
     await loadDataBase();
     createContactList();
 }
 
-// create contact list from contacts Array
+/**
+ * create contact list from contacts Array
+ * 
+ */
 function createContactList() {
-    // if (!contactListEl) {
-    //     console.warn('createContactList: contactListEl not found');
-    //     return;
-    // }
 
-    // Use fetchedData if available (from Firebase), convert to array
+    /**
+     * Use fetchedData (from Firebase), convert to array
+     */
     let source;
     if (fetchedData && typeof fetchedData === 'object' && Object.keys(fetchedData).length > 0) {
         source = Object.entries(fetchedData)
@@ -43,7 +45,10 @@ function createContactList() {
         return;
     }
 
-    // Sort contacts alphabetically by name
+
+    /**
+     * Sort contacts alphabetically by their name property
+     */
     const sortedContacts = [...source].sort((a, b) => {
         const nameA = (a.name || '').toLowerCase();
         const nameB = (b.name || '').toLowerCase();
@@ -155,14 +160,14 @@ async function addNewContact() {
     const nameInputField = document.getElementById('name_input');
     const emailInputField = document.getElementById('email_input');
     const phoneInputField = document.getElementById('phone_input');
-    
+
     // Prevent execution if inputs don't exist
     if (!nameInputField || !emailInputField || !phoneInputField) {
         console.error('Input fields not found in DOM');
         alert('Error: Form fields not available');
         return;
     }
-    
+
     const newContact = {
         name: nameInputField.value.trim(),
         email: emailInputField.value.trim(),
