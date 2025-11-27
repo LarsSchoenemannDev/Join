@@ -56,6 +56,102 @@ function renderFloatingContactTemplate(foundContact, color) {
     `
 }
 
+function renderAddContactTemplate() {
+    return `
+  <div class="add-contact-overlay">
+                <div class="add-contact-overview">
+                  <div class="join-logo-contact">
+                    <img src="../assets/img/join-logo-add-contact.svg" alt="" />
+                  </div>
+                  <div class="add-contact-text">
+                    <h2 class="add-contact-title">Add contact</h2>
+                    <h4 class="add-contact-subtitle">
+                      Tasks are better with a team!
+                    </h4>
+                    <div class="blue-vector">
+                      <img
+                        src="../assets/img/add-contact-blue-vector.svg"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="add-contact-container">
+                  <div class="close-btn" onclick="closePopupOverlay()">
+                    <img
+                      src="../assets/img/add-contact-close-button.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="add-contact-form">
+                    <div class="add-contact-badge">
+                      <img src="../assets/img/add-contact-badge.svg" alt="" />
+                    </div>
+
+                    <div class="contactForm">
+                      <div class="inputContainer">
+                        <input
+                          type="text"
+                          placeholder="Name"
+                          id="name_input"
+                          required
+                        />
+                        <img
+                          src="../assets/img/add-contact-person-icon.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="inputContainer">
+                        <input
+                          type="email"
+                          placeholder="Email"
+                          id="email_input"
+                          required
+                        />
+                        <img
+                          src="../assets/img/add-contact-mail-icon.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="inputContainer">
+                        <input
+                          type="tel"
+                          placeholder="Phone"
+                          id="phone_input"
+                          required
+                        />
+                        <img
+                          src="../assets/img/add-contact-call-icon.svg"
+                          alt=""
+                        />
+                      </div>
+
+                      <div class="add-contact-buttons">
+                        <button
+                          class="secondary-btn-default-icon"
+                          id="cancelBtn"
+                          onclick="closePopupOverlay()"
+                        >
+                          Cancel <img src="" alt="" />
+                        </button>
+                        <button
+                          class="primary-btn-default-icon"
+                          id="createContactBtn"
+                          onclick="addNewContact()"
+                        >
+                          Create contact<img
+                            src="../assets/img/create-contact-check.svg"
+                            alt=""
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  `
+}
+
 function renderEditContactTemplate(foundContact, color) {
     const initials = getInitials(foundContact.name);
     console.log('Edit template - Color:', color, 'Contact:', foundContact.name);

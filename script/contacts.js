@@ -4,8 +4,8 @@ const addContactPopup = document.querySelector('.add-contact-popup');
 const contactListEl = document.querySelector('.contacts .contact-list');
 const contactBadge = document.querySelector('.contacts .contact-list .contact-list-items .contact-badge');
 const contactAlphabet = document.querySelector('.contacts .contact-list .contact-list-items .contact-alphabet');
-const cancelBtn = document.getElementById('cancel-btn');
-const createContactBtn = document.getElementById('createContact-btn');
+const cancelBtn = document.getElementById('cancelBtn');
+const createContactBtn = document.getElementById('createContactBtn');
 const nameInput = document.getElementById('name_input');
 const emailInput = document.getElementById('email_input');
 const phoneInput = document.getElementById('phone_input');
@@ -151,15 +151,25 @@ function showFloatingCard(event) {
 
 // add new contacts to the list from add-contact-popup
 async function addNewContact() {
+    // Get input elements dynamically (they are created by openPopupOverlay)
+    const nameInputField = document.getElementById('name_input');
+    const emailInputField = document.getElementById('email_input');
+    const phoneInputField = document.getElementById('phone_input');
+    
     // Prevent execution if inputs don't exist
-    if (!nameInput || !emailInput || !phoneInput) {
+    if (!nameInputField || !emailInputField || !phoneInputField) {
+        console.error('Input fields not found in DOM');
+        alert('Error: Form fields not available');
         return;
     }
+    
     const newContact = {
-        name: nameInput.value.trim(),
-        email: emailInput.value.trim(),
-        phone: phoneInput.value.trim()
+        name: nameInputField.value.trim(),
+        email: emailInputField.value.trim(),
+        phone: phoneInputField.value.trim()
     };
+
+    console.log('Creating new contact:', newContact);
 
     if (newContact.name && newContact.email && newContact.phone) {
         try {
@@ -177,6 +187,7 @@ async function addNewContact() {
             popupMessage('Contact successfully created!');
 
         } catch (error) {
+            console.error('Error adding contact:', error);
             alert('Failed to add contact. Please try again.');
         }
     } else {
@@ -186,9 +197,9 @@ async function addNewContact() {
 
 // open add contact popup overlay
 function openPopupOverlay() {
+    addContactPopup.innerHTML = renderAddContactTemplate();
     const overlay = addContactPopup.querySelector('.add-contact-overlay');
     addContactPopup.classList.remove('d-none');
-
     // Force reflow
     overlay.offsetHeight;
 
