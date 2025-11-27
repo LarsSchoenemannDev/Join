@@ -121,9 +121,11 @@ function checkPassword() {
 
   if (passwordInput.value === passwordConfirm.value) {
     error.textContent = "";
+    error.style.color = "";
     passwordConfirmDiv.classList.remove('error-input-red');
   } else {
     error.textContent = "Your passwords don't match. Please try again.";
+    error.style.color = "red";
     passwordConfirmDiv.classList.add('error-input-red');
   }
 }
