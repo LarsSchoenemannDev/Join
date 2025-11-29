@@ -15,7 +15,7 @@ const editContactPopup = document.querySelector('.edit-contact-popup');
 
 
 /**
- * Load contacts from Firebase realtime Database, then create contact list
+ * Load contacts from Firebase realtime Database, then render the updated contact list
  */
 async function initContacts() {
     await loadDataBase();
@@ -23,59 +23,82 @@ async function initContacts() {
 }
 
 /**
- * create contact list from contacts Array
- * 
+ * checked if fetchedData from firebase is available
+ * get the data from fetchedData object
+ * create a new array from the fetched Data object
+ * filter out contacts without name or email
+ * sort contacts alphabetically by name
  */
-function createContactList() {
-
-    /**
-     * Use fetchedData (from Firebase), convert to array
-     */
+function getContactArray() {
     let source;
-    if (fetchedData && typeof fetchedData === 'object' && Object.keys(fetchedData).length > 0) {
-        source = Object.entries(fetchedData)
-            .map(([id, data]) => ({ id, ...data }))
-            .filter(contact => contact.name && contact.email); // Filter out contacts without name or email
-    } else {
-        source = [];
+    if (!fetchedData || !Object.keys(fetchedData).length) {
+        return [];
     }
-
-    if (!source || source.length === 0) {
-        contactListEl.innerHTML = '<div class="no-contacts" style="padding: 20px; text-align: center; color: #888;">No contacts available</div>';
-        return;
-    }
-
-
-    /**
-     * Sort contacts alphabetically by their name property
-     */
+    source = Object.entries(fetchedData)
+        .map(([id, data]) => ({ id, ...data }))
+        .filter(contact => contact.name && contact.email);
     const sortedContacts = [...source].sort((a, b) => {
         const nameA = (a.name || '').toLowerCase();
         const nameB = (b.name || '').toLowerCase();
         return nameA.localeCompare(nameB);
     });
-
-    // Build HTML string
-    let html = '';
-    let lastInitial = '';
-
-    sortedContacts.forEach((contact, index) => {
-        // Assign and store color with contact for consistency
-        contact.color = colors[index % colors.length];
-        const currentInitial = contact.name ? contact.name.charAt(0).toUpperCase() : '#';
-
-        // Only show alphabet header if it's different from the last one
-        const showAlphabet = currentInitial !== lastInitial;
-        lastInitial = currentInitial;
-        html += renderContactListTemplate(contact, contact.color, showAlphabet);
-    });
-
-    // Render once after building complete HTML
-    contactListEl.innerHTML = html;
-    console.log('Contact list rendered with', sortedContacts.length, 'contacts');
+    return sortedContacts;
 }
 
-//to extract the first and last initials
+/**
+ * 
+ * get first letter of contact name for alphabet header
+ * get first and last initials for contact badge
+ * checks if alphabet header should be shown
+ * build contact item HTML using template
+ * @param {*string} contact 
+ * @param {*string} color 
+ * @param {*boolean} showAlphabet 
+ * @returns 
+ */
+function buildContactItemHTML(contact, color, showAlphabet) {
+    const initials = getInitials(contact.name);
+    const firstLetter = contact.name ? contact.name.charAt(0).toUpperCase() : '#';
+    const alphabetHeader = showAlphabet ? `<h3 class="contact-alphabet">${firstLetter}</h3><div id="contact-divider"><img src="../assets/img/devider-contact-list.svg" alt="" /></div>` : '';
+    return renderContactListTemplate(contact.name, contact.email, color, initials, alphabetHeader);
+}
+
+/**
+ * checks if there are contacts to display
+ * make a new array and use Modulo operator to assign colors to contacts for badges
+ * determines when to show alphabet headers
+ * iterates through contact array to build HTML
+ * updates contactListEl innerHTML with generated html
+ * debugging log for number of contacts rendered
+ * @returns 
+ */
+function createContactList() {
+    const array = getContactArray();
+    if (!array.length) {
+        contactListEl.innerHTML = '<div class="no-contacts" style="padding: 20px; text-align: center; color: #888;">No contacts available</div>';
+        return;
+    }
+    let last = '';
+    const html = array.map((contact, index) => {
+        contact.color = colors[index % colors.length];
+        const first = contact.name ? contact.name.charAt(0).toUpperCase() : '#';
+        const show = first !== last;
+        if (show) last = first;
+        return buildContactItemHTML(contact, contact.color, show);
+    }).join('');
+    contactListEl.innerHTML = html;
+    console.log('Contact list rendered with', array.length, 'contacts');
+}
+
+//
+/**
+ * checks for valid fullName string
+ * to extract the first and last initials from fullName and splits it into parts
+ * gets first character of first and last parts, converts to uppercase
+ * concatenates initials and returns
+ * @param {string} fullName 
+ * @returns 
+ */
 function getInitials(fullName) {
     if (!fullName || typeof fullName !== 'string') {
         return '?';
@@ -493,3 +516,68 @@ async function saveEditedContact() {
         alert('Failed to save contact. Please try again.');
     }
 }
+
+
+// function createContactList() {
+
+//     /**
+//      * Use fetchedData (from Firebase), convert to array
+//      */
+//     let source;
+//     if (fetchedData && typeof fetchedData === 'object' && Object.keys(fetchedData).length > 0) {
+//         source = Object.entries(fetchedData)
+//             .map(([id, data]) => ({ id, ...data }))
+//             .filter(contact => contact.name && contact.email); // Filter out contacts without name or email
+//     } else {
+//         source = [];
+//     }
+
+//     if (!source || source.length === 0) {
+//         contactListEl.innerHTML = '<div class="no-contacts" style="padding: 20px; text-align: center; color: #888;">No contacts available</div>';
+//         return;
+//     }
+
+
+//     /**
+//      * Sort contacts alphabetically by their name property
+//      */
+//     const sortedContacts = [...source].sort((a, b) => {
+//         const nameA = (a.name || '').toLowerCase();
+//         const nameB = (b.name || '').toLowerCase();
+//         return nameA.localeCompare(nameB);
+//     });
+
+//     // Build HTML string
+//     let html = '';
+//     let lastInitial = '';
+
+//     sortedContacts.forEach((contact, index) => {
+//         // Assign and store color with contact for consistency
+//         contact.color = colors[index % colors.length];
+
+//         // Calculate initials from contact name
+//         const initials = getInitials(contact.name);
+
+//         // Get first letter for alphabet header
+//         const firstLetter = contact.name ? contact.name.charAt(0).toUpperCase() : '#';
+
+//         // Determine if we should show alphabet header (only when letter changes)
+//         const currentInitial = firstLetter;
+//         const showAlphabet = currentInitial !== lastInitial;
+//         lastInitial = currentInitial;
+
+//         // Build alphabet header HTML if needed
+//         const alphabetHeader = showAlphabet ? `
+//                     <h3 class="contact-alphabet">${firstLetter}</h3>
+//                     <div id="contact-divider">
+//                         <img src="../assets/img/devider-contact-list.svg" alt="" />
+//                     </div>` : '';
+
+//         // Render template with all calculated values
+//         html += renderContactListTemplate(contact.name, contact.email, contact.color, initials, alphabetHeader);
+//     });
+
+//     // Render once after building complete HTML
+//     contactListEl.innerHTML = html;
+//     console.log('Contact list rendered with', sortedContacts.length, 'contacts');
+// }

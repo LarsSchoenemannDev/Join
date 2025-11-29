@@ -143,7 +143,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 50px 110px 50px 55px;
+    /* gap: 40px; */
+    padding: 50px 50px 50px 55px;
     overflow-y: auto;
 }
 

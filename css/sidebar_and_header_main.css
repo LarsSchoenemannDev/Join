@@ -88,15 +88,45 @@ main{
     width: 56px;
     height: 56px;
     cursor: pointer;
-    background-image: url('../assets/img/user\ profile\ default.svg');
     background-size: cover;
     background-position: center;
     transition: all 200ms linear;
 }
 
-.header .icons .user-icon:hover {
-    background-image: url('../assets/img/user\ profile\ hover.svg');
+.user-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 56px;
+    height: 56px;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    transition: all 200ms linear;
+    border: 3px solid;
+    border-radius: 60%;
 }
+
+.menu-button{
+    width: 100%;
+    height: 100%;
+    border-radius: 60%;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+    color: #29ABE2;
+    border: none;
+    background-color: transparent;
+}
+
+.menu-button:hover{
+    background-color: rgba(220, 220, 220, 0.69);
+    cursor: pointer;
+}
+
+/*.header .icons .user-icon:hover {
+    background-image: url('../assets/img/user\ profile\ hover.svg');
+}*/
 
 
 
