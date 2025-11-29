@@ -1,6 +1,10 @@
  .add-task-content {
      display: flex;
      flex-direction: column;
+     justify-content: center;
+     width: 100%;
+     height: calc(100% - 200px);
+     padding: 48px 96px;
  }
 
  .card {
@@ -40,6 +44,7 @@
      display: flex;
      flex-direction: column;
      gap: 8px;
+     margin-bottom: 18px;
  }
 
  label,
@@ -92,17 +97,6 @@
      outline: none;
  }
 
- .name-list {
-     display: flex;
-     justify-content: space-between;
- }
-
- .contact-list {
-     list-style: none;
-     margin: 0;
-     padding: 0;
- }
-
  .contact-row {
      display: flex;
      align-items: center;
@@ -122,11 +116,6 @@
      color: #2a3647;
  }
 
- .input-checkbox {
-     height: 18px;
-     width: 18px;
- }
-
  .dropdown {
      display: block;
      max-height: 0;
@@ -138,10 +127,6 @@
 
  .dropdown.hidden {
      display: none;
- }
-
- .d-none {
-     display: block;
  }
 
  .dropdown.open {
@@ -236,11 +221,18 @@
  }
 
  .display-flex {
-     display: flex;        
+     display: flex;
      width: 81.5%;
+     padding-left: 20px;
  }
 
- .sub-container {     
+ .Subtask-List {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+ }
+
+ .sub-container {
      display: flex;
      justify-content: flex-start;
      flex-direction: row;
@@ -290,7 +282,7 @@
      fill: #FFA800;
  }
 
- .btn-medium-click {
+ /* .btn-medium-click {
      background-color: rgba(255, 168, 0, 1);
      color: rgba(255, 255, 255, 1);
      font-size: 21px;
@@ -309,6 +301,20 @@
      color: rgba(255, 255, 255, 1);
      font-size: 21px;
      font-weight: bold;
+ } */
+
+ .input-Required {
+     border: 1px solid #d1d1d1;
+     border-radius: 8px;
+     outline: none;
+ }
+
+ .input-focus {
+     border-color: #29ABE2;
+ }
+
+ .input-error {
+     border-color: #E60026;
  }
 
  .btn-priority:hover {
