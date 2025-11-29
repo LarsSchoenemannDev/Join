@@ -1,21 +1,12 @@
-function renderContactListTemplate(contact, color, showAlphabet = true) {
-    const initials = getInitials(contact.name);
-    const firstLetter = contact.name ? contact.name.charAt(0).toUpperCase() : '';
-
-    const alphabetHeader = showAlphabet ? `
-                    <h3 class="contact-alphabet">${firstLetter}</h3>
-                    <div id="contact-divider">
-                        <img src="../assets/img/devider-contact-list.svg" alt="" />
-                    </div>` : '';
-
+function renderContactListTemplate(name, email, color, initials, alphabetHeader) {
     return `
     <div class="contact-list-items">
                     ${alphabetHeader}
                     <div class="contact-container"  onclick="showFloatingCard(event)">
                         <div class="contact-badge" style="background-color: ${color}">${initials}</div>
                         <div class="contactDetails">
-                            <h3 class="contactName">${contact.name}</h3>
-                            <span class="contactEmail">${contact.email}</span>
+                            <h3 class="contactName">${name}</h3>
+                            <span class="contactEmail">${email}</span>
                         </div>
                     </div>
     </div>`;
