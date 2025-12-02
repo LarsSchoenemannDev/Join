@@ -1,0 +1,71 @@
+.legal-notice-main-div h1 {
+    margin-bottom: 20px;
+}
+
+.diensteanbieter{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.contacts-info{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.Vorbehalt-miner{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.student-name-list{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.postcode-and-city{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.acceptance-of-terms{
+    margin-bottom: 20px;
+}
+
+.scope-and-ownership{
+    margin-bottom: 20px;
+}
+
+.scope-and-ownership-text{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.proprietary-rights{
+    margin-bottom: 20px;
+}
+
+.use-of-the-product{
+    margin-bottom: 20px;
+}
+
+.disclaimer-of-warranties{
+    margin-bottom: 20px;
+}
+
+.indemnity{
+    margin-bottom: 20px;
+}
+
+.indemnity-mail-date{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
