@@ -1,0 +1,68 @@
+
+let password_input = document.getElementById('password');
+let email_input = document.getElementById('email')
+let fetchedData;
+let emailFound = false;
+
+async function loginValidation() {
+    emailFound = false;
+    await loginDatafetch();
+
+    for (const id in fetchedData) {
+        const user = fetchedData[id]
+
+        if (user.email === email_input.value) {
+            emailFound = true;
+            if (user.password === password_input.value) {
+                console.log("Login erfolgreich für:", user.id);
+                localStorage.setItem("userID", user.id)
+                
+            } else {
+                console.error("Login daten sind falsch");
+                //hier vllt noch error text in login seite hinzufügen
+            }
+        }
+        
+    }
+     if (!emailFound) {
+        console.error("Benutzer nicht gefunden");
+        
+     }
+};
+
+
+
+
+async function loginDatafetch() {
+    
+    try {
+        const response = await fetch(BASE_URL + "/users.json");
+        if (!response.ok) {
+            console.error(`HTTP error! status: ${response.status}`);
+            
+        }
+
+        const responseToJson = await response.json();
+
+        if (responseToJson && typeof responseToJson === 'object') {
+            fetchedData = {};
+            for (const [id, userData] of Object.entries(responseToJson)) {
+                fetchedData[id] = {
+                    id : id,
+                    email: userData.email,
+                    password: userData.password
+                };
+            }
+        } else {
+            fetchedData = {};
+        }
+    } catch (error) {
+        console.error("Fehler beim laden der Daten:", error);
+
+        fetchedData = {};
+    }
+}
+
+
+
+
