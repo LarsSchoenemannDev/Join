@@ -15,8 +15,11 @@ async function loginValidation() {
             emailFound = true;
             if (user.password === password_input.value) {
                 console.log("Login erfolgreich für:", user.id);
-                localStorage.setItem("userID", user.id)
+                sessionStorage.setItem("userID", user.id)
+                sessionStorage.setItem('userStatus', "loggedIn");
+                sessionStorage.setItem('name', user.name)
                 
+                window.location.href = "../html/summary.html"; 
             } else {
                 console.error("Login daten sind falsch");
                 //hier vllt noch error text in login seite hinzufügen
