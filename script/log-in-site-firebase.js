@@ -33,6 +33,12 @@ async function loginValidation() {
      }
 };
 
+async function guestLogin() {
+    await loginDatafetchGuest();
+    
+
+
+}
 
 
 
@@ -66,10 +72,6 @@ async function loginDatafetch() {
     }
 }
 
-function guestLogin() {
-    
-}
-
 
 async function loginDatafetchGuest() {
     
@@ -86,7 +88,6 @@ async function loginDatafetchGuest() {
             fetchedData = {};
             for (const [id, userData] of Object.entries(responseToJson)) {
                 fetchedData = {
-                    id : id,
                     email: userData.email,
                     password: userData.password
                 };
