@@ -66,6 +66,37 @@ async function loginDatafetch() {
     }
 }
 
+function guestLogin() {
+    
+}
 
 
+async function loginDatafetchGuest() {
+    
+    try {
+        const response = await fetch(BASE_URL + "/Guest.json");
+        if (!response.ok) {
+            console.error(`HTTP error! status: ${response.status}`);
+            
+        }
 
+        const responseToJson = await response.json();
+
+        if (responseToJson && typeof responseToJson === 'object') {
+            fetchedData = {};
+            for (const [id, userData] of Object.entries(responseToJson)) {
+                fetchedData = {
+                    id : id,
+                    email: userData.email,
+                    password: userData.password
+                };
+            }
+        } else {
+            fetchedData = {};
+        }
+    } catch (error) {
+        console.error("Fehler beim laden der Daten:", error);
+
+        fetchedData = {};
+    }
+}

@@ -3,7 +3,7 @@ window.onload = function() {
   const UID = sessionStorage.getItem('userID');
 
 
-  // Wenn der Benutzer nicht eingeloggt ist oder die Sitzung abgelaufen ist
+  // Wenn der Benutzer nicht eingeloggt ist.
   if (!userStatus || (userStatus !== 'guest' && userStatus !== 'loggedIn')) {
     window.location.href = "../html/login-site.html"; // Weiterleitung zur Login-Seite
   }
