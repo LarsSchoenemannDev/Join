@@ -15,9 +15,9 @@ async function loginValidation() {
             emailFound = true;
             if (user.password === password_input.value) {
                 console.log("Login erfolgreich für:", user.id);
-                sessionStorage.setItem("userID", user.id)
+                sessionStorage.setItem("userID", user.id);
                 sessionStorage.setItem('userStatus', "loggedIn");
-                sessionStorage.setItem('name', user.name)
+                sessionStorage.setItem('name', user.name);
                 
                 window.location.href = "../html/summary.html"; 
             } else {
@@ -100,4 +100,14 @@ async function loginDatafetchGuest() {
 
         fetchedData = {};
     }
+}
+
+
+function testFunction() {
+console.log("Login erfolgreich für");
+sessionStorage.setItem("userID", "-euneunre");
+sessionStorage.setItem('userStatus', "loggedIn");
+sessionStorage.setItem('name', "Gustav");
+                
+ window.location.href = "../html/summary.html";
 }
