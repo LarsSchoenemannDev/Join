@@ -1,7 +1,10 @@
 
 //Hier bitte alle globale Variablen setzen
-let user_icon = document.getElementById('user-icon')
-let switch_help = document.getElementById('switch_help')
+let user_icon = document.getElementById('user-icon');
+let switch_help = document.getElementById('switch_help');
+const userStatus = sessionStorage.getItem('userStatus');
+
+
 
 function tooglemenu() {
     let msg = document.getElementById('dropDown-menu')
@@ -17,3 +20,5 @@ if (window.innerWidth <= 768 ) {
 }
 
 window.onresize = helpOnResizeSwitch;
+
+
