@@ -5,6 +5,14 @@ body{
     align-items: center;
 }
 
+.disabled-link {
+    pointer-events: none;   
+    opacity: 0.5;           
+    cursor: default;       
+    text-decoration: none; 
+    color: gray;       
+}
+
 .body-div{
     display: flex;
     flex-direction: column;
