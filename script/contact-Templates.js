@@ -97,7 +97,7 @@ function renderAddContactTemplate() {
                       <div class="inputContainer">
                         <input
                           type="text"
-                          placeholder="Name"
+                          placeholder="Full Name"
                           id="name_input"
                           required
                         />
@@ -109,7 +109,7 @@ function renderAddContactTemplate() {
                       <div class="inputContainer">
                         <input
                           type="email"
-                          placeholder="Email"
+                          placeholder="aa@bb.de"
                           id="email_input"
                           required
                         />
@@ -121,7 +121,7 @@ function renderAddContactTemplate() {
                       <div class="inputContainer">
                         <input
                           type="tel"
-                          placeholder="Phone"
+                          placeholder="+49 123 4567890"
                           id="phone_input"
                           required
                         />

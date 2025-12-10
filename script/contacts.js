@@ -243,6 +243,7 @@ async function getDataToMakeNewContact() {
 
 /**
  * add new contacts to the list from add-contact-popup
+ * checks if email input value contains '@' symbol
  * validates input fields values
  * saves new contact to Firebase realtime Database
  * reloads data from Firebase to get updated list
@@ -253,6 +254,10 @@ async function getDataToMakeNewContact() {
 async function addNewContact() {
     const newContact = await getDataToMakeNewContact();
     console.log('Creating new contact:', newContact);
+    if (!newContact.email.includes('@')) {
+        alert('Please enter a valid email address');
+        return;
+    }
     if (newContact.name && newContact.email && newContact.phone) {
         try {
             await saveContact(newContact);
