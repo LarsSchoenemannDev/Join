@@ -101,6 +101,13 @@ main{
     transition: all 200ms linear;
 }
 
+.header_content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
 .user-icon{
     display: flex;
     justify-content: center;
