@@ -17,7 +17,6 @@ body{
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 1920px;
     justify-content: center;
     min-height: 100vh;
     background-color: #f6f7f8;
@@ -72,6 +71,9 @@ main{
     justify-content: space-between;
     align-items: center;
     gap: 16px;
+    position: absolute;
+    /*right: 28px;*/
+    right: 0;
 }
 
 .header .icons .help {
@@ -106,6 +108,8 @@ main{
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    max-width: 1650px;
+    position: relative;
 }
 
 .user-icon{
@@ -156,10 +160,8 @@ main{
 
 .dropDown-menu {
     position: fixed;
-    right: -300px;
-    top: 19%;
-    transform: translateY(-50%);
-    transition: right 1.0s ease-in-out;
+    top: 0;
+    transform: translateY(-100%);
     background-color: #2a3647;
     width: 160px;
     border-radius: 20px 0 20px 20px;
@@ -171,7 +173,7 @@ main{
 }
 
 .dropDown-menu.show {
-  right: 0px; /* Endposition innerhalb des Bildschirms */
+  top: 250px;
 }
 
 .dropDown-menu a {
