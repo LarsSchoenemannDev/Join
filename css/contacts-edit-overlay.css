@@ -241,6 +241,13 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* ========== Media Queries für Responsiveness ========== */
 
+@media (320px <=width < 768px) {
+    .edit-contact-overlay {
+        flex-direction: column;
+        width: 90%;
+    }
+}
+
 
 /* Tablet Portrait - bis 768px */
 
