@@ -1,8 +1,12 @@
 const storageUrl = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/contacts";
 let fetchedData = {};
 
-
-// fetch Contact Data throw Firebase realtime Database:
+/**
+ * defines async function to fetch Contact Data throw Firebase realtime Database:
+ * fetch storageUrl using GET method and return the fetched data as JSON object.
+ * doing a for loop to add the id to each contact object and extract the data from object entries to a new object.
+ * @returns fetchedData object containing contacts with their IDs or {} in case of error.
+ */
 async function loadDataBase() {
     try {
         const response = await fetch(storageUrl + ".json");
@@ -31,6 +35,7 @@ async function loadDataBase() {
     }
 }
 
+
 // Save new contact to Firebase realtime Database:
 async function saveContact(contact) {
     try {
@@ -56,7 +61,12 @@ async function saveContact(contact) {
     }
 }
 
-// Delete contact from Firebase realtime Database:
+/**
+ * defines an async function to delete contact from Firebase realtime Database:
+ * fetch storageUrl/contactId using DELETE method and return the result.
+ * @param {String} contactId 
+ * @returns an object containing the result of the delete operation or throws an error in case of failure.
+ */
 async function deleteContact(contactId) {
     try {
         const response = await fetch(`${storageUrl}/${contactId}.json`, {
@@ -66,11 +76,9 @@ async function deleteContact(contactId) {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-
         const result = await response.json();
         console.log('Contact deleted:', contactId);
         return result;
-
     } catch (error) {
         console.error('Error deleting contact:', error);
         throw error;

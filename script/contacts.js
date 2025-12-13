@@ -15,7 +15,8 @@ const editContactPopup = document.querySelector('.edit-contact-popup');
 
 
 /**
- * Load contacts from Firebase realtime Database, then render the updated contact list
+ * Load contacts from Firebase realtime Database, 
+ * then render the updated contact list
  */
 async function initContacts() {
     await loadDataBase();
@@ -24,19 +25,22 @@ async function initContacts() {
 
 /**
  * checked if fetchedData from firebase is available
- * get the data from fetchedData object
- * create a new array from the fetched Data object
- * filter out contacts without name or email
- * sort contacts alphabetically by name
+ * defines a variable: source to push contacts data and id into it
+ * create a new array from the fetched Data object by pushing each contact with its ID into source
+ * filter out contacts without name or email using if condition
+ * sort contacts alphabetically by name using sort method
+ * @returns {Array} sorted array of contacts
  */
 function getContactArray() {
-    let source;
     if (!fetchedData || !Object.keys(fetchedData).length) {
         return [];
     }
-    source = Object.entries(fetchedData)
-        .map(([id, data]) => ({ id, ...data }))
-        .filter(contact => contact.name && contact.email);
+    const source = [];
+    Object.entries(fetchedData).forEach(([id, data]) => {
+        if (data.name && data.email) {
+            source.push({ id, ...data });
+        }
+    });
     const sortedContacts = [...source].sort((a, b) => {
         const nameA = (a.name || '').toLowerCase();
         const nameB = (b.name || '').toLowerCase();
@@ -46,15 +50,14 @@ function getContactArray() {
 }
 
 /**
- * 
- * get first letter of contact name for alphabet header
- * get first and last initials for contact badge
- * checks if alphabet header should be shown
  * build contact item HTML using template
- * @param {*string} contact 
- * @param {*string} color 
- * @param {*boolean} showAlphabet 
- * @returns 
+ * @param {string} contact 
+ * @param {string} color 
+ * @param {boolean} showAlphabet
+ * get first and last initials for contact badge using a function: getInitials
+ * get first letter of contact name for alphabet header using charAt method
+ * checks if alphabet header should be shown
+ * @returns a function call: renderContactListTemplate with 5 parameters
  */
 function buildContactItemHTML(contact, color, showAlphabet) {
     const initials = getInitials(contact.name);
@@ -64,13 +67,15 @@ function buildContactItemHTML(contact, color, showAlphabet) {
 }
 
 /**
- * checks if there are contacts to display
- * make a new array and use Modulo operator to assign colors to contacts for badges
+ * get sorted Contacts using function: getContactArray
+ * checks if there are contacts to display using length property
+ * if no contacts, sets innerHTML to show no contacts message and returns
+ * defines last variable to track last alphabet header shown
+ * defines html variable to accumulate generated HTML
+ * make a forEch loop through contact array to extract contact name and index to use later to get colors for contact badges by using Modulo operator
  * determines when to show alphabet headers
- * iterates through contact array to build HTML
- * updates contactListEl innerHTML with generated html
- * debugging log for number of contacts rendered
- * @returns 
+ * iterates through contact array to build HTML by using buildContactItemHTML function with 3 parameters: @param {String} contact, @param {String} color, @param {Boolean} show 
+ * assign html to contactListEl innerHTML to render contact list
  */
 function createContactList() {
     const array = getContactArray();
@@ -79,25 +84,25 @@ function createContactList() {
         return;
     }
     let last = '';
-    const html = array.map((contact, index) => {
+    let html = '';
+    array.forEach((contact, index) => {
         contact.color = colors[index % colors.length];
         const first = contact.name ? contact.name.charAt(0).toUpperCase() : '#';
         const show = first !== last;
         if (show) last = first;
-        return buildContactItemHTML(contact, contact.color, show);
-    }).join('');
+        html += buildContactItemHTML(contact, contact.color, show);
+    });
     contactListEl.innerHTML = html;
     console.log('Contact list rendered with', array.length, 'contacts');
 }
 
 //
 /**
+ * @param {string} fullName  using input value from contact name
  * checks for valid fullName string
- * to extract the first and last initials from fullName and splits it into parts
+ * defines nameParts variable to split the full name into two parts 
  * gets first character of first and last parts, converts to uppercase
- * concatenates initials and returns
- * @param {string} fullName 
- * @returns 
+ * @returns a {String} by concatenates the two variables: firstInitial + lastInitial
  */
 function getInitials(fullName) {
     if (!fullName || typeof fullName !== 'string') {
@@ -123,97 +128,143 @@ function floatingContainer() {
     }
 }
 
-function showFloatingCard(event) {
-    floatingContainer();
-
-    // Reset search variables
-    let foundContact = null;
-    let foundId = null;
-    let contactColor = null;
-
-    // Find the clicked contact container
+/**
+ * @param {Event} event 
+ * get contact data from clicked DOM element using event delegation method to target contact container, name Element and email Element
+ * validates that contact-container exists
+ * retrieves contact color from contact-badge element style
+ * retrieves contact name and email from text Content of element values
+ * validates that name and email exist
+ * @returns an object with contactName, contactEmail, and contactColor
+ */
+function getContactDataFromDOM(event) {
     const clicked = event.target.closest('.contact-container');
     if (!clicked) {
         console.warn('No contact-container found');
-        return;
+        return null;
     }
-
-    // Get contact color from the badge in the DOM
     const badge = clicked.querySelector('.contact-badge');
-    if (badge) {
-        contactColor = badge.style.backgroundColor;
-        console.log('Found color from DOM:', contactColor);
-    }
-
-    // Get contact name and email from the clicked element
-    const contactName = clicked.querySelector('.contactName').textContent.trim();
-    const contactEmail = clicked.querySelector('.contactEmail').textContent.trim();
+    const contactColor = badge ? badge.style.backgroundColor : null;
+    const nameElement = clicked.querySelector('.contactName');
+    const emailElement = clicked.querySelector('.contactEmail');
+    const contactName = nameElement ? nameElement.textContent.trim() : '';
+    const contactEmail = emailElement ? emailElement.textContent.trim() : '';
     if (!contactName || !contactEmail) {
         console.error('Contact data missing');
-        return;
+        return null;
     }
+    return { contactName, contactEmail, contactColor };
+}
 
-    // Search in Firebase data (object with IDs as keys)
-    if (fetchedData && typeof fetchedData === 'object') {
-        for (const [id, data] of Object.entries(fetchedData)) {
-            if (data.name === contactName && data.email === contactEmail) {
-                foundContact = data;
-                foundId = id;
-                console.log('Found contact with ID:', foundId);
-                break;
-            }
+
+/**
+ * @param {string} contactName 
+ * @param {string} contactEmail 
+ * checks if fetchedData is valid
+ * make a for loop through fetchedData entries and makes comparisons
+ * checks fetchedData for contact matching name and email
+ * @returns array of contact data or null if not found
+ */
+function findContactInFirebase(contactName, contactEmail) {
+    if (!fetchedData || typeof fetchedData !== 'object') return null;
+    for (const [id, data] of Object.entries(fetchedData)) {
+        if (data.name === contactName && data.email === contactEmail) {
+            console.log('Found contact with ID:', id);
+            return data;
         }
     }
+    return null;
+}
 
+/**
+ * @param {string} foundContact 
+ * @param {string} contactColor 
+ * get initials from full name
+ * set background color with fallback
+ * render floating contact card container innerHTML using renderFloatingContactTemplate function with 5 parameters
+ */
+function renderFloatingCard(foundContact, contactColor) {
+    console.log('Rendering contact:', foundContact);
+    const initials = getInitials(foundContact.name);
+    const backgroundColor = contactColor || 'rgba(255, 122, 0, 1)';
+    console.log('Floating template - Color:', backgroundColor, 'Contact:', foundContact.name);
+    container.innerHTML = renderFloatingContactTemplate(
+        foundContact.name, foundContact.email, foundContact.phone, backgroundColor, initials
+    );
+    container.classList.remove('d-none');
+}
+
+/**
+ * @param {Event} event 
+ * Ensures that the floating card is displayed when a contact is clicked, by calling up all four functions sequentially:
+ * checks if floating container exists
+ * gets contact data from clicked DOM element
+ * finds contact in fetchedData by name and email
+ * renders floating contact card using renderFloatingCard funtion with 2 parameters or error message 
+ */
+function showFloatingCard(event) {
+    floatingContainer();
+    const contactData = getContactDataFromDOM(event);
+    if (!contactData) return;
+    const foundContact = findContactInFirebase(contactData.contactName, contactData.contactEmail);
     if (foundContact) {
-        // foundContact already has id property from loadDataBase
-        console.log('Rendering contact:', foundContact);
-        container.innerHTML = renderFloatingContactTemplate(foundContact, contactColor);
-        container.classList.remove('d-none');
+        renderFloatingCard(foundContact, contactData.contactColor);
     } else {
-        console.error('Contact not found:', contactName, contactEmail);
+        console.error('Contact not found:', contactData.contactName, contactData.contactEmail);
         container.innerHTML = '<h2>Contact not found</h2>';
         container.classList.remove('d-none');
     }
 }
 
-// add new contacts to the list from add-contact-popup
-async function addNewContact() {
-    // Get input elements dynamically (they are created by openPopupOverlay)
+/**
+ * get data from input fields in add-contact-popup dynamically
+ * validates input fields values
+ * makes new contact object with given Data from the user
+ * @returns an Object: new contact 
+ */
+
+async function getDataToMakeNewContact() {
     const nameInputField = document.getElementById('name_input');
     const emailInputField = document.getElementById('email_input');
     const phoneInputField = document.getElementById('phone_input');
 
-    // Prevent execution if inputs don't exist
     if (!nameInputField || !emailInputField || !phoneInputField) {
         console.error('Input fields not found in DOM');
         alert('Error: Form fields not available');
         return;
     }
-
     const newContact = {
         name: nameInputField.value.trim(),
         email: emailInputField.value.trim(),
         phone: phoneInputField.value.trim()
     };
+    return newContact;
+}
 
+/**
+ * add new contacts to the list from add-contact-popup
+ * checks if email input value contains '@' symbol
+ * validates input fields values
+ * saves new contact to Firebase realtime Database
+ * reloads data from Firebase to get updated list
+ * updates contact list display
+ * closes popup and clears input fields
+ * shows success message or error alert
+ */
+async function addNewContact() {
+    const newContact = await getDataToMakeNewContact();
     console.log('Creating new contact:', newContact);
-
+    if (!newContact.email.includes('@')) {
+        alert('Please enter a valid email address');
+        return;
+    }
     if (newContact.name && newContact.email && newContact.phone) {
         try {
-            // Save to Firebase
             await saveContact(newContact);
-
-            // Reload data from Firebase to get the updated list
             await loadDataBase();
-
-            // Update the contact list display
             createContactList();
-
-            // Close the popup and clear input fields
             closePopupOverlay();
             popupMessage('Contact successfully created!');
-
         } catch (error) {
             console.error('Error adding contact:', error);
             alert('Failed to add contact. Please try again.');
@@ -223,55 +274,66 @@ async function addNewContact() {
     }
 }
 
-// open add contact popup overlay
+/**
+ * sets innerHTML with template
+ * removes class list display none to show popup
+ * opens add contact popup overlay
+ * triggers slide-in animation
+ * clears input fields, so it will be empty when opened
+ */
 function openPopupOverlay() {
     addContactPopup.innerHTML = renderAddContactTemplate();
     const overlay = addContactPopup.querySelector('.add-contact-overlay');
     addContactPopup.classList.remove('d-none');
     // Force reflow
     overlay.offsetHeight;
-
     overlay.classList.remove('slide-out');
     overlay.classList.add('slide-in');
     clearInputFields();
 }
 
-// close add contact popup overlay
+/**
+ * selects overlay element with class name add-contact-overlay
+ * triggers slide-out animation
+ * closes add contact popup overlay by adding d-none class after animation
+ * Wait for animation to finish before hiding popup for 500ms
+ * clears input fields
+ */
 function closePopupOverlay() {
     const overlay = addContactPopup.querySelector('.add-contact-overlay');
     overlay.classList.remove('slide-in');
     overlay.classList.add('slide-out');
-
-    // Wait for animation to finish before hiding
     setTimeout(() => {
         addContactPopup.classList.add('d-none');
     }, 500);
     clearInputFields();
 }
 
-//clear input fields
+/**
+ * clears input fields in add contact popup
+ */
 function clearInputFields() {
     if (nameInput) nameInput.value = '';
     if (emailInput) emailInput.value = '';
     if (phoneInput) phoneInput.value = '';
 }
 
+/**
+ * * @param {string} message 
+ * responsible for showing popup messages 
+ * changes text content of createMessage element
+ * removes d-none class to make it visible
+ * triggers slide-in animation from the right of the page and after 2 seconds, triggers slide-out animation
+ * forces reflow to ensure transition works
+ */
 function popupMessage(message) {
     createMessage.textContent = `${message}`;
     createMessage.classList.remove('d-none');
-
-    // Force reflow to ensure transition works
     createMessage.offsetHeight;
-
-    // Slide in from right
     createMessage.classList.add('slide-in');
-
-    // After 2 seconds, slide out
     setTimeout(() => {
         createMessage.classList.remove('slide-in');
         createMessage.classList.add('slide-out');
-
-        // Hide after animation completes
         setTimeout(() => {
             createMessage.classList.add('d-none');
             createMessage.classList.remove('slide-out');
@@ -279,305 +341,67 @@ function popupMessage(message) {
     }, 2000);
 }
 
-// delete contacts when floating container is open
-async function deleteFloatingData(event) {
-    let foundContact = null;
-    let foundId = null;
-    let contactName = null;
-    let contactEmail = null;
-
-    // Called from Floating Container - get values from display elements
+/**
+ * get Data from input fields in floating contact container
+ * validates that name and email are present
+ * @returns {object|null} contactName and contactEmail or null if missing
+ */
+function getDataFromClickedContactFloating() {
     const nameElement = document.getElementById('contact-name');
     const emailElement = document.getElementById('span-email');
-
-    if (nameElement && emailElement) {
-        contactName = nameElement.textContent.trim();
-        contactEmail = emailElement.textContent.trim();
-        console.log('Delete from Floating Container - Name:', contactName, 'Email:', contactEmail);
-    }
-
-    if (!contactName || !contactEmail) {
+    if (!nameElement || !emailElement) {
         console.error('Contact name or email is missing');
         alert('Error: Contact information is missing');
-        return;
+        return null;
     }
+    const contactName = nameElement.textContent.trim();
+    const contactEmail = emailElement.textContent.trim();
+    console.log('Delete from Floating Container - Name:', contactName, 'Email:', contactEmail);
+    return { contactName, contactEmail };
+}
 
-    // Find contact in fetched data
-    console.log('Searching for - Name:', `"${contactName}"`, 'Email:', `"${contactEmail}"`);
-    console.log('fetchedData keys:', Object.keys(fetchedData));
-    console.log('fetchedData content:', fetchedData);
-
+/**
+ * get updates Data from fetchedData by comparing name and email
+ * @returns {object|null} contactName, contactEmail, foundContact, foundId or null if not found
+ */
+function saveDataAsFoundContact() {
+    const contactData = getDataFromClickedContactFloating();
+    if (!contactData) return null;
+    const { contactName, contactEmail } = contactData;
     for (const [id, data] of Object.entries(fetchedData)) {
-        console.log(`Comparing "${data.name}" === "${contactName}":`, data.name === contactName);
-        console.log(`Comparing "${data.email}" === "${contactEmail}":`, data.email === contactEmail);
-
         if (data.name === contactName && data.email === contactEmail) {
-            foundContact = data;
-            foundId = id;
             console.log('✓ Match found! ID:', id);
-            break;
+            return { foundContact: data, foundId: id, contactName, contactEmail };
         }
     }
+    return null;
+}
 
+/**
+ * * @param {Event} event 
+ * delete contacts when floating container is open
+ * uses saveDataAsFoundContact to get contact data
+ * calls deleteContact with found contact id
+ * reloads data from Firebase and updates contact list display
+ * hides floating container and shows success message or error alert
+ */
+async function deleteFloatingData(event) {
+    const contactData = saveDataAsFoundContact();
+    if (!contactData) return;
+    const { foundContact, contactName, contactEmail } = contactData;
     if (foundContact) {
-        // foundContact already has id property from loadDataBase
-        await deleteContact(foundContact.id);
-        await loadDataBase();
-        createContactList();
-
-        container.classList.add('d-none');
-
-        popupMessage('Contact successfully deleted!');
+        try {
+            await deleteContact(foundContact.id);
+            await loadDataBase();
+            createContactList();
+            container.classList.add('d-none');
+            popupMessage('Contact successfully deleted!');
+        } catch (error) {
+            console.error('Error deleting contact:', error);
+            alert('Error: Failed to delete contact');
+        }
     } else {
         console.error('Contact not found for deletion - Name:', contactName, 'Email:', contactEmail);
         alert('Error: Contact could not be found');
     }
 }
-
-// delete contacts when edit overlay is open
-async function deleteDataFromEditOverlay(event) {
-    let foundContact = null;
-    let foundId = null;
-    let contactName = null;
-    let contactEmail = null;
-
-
-    const nameInputEdit = document.getElementById('nameInput');
-    const emailInputEdit = document.getElementById('emailInput');
-
-    if (nameInputEdit && emailInputEdit && nameInputEdit.value) {
-        // Called from Edit Overlay - get values from input fields
-        contactName = nameInputEdit.value.trim();
-        contactEmail = emailInputEdit.value.trim();
-        console.log('Delete from Edit Overlay - Name:', contactName, 'Email:', contactEmail);
-    }
-
-    if (!contactName || !contactEmail) {
-        console.error('Contact name or email is missing');
-        alert('Error: Contact information is missing');
-        return;
-    }
-
-    // Find contact in fetched data
-    console.log('Searching for - Name:', `"${contactName}"`, 'Email:', `"${contactEmail}"`);
-    console.log('fetchedData keys:', Object.keys(fetchedData));
-    console.log('fetchedData content:', fetchedData);
-
-    for (const [id, data] of Object.entries(fetchedData)) {
-        console.log(`Comparing "${data.name}" === "${contactName}":`, data.name === contactName);
-        console.log(`Comparing "${data.email}" === "${contactEmail}":`, data.email === contactEmail);
-
-        if (data.name === contactName && data.email === contactEmail) {
-            foundContact = data;
-            foundId = id;
-            console.log('✓ Match found! ID:', id);
-            break;
-        }
-    }
-
-    if (foundContact) {
-        // foundContact already has id property from loadDataBase
-        await deleteContact(foundContact.id);
-        await loadDataBase();
-        createContactList();
-
-        closeEditContactOverlay();
-
-        popupMessage('Contact successfully deleted!');
-    } else {
-        console.error('Contact not found for deletion - Name:', contactName, 'Email:', contactEmail);
-        alert('Error: Contact could not be found');
-    }
-}
-
-// Edit-Overlay functions:  
-function openEditContactOverlay() {
-    let foundContact = null;
-    let foundID = null;
-    let contactColor = null;
-
-    // Get color from the floating contact card's contact-symbol
-    const contactSymbol = document.getElementById('contact-symbol');
-    if (contactSymbol) {
-        contactColor = contactSymbol.style.backgroundColor;
-        console.log('Found color from floating card:', contactColor);
-    }
-
-    for (const [id, data] of Object.entries(fetchedData)) {
-        if (data.name === document.getElementById('contact-name').textContent.trim() &&
-            data.email === document.getElementById('span-email').textContent.trim() &&
-            data.phone === document.getElementById('span-phone').textContent.trim()) {
-            foundContact = data;
-            foundID = id;
-            break;
-        }
-    }
-
-    if (foundContact) {
-        // Add ID to contact object for later use in edit/delete
-        foundContact.id = foundID;
-
-        // Set innerHTML FIRST, before accessing the overlay
-        editContactPopup.innerHTML = renderEditContactTemplate(foundContact, contactColor);
-
-        // NOW get the overlay reference (after innerHTML is set)
-        const overlay = editContactPopup.querySelector('.edit-contact-overlay');
-
-        // Set input values with fallback for phone
-        document.getElementById('nameInput').value = foundContact.name || '';
-        document.getElementById('emailInput').value = foundContact.email || '';
-        document.getElementById('phoneInput').value = foundContact.phone || '';
-
-        // Show popup and trigger animation
-        editContactPopup.classList.remove('d-none');
-
-        // Force reflow to ensure animation works
-        overlay.offsetHeight;
-
-        overlay.classList.remove('slide-out');
-        overlay.classList.add('slide-in');
-    }
-}
-
-function closeEditContactOverlay() {
-    if (!editContactPopup) return;
-
-    const overlay = editContactPopup.querySelector('.edit-contact-overlay');
-    if (!overlay) return;
-
-    overlay.classList.remove('slide-in');
-    overlay.classList.add('slide-out');
-
-    // Wait for animation to finish before hiding
-    setTimeout(() => {
-        editContactPopup.classList.add('d-none');
-    }, 500);
-}
-
-async function saveEditedContact() {
-    // Get edited values from input fields
-    const editedName = document.getElementById('nameInput').value.trim();
-    const editedEmail = document.getElementById('emailInput').value.trim();
-    const editedPhone = document.getElementById('phoneInput').value.trim();
-
-    // Validate that all fields are filled
-    if (!editedName || !editedEmail || !editedPhone) {
-        alert('Please fill in all fields');
-        return;
-    }
-
-    // Get the contact ID from the currently displayed contact
-    const contactName = document.getElementById('contact-name').textContent.trim();
-    const contactEmail = document.getElementById('span-email').textContent.trim();
-    const contactPhone = document.getElementById('span-phone').textContent.trim();
-
-    // Find the contact ID
-    let contactId = null;
-    for (const [id, data] of Object.entries(fetchedData)) {
-        if (data.name === contactName && data.email === contactEmail && data.phone === contactPhone) {
-            contactId = id;
-            break;
-        }
-    }
-
-    if (!contactId) {
-        alert('Contact not found');
-        return;
-    }
-
-    // Create updated contact object
-    const updatedContact = {
-        name: editedName,
-        email: editedEmail,
-        phone: editedPhone
-    };
-
-    try {
-        // Update contact in Firebase
-        await updateContactInFirebase(contactId, updatedContact);
-
-        // Reload data from Firebase
-        await loadDataBase();
-
-        // Update the contact list display
-        createContactList();
-
-        // Close the edit overlay
-        closeEditContactOverlay();
-
-        // Hide the floating contact card (since contact details changed)
-        container.classList.add('d-none');
-
-        // Show success message
-        popupMessage('Contact successfully saved!');
-
-    } catch (error) {
-        console.error('Error saving edited contact:', error);
-        alert('Failed to save contact. Please try again.');
-    }
-}
-
-
-// function createContactList() {
-
-//     /**
-//      * Use fetchedData (from Firebase), convert to array
-//      */
-//     let source;
-//     if (fetchedData && typeof fetchedData === 'object' && Object.keys(fetchedData).length > 0) {
-//         source = Object.entries(fetchedData)
-//             .map(([id, data]) => ({ id, ...data }))
-//             .filter(contact => contact.name && contact.email); // Filter out contacts without name or email
-//     } else {
-//         source = [];
-//     }
-
-//     if (!source || source.length === 0) {
-//         contactListEl.innerHTML = '<div class="no-contacts" style="padding: 20px; text-align: center; color: #888;">No contacts available</div>';
-//         return;
-//     }
-
-
-//     /**
-//      * Sort contacts alphabetically by their name property
-//      */
-//     const sortedContacts = [...source].sort((a, b) => {
-//         const nameA = (a.name || '').toLowerCase();
-//         const nameB = (b.name || '').toLowerCase();
-//         return nameA.localeCompare(nameB);
-//     });
-
-//     // Build HTML string
-//     let html = '';
-//     let lastInitial = '';
-
-//     sortedContacts.forEach((contact, index) => {
-//         // Assign and store color with contact for consistency
-//         contact.color = colors[index % colors.length];
-
-//         // Calculate initials from contact name
-//         const initials = getInitials(contact.name);
-
-//         // Get first letter for alphabet header
-//         const firstLetter = contact.name ? contact.name.charAt(0).toUpperCase() : '#';
-
-//         // Determine if we should show alphabet header (only when letter changes)
-//         const currentInitial = firstLetter;
-//         const showAlphabet = currentInitial !== lastInitial;
-//         lastInitial = currentInitial;
-
-//         // Build alphabet header HTML if needed
-//         const alphabetHeader = showAlphabet ? `
-//                     <h3 class="contact-alphabet">${firstLetter}</h3>
-//                     <div id="contact-divider">
-//                         <img src="../assets/img/devider-contact-list.svg" alt="" />
-//                     </div>` : '';
-
-//         // Render template with all calculated values
-//         html += renderContactListTemplate(contact.name, contact.email, contact.color, initials, alphabetHeader);
-//     });
-
-//     // Render once after building complete HTML
-//     contactListEl.innerHTML = html;
-//     console.log('Contact list rendered with', sortedContacts.length, 'contacts');
-// }
