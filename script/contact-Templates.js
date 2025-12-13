@@ -83,10 +83,7 @@ function renderAddContactTemplate() {
                 </div>
                 <div class="add-contact-container">
                   <div class="close-btn" onclick="closePopupOverlay()">
-                    <img
-                      src="../assets/img/add-contact-close-button.svg"
-                      alt=""
-                    />
+                  <i class="fa-solid fa-xmark"></i>
                   </div>
                   <div class="add-contact-form">
                     <div class="add-contact-badge">
@@ -186,10 +183,7 @@ function renderEditContactTemplate(name, email, phone, contactColor, initials) {
                 </div>
                 <div class="edit-contact-container">
                   <div class="close-btn" onclick="closeEditContactOverlay()">
-                    <img
-                      src="../assets/img/add-contact-close-button.svg"
-                      alt=""
-                    />
+                    <i class="fa-solid fa-xmark"></i>
                   </div>
                   <div class="edit-contact-form">
                     <div class="contact-badge" style="background-color: ${contactColor}">

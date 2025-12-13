@@ -22,7 +22,7 @@ main {
     height: calc(100vh - 96px);
     background-color: #ffffff;
     box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.08);
-    padding: 24px 32px 24px 32px;
+    padding: 24px 32px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -33,7 +33,7 @@ main {
     width: 100%;
     justify-content: center;
     margin-bottom: 10px;
-    transition: all 125ms linear;
+    transition: all 125ms ease-in;
     flex-shrink: 0;
     z-index: 10;
 }
@@ -100,6 +100,7 @@ main {
     gap: 35px;
     border-radius: 10px;
     cursor: pointer;
+    flex-grow: 1;
     transition: background 125ms ease;
 }
 
@@ -154,16 +155,6 @@ main {
     /* gap: 40px; */
     padding: 30px 50px 30px 0;
     overflow: hidden;
-}
-
-
-/* Für mobile Ansicht beide Bereiche in den normalen Dokumentenfluss bringen */
-
-@media (max-width: 768px) {
-    main {
-        display: flex;
-        flex-direction: column;
-    }
 }
 
 .contact-dashboard .contact-box {
@@ -332,6 +323,67 @@ main {
 
 
 /* ========== Media Queries für Responsiveness ========== */
+
+@media (min-width: 320px) and (max-width: 767px) {
+    main {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .contacts {
+        width: 100%;
+        margin-right: 0;
+        padding: clamp(12px, 4vw, 16px) clamp(16px, 4vw, 24px);
+    }
+    .contacts .contact-list {
+        gap: 8px;
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+    .contacts .contact-list .contact-list-items .contact-alphabet {
+        font-weight: 400;
+        font-size: clamp(20px, 4vw, 24px);
+    }
+    .contacts .contact-list .contact-list-items #contact-divider {
+        padding: clamp(6px, 4vw, 8px);
+        width: 100%;
+    }
+    .contacts .contact-list .contact-list-items #contact-divider img {
+        width: 100%;
+    }
+    .contacts #add-contact {
+        content: url('../assets/img/person_add-mobile.svg');
+        position: fixed;
+        right: 40px;
+        top: calc(100vh - 160px);
+        z-index: 100;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        margin-bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+    }
+    .contacts #add-contact:hover {
+        border-radius: 50%;
+    }
+    .contacts .contact-list .contact-list-items .contact-container {
+        gap: clamp(20px, 4vw, 35px);
+    }
+    .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactName {
+        font-size: clamp(16px, 4vw, 20px);
+    }
+    .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactEmail {
+        font-size: clamp(13px, 4vw, 16px);
+    }
+    .contact-dashboard {
+        display: none;
+    }
+}
 
 
 /* Tablet Landscape - bis 1024px */

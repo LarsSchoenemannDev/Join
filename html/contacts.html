@@ -29,11 +29,17 @@
     <!-- adding Main CSS Style-Sheet -->
     <link rel="stylesheet" href="../css/standard.css" />
     <link rel="stylesheet" href="../css/sidebar_and_header_main.css" />
+    <link rel="stylesheet" href="../css/sidebar-responsiv.css" />
     <link rel="stylesheet" href="../css/contact-predefinedClasses.css" />
-    <link rel="stylesheet" href="../css/contacts-edit-overlay.css" />
     <link rel="stylesheet" href="../css/contacts.css" />
     <link rel="stylesheet" href="../css/contacts-overlay.css" />
-    <link rel="stylesheet" href="../css/sidebar-responsiv.css" />
+    <link rel="stylesheet" href="../css/contacts-edit-overlay.css" />
+
+    <!-- adding font awesome-->
+    <script
+      src="https://kit.fontawesome.com/34f17cdf39.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body onload="initContacts()">
@@ -102,7 +108,13 @@
                 <img src="../assets/img/help.svg" alt="help" id="help" />
               </a>
               <div class="user-icon">
-                <button class="menu-button" id="menu-button" onclick="tooglemenu()">SM</button>
+                <button
+                  class="menu-button"
+                  id="menu-button"
+                  onclick="tooglemenu()"
+                >
+                  SM
+                </button>
               </div>
             </div>
             <div class="dropDown-menu" id="dropDown-menu">
@@ -145,10 +157,11 @@
       </div>
     </div>
   </body>
-  <script src="../script/auth-script.js"></script>
+  <!-- <script src="../script/auth-script.js"></script> -->
   <script src="../script/sidebar_and_header_script.js"></script>
-  <script src="../script/firebaseStorage.js"></script>
+  <script src="../script/firebaseStorageContacts.js"></script>
   <script src="../script/data-bank.js"></script>
   <script src="../script/contact-Templates.js"></script>
   <script src="../script/contacts.js"></script>
+  <script src="../script/contactsoverlay.js"></script>
 </html>
