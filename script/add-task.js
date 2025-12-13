@@ -1,23 +1,40 @@
 const BASE_URL = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/";
 let FetchData = [];
 let subTaskInput = [];
+let tempTaskData = [];
 const requiredFields = document.querySelectorAll('#title, #duedate, #category');
+const input = document.getElementById("subtasks");
+const box = document.getElementById("showHidden");
+console.log(tempTaskData);
 
-/**
- * This function collects data from input fields 
- * 
- * 
- */
-//* -- Create Task Button -- sammeln von denn daten  --
-async function createTask() {
+async function init() {
     await getData();
-    addtoTask();
     clearInputs();
-    renderContact()
-
+    PriorityBTN();
+    renderContact();
+    categorySelector();
 }
 
-//* -- Daten von Firebase holen --
+async function createTask(e) {    
+    const formIsValid = validateRequiredFields();
+    if (!formIsValid) {
+        e?.preventDefault?.();
+        console.warn("Validierung fehlgeschlagen. Task wird nicht erstellt.");
+        return;
+    }
+    const taskData = addtoTask(e);
+    e?.preventDefault?.(); 
+    const result = await postAddTask(taskData);
+    if (result) {     
+        PriorityBTN();
+        clearInputs();
+        await getData(); 
+    }
+    console.log('taksData', taskData);
+    console.log('result',result);   
+    
+}
+
 async function getData() {
     try {
         const response = await fetch(BASE_URL + ".json");
@@ -32,50 +49,92 @@ async function getData() {
     console.log(FetchData);
 }
 
-/**
- * This function colltects data from input fields
- * 
- * @param {SubmitEvent} [e] - Optional form submit event to prevent page reload.
- * @returns - Data Object, title, description, duedate, category, subtasks and priority
- *  Object with the collected task data.
- */
-//* -- Sammeln von denn inputs --
-function addtoTask(e) {
-    e?.preventDefault?.();
-    const get = id => (document.getElementById(id)?.value ?? '').trim();
-    const result = {
-        title: get('title'),
-        description: get('description'),
-        duedate: get('duedate'),
-        category: get('category'),
-        subtasks: get('subtasks'),
-        priority: document.querySelector('input[name="priority"]:checked')?.value ?? null
-    };
-    return result;
+
+function validateRequiredFields() {
+    const requiredFields = document.querySelectorAll('#title, #duedate, #category');
+    let requiredCheck = true;
+    const categoryValue = document.querySelector('input[name="priorityCategory"]:checked')?.value;
+    const categoryButton = document.getElementById('selectCategoryHtml');
+    requiredFields.forEach(required => {
+        if (required.value.trim() === '') {
+            required.classList.add('input-error');
+            requiredCheck = false;
+        } else {
+            required.classList.remove('input-error');
+        }
+    });
+    if (!categoryValue || categoryValue === 'Select task category') {
+        categoryButton.classList.add('input-error');
+        requiredCheck = false;
+    } else {
+        categoryButton.classList.remove('input-error');
+    }
+    return requiredCheck;
 }
 
-/**
- * Function to clear input fields after create a task
- * 
- */
 
-//* --- Eingabefelder leeren --
+function addtoTask(element) {
+    element?.preventDefault?.();
+    const get = id => (document.getElementById(id)?.value ?? '').trim();
+    tempTaskData = {
+        title: get('title'), // abfrage required
+        description: get('description'),
+        duedate: get('duedate'), // abfrage required
+        priority: document.querySelector('input[name="priority"]:checked')?.value ?? null,
+        assignedTo: getSelectedContacts(),
+        category: get('category'), // abfrage required
+        subtasks: getSubtasks()
+    };
+    return tempTaskData;
+}
+
+async function postAddTask(data) {
+    try {
+        const response = await fetch(BASE_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const responseData = await response.json();
+        console.log("Task erfolgreich erstellt:", responseData);
+        return responseData;
+    } catch (error) {
+        console.error("Fehler beim Speichern des Tasks:", error);
+    }
+}
+
+
 function clearInputs() {
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
     document.getElementById('duedate').value = '';
-    document.getElementById('category').value = '';
+    document.getElementById('prio-medium').checked = true;
+    document.querySelector('input[name="priorityCategory"]:checked')
     document.getElementById('subtasks').value = '';
 }
-/**
- * Function to change and get priority button checked
- */
+
 function PriorityBTN() {
     BTNStyling = document.querySelector('input[name="priority"]:checked')
 }
 
+function getSelectedContacts() {
+    return Array.from(
+        document.querySelectorAll('.checkbox-input:checked')
+    ).map(checkBox => checkBox.value);
+}
 
-//* -- Kontakt-Liste rendern --
+function getSubtasks() {
+    return Array.from(
+        document.querySelectorAll('[data-index]')
+    ).map(subtaskElements => subtaskElements.value);
+}
+
+
 function renderContact() {
     const CONTACT_LIST_CONTAINER = document.getElementById("selectContacts");
     CONTACT_LIST_CONTAINER.innerHTML = "";
@@ -88,14 +147,13 @@ function renderContact() {
     let html = "";
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
-        const initials = contact.name.split(' ').map(x => x[0]).join('');
+        const initials = contact.name.trim().split(' ').map(x => x[0]).join('');
         const colorClass = getRandomColorClass();
         html += renderContactHTML(contact, initials, colorClass)
     }
     CONTACT_LIST_CONTAINER.innerHTML = html;
 }
 
-//* -- Zufällige Farbklasse für Initialen auswählen --
 function getRandomColorClass() {
     const colorClasses = [
         "initials-Variant1",
@@ -118,31 +176,41 @@ function getRandomColorClass() {
     return colorClasses[randomIndex];
 }
 
-/**
- * 
- * @param {string} contact - Contact Object
- * @param {string} initials - Initials of Contact 
- * @param {number} colorClass - Random Color class of Initails
- * @returns - inner HTML for Rendering
- */
-function renderContactHTML(contact, initials, colorClass) {
-    return `    
-    <ul class="contact-row">
-    <div class="contact-left">
-    <div class="initials-circle ${colorClass}">${initials}</div>
-    <span class="contact-name">${contact.name}</span>
-    </div>
-    <label class="checkbox">
-    <input id="checkbox" onclick="checkBox(this)" class="checkbox-input" name="checked" type="checkbox" value="${contact.name}">
-    <span class="checkbox-box"></span>
-        </label>
-      </ul>
-    `;
-}
 
 function toggelContacts() {
     const dropdown = document.getElementById("selectContacts");
+    const BTNContactsToggel = document.getElementById("BTNToggelContacts")
+    const searchContacts = document.getElementById("searchContacts")
+    const testBox = document.querySelector("body")
     dropdown.classList.toggle('open');
+    BTNContactsToggel.style.display = 'none';
+    searchContacts.classList.toggle('d-none');
+    searchContacts.focus();
+}
+
+function contactSearch() {
+    const searchInput = document.getElementById("searchContacts");
+    const searchArray = searchInput.value.toLowerCase();
+    const searchRenderHTML = document.getElementById("selectContacts");
+    let nameSearch = FetchData.contacts.filter(contact => contact.name.toLowerCase().includes(searchArray));
+    if (searchInput.value.length === 0) {
+        renderContact();
+    } else {
+        searchRenderHTML.innerHTML = "";
+        let html = "";
+        for (let i = 0; i < nameSearch.length; i++) {
+            const contact = nameSearch[i];
+            const initials = contact.name.trim().split(' ').map(x => x[0]).join('');
+            const colorClass = getRandomColorClass();
+            html += renderContactSearchHTML(contact, initials, colorClass, i);
+        }
+        searchRenderHTML.innerHTML = html;
+        if (nameSearch.length === 0) {
+            searchRenderHTML.innerHTML = searchRenderHTMLZero();
+
+        }
+    }
+    console.log(nameSearch);
 }
 
 function checkBox(inputElement) {
@@ -152,12 +220,14 @@ function checkBox(inputElement) {
         if (inputElement.checked) {
             BGChange.style.borderRadius = "12px";
             BGChange.style.backgroundColor = "#2A3647";
+            BGChange.style.color = "#ffff"
             if (contactNameElement) {
                 contactNameElement.style.color = "#ffff";
             }
         } else {
             BGChange.style.backgroundColor = "";
             BGChange.style.borderRadius = "";
+            BGChange.style.color = ""
             if (contactNameElement) {
                 contactNameElement.style.color = "";
             }
@@ -165,25 +235,25 @@ function checkBox(inputElement) {
     }
 }
 
-
 function createSubtasks() {
     const subtask = document.getElementById("showHidden");
     const input = document.getElementById("subtasks");
-    subtask.style.display = "flex";
     input.focus();
+    input.classList.toggle("input-icon-cancel,.input-icon-accept,.seperator-small")
 }
 
 function addSubtask() {
-    let subTask = document.getElementById("subtasks");
+    const subTask = document.getElementById("subtasks");
     let subTaskValue = subTask.value.trim()
     if (subTaskValue.length <= 3) return;
     subTaskInput.push(subTask.value);
     renderSubtasks(subTaskValue);
     subTask.value = ``;
+    subTask.focus();
 }
 
 function renderSubtasks() {
-    let subTaskContent = document.getElementById("SubtaskList");
+    const subTaskContent = document.getElementById("SubtaskList");
     let htmlContent = ``;
     for (let i = 0; i < subTaskInput.length; i++) {
         let subTaskNote = subTaskInput[i]
@@ -191,41 +261,13 @@ function renderSubtasks() {
     }
     subTaskContent.innerHTML = htmlContent;
 }
-/**
- * 
- * @param {string} subTaskInput -  
- * @param {number} i - index of subTaskInput
- * @returns - innerHTML for the Subtask Element
- */
-function subTaskContentHMTL(subTaskInput, i) {
-    return `
-    <div class="sub-container" data-index="${i}">
-    <span class="display-flex">&bull; ${subTaskInput}</span>
-    <img src="../assets/img/Subtasks change.svg" class="input-icon-cancel" onclick="changeSubtask(${i})">
-    <div class="seperator-small"></div>
-    <img src="../assets/img/SubTask delete.svg" class="input-icon-accept" onclick="deleteSubtask(${i})">
-    </span>
-    </div>
-    
-    `;
-}
 
-
-/**
- * 
- * @param {number} i - Index of the Subtask point
- */
-function changeSubtask(i) { // index vom array
-    let newSubtask = document.querySelector(`.sub-container[data-index="${i}"]`) // wert suchen mit index vom html 
-    let currentValue = subTaskInput[i]; // gleich setzung
-    newSubtask.innerHTML = `    
-    <input type="text" class="subtask-edit-input" value="${currentValue}" id="edit-input-${i}"
-    title="Geben Sie den neuen Text ein">
-    <img src="../assets/img/Subtasks accept.svg" class="input-icon-accept" onclick="saveSubtaskEdit(${i})">
-    <div class="seperator-small"></div>
-    <img src="../assets/img/Subtasks cancel.svg" class="input-icon-cancel" onclick="renderSubtasks()">
-    `;
-    const newInputField = document.getElementById(`edit-input-${i}`); // zugriff auf das eddit arry index aber wo für     
+function changeSubtask(i) {
+    const newSubtask = document.querySelector(`.sub-container[data-index="${i}"]`)
+    let currentValue = subTaskInput[i];
+    newSubtask.innerHTML = changeSubtaskHtml(i, currentValue)
+    const newInputField = document.getElementById(`edit-input-${i}`);
+    newInputField.focus();
 }
 
 function saveSubtaskEdit(i) {
@@ -237,14 +279,17 @@ function saveSubtaskEdit(i) {
 
 
 function deleteSubtask(i) {
+    let focusinput = document.getElementById("subtasks")
     subTaskInput.splice(i, 1);
     renderSubtasks();
+    focusinput.focus();
 }
 
 function cancelSubtask() {
-    document.getElementById("subtasks").value = ``;
-    document.getElementById("showHidden").classList.add("img-container");
-
+    const input = document.getElementById("subtasks")
+    input.value = ``;
+    input.focus();
+    document.getElementById("showHidden").style.display = "";
 }
 
 function onFocus(event) {
@@ -272,4 +317,38 @@ requiredFields.forEach((field) => {
 });
 
 
+function toggelCategory() {
+    const categorydropdown = document.getElementById("selectCategory");
+    categorydropdown.classList.toggle("open");
+}
 
+function categorySelector() {
+    const selectedInput = document.querySelector('input[name="priorityCategory"]:checked');
+    const selectedCategoryValue = selectedInput.value;
+    const categoryContainer = document.getElementById("selectCategoryHtml");
+    categoryContainer.innerHTML = setCategoryHTML(selectedCategoryValue);
+    document.getElementById("selectCategory").classList.remove("open");
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const subtaskElement = document.getElementById("subtasks");
+    if (subtaskElement) {
+        subtaskElement.addEventListener("keydown", function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                addSubtask();
+            }
+        });
+    } else {
+        return;
+    }
+});
+
+input.addEventListener("focus", () => {
+    box.style.display = "flex";
+});
+document.addEventListener("click", (e) => {
+    if (!e.target.closest(".input-wrapper")) {
+        box.style.display = "none";
+    }
+});

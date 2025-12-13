@@ -3,7 +3,7 @@
      flex-direction: column;
      justify-content: center;
      width: 100%;
-     height: calc(100% - 200px);
+     height: calc(100% - 2px);
      padding: 48px 96px;
  }
 
@@ -51,7 +51,6 @@
  p {
      font-size: 1rem;
      font-weight: 400;
-     font-style: regular;
      color: #2a3647;
  }
 
@@ -103,17 +102,32 @@
      justify-content: space-between;
      padding: 10px 16px;
      cursor: pointer;
+     font-family: inter;
+     font-weight: 400;
+     font-size: 20px;
+     color: #000000;
+ }
+
+ .gab {
+     width: 48px;
+     padding-right: 8px;
+ }
+
+ .contact-row:hover {
+     background-color: #EEEEEE;
+     border-radius: 12px;
  }
 
  .contact-left {
      display: flex;
      align-items: center;
-     gap: 18px;
  }
 
  .contact-name {
-     font-size: 16px;
-     color: #2a3647;
+     font-size: 20px;
+     color: #000000;
+     font-weight: 400;
+     padding-left: 12px;
  }
 
  .dropdown {
@@ -129,6 +143,10 @@
      display: none;
  }
 
+ .d-none {
+     display: none;
+ }
+
  .dropdown.open {
      max-height: 260px;
      opacity: 1;
@@ -137,6 +155,12 @@
      background-color: #ffff;
      transform: translate(0px, -5px);
      border-radius: 12px;
+ }
+
+ .category-main {
+     display: flex;
+     flex-direction: column;
+     gap: 4px
  }
 
  .checkbox-input {
@@ -186,6 +210,13 @@
      display: flex;
  }
 
+ .input-icon-arrow-up {
+     background-image: url("../assets/img/arrowUup.svg");
+     background-repeat: no-repeat;
+     background-position: bottom 50% right 20px;
+     background-size: 10px 10px;
+ }
+
  .input-icon-calender {
      background-image: url("../assets/img/calendar-icon.svg");
      background-repeat: no-repeat;
@@ -211,14 +242,10 @@
      position: relative;
      display: flex;
      align-items: center;
+     width: 100%;
  }
 
- .seperator-small {
-     background-color: rgba(209, 209, 209, 1);
-     width: 1px;
-     height: 24px;
-     display: flex;
- }
+
 
  .display-flex {
      display: flex;
@@ -242,11 +269,24 @@
      padding-bottom: 8px;
  }
 
+
  .input-icon-cancel,
  .input-icon-accept {
      width: 24px;
      height: 24px;
      cursor: pointer;
+     display: flex;
+ }
+
+ /* .input-icon-cancel,.input-icon-accept,.seperator-small{
+    display: flex;
+ } */
+
+ .seperator-small {
+     background-color: rgba(209, 209, 209, 1);
+     width: 1px;
+     height: 24px;
+     display: flex;
  }
 
  .center-seperator {
@@ -260,7 +300,8 @@
      background-color: rgba(209, 209, 209, 1);
      width: 1px;
      height: 425px;
-     display: flex;
+
+
  }
 
  .button-priority {
@@ -278,35 +319,59 @@
      cursor: pointer;
  }
 
- .btn-priority-medium {
-     fill: #FFA800;
+ #prio-urgent+svg path {
+     fill: #FF3D00
  }
 
- /* .btn-medium-click {
-     background-color: rgba(255, 168, 0, 1);
-     color: rgba(255, 255, 255, 1);
-     font-size: 21px;
-     font-weight: bold;
- }
-
- .btn-Urgent-click {
+ #prio-urgent:checked+label {
      background-color: #FF3D00;
-     color: rgba(255, 255, 255, 1);
+     border-color: #FF3D00;
+     color: #FFFFFF;
+     font-weight: 700;
      font-size: 21px;
-     font-weight: bold;
  }
 
- .btn-Urgent-Low {
-     background-color: #7AE229;
-     color: rgba(255, 255, 255, 1);
+ #prio-urgent:checked+label svg path {
+     fill: #FFFFFF
+ }
+
+ #prio-medium+svg path {
+     fill: #FFA800
+ }
+
+ #prio-medium:checked+label {
+     background-color: #FFA800;
+     border-color: #FFA800;
+     color: #FFFFFF;
+     font-weight: 700;
      font-size: 21px;
-     font-weight: bold;
- } */
+ }
+
+ #prio-medium:checked+label svg path {
+     fill: #FFFFFF
+ }
+
+ #prio-low+svg path {
+     fill: #7AE229
+ }
+
+ #prio-low:checked+label {
+     background-color: #7AE229;
+     border-color: #7AE229;
+     color: #FFFFFF;
+     font-weight: 700;
+     font-size: 21px;
+ }
+
+ #prio-low:checked+label svg path {
+     fill: #FFFFFF
+ }
 
  .input-Required {
      border: 1px solid #d1d1d1;
      border-radius: 8px;
      outline: none;
+
  }
 
  .input-focus {
@@ -332,5 +397,15 @@
      display: flex;
      justify-content: start;
      align-items: end;
-     gap: 530px;
+     gap: 558px;
+ }
+
+ .contactSearch {
+     width: 100%;
+     border-radius: 12px;
+     border: 1px solid #e5e7eb;
+     background: #ffffff;
+     padding: 14px 16px;
+     font-size: 1rem;
+     outline: none;
  }
