@@ -6,9 +6,9 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    gap: 32px;
+    gap: 28px;
     align-items: flex-start;
-    padding: 0 50px 0 0;
+    padding: 0 30px 0 0;
 }
 
 .contacts {
@@ -18,7 +18,7 @@ main {
     justify-content: flex-start;
     align-items: flex-start;
     margin-right: 24px;
-    width: clamp(380px, 420px);
+    width: 420px;
     height: calc(100vh - 96px);
     background-color: #ffffff;
     box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.08);
@@ -56,6 +56,7 @@ main {
 }
 
 .contacts .contact-list {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -78,11 +79,13 @@ main {
 }
 
 .contacts .contact-list .contact-list-items #contact-divider {
+    display: flex;
+    justify-content: center;
     height: 1px;
     width: 100%;
-    /* padding: 0 8px; */
+    padding: 0 8px;
     margin-bottom: 16px;
-    color: rgba(209, 209, 209, 1);
+    background-color: rgba(209, 209, 209, 1);
 }
 
 .contacts .contact-list .contact-list-items .contact-container {
@@ -163,7 +166,7 @@ main {
 
 .contact-dashboard .contact-box h1 {
     color: rgba(0, 0, 0, 1);
-    font-size: 54px;
+    font-size: 52px;
     font-weight: 700;
     margin: 0;
 }
@@ -176,7 +179,7 @@ main {
 
 .contact-dashboard .contact-box h3 {
     color: rgba(42, 54, 71, 1);
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 400;
     margin: 0;
 }
@@ -325,6 +328,87 @@ main {
 
 /* ========== Media Queries für Responsiveness ========== */
 
+@media (min-width: 992px) and (max-width:1199px) {
+    .contacts {
+        width: clamp(360px, 4vw, 380px);
+        padding: 24px 20px;
+    }
+    .contacts .contact-list {
+        width: clamp(360px, 4vw, 380px);
+    }
+    .contacts .contact-list .contact-list-items .contact-container {
+        padding: 15px 18px;
+    }
+    .contact-dashboard .contact-box {
+        gap: 20px;
+    }
+    .contact-dashboard .contact-box h1 {
+        font-size: clamp(38px, 4vw, 42px);
+    }
+    .contact-dashboard .contact-box #vector {
+        height: 60px;
+    }
+    .contact-dashboard .contact-box h3 {
+        font-size: 18px;
+    }
+    .floating-contact #contact-header {
+        gap: 40px;
+    }
+    .floating-contact #contact-header .contact-badge {
+        width: 80px;
+        height: 80px;
+        font-size: 36px;
+    }
+    .floating-contact #contact-header #contact-text #contact-name {
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 40px;
+        align-items: flex-start;
+        padding: 0 30px 0 0;
+    }
+    .contacts {
+        width: 100%;
+        padding: 20px 24px;
+    }
+    .contacts .contact-list {
+        width: 100%;
+    }
+    .contacts .contact-list .contact-list-items .contact-container {
+        padding: 12px 16px;
+    }
+    .contact-dashboard {
+        width: 100%;
+        padding: 40px 24px;
+    }
+    .contact-dashboard .contact-box {
+        gap: 30px;
+    }
+    .contact-dashboard .contact-box h1 {
+        font-size: 52px;
+    }
+    .contact-dashboard .contact-box h3 {
+        font-size: 24px;
+    }
+    .floating-contact #contact-header {
+        gap: 48px;
+    }
+    .floating-contact #contact-header .contact-badge {
+        width: 100px;
+        height: 100px;
+        font-size: 38px;
+    }
+    .floating-contact #contact-header #contact-text #contact-name {
+        font-size: 28px;
+    }
+}
+
 @media (min-width: 320px) and (max-width: 767px) {
     main {
         padding: 0;
@@ -347,13 +431,6 @@ main {
         font-weight: 400;
         font-size: clamp(20px, 4vw, 24px);
     }
-    .contacts .contact-list .contact-list-items #contact-divider {
-        padding: clamp(6px, 4vw, 8px);
-        width: 100%;
-    }
-    .contacts .contact-list .contact-list-items #contact-divider img {
-        width: 100%;
-    }
     .contacts #add-contact {
         content: url('../assets/img/person_add-mobile.svg');
         position: fixed;
@@ -373,6 +450,7 @@ main {
         border-radius: 50%;
     }
     .contacts .contact-list .contact-list-items .contact-container {
+        padding: 15px 12px;
         gap: clamp(20px, 4vw, 35px);
     }
     .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactName {
@@ -385,318 +463,3 @@ main {
         display: none;
     }
 }
-
-
-/* Tablet Landscape - bis 1024px */
-
-
-/* @media (max-width: 1024px) {
-    .contacts {
-        left: 200px;
-        width: 380px;
-        padding: 20px 32px;
-    }
-    .contact-dashboard {
-        left: 586px;
-        padding: 40px 32px;
-    }
-    .contact-dashboard .contact-box h1 {
-        font-size: 48px;
-    }
-    .contact-dashboard .contact-box h3 {
-        font-size: 24px;
-    }
-    .floating-contact #contact-header {
-        gap: 40px;
-    }
-    .floating-contact #contact-header .contact-badge {
-        width: 100px;
-        height: 100px;
-        font-size: 40px;
-    }
-    .floating-contact #contact-header #contact-text #contact-name {
-        font-size: 36px;
-    }
-} */
-
-
-/* Tablet Portrait - bis 768px */
-
-
-/* @media (max-width: 768px) {
-    .contacts {
-        left: 0;
-        width: 100%;
-        position: static;
-        padding: 16px 24px;
-    }
-    .contact-dashboard {
-        left: 0;
-        position: static;
-        padding: 24px 24px;
-    }
-    .contact-dashboard .contact-box {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-        margin-bottom: 24px;
-    }
-    .contact-dashboard .contact-box #vector {
-        display: none;
-    }
-    .contact-dashboard .contact-box h1 {
-        font-size: 40px;
-    }
-    .contact-dashboard .contact-box h3 {
-        font-size: 20px;
-    }
-    .floating-contact #contact-header {
-        gap: 32px;
-    }
-    .floating-contact #contact-header .contact-badge {
-        width: 80px;
-        height: 80px;
-        font-size: 32px;
-    }
-    .floating-contact #contact-header #contact-text #contact-name {
-        font-size: 28px;
-    }
-    .contacts .contact-list .contact-list-items .contact-alphabet {
-        padding: 12px 24px;
-        font-size: 18px;
-    }
-    .contacts .contact-list .contact-list-items .contact-container {
-        padding: 12px 16px;
-        gap: 24px;
-    }
-    .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactName {
-        font-size: 18px;
-    }
-    .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactEmail {
-        font-size: 14px;
-    }
-} */
-
-
-/* Mobile Large - bis 480px */
-
-
-/* @media (max-width: 480px) {
-    .contacts {
-        padding: 12px 16px;
-        position: static;
-        width: 100%;
-    }
-    .contacts #add-contact {
-        font-size: 16px;
-        padding: 10px;
-    }
-    .contact-dashboard {
-        padding: 16px;
-        position: static;
-    }
-    .contact-dashboard .contact-box h1 {
-        font-size: 32px;
-    }
-    .contact-dashboard .contact-box h3 {
-        font-size: 18px;
-    }
-    .floating-contact {
-        gap: 16px;
-    }
-    .floating-contact #contact-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-    }
-    .floating-contact #contact-header .contact-badge {
-        width: 70px;
-        height: 70px;
-        font-size: 28px;
-    }
-    .floating-contact #contact-header #contact-text #contact-name {
-        font-size: 24px;
-    }
-    .floating-contact #contact-header #contact-text #contact-edit-tools {
-        gap: 12px;
-    }
-    .floating-contact #contact-information {
-        font-size: 18px;
-        padding: 20px 0;
-    }
-    .floating-contact #contact-details {
-        gap: 16px;
-    }
-    .contacts .contact-list .contact-list-items .contact-alphabet {
-        padding: 10px 16px;
-        font-size: 16px;
-    }
-    .contacts .contact-list .contact-list-items .contact-container {
-        padding: 10px 12px;
-        gap: 16px;
-    }
-    .contacts .contact-list .contact-list-items .contact-container .contact-badge {
-        width: 36px;
-        height: 36px;
-        font-size: 14px;
-    }
-    .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactName {
-        font-size: 16px;
-    }
-    .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactEmail {
-        font-size: 13px;
-    }
-    .popup-message {
-        font-size: 16px;
-        padding: 16px;
-        border-radius: 12px;
-    }
-    .popup-message.slide-in {
-        transform: translate(-16px, -50%);
-    }
-} */
-
-
-/* Mobile Medium - bis 375px */
-
-
-/* @media (max-width: 375px) {
-    .contacts {
-        padding: 10px 12px;
-        position: static;
-        width: 100%;
-    }
-    .contact-dashboard {
-        padding: 12px;
-        position: static;
-    }
-    .contact-dashboard .contact-box h1 {
-        font-size: 28px;
-    }
-    .contact-dashboard .contact-box h3 {
-        font-size: 16px;
-    }
-    .floating-contact #contact-header .contact-badge {
-        width: 60px;
-        height: 60px;
-        font-size: 24px;
-    }
-    .floating-contact #contact-header #contact-text #contact-name {
-        font-size: 20px;
-    }
-    .floating-contact #contact-information {
-        font-size: 16px;
-    }
-    .floating-contact #contact-details #contact-email,
-    #contact-phone {
-        font-size: 14px;
-    }
-    .floating-contact #contact-details .span-email,
-    .floating-contact #contact-details .span-phone {
-        font-size: 14px;
-    }
-    .contacts .contact-list .contact-list-items .contact-container .contact-badge {
-        width: 32px;
-        height: 32px;
-        font-size: 13px;
-    }
-    .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactName {
-        font-size: 15px;
-    }
-    .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactEmail {
-        font-size: 12px;
-    }
-} */
-
-
-/* Mobile Small - bis 320px */
-
-
-/* @media (max-width: 320px) {
-    .contacts {
-        padding: 8px 10px;
-        gap: 6px;
-        position: static;
-        width: 100%;
-    }
-    .contacts #add-contact {
-        font-size: 14px;
-        padding: 8px;
-    }
-    .contact-dashboard {
-        padding: 10px;
-        position: static;
-    }
-    .contact-dashboard .contact-box {
-        gap: 12px;
-        margin-bottom: 16px;
-    }
-    .contact-dashboard .contact-box h1 {
-        font-size: 24px;
-    }
-    .contact-dashboard .contact-box h3 {
-        font-size: 14px;
-    }
-    .floating-contact {
-        gap: 12px;
-    }
-    .floating-contact #contact-header {
-        gap: 16px;
-    }
-    .floating-contact #contact-header .contact-badge {
-        width: 50px;
-        height: 50px;
-        font-size: 20px;
-    }
-    .floating-contact #contact-header #contact-text #contact-name {
-        font-size: 18px;
-    }
-    .floating-contact #contact-header #contact-text #contact-edit-tools {
-        gap: 8px;
-        font-size: 14px;
-    }
-    .floating-contact #contact-header #contact-text #contact-edit-tools #edit img,
-    .floating-contact #contact-header #contact-text #contact-edit-tools #delete img {
-        width: 18px;
-        height: 18px;
-    }
-    .floating-contact #contact-information {
-        font-size: 14px;
-        padding: 16px 0;
-    }
-    .floating-contact #contact-details {
-        gap: 12px;
-    }
-    .floating-contact #contact-details #contact-email,
-    #contact-phone {
-        font-size: 13px;
-    }
-    .floating-contact #contact-details .span-email,
-    .floating-contact #contact-details .span-phone {
-        font-size: 13px;
-    }
-    .contacts .contact-list .contact-list-items .contact-alphabet {
-        padding: 8px 12px;
-        font-size: 15px;
-    }
-    .contacts .contact-list .contact-list-items .contact-container {
-        padding: 8px 10px;
-        gap: 12px;
-    }
-    .contacts .contact-list .contact-list-items .contact-container .contact-badge {
-        width: 30px;
-        height: 30px;
-        font-size: 12px;
-    }
-    .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactName {
-        font-size: 14px;
-    }
-    .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactEmail {
-        font-size: 11px;
-    }
-    .popup-message {
-        font-size: 14px;
-        padding: 12px;
-        border-radius: 10px;
-    }
-} */

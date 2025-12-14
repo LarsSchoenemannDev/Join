@@ -62,7 +62,7 @@ function getContactArray() {
 function buildContactItemHTML(contact, color, showAlphabet) {
     const initials = getInitials(contact.name);
     const firstLetter = contact.name ? contact.name.charAt(0).toUpperCase() : '#';
-    const alphabetHeader = showAlphabet ? `<h3 class="contact-alphabet">${firstLetter}</h3><div id="contact-divider"><img src="../assets/img/devider-contact-list.svg" alt="" /></div>` : '';
+    const alphabetHeader = showAlphabet ? `<h3 class="contact-alphabet">${firstLetter}</h3><div id="contact-divider"></div>` : '';
     return renderContactListTemplate(contact.name, contact.email, color, initials, alphabetHeader);
 }
 
