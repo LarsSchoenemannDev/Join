@@ -75,8 +75,7 @@ main {
     align-items: center;
     gap: 16px;
     position: absolute;
-    /*right: 28px;*/
-    right: 1px;
+    right: 28px;
 }
 
 .header .icons .help {
