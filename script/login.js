@@ -52,6 +52,7 @@ function validateInput(input) {
 }
 
 
+
 async function loadImageSequence() {
   const container = document.getElementById('image-sequence');
   container.innerHTML = '<img src="../assets/img/Capa 2.svg" alt="Logo Intro">';

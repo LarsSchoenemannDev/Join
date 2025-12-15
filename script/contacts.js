@@ -60,7 +60,7 @@ function getContactArray() {
  * @returns a function call: renderContactListTemplate with 5 parameters
  */
 function buildContactItemHTML(contact, color, showAlphabet) {
-    const initials = getInitials(contact.name);
+    const initials = contact.initials;
     const firstLetter = contact.name ? contact.name.charAt(0).toUpperCase() : '#';
     const alphabetHeader = showAlphabet ? `<h3 class="contact-alphabet">${firstLetter}</h3><div id="contact-divider"></div>` : '';
     return renderContactListTemplate(contact.name, contact.email, color, initials, alphabetHeader);
@@ -77,23 +77,44 @@ function buildContactItemHTML(contact, color, showAlphabet) {
  * iterates through contact array to build HTML by using buildContactItemHTML function with 3 parameters: @param {String} contact, @param {String} color, @param {Boolean} show 
  * assign html to contactListEl innerHTML to render contact list
  */
-function createContactList() {
+async function createContactList() {
     const array = getContactArray();
+    fetchedData = array;
     if (!array.length) {
-        contactListEl.innerHTML = '<div class="no-contacts" style="padding: 20px; text-align: center; color: #888;">No contacts available</div>';
+        contactListEl.innerHTML =
+            '<div class="no-contacts" style="padding: 20px; text-align: center; color: #888;">No contacts available</div>';
         return;
     }
     let last = '';
     let html = '';
+    let needsUpdate = false;
     array.forEach((contact, index) => {
         contact.color = colors[index % colors.length];
-        const first = contact.name ? contact.name.charAt(0).toUpperCase() : '#';
+
+        if (!contact.initials) {
+            contact.initials = getInitials(contact.name);
+            needsUpdate = true;
+        }
+        const first = contact.name
+            ? contact.name.charAt(0).toUpperCase() : '#';
         const show = first !== last;
         if (show) last = first;
         html += buildContactItemHTML(contact, contact.color, show);
     });
+
     contactListEl.innerHTML = html;
+    if (needsUpdate) {
+        await pushContactsToAPI();
+    }
     console.log('Contact list rendered with', array.length, 'contacts');
+}
+
+async function pushContactsToAPI() {
+    await fetch(storageUrl + ".json", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fetchedData)
+    });
 }
 
 //
