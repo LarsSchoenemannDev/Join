@@ -69,38 +69,4 @@
   .join-icon{
     display: flex;
 }
-
-.dropDown-menu{
-  top: 21%;
-}
-}
-
-@media (max-width: 510px) {
-  main{
-    padding: 20px;
-  }
-  
-  .datenschutz-container h1{
-    font-size: 1em;
-  }
-
-  .datenschutz-container h2{
-    font-size: 1em;
-  }
-
-  .datenschutz-container p{
-    font-size: 0.8em;
-  }
-
-  .datenschutz-container ul{
-    font-size: 0.9em;
-  }
-
-  .datenschutz-container ul{
-    font-size: 0.9em;
-  }
-
-  .datenschutz-container table{
-    word-break: break-word;
-  }
 }
