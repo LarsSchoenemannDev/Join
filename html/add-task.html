@@ -54,24 +54,24 @@
       <div class="main-area">
         <header class="header">
           <div class="header_content">
-          <div class="join-icon">
-            <img src="../assets/img/Logo_for_Favicon_construction.png" alt="Join-logo">
-          </div>
-          <div class="text">Kanban Project Management Tool</div>
-          <div class="icons">
-            <a href="../html/help.html" class="help">
-              <img src="../assets/img/help.svg" alt="help" id="help" />
-            </a>
-            <div class="user-icon">
-              <button class="menu-button" id="menu-button" onclick="tooglemenu()">SM</button>
+            <div class="join-icon">
+              <img src="../assets/img/Logo_for_Favicon_construction.png" alt="Join-logo">
             </div>
-            <div class="dropDown-menu" id="dropDown-menu">
-            <a href="../html/help.html" class="hide" id="switch_help">Help</a>
-            <a href="../html/legal-notice.html">Legal notice</a>
-            <a href="../html/privacy-policy.html">Privacy Policy</a>
-            <a href="">Log Out</a>
-          </div>
-          </div>
+            <div class="text">Kanban Project Management Tool</div>
+            <div class="icons">
+              <a href="../html/help.html" class="help">
+                <img src="../assets/img/help.svg" alt="help" id="help" />
+              </a>
+              <div class="user-icon">
+                <button class="menu-button" id="menu-button" onclick="tooglemenu()">SM</button>
+              </div>
+              <div class="dropDown-menu" id="dropDown-menu">
+                <a href="../html/help.html" class="hide" id="switch_help">Help</a>
+                <a href="../html/legal-notice.html">Legal notice</a>
+                <a href="../html/privacy-policy.html">Privacy Policy</a>
+                <a href="">Log Out</a>
+              </div>
+            </div>
           </div>
         </header>
 
@@ -164,59 +164,80 @@
                       class="input-styling input-icon-arrow-down custom-select-select input-Required">Select
                       contacts to</button>
                   </div>
-                  <input type="text" id="searchContacts" oninput="contactSearch()" placeholder="Search..."
-                    class="d-none ">
+                  <div class="">
+                    <input type="text" id="searchContacts" oninput="contactSearch()" placeholder="Search..."
+                      class="d-none">
+
+                  </div>
                   <div id="selectContacts" class="dropdown category-main"></div>
                 </div>
-              </div>
-              <div class="div-field">
-                <div class="field">
-                  <label for="category">
-                    Category<span class="required">*</span>
-                  </label>
-                  <div id="selectCategoryHtml"></div>
-                  <div id="selectCategory" class="dropdown">
-                    <div class="category-main">
-                      <input type="radio" id="Select task category" name="priorityCategory" value="Select task category"
-                        checked onclick="categorySelector()">
-                      <label for="Select task category" class="contact-row">Select task category</label>
-                      <input type="radio" id="Technical Task" name="priorityCategory" value="Technical Task"
-                        onclick="categorySelector()">
-                      <label for="Technical Task" class="contact-row">Technical Task</label>
-                      <input type="radio" id="User Story" name="priorityCategory" value="User Story"
-                        onclick="categorySelector()">
-                      <label for="User Story" class="contact-row">User Story</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="div-field">
-                <div class="field">
-                  <label for="subtasks">Subtasks</label>
-                  <div class="subtask-input-container">
-                    <div class="input-wrapper">
-                      <input id="subtasks" type="text" onclick="createSubtasks()" placeholder="Add new subtask">
-                      <div class="img-container" id="showHidden">
-                        <img src="../assets/img/Subtasks cancel.svg" class="input-icon-cancel"
-                          onclick="cancelSubtask()">
-                        <div class="seperator-small"></div>
-                        <img src="../assets/img/Subtasks accept.svg" class="input-icon-accept" onclick="addSubtask()">
+                <div class="div-field">
+                  <div class="field">
+                    <label for="category">
+                      Category<span class="required">*</span>
+                    </label>
+                    <div id="selectCategoryHtml"></div>
+                    <div id="selectCategory" class="dropdown">
+                      <div class="category-main">
+                        <input type="radio" id="Select task category" name="priorityCategory"
+                          value="Select task category" checked onclick="categorySelector()">
+                        <label for="Select task category" class="contact-row">Select task category</label>
+                        <input type="radio" id="Technical Task" name="priorityCategory" value="Technical Task"
+                          onclick="categorySelector()">
+                        <label for="Technical Task" class="contact-row">Technical Task</label>
+                        <input type="radio" id="User Story" name="priorityCategory" value="User Story"
+                          onclick="categorySelector()">
+                        <label for="User Story" class="contact-row">User Story</label>
                       </div>
                     </div>
                   </div>
-                  <div id="SubtaskList" class="Subtask-List">
+                </div>
+                <div class="div-field">
+                  <div class="field">
+                    <label for="subtasks">Subtasks</label>
+                    <div class="subtask-input-container">
+                      <div class="input-wrapper">
+                        <input id="subtasks" type="text" onclick="createSubtasks()" placeholder="Add new subtask">
+                        <div class="img-container" id="showHidden">
+                          <img src="../assets/img/Subtasks cancel.svg" class="input-icon-cancel"
+                            onclick="cancelSubtask()">
+                          <div class="seperator-small"></div>
+                          <img src="../assets/img/Subtasks accept.svg" class="input-icon-accept" onclick="addSubtask()">
+                        </div>
+                      </div>
+                    </div>
+                    <div id="SubtaskList" class="Subtask-List">
+                    </div>
                   </div>
                 </div>
-              </div>
             </section>
           </main>
           <section class="footer-add-task">
             <p class="required">*
               <span style="color: #000000;">This field is required</span>
             </p>
-            <div>
-              <button class="btn-priority">Clear X</button>
-              <button class="btn-priority" onclick=createTask()>Create Task </button>
+            <div class="btn-priority-flex">
+              <button class="btn-priority  btn-clear">Clear
+                <svg width="11" height="11" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M6.243 6.243L11.486 11.486M1 11.486L6.243 6.243L1 11.486ZM11.486 1L6.242 6.243L11.486 1ZM6.242 6.243L1 1L6.242 6.243Z"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div>
+                <button class="btn-priority btn-priority-flex btn-createTask" onclick=createTask()>Create Task <svg
+                    width="24" height="24" viewBox="0 0 24 24" fill="#29ABE2" xmlns="http://www.w3.org/2000/svg">
+                    <mask id="mask0_411527_6018" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
+                      width="24" height="24">
+                      <rect width="24" height="24" fill="#D9D9D9" />
+                    </mask>
+                    <g mask="url(#mask0_411527_6018)">
+                      <path
+                        d="M9.55069 15.15L18.0257 6.675C18.2257 6.475 18.4632 6.375 18.7382 6.375C19.0132 6.375 19.2507 6.475 19.4507 6.675C19.6507 6.875 19.7507 7.1125 19.7507 7.3875C19.7507 7.6625 19.6507 7.9 19.4507 8.1L10.2507 17.3C10.0507 17.5 9.81736 17.6 9.55069 17.6C9.28403 17.6 9.05069 17.5 8.85069 17.3L4.5507 13C4.3507 12.8 4.25486 12.5625 4.2632 12.2875C4.27153 12.0125 4.3757 11.775 4.5757 11.575C4.7757 11.375 5.0132 11.275 5.2882 11.275C5.5632 11.275 5.80069 11.375 6.00069 11.575L9.55069 15.15Z"
+                        fill="white" />
+                    </g>
+                  </svg></button>
+              </div>
             </div>
           </section>
       </div>

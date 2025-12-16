@@ -3,9 +3,9 @@ let FetchData = [];
 let subTaskInput = [];
 let tempTaskData = [];
 const requiredFields = document.querySelectorAll('#title, #duedate, #category');
-const input = document.getElementById("subtasks");
-const box = document.getElementById("showHidden");
-console.log(tempTaskData);
+const inputSubtask = document.getElementById("subtasks");
+const subtaskBox = document.getElementById("showHidden");
+const assignedTo = document.getElementById("BTNToggelContacts")
 
 async function init() {
     await getData();
@@ -13,9 +13,11 @@ async function init() {
     PriorityBTN();
     renderContact();
     categorySelector();
+    console.log(FetchData);
+
 }
 
-async function createTask(e) {    
+async function createTask(e) {
     const formIsValid = validateRequiredFields();
     if (!formIsValid) {
         e?.preventDefault?.();
@@ -23,16 +25,16 @@ async function createTask(e) {
         return;
     }
     const taskData = addtoTask(e);
-    e?.preventDefault?.(); 
+    e?.preventDefault?.();
     const result = await postAddTask(taskData);
-    if (result) {     
+    if (result) {
         PriorityBTN();
         clearInputs();
-        await getData(); 
+        await getData();
     }
     console.log('taksData', taskData);
-    console.log('result',result);   
-    
+    console.log('result', result);
+
 }
 
 async function getData() {
@@ -46,7 +48,6 @@ async function getData() {
     } catch (error) {
         console.error("Fehler beim Laden der Daten:", error);
     }
-    console.log(FetchData);
 }
 
 
@@ -77,12 +78,12 @@ function addtoTask(element) {
     element?.preventDefault?.();
     const get = id => (document.getElementById(id)?.value ?? '').trim();
     tempTaskData = {
-        title: get('title'), // abfrage required
+        title: get('title'),
         description: get('description'),
-        duedate: get('duedate'), // abfrage required
+        duedate: get('duedate'),
         priority: document.querySelector('input[name="priority"]:checked')?.value ?? null,
         assignedTo: getSelectedContacts(),
-        category: get('category'), // abfrage required
+        category: get('category'),
         subtasks: getSubtasks()
     };
     return tempTaskData;
@@ -146,34 +147,13 @@ function renderContact() {
     const contacts = FetchData.contacts;
     let html = "";
     for (let i = 0; i < contacts.length; i++) {
-        const contact = contacts[i];
-        const initials = contact.name.trim().split(' ').map(x => x[0]).join('');
-        const colorClass = getRandomColorClass();
-        html += renderContactHTML(contact, initials, colorClass)
+        const ele = contacts[i]
+        const name = ele.name;
+        const initials = ele.initials;
+        const color = ele.color;
+        html += renderContactHTML(initials, name, color)
     }
     CONTACT_LIST_CONTAINER.innerHTML = html;
-}
-
-function getRandomColorClass() {
-    const colorClasses = [
-        "initials-Variant1",
-        "initials-Variant2",
-        "initials-Variant3",
-        "initials-Variant4",
-        "initials-Variant5",
-        "initials-Variant6",
-        "initials-Variant7",
-        "initials-Variant8",
-        "initials-Variant9",
-        "initials-Variant10",
-        "initials-Variant11",
-        "initials-Variant12",
-        "initials-Variant13",
-        "initials-Variant14",
-        "initials-Variant15"
-    ];
-    const randomIndex = Math.floor(Math.random() * colorClasses.length);
-    return colorClasses[randomIndex];
 }
 
 
@@ -193,16 +173,17 @@ function contactSearch() {
     const searchArray = searchInput.value.toLowerCase();
     const searchRenderHTML = document.getElementById("selectContacts");
     let nameSearch = FetchData.contacts.filter(contact => contact.name.toLowerCase().includes(searchArray));
-    if (searchInput.value.length === 0) {
+    if (searchInput.value.length <= 2) {
         renderContact();
     } else {
-        searchRenderHTML.innerHTML = "";
+        // searchRenderHTML.innerHTML = "";
         let html = "";
         for (let i = 0; i < nameSearch.length; i++) {
-            const contact = nameSearch[i];
-            const initials = contact.name.trim().split(' ').map(x => x[0]).join('');
-            const colorClass = getRandomColorClass();
-            html += renderContactSearchHTML(contact, initials, colorClass, i);
+            const ele = nameSearch[i];
+            const name = ele.name;
+            const initials = ele.initials;
+            const color = ele.color;
+            html += renderContactSearchHTML(initials, name, color);
         }
         searchRenderHTML.innerHTML = html;
         if (nameSearch.length === 0) {
@@ -344,11 +325,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-input.addEventListener("focus", () => {
-    box.style.display = "flex";
+inputSubtask.addEventListener("focus", () => {
+    subtaskBox.style.display = "flex";
 });
 document.addEventListener("click", (e) => {
     if (!e.target.closest(".input-wrapper")) {
-        box.style.display = "none";
+        subtaskBox.style.display = "none";
     }
 });
+
+
+assignedTo.addEventListener("focus"), () => {
+    open.style
+}

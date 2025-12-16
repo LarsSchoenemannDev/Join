@@ -14,21 +14,22 @@ function subTaskContentHMTL(subTaskInput, i) {
     return `
     <div class="sub-container" data-index="${i}">    
     <span class="display-flex">&bull; ${subTaskInput}</span>  
-    
+    <div class="hover-show">
     <img src="../assets/img/Subtasks change.svg" class="input-icon-cancel" onclick="changeSubtask(${i})">
     <div class="seperator-small"></div>
     <img src="../assets/img/SubTask delete.svg" class="input-icon-accept" onclick="deleteSubtask(${i})">      
-    </div>    
+    </div>   
+    </div> 
     </div>
     `;
 }
 
-function renderContactSearchHTML(indexNameSearch, i) {
+function renderContactSearchHTML(initials, name, color) {
     return `    
     <ul class="contact-row">
     <div class="contact-left">
-    <span class="initials-circlegab"></span>
-    <span class="contact-name">${indexNameSearch.name}</span>
+    <span class="initials-circle" style="background-color: ${color};">${initials}</span>
+    <span class="contact-name">${name}</span>
     </div>
     <label class="checkbox">
     <input id="checkbox" onclick="checkBox(this)" class="checkbox-input" name="checked" type="checkbox" value="">
@@ -39,18 +40,18 @@ function renderContactSearchHTML(indexNameSearch, i) {
 }
 
 function searchRenderHTMLZero() {
-    return `<div class="contactSearch"> no search found.</div>`;
+    return `<div class="contactSearch"> no search found</div>`;
 }
 
-function renderContactHTML(contact, initials, colorClass,) {
+function renderContactHTML(initials, name, color) {
     return `    
     <ul class="contact-row">
     <div class="contact-left">
-    <span class="initials-circle ${colorClass} gab">${initials}</span>
-    <span class="contact-name">${contact.name}</span>
+    <span class="initials-circle" style="background-color: ${color};">${initials}</span>
+    <span class="contact-name">${name}</span>
     </div>
     <label class="checkbox">
-    <input id="checkbox" onclick="checkBox(this)" class="checkbox-input" name="checked" type="checkbox" value="${contact.name}">
+    <input id="checkbox" onclick="checkBox(this)" class="checkbox-input" name="checked" type="checkbox" value="${name}">
     <span class="checkbox-box"></span>
         </label>
       </ul>
