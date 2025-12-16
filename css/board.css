@@ -23,7 +23,7 @@ main {
 }
 
 .board-container{
-    
+    display: flex;
 }
 
 h1 { font-size: 3rem; font-weight: bold; }
