@@ -15,7 +15,7 @@ main {
 }
 
 /* Header */
-header {
+.board-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
