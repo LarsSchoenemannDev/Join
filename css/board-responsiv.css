@@ -1,0 +1,9 @@
+/* Responsive */
+@media (max-width: 865px) {
+    .board { grid-template-columns: 1fr; }
+    header { flex-direction: column; gap: 1rem; }
+    .header-actions { flex-direction: column; }
+    input { width: 100%; }
+}
+
+

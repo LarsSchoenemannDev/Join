@@ -15,11 +15,15 @@ main {
 }
 
 /* Header */
-.board-container {
+.board-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+}
+
+.board-container{
+    
 }
 
 h1 { font-size: 3rem; font-weight: bold; }
@@ -37,7 +41,7 @@ input {
     width: 200px;
 }
 
-button {
+.button-task {
     background: #4a5568;
     color: white;
     padding: 0.75rem 1.5rem;
@@ -159,13 +163,7 @@ button {
     border-radius: 10px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .board { grid-template-columns: 1fr; }
-    header { flex-direction: column; gap: 1rem; }
-    .header-actions { flex-direction: column; }
-    input { width: 100%; }
-}
+
 /* Drag
  and Drop Styles */
 .card.dragging {
