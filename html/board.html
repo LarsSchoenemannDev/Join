@@ -29,9 +29,9 @@
     <!-- adding Main CSS Style-Sheet -->
     <link rel="stylesheet" href="../css/standard.css" />
     <link rel="stylesheet" href="../css/sidebar_and_header_main.css" />
-    <!-- hier denn Style von Board reinmachen ohne bei Sidebar und so zuändern -->
-    <link rel="stylesheet" href="#" />
+    <link rel="stylesheet" href="../css/board.css" />   
     <link rel="stylesheet" href="../css/sidebar-responsiv.css" />
+    
   </head>
 
   <body>
@@ -112,11 +112,87 @@
             </div>
             </div>
           </header>
-          <main></main>
+          <main>
+
+            <div class="">
+               <header>
+            <h1>Board</h1>
+            <div class="header-actions">
+                <input type="text" placeholder="Find Task">
+                <button>Add task +</button>
+            </div>
+        </header>
+        
+        <div class="board">
+
+            <section class="column" data-status="todo">
+                <h2>To do <span>+</span></h2>
+                <div class="empty">No tasks To do</div>
+            </section>
+            
+            <section class="column" data-status="in-progress">
+                <h2>In progress <span>+</span></h2>
+                <div class="card blue" data-id="c1" draggable="true">
+                    <span class="tag">User Story</span>
+                    <h3>Kochwelt Page & Recipe Recommender</h3>
+                    <p>Build start page with recipe recommendation...</p>
+                    <div class="progress">1/2 Subtasks</div>
+                    <div class="avatars">
+                        <div class="avatar orange">AN</div>
+                        <div class="avatar green">EN</div>
+                        <div class="avatar purple">ME</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="column" data-status="feedback">
+                <h2>Await feedback <span>+</span></h2>
+                <div class="card cyan" data-id="c2" draggable="true">
+                    <span class="tag cyan">Technical Task</span>
+                    <h3>HTML Base Template Creation</h3>
+                    <p>Create reusable HTML base templates...</p>
+                    <div class="avatars">
+                        <div class="avatar orange">AN</div>
+                        <div class="avatar green">EN</div>
+                        <div class="avatar purple">ME</div>
+                    </div>
+                </div>
+                <div class="card blue" data-id="c3" draggable="true">
+                    <span class="tag">User Story</span>
+                    <h3>Daily Kochwelt Recipe</h3>
+                    <p>Implement daily recipe and portion calculator...</p>
+                    <div class="avatars">
+                        <div class="avatar orange">AN</div>
+                        <div class="avatar green">EN</div>
+                        <div class="avatar purple">ME</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="column" data-status="done">
+                <h2>Done <span>+</span></h2>
+                <div class="card cyan" data-id="c4" draggable="true">
+                    <span class="tag cyan">Technical Task</span>
+                    <h3>CSS Architecture Planning</h3>
+                    <p>Define CSS naming conventions and structure...</p>
+                    <div class="progress">2/2 Subtasks</div>
+                    <div class="avatars">
+                        <div class="avatar orange">AN</div>
+                        <div class="avatar green">EN</div>
+                        <div class="avatar purple">ME</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+            </div>
+
+          </main>
         </div>
       </div>
     </div>
   </body>
   <!--<script src="../script/auth-script.js"></script>-->
+  <script src="../script/board.js"></script>
   <script src="../script/sidebar_and_header_script.js"></script>
 </html>
