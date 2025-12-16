@@ -1,4 +1,5 @@
-[{
+[
+    {
         "name": "Anton Mayer",
         "email": "antonm@gmail.com",
         "phone": "49 152 456789"
@@ -47,6 +48,11 @@
         "name": "Paula Diomond",
         "email": "paula.diomond@hotmail.com",
         "phone": "49 176 1112236"
+    },
+    {
+        "name": "Lars Schönemann",
+        "email": "Lars.Schönemann@hotmail.com",
+        "phone": "+49 176 12345678"
     },
     {
         "name": "Victoria Holzapfel",

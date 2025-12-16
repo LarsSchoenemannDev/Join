@@ -1,5 +1,8 @@
 const storageUrl = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/contacts";
+const BASE_URL = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/";
 let fetchedData = {};
+
+
 
 /**
  * defines async function to fetch Contact Data throw Firebase realtime Database:

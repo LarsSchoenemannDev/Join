@@ -1,0 +1,244 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #f8f9fa;
+    color: #333;
+}
+
+main {
+    display: flex!important;
+    flex-direction: column;
+    max-width: 1200px;
+    /* margin: 0 auto; */
+    padding: 2rem;
+}
+
+/* Header */
+.board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.board-container{
+    display: flex;
+}
+
+h1 { font-size: 3rem; font-weight: bold; }
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 200px;
+}
+
+.button-task {
+    background: #4a5568;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Board Layout */
+.board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.column {
+    background: white;
+    border-radius: 12px;
+    padding: 1rem;
+    min-height: 400px;
+}
+
+.column h2 {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.column span {
+    background: #f0f0f0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+/* Cards */
+.card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #3b82f6;
+}
+
+.card.cyan { border-left-color: #06b6d4; }
+
+.card h3 {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+    line-height: 1.3;
+}
+
+.card p {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    background: #3b82f6;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.tag.cyan { background: #06b6d4; }
+
+.progress {
+    background: #e5e7eb;
+    color: #374151;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.avatars {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.avatar.orange { background: #f97316; }
+.avatar.green { background: #10b981; }
+.avatar.purple { background: #8b5cf6; }
+
+.empty {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 1rem 0;
+    background-color: #E7E7E7;
+    border-radius: 10px;
+}
+
+
+/* Drag
+ and Drop Styles */
+.card.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+}
+
+.column.drop-target {
+    background-color: rgba(59, 130, 246, 0.1);
+    outline: 2px dashed #3b82f6;
+    outline-offset: -4px;
+}
+
+/* Overlay Styles */
+#overlay[hidden] {
+    display: none;
+}
+
+.overlay-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.overlay-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    z-index: 1000;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.overlay-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    color: #666;
+    font-size: 24px;
+    padding: 4px 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.overlay-close:hover {
+    color: #333;
+}
+
+#overlay-content h2 {
+    margin-bottom: 12px;
+    font-size: 1.5rem;
+}
+
+#overlay-content p {
+    margin-bottom: 12px;
+    color: #666;
+}
+
+#overlay-content label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+#overlay-content select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-top: 4px;
+}
