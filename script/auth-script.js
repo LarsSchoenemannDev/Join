@@ -3,7 +3,7 @@
 window.onload = function () {
   const userStatus = sessionStorage.getItem('userStatus');
   const UID = sessionStorage.getItem('userID');
-  getData();
+  //getData();
 
   // Wenn der Benutzer nicht eingeloggt ist.
   if (!userStatus || (userStatus !== 'guest' && userStatus !== 'loggedIn')) {
