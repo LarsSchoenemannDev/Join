@@ -22,7 +22,7 @@ main {
     height: calc(100vh - 96px);
     background-color: #ffffff;
     box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.08);
-    padding: 24px 32px;
+    padding: 24px 26px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -95,7 +95,8 @@ main {
     padding: 15px 24px;
     justify-content: flex-start;
     align-items: center;
-    gap: clamp(20px, 3vw, 35px);
+    /* gap: clamp(20px, 3vw, 35px); */
+    gap: 28px;
     border-radius: 10px;
     cursor: pointer;
     flex-grow: 1;

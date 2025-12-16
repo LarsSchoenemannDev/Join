@@ -14,7 +14,7 @@
     <link rel="manifest" href="../assets/Favicon/site.webmanifest" />
 
     <!-- adding Main CSS Style-Sheet -->
-     <link rel="stylesheet" href="../css/standard.css">
+    <link rel="stylesheet" href="../css/standard.css">
     <link rel="stylesheet" href="../css/sidebar_and_header_main.css" />
     <link rel="stylesheet" href="../css/sidebar-responsiv.css" />
     <link rel="stylesheet" href="../css/summary-user.css">
@@ -51,81 +51,82 @@
             <div class="main-area">
                 <header class="header">
                     <div class="header_content">
-                    <div class="join-icon">
-                        <img src="../assets/img/Logo_for_Favicon_construction.png" alt="Join-logo" />
-                    </div>
-                    <div class="text">Kanban Project Management Tool</div>
-                    <div class="icons">
-                        <a href="../html/help.html" class="help">
-                            <img src="../assets/img/help.svg" alt="help" id="help" />
-                        </a>
-                        <div class="user-icon">
-                            <button class="menu-button" id="menu-button" onclick="tooglemenu()">SM</button>
+                        <div class="join-icon">
+                            <img src="../assets/img/Logo_for_Favicon_construction.png" alt="Join-logo" />
                         </div>
-                         <div class="dropDown-menu" id="dropDown-menu">
-                        <a href="../html/help.html" class="hide" id="switch_help">Help</a>
-                        <a href="../html/legal-notice.html">Legal notice</a>
-                        <a href="../html/privacy-policy.html">Privacy Policy</a>
-                        <a href="">Log Out</a>
-                    </div>
-                    </div>
+                        <div class="text">Kanban Project Management Tool</div>
+                        <div class="icons">
+                            <a href="../html/help.html" class="help">
+                                <img src="../assets/img/help.svg" alt="help" id="help" />
+                            </a>
+                            <div class="user-icon">
+                                <button class="menu-button" id="menu-button" onclick="tooglemenu()">SM</button>
+                            </div>
+                            <div class="dropDown-menu" id="dropDown-menu">
+                                <a href="../html/help.html" class="hide" id="switch_help">Help</a>
+                                <a href="../html/legal-notice.html">Legal notice</a>
+                                <a href="../html/privacy-policy.html">Privacy Policy</a>
+                                <a href="">Log Out</a>
+                            </div>
+                        </div>
                     </div>
                 </header>
                 <main class="main">
                     <div class="summary-div">
-                    <section class="summary-title">
-                        <h1 class="main-title">Join 360</h1>
-                        <img src="../assets/img/devider-contact.svg" alt="" />
-                        <h3 class="second-title">Key Metrics at a Glance</h3>
-                    </section>
-                    <section class="summary-main-board">
-                        <div class="summary-overview">
-                            <div class="overview-box-items box-1" id="todo-box">
-                                <img src="../assets/img/summary-edit-default.svg" alt="" />
-                                <div class="task-number">
-                                    <span>1</span>
-                                    <h4 class="text">To-do</h4>
-                                </div>
-                            </div>
-                            <div class="overview-box-items box-2" id="done-box">
-                                <img src="../assets/img/summary-done-default.svg" alt="" />
-                                <div class="task-number">
-                                    <span>1</span>
-                                    <h4 class="text">Done</h4>
-                                </div>
-                            </div>
-                            <div class="overview-box-items box-3" id="urgency-box">
-                                <div class="left-box">
-                                    <img class="urgent-badge" src="../assets/img/summary-calender-priority.svg" alt=""></img>
-                                    <div class="urgent-task">
+                        <section class="summary-title">
+                            <h1 class="main-title">Join 360</h1>
+                            <div class="seperator"></div>
+                            <h3 class="second-title">Key Metrics at a Glance</h3>
+                        </section>
+                        <section class="summary-main-board">
+                            <div class="summary-overview">
+                                <div class="overview-box-items box-1" id="todo-box">
+                                    <img src="../assets/img/summary-edit-default.svg" alt="" />
+                                    <div class="task-number">
                                         <span>1</span>
-                                        <h5>urgent</h5>
+                                        <h4 class="tasks-text">To-do</h4>
                                     </div>
                                 </div>
-                                <img src="../assets/img/summary-calender-vector.svg" alt="" />
-                                <div class="right-box">
-                                    <h4 class="urgency-date">October 16, 2022</h4>
-                                    <h5 class="deadline">Upcoming Deadline</h5>
+                                <div class="overview-box-items box-2" id="done-box">
+                                    <img src="../assets/img/summary-done-default.svg" alt="" />
+                                    <div class="task-number">
+                                        <span>1</span>
+                                        <h4 class="tasks-text">Done</h4>
+                                    </div>
+                                </div>
+                                <div class="overview-box-items box-3" id="urgency-box">
+                                    <div class="left-box">
+                                        <img class="urgent-badge" src="../assets/img/summary-calender-priority.svg" alt=""></img>
+                                        <div class="urgent-task">
+                                            <span>1</span>
+                                            <h5 class="tasks-text">urgent</h5>
+                                        </div>
+                                    </div>
+                                    <div class="box-seprator"></div>
+                                    <!-- <img src="../assets/img/summary-calender-vector.svg" alt="" /> -->
+                                    <div class="right-box">
+                                        <h4 class="urgency-date">October 16, 2022</h4>
+                                        <h5 class="deadline">Upcoming Deadline</h5>
+                                    </div>
+                                </div>
+                                <div class="overview-box-items box-4" id="tasks-in-board-box">
+                                    <span>5</span>
+                                    <h5 class="tasks-text">Tasks in Board</h5>
+                                </div>
+                                <div class="overview-box-items box-5" id="tasks-in-progress-box">
+                                    <span>2</span>
+                                    <h5 class="tasks-text">Tasks In Progress</h5>
+                                </div>
+                                <div class="overview-box-items box-6" id="awaiting-feedback-box">
+                                    <span>2</span>
+                                    <h5 class="tasks-text">Awaiting Feedback</h5>
                                 </div>
                             </div>
-                            <div class="overview-box-items box-4" id="tasks-in-board-box">
-                                <span>5</span>
-                                <h5 class="tasks-text">Tasks in Board</h5>
+                            <div class="welcome-user">
+                                <h4 class="welcoming-message">Good morning,</h4>
+                                <h2 class="user-name">Sofia Müller</h2>
                             </div>
-                            <div class="overview-box-items box-5" id="tasks-in-progress-box">
-                                <span>2</span>
-                                <h5 class="tasks-text">Tasks In Progress</h5>
-                            </div>
-                            <div class="overview-box-items box-6" id="awaiting-feedback-box">
-                                <span>2</span>
-                                <h5 class="tasks-text">Awaiting Feedback</h5>
-                            </div>
-                        </div>
-                        <div class="welcome-user">
-                            <h4 class="welcoming-message">Good morning,</h4>
-                            <h2 class="user-name">Sofia Müller</h2>
-                        </div>
-                    </section>
+                        </section>
                     </div>
                 </main>
             </div>
@@ -133,6 +134,7 @@
     </div>
 
 </body>
-    <!--<script src="../script/auth-script.js"></script>-->
-    <script src="../script/sidebar_and_header_script.js"></script>
+<!--<script src="../script/auth-script.js"></script>-->
+<script src="../script/sidebar_and_header_script.js"></script>
+
 </html>
