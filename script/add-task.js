@@ -161,10 +161,12 @@ function toggelContacts() {
     const dropdown = document.getElementById("selectContacts");
     const BTNContactsToggel = document.getElementById("BTNToggelContacts")
     const searchContacts = document.getElementById("searchContacts")
-    const testBox = document.querySelector("body")
+    const arrow = document.getElementById("arrow");
+    const testBox = document.querySelector("body");
     dropdown.classList.toggle('open');
     BTNContactsToggel.style.display = 'none';
     searchContacts.classList.toggle('d-none');
+    arrow.classList.toggle('d-none');
     searchContacts.focus();
 }
 
