@@ -158,16 +158,11 @@ function renderContact() {
 
 
 function toggelContacts() {
-    const dropdown = document.getElementById("selectContacts");
-    const BTNContactsToggel = document.getElementById("BTNToggelContacts")
-    const searchContacts = document.getElementById("searchContacts")
-    const arrow = document.getElementById("arrow");
-    const testBox = document.querySelector("body");
-    dropdown.classList.toggle('open');
-    BTNContactsToggel.style.display = 'none';
-    searchContacts.classList.toggle('d-none');
-    arrow.classList.toggle('d-none');
-    searchContacts.focus();
+    document.getElementById("selectContacts").classList.add('open');
+    document.getElementById("BTNToggelContacts").style.display = 'none';
+    document.getElementById("searchContacts").classList.remove('d-none');
+    document.getElementById("closeAssigned").style.display = 'flex';    
+    document.getElementById("searchContacts").focus();
 }
 
 function contactSearch() {
@@ -194,6 +189,13 @@ function contactSearch() {
         }
     }
     console.log(nameSearch);
+}
+function closeAssigned() {
+    document.getElementById("selectContacts").classList.remove('open');
+    document.getElementById("BTNToggelContacts").style.display = 'flex';
+    document.getElementById("searchContacts").classList.add('d-none');
+    document.getElementById("closeAssigned").style.display = "none";
+    document.getElementById("searchContacts").value = "";
 }
 
 function checkBox(inputElement) {
@@ -335,7 +337,6 @@ document.addEventListener("click", (e) => {
         subtaskBox.style.display = "none";
     }
 });
-
 
 assignedTo.addEventListener("focus"), () => {
     open.style

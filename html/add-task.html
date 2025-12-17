@@ -165,11 +165,13 @@
                       contacts to</button>
                   </div>
                   <div class="d-flex">
-                    <input type="text" id="searchContacts" oninput="contactSearch()" placeholder="Search..."
-                      class="d-none">
-                    <button id="arrow" class="d-none input-icon-arrow-up"></button>
+                    <div class="input-wrapper">
+                      <input type="text" id="searchContacts" oninput="contactSearch()" placeholder="Search..."
+                        class="d-none">                      
+                        <button id="closeAssigned" class="d-none input-icon-arrow-up" onclick="closeAssigned()"></button>                      
+                    </div>
+                    <div id="selectContacts" class="dropdown category-main"></div>
                   </div>
-                  <div id="selectContacts" class="dropdown category-main"></div>
                 </div>
                 <div class="div-field">
                   <div class="field">
