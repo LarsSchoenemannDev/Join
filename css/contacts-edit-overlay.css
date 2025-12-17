@@ -130,6 +130,7 @@
                         border: 1px solid #29abe2;
                     }
                     input {
+                        field-sizing: content;
                         outline: none;
                         border: none;
                     }
