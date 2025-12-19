@@ -43,24 +43,32 @@ function searchRenderHTMLZero() {
     return `<div class="contactSearch"> no search found</div>`;
 }
 
-function renderContactHTML(initials, name, color) {
+function renderContactHTML(initials, name, color, index) {
     return `    
     <ul class="contact-row">
-    <div class="contact-left">
-    <span class="initials-circle" style="background-color: ${color};">${initials}</span>
-    <span class="contact-name">${name}</span>
-    </div>
-    <label class="checkbox">
-    <input id="checkbox" onclick="checkBox(this)" class="checkbox-input" name="checked" type="checkbox" value="${name}">
-    <span class="checkbox-box"></span>
+        <div class="contact-left">
+            <span class="initials-circle" style="background-color: ${color};">${initials}</span>
+            <span class="contact-name">${name}</span>
+        </div>
+        <label class="checkbox">
+            <input class="checkbox-input" type="checkbox" data-index="${index}" onchange="checkBox(this)">
+            <span class="checkbox-box"></span>
         </label>
-      </ul>
+    </ul>
     `;
 }
 
 function setCategoryHTML(categoryLabel) {
     return `<button type="button" onclick="toggelCategory()"
-                class="input-styling input-icon-arrow-down custom-select-select input-Required">${categoryLabel}</button>
-                 
+                class="input-styling input-icon-arrow-down custom-select-select input-Required">${categoryLabel}</button>                 
 `;
+}
+
+function letterInitials(i) {
+    return `
+        <span class="initials-circle"
+              style="background-color: ${processedContacts[i].color}">
+            ${processedContacts[i].initials}
+        </span>
+    `;
 }

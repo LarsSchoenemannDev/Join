@@ -118,6 +118,11 @@
      font-size: 20px;
      color: #000000;
  }
+ .selectContact{
+    display: flex;
+    padding-left: 8px;
+    padding-top: 6px;
+ }
 
  .gab {
      width: 48px;
@@ -200,7 +205,9 @@
      width: 0;
      height: 0;
  }
-
+.checkbox{
+    margin-bottom: 0;
+}
  .checkbox-box {
      display: inline-block;
      width: 24px;
@@ -477,13 +484,6 @@
      font-size: 1rem;
      outline: none;
  }
-
- /* @media (max-width: 1650px) {
-     .main-content {
-         gap: clamp(8px, 46px, 120px);
-     }
- } */
-
 
  @media (max-width: 1430px) {
      .card {
