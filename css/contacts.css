@@ -463,4 +463,22 @@ main {
     .contact-dashboard {
         display: none;
     }
+    #contact-edit-tools {
+        content: url('../assets/img/more-options-vertical-mobile.svg');
+        position: fixed;
+        background-color: #2a3647;
+        right: 40px;
+        top: calc(100vh - 160px);
+        z-index: 100;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        margin-bottom: 0;
+        padding: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        cursor: pointer;
+    }
 }

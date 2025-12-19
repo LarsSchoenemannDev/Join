@@ -11,6 +11,8 @@ const emailInput = document.getElementById('email_input');
 const phoneInput = document.getElementById('phone_input');
 const createMessage = document.querySelector('.popup-message');
 const editContactPopup = document.querySelector('.edit-contact-popup');
+const contactDashboard = document.querySelector('.contact-dashboard');
+const contactSection = document.querySelector('.contacts');
 
 
 
@@ -21,6 +23,7 @@ const editContactPopup = document.querySelector('.edit-contact-popup');
 async function initContacts() {
     await loadDataBase();
     createContactList();
+    checkQueriesForContacts();
 }
 
 /**
@@ -95,8 +98,8 @@ async function createContactList() {
             contact.initials = getInitials(contact.name);
             needsUpdate = true;
         }
-        const first = contact.name
-            ? contact.name.charAt(0).toUpperCase() : '#';
+        const first = contact.name ?
+            contact.name.charAt(0).toUpperCase() : '#';
         const show = first !== last;
         if (show) last = first;
         html += buildContactItemHTML(contact, contact.color, show);
@@ -235,6 +238,23 @@ function showFloatingCard(event) {
         container.innerHTML = '<h2>Contact not found</h2>';
         container.classList.remove('d-none');
     }
+}
+
+
+function checkQueriesForContacts() {
+    contactListEl.removeEventListener("click", handleContactClick);
+    contactListEl.addEventListener("click", handleContactClick);
+}
+
+
+function handleContactClick(event) {
+    const checkQueries = window.matchMedia('(max-width: 767px)');
+    if (checkQueries.matches) {
+        contactSection.style.display = 'none';
+        contactDashboard.style.display = 'block';
+
+    }
+    showFloatingCard(event);
 }
 
 /**
