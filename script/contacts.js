@@ -13,6 +13,8 @@ const createMessage = document.querySelector('.popup-message');
 const editContactPopup = document.querySelector('.edit-contact-popup');
 const contactDashboard = document.querySelector('.contact-dashboard');
 const contactSection = document.querySelector('.contacts');
+const contactBox = document.querySelector('.contact-box');
+
 
 
 
@@ -252,7 +254,14 @@ function handleContactClick(event) {
     if (checkQueries.matches) {
         contactSection.style.display = 'none';
         contactDashboard.style.display = 'block';
-
+        const blueArrow = document.createElement('a');
+        blueArrow.className = 'blue-arrow';
+        contactDashboard.insertBefore(blueArrow, contactDashboard.lastChild);
+        blueArrow.addEventListener("click", () => {
+            contactSection.style.display = 'block';
+            contactDashboard.style.display = 'none';
+            blueArrow.remove();
+        })
     }
     showFloatingCard(event);
 }

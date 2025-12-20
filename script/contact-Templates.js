@@ -52,7 +52,7 @@ function renderFloatingContactTemplate(name, email, phone, backgroundColor, init
                 <h3 id="contact-information">Contact Information</h3>
                 <div id="contact-details">
                     <h4 id="contact-email">Email</h4>
-                    <span class="span-email" id="span-email">${email}</span>
+                    <a class="span-email" id="span-email">${email}</a>
                     <h4 id="contact-phone">Phone</h4>
                     <span id="span-phone">${phone}</span>
                 </div>

@@ -284,7 +284,7 @@ main {
 }
 
 .floating-contact #contact-details #contact-email,
-#contact-phone {
+.floating-contact #contact-details #contact-phone {
     font-weight: 700;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
@@ -294,6 +294,7 @@ main {
     font-weight: 400;
     font-size: 16px;
     color: rgba(0, 124, 238, 1);
+    cursor: pointer;
 }
 
 .floating-contact #contact-details .span-phone {
@@ -410,13 +411,135 @@ main {
     }
 }
 
-@media (min-width: 320px) and (max-width: 767px) {
+@media(min-width:449px) and (max-width:767px) {
     main {
         padding: 0;
+    }
+    .contacts {
+        width: 100%;
+        margin-right: 0;
+        padding: clamp(12px, 4vw, 16px) clamp(16px, 4vw, 24px);
+    }
+    .contacts .contact-list {
+        gap: 8px;
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+    .contacts .contact-list .contact-list-items .contact-alphabet {
+        font-weight: 400;
+        font-size: clamp(20px, 4vw, 24px);
+    }
+    .contacts #add-contact {
+        content: url('../assets/img/person_add-mobile.svg');
+        position: fixed;
+        right: 40px;
+        top: calc(100vh - 160px);
+        z-index: 100;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        margin-bottom: 0;
         display: flex;
+        justify-content: center;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+        align-items: center;
+        gap: 0;
+    }
+    .contacts #add-contact:hover {
+        border-radius: 50%;
+    }
+    .contacts .contact-list .contact-list-items .contact-container {
+        padding: 15px 12px;
+        gap: clamp(20px, 4vw, 35px);
+    }
+    .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactName {
+        font-size: clamp(16px, 4vw, 20px);
+    }
+    .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactEmail {
+        font-size: clamp(13px, 4vw, 16px);
+    }
+    .contact-dashboard {
+        display: none;
+        padding: 50px 25px 25px 25px;
+        /* margin: 0 30px 30px 30px; */
+    }
+    .contact-dashboard .contact-box {
         flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .contact-dashboard .contact-box h1 {
+        color: rgba(0, 0, 0, 1);
+        font-size: 40px;
+        font-weight: 700;
+        margin: 0;
+    }
+    .contact-dashboard .contact-box #vector {
+        width: 3px;
+        height: 60px;
+        background-color: rgba(41, 171, 226, 1);
+    }
+    .contact-dashboard .contact-box h3 {
+        color: rgba(42, 54, 71, 1);
+        font-size: 20px;
+        font-weight: 400;
+        margin: 0;
+    }
+    .blue-arrow {
+        content: url("../assets/img/blue-arrow-left-contacts.svg");
+        width: 36px;
+        height: 36px;
+        position: fixed;
+        right: 40px;
+        top: 162px;
+        cursor: pointer;
+    }
+    .contact-dashboard .contact-box #vector {
+        height: 3px;
+        width: 120px;
+        order: 3;
+    }
+    #contact-edit-tools {
+        content: url('../assets/img/more-options-vertical-mobile.svg');
+        position: fixed;
+        background-color: #2a3647;
+        right: 40px;
+        top: calc(100vh - 160px);
+        z-index: 100;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        margin-bottom: 0;
+        padding: 12px;
+        display: flex;
         justify-content: center;
         align-items: center;
+        gap: 0;
+        cursor: pointer;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+        transition: all 125ms ease-in;
+    }
+    #contact-edit-tools:hover {
+        background-color: #29abe2;
+    }
+    .floating-contact #contact-header {
+        gap: 32px;
+    }
+    .floating-contact #contact-header .contact-badge {
+        width: 80px;
+        height: 80px;
+        font-size: 36px;
+    }
+    .floating-contact #contact-header #contact-text #contact-name {
+        font-size: 32px;
+        font-weight: 600;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 450px) {
+    main {
+        padding: 0;
     }
     .contacts {
         width: 100%;
@@ -462,6 +585,46 @@ main {
     }
     .contact-dashboard {
         display: none;
+        padding: 50px 25px 25px 25px;
+        /* margin: 0 30px 30px 30px; */
+    }
+    .contact-dashboard .contact-box {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 60px;
+    }
+    .contact-dashboard .contact-box h1 {
+        color: rgba(0, 0, 0, 1);
+        font-size: 34px;
+        font-weight: 700;
+        margin: 0;
+    }
+    .contact-dashboard .contact-box #vector {
+        width: 3px;
+        height: 60px;
+        background-color: rgba(41, 171, 226, 1);
+    }
+    .contact-dashboard .contact-box h3 {
+        color: rgba(42, 54, 71, 1);
+        font-size: 20px;
+        font-weight: 400;
+        margin: 0;
+    }
+    .blue-arrow {
+        content: url("../assets/img/blue-arrow-left-contacts.svg");
+        width: 36px;
+        height: 36px;
+        position: fixed;
+        right: 40px;
+        top: 162px;
+        cursor: pointer;
+    }
+    .contact-dashboard .contact-box #vector {
+        height: 3px;
+        width: 120px;
+        order: 3;
     }
     #contact-edit-tools {
         content: url('../assets/img/more-options-vertical-mobile.svg');
@@ -480,5 +643,20 @@ main {
         align-items: center;
         gap: 0;
         cursor: pointer;
+    }
+    #contact-edit-tools:hover {
+        background-color: #29abe2;
+    }
+    .floating-contact #contact-header {
+        gap: 16px;
+    }
+    .floating-contact #contact-header .contact-badge {
+        width: 70px;
+        height: 70px;
+        font-size: 32px;
+    }
+    .floating-contact #contact-header #contact-text #contact-name {
+        font-size: 20px;
+        font-weight: 600;
     }
 }
