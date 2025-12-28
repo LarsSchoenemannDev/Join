@@ -50,3 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     col.addEventListener('drop', onDrop);
   });
 });
+
+
+getData();
+console.log(FetchData);
