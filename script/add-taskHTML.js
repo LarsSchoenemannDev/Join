@@ -59,7 +59,7 @@ function renderContactHTML(initials, name, color, index) {
 }
 
 function setCategoryHTML(categoryLabel) {
-    return `<button type="button" onclick="toggelCategory()"
+    return `<button type="button" onclick="toggelCategory()" id="category"
                 class="input-styling input-icon-arrow-down custom-select-select input-Required">${categoryLabel}</button>                 
 `;
 }

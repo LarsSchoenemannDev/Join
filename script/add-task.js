@@ -205,23 +205,18 @@ function checkBox(inputElement) {
         row.style.backgroundColor = "";
         row.style.color = "";
     }
-
     refreshIcons();
 }
 
 function refreshIcons() {
     const container = document.getElementById("selectContact");
-    container.innerHTML = "";
-    const allCheckboxes = document.querySelectorAll(".checkbox-input");
-    for (let i = 0; i < allCheckboxes.length; i++) {
-        const checkbox = allCheckboxes[i];
-        const rawIndex = checkbox.dataset.index;
-        const index = Number(rawIndex);
-        if (checkbox.checked) {
-            const index = checkbox.dataset.index;
-            container.innerHTML += letterInitials(index);
-        }
+    const allCheckbox = document.querySelectorAll("checkbox-input");
+    let totalHTML = "";
+    for (let i = 0; i < allCheckbox.length; i++) {
+        const checkBox = allCheckbox[i];
+        const index = checkBox.dataset.index;
     }
+    container.innerHTML = totalHTML;
 }
 
 function createSubtasks() {
@@ -308,7 +303,8 @@ requiredFields.forEach((field) => {
 
 
 function toggelCategory() {
-    document.getElementById("selectCategory").classList.toggle("open");
+    const toggelCategory = document.getElementById("selectCategory");    
+    toggelCategory.classList.toggle("open")   
 }
 
 function categorySelector() {

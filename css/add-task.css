@@ -1,10 +1,10 @@
  .add-task-content {
-     max-width: 1920px;
      display: flex;
      flex-direction: column;
      justify-content: center;
-     margin: 0 0;
+     align-items: center;
      padding: 80px 50px 50px 80px;
+     width: 100%;
  }
 
  main {
@@ -15,13 +15,16 @@
  }
 
  .card {
-     width: 100%;
+     flex: 1;
+     min-width: 440px;
+     max-width: 520px;
      height: 376px;
+
  }
 
  .main-content {
      display: flex;
-     justify-content: start;
+     justify-content: center;
      flex-direction: row;
      gap: clamp(8px, 6vw, 120px);
      color: #2A3647;
@@ -81,7 +84,6 @@
      padding: 14px 16px;
      font-size: 1rem;
      outline: none;
-     flex-grow: 1;
  }
 
  input[type="radio"] {
@@ -118,10 +120,10 @@
      font-size: 20px;
      color: #000000;
  }
- .selectContact{
-    display: flex;
-    padding-left: 8px;
-    padding-top: 6px;
+
+ .selectContact {
+     display: flex;
+     padding: 10px 16px;
  }
 
  .gab {
@@ -205,9 +207,11 @@
      width: 0;
      height: 0;
  }
-.checkbox{
-    margin-bottom: 0;
-}
+
+ .checkbox {
+     margin-bottom: 0;
+ }
+
  .checkbox-box {
      display: inline-block;
      width: 24px;
