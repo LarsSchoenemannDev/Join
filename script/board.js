@@ -52,3 +52,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+getData();
+console.log(FetchData);

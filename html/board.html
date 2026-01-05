@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="../css/board.css" /> 
     <link rel="stylesheet" href="../css/board-responsiv.css" />  
     <link rel="stylesheet" href="../css/sidebar-responsiv.css" />
+    <link rel="stylesheet" href="../css/add-task.css" />
     
   </head>
 
@@ -120,7 +121,7 @@
             <h1>Board</h1>
             <div class="header-actions">
                 <input type="text" placeholder="Find Task">
-                <button class="button-task">Add task +</button>
+                <button class="button-task" onclick="openAddTaskOverlay()">Add task +</button>
             </div>
         </div>
         
@@ -192,8 +193,33 @@
         </div>
       </div>
     </div>
+
+        <!-- Add Task Overlay -->
+    <div id="addTaskOverlay" class="overlay-container" style="display: none;">
+      <div class="overlay-content">
+        <div class="overlay-header">
+          <!-- Übernehmen und Stylen -->
+          <button class="close-overlay" onclick="closeAddTaskOverlay()">&times;</button>
+        </div>
+        <div id="addTaskFormContainer" class="overlay-body">
+          <!-- Formular wird hier dynamisch eingefügt -->
+        </div>
+      </div>
+    </div>
+
+
   </body>
   <!--<script src="../script/auth-script.js"></script>-->
+  <script src="../script/add-taskHTML.js"></script>
+   <script src="../script/board-tamplate.js"></script>
+  
+  <script src="../script/add-task.js"></script>
+
+  <script src="../script/board-overlay.js"></script>
   <script src="../script/board.js"></script>
+ 
+  
   <script src="../script/sidebar_and_header_script.js"></script>
+  
+
 </html>
