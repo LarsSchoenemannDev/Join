@@ -1,4 +1,32 @@
 
+main{
+    align-items: flex-start !important;
+}
+
+.headline{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.histore-back-arrow{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.histore-back-arrow:hover{
+background-color: #afb3bb3b;
+cursor: pointer;
+
+}
+
 .legal-notice-main-div{
     max-width: 900px;
 }
