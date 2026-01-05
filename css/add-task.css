@@ -34,9 +34,9 @@
  }
 
  h1 {
-     font-size: 3.25rem;
+     font-size: 60px;
+     color: rgba(0, 0, 0, 1);
      font-weight: 700;
-     margin-bottom: 32px;
  }
 
  .h1-content {
@@ -224,9 +224,8 @@
  }
 
  .checkbox-input:checked+.checkbox-box {
-     background-image: url("../assets/img/BGChangeWhite.svg");
+     background-image: url("../assets/img/checkboxChecked.svg");
      background-size: 24px 24px;
-
  }
 
  textarea {

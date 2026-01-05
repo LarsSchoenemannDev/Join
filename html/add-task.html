@@ -77,7 +77,7 @@
 
         <section class="add-task-content">
           <div class="wrapper">
-            <h1 class="h1-content">Add Task</h1>            
+            <h1 class="h1-content">Add Task</h1>
             <main class="main-content">
               <section class="card">
                 <div>
@@ -171,7 +171,7 @@
                           class="d-none">
                         <button id="closeAssigned" class="d-none input-icon-arrow-up"
                           onclick="closeAssigned()"></button>
-                      </div>
+                      </div>                      
                       <div id="selectContacts" class="dropdown category-main"></div>
                     </div>
                     <div class="selectContact" id="selectContact">
@@ -185,15 +185,15 @@
                       <div id="selectCategoryHtml"></div>
                       <div id="selectCategory" class="dropdown">
                         <div class="category-main">
-                          <input type="radio" id="SelectTask Category" name="priorityCategory"
+                          <input type="radio" id="SelectTaskCategory" name="priorityCategory"
                             value="Select task category" checked onclick="categorySelector()">
-                          <label for="Select task category" class="contact-row">Select task category</label>
-                          <input type="radio" id="Technical Task" name="priorityCategory" value="Technical Task"
+                          <label for="SelectTaskCategory" class="contact-row">Select task category</label>
+                          <input type="radio" id="TechnicalTask" name="priorityCategory" value="Technical Task"
                             onclick="categorySelector()">
-                          <label for="Technical Task" class="contact-row">Technical Task</label>
-                          <input type="radio" id="User Story" name="priorityCategory" value="User Story"
+                          <label for="TechnicalTask" class="contact-row">Technical Task</label>
+                          <input type="radio" id="UserStory" name="priorityCategory" value="User Story"
                             onclick="categorySelector()">
-                          <label for="User Story" class="contact-row">User Story</label>
+                          <label for="UserStory" class="contact-row">User Story</label>
                         </div>
                       </div>
                     </div>
@@ -224,7 +224,7 @@
                 <span style="color: #000000;">This field is required</span>
               </p>
               <div class="btn-priority-flex footerBtn-priority">
-                <button class="btn-priority  btn-clear">Clear
+                <button class="btn-priority  btn-clear" onclick="clearInputs()">Clear
                   <svg width="11" height="11" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M6.243 6.243L11.486 11.486M1 11.486L6.243 6.243L1 11.486ZM11.486 1L6.242 6.243L11.486 1ZM6.242 6.243L1 1L6.242 6.243Z"
@@ -232,8 +232,8 @@
                   </svg>
                 </button>
                 <div>
-                  <button class="btn-priority btn-priority-flex btn-createTask" onclick=createTask()>Create Task <svg
-                      width="24" height="24" viewBox="0 0 24 24" fill="#29ABE2" xmlns="http://www.w3.org/2000/svg">
+                  <button class="btn-priority btn-priority-flex btn-createTask" onclick="createTask(e)">Create Task
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#29ABE2" xmlns="http://www.w3.org/2000/svg">
                       <mask id="mask0_411527_6018" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                         width="24" height="24">
                         <rect width="24" height="24" fill="#D9D9D9" />

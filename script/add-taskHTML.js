@@ -32,7 +32,7 @@ function renderContactSearchHTML(initials, name, color) {
     <span class="contact-name">${name}</span>
     </div>
     <label class="checkbox">
-    <input id="checkbox" onclick="checkBox(this)" class="checkbox-input" name="checked" type="checkbox" value="">
+    <input id="checkbox" class="checkbox-input" name="checked" type="checkbox" value="">
     <span class="checkbox-box"></span>
         </label>
       </ul>
@@ -51,8 +51,8 @@ function renderContactHTML(initials, name, color, index) {
             <span class="contact-name">${name}</span>
         </div>
         <label class="checkbox">
-            <input class="checkbox-input" type="checkbox" data-index="${index}" onchange="checkBox(this)">
-            <span class="checkbox-box"></span>
+            <input class="checkbox-input" type="checkbox" data-index="${index}" onclick="assignedToLettersCheckContact()">
+            <span class="checkbox-box" ></span>
         </label>
     </ul>
     `;

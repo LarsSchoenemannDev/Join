@@ -3,7 +3,7 @@ let FetchData = [];
 let subTaskInput = [];
 let tempTaskData = [];
 processedContacts = [];
-const requiredFields = document.querySelectorAll('#title, #duedate, #category');
+const requiredFields = document.querySelectorAll("#title, #duedate, #category");
 const inputSubtask = document.getElementById("subtasks");
 const subtaskBox = document.getElementById("showHidden");
 const assignedTo = document.getElementById("BTNToggelContacts")
@@ -11,30 +11,9 @@ const assignedTo = document.getElementById("BTNToggelContacts")
 async function init() {
     await getData();
     clearInputs();
-    PriorityBTN();
+    priorityMedium();
     renderContact();
     categorySelector();
-    console.log(FetchData);
-}
-
-async function createTask(e) {
-    const formIsValid = validateRequiredFields();
-    if (!formIsValid) {
-        e?.preventDefault?.();
-        console.warn("Validierung fehlgeschlagen. Task wird nicht erstellt.");
-        return;
-    }
-    const taskData = addtoTask(e);
-    e?.preventDefault?.();
-    const result = await postAddTask(taskData);
-    if (result) {
-        PriorityBTN();
-        clearInputs();
-        await getData();
-    }
-    console.log('taksData', taskData);
-    console.log('result', result);
-
 }
 
 async function getData() {
@@ -51,41 +30,25 @@ async function getData() {
 }
 
 function validateRequiredFields() {
-    const requiredFields = document.querySelectorAll('#title, #duedate, #category');
+    const requiredFields = document.querySelectorAll("#title, #duedate, #category");
     let requiredCheck = true;
     const categoryValue = document.querySelector('input[name="priorityCategory"]:checked')?.value;
-    const categoryButton = document.getElementById('selectCategoryHtml');
+    const categoryButton = document.getElementById("selectCategoryHtml");
     requiredFields.forEach(required => {
-        if (required.value.trim() === '') {
-            required.classList.add('input-error');
+        if (required.value.trim() === "") {
+            required.classList.add("input-error");
             requiredCheck = false;
         } else {
-            required.classList.remove('input-error');
+            required.classList.remove("input-error");
         }
     });
-    if (!categoryValue || categoryValue === 'Select task category') {
-        categoryButton.classList.add('input-error');
+    if (!categoryValue || categoryValue === "Select task category") {
+        categoryButton.classList.add("input-error");
         requiredCheck = false;
     } else {
-        categoryButton.classList.remove('input-error');
+        categoryButton.classList.remove("input-error");
     }
     return requiredCheck;
-}
-
-
-function addtoTask(element) {
-    element?.preventDefault?.();
-    const get = id => (document.getElementById(id)?.value ?? '').trim();
-    tempTaskData = {
-        title: get('title'),
-        description: get('description'),
-        duedate: get('duedate'),
-        priority: document.querySelector('input[name="priority"]:checked')?.value ?? null,
-        assignedTo: getSelectedContacts(),
-        category: get('category'),
-        subtasks: getSubtasks()
-    };
-    return tempTaskData;
 }
 
 async function postAddTask(data) {
@@ -108,58 +71,27 @@ async function postAddTask(data) {
     }
 }
 
-
-function clearInputs() {
-    document.getElementById('title').value = '';
-    document.getElementById('description').value = '';
-    document.getElementById('duedate').value = '';
-    document.getElementById('prio-medium').checked = true;
-    document.querySelector('input[name="priorityCategory"]:checked')
-    document.getElementById('subtasks').value = '';
-}
-
-function PriorityBTN() {
-    BTNStyling = document.querySelector('input[name="priority"]:checked')
+function priorityMedium() {
+    priorityMediumSelectet = document.querySelector('input[name="priority"]:checked')
 }
 
 function getSelectedContacts() {
     return Array.from(
-        document.querySelectorAll('.checkbox-input:checked')
+        document.querySelectorAll(".checkbox-input:checked")
     ).map(checkBox => checkBox.value);
 }
 
 function getSubtasks() {
     return Array.from(
-        document.querySelectorAll('[data-index]')
+        document.querySelectorAll("[data-index]")
     ).map(subtaskElements => subtaskElements.value);
 }
 
-
-function renderContact() {
-    const CONTACT_LIST_CONTAINER = document.getElementById("selectContacts");
-    CONTACT_LIST_CONTAINER.innerHTML = "";
-    if (!FetchData || !Array.isArray(FetchData.contacts)) {
-        console.error("Kontakt-Daten sind nicht verfügbar.");
-        return;
-    }
-    const contacts = FetchData.contacts;
-    let html = "";
-    for (let i = 0; i < contacts.length; i++) {
-        const ele = contacts[i];
-        const name = ele.name;
-        const initials = ele.initials;
-        const color = ele.color;
-        html += renderContactHTML(initials, name, color, i)
-    }
-    CONTACT_LIST_CONTAINER.innerHTML = html;
-}
-
-
 function toggelContacts() {
-    document.getElementById("selectContacts").classList.add('open');
-    document.getElementById("BTNToggelContacts").style.display = 'none';
-    document.getElementById("searchContacts").classList.remove('d-none');
-    document.getElementById("closeAssigned").style.display = 'flex';
+    document.getElementById("selectContacts").classList.add("open");
+    document.getElementById("BTNToggelContacts").style.display = "none";
+    document.getElementById("searchContacts").classList.remove("d-none");
+    document.getElementById("closeAssigned").style.display = "flex";
     document.getElementById("searchContacts").focus();
 }
 
@@ -194,29 +126,15 @@ function renderContact() {
 }
 
 
-function checkBox(inputElement) {
-    const row = inputElement.closest(".contact-row");
-    if (!row) return;
-
-    if (inputElement.checked) {
-        row.style.backgroundColor = "#2A3647";
-        row.style.color = "white";
-    } else {
-        row.style.backgroundColor = "";
-        row.style.color = "";
-    }
-    refreshIcons();
-}
-
-function refreshIcons() {
+function assignedToLettersCheckContact() {
     const container = document.getElementById("selectContact");
-    const allCheckbox = document.querySelectorAll("checkbox-input");
-    let totalHTML = "";
-    for (let i = 0; i < allCheckbox.length; i++) {
-        const checkBox = allCheckbox[i];
-        const index = checkBox.dataset.index;
-    }
-    container.innerHTML = totalHTML;
+    const allCheckbox = document.querySelectorAll(".checkbox-input:checked");
+    container.innerHTML = "";
+    allCheckbox.forEach(box => {
+        const i = box.getAttribute("data-index");
+        container.innerHTML += letterInitials(i);
+    })
+
 }
 
 function createSubtasks() {
@@ -279,32 +197,30 @@ function cancelSubtask() {
 
 function onFocus(event) {
     const el = event.target;
-    el.classList.add('input-focus');
-    el.classList.remove('input-error');
+    el.classList.add("input-focus");
+    el.classList.remove("input-error");
 }
 
 function noneFocus(event) {
     const el = event.target;
     const value = el.value.trim();
-
-    el.classList.remove('input-focus');
-
+    el.classList.remove("input-focus");
     if (!value) {
-        el.classList.add('input-error');
+        el.classList.add("input-error");
     } else {
-        el.classList.remove('input-error');
+        el.classList.remove("input-error");
     }
 }
 
 requiredFields.forEach((field) => {
-    field.addEventListener('focus', onFocus);
-    field.addEventListener('blur', noneFocus);
+    field.addEventListener("focus", onFocus);
+    field.addEventListener("blur", noneFocus);
 });
 
 
 function toggelCategory() {
-    const toggelCategory = document.getElementById("selectCategory");    
-    toggelCategory.classList.toggle("open")   
+    const toggelCategory = document.getElementById("selectCategory");
+    toggelCategory.classList.toggle("open")
 }
 
 function categorySelector() {
@@ -315,11 +231,24 @@ function categorySelector() {
     document.getElementById("selectCategory").classList.remove("open");
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+function clearInputs() {
+    document.getElementById("title").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("duedate").value = "";
+    document.getElementById("prio-medium").checked = true;
+    document.getElementById("SelectTaskCategory").checked = true;
+    categorySelector()    
+    document.getElementById("subtasks").value = "";
+    document.getElementById("selectContact").innerHTML = "";
+    document.querySelectorAll(".checkbox-input:checked").forEach((Checkbox) => { Checkbox.checked = false; });
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
     const subtaskElement = document.getElementById("subtasks");
     if (subtaskElement) {
         subtaskElement.addEventListener("keydown", function (event) {
-            if (event.key === 'Enter') {
+            if (event.key === "Enter") {
                 event.preventDefault();
                 addSubtask();
             }
@@ -352,7 +281,7 @@ document.addEventListener("click", function (event) {
 
 document.addEventListener("click", function (event) {
     const category = document.getElementById("selectCategory");
-    const button = document.querySelector('#selectCategoryHtml button');
+    const button = document.querySelector("#selectCategoryHtml button");
 
     const clickInsideCategory = category.contains(event.target);
     const clickOnButton = button.contains(event.target);
@@ -361,3 +290,4 @@ document.addEventListener("click", function (event) {
         category.classList.remove("open");
     }
 });
+
