@@ -1,5 +1,32 @@
 /*Datenschutz-style*/
 
+main{
+    align-items: flex-start !important;
+}
+
+.headline{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.histore-back-arrow{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: transparent;
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.histore-back-arrow:hover{
+background-color: #afb3bb3b;
+
+}
+
 .datenschutz-container {
     max-width: 900px;
 }

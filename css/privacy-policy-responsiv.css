@@ -1,6 +1,10 @@
 /*for sidebar mobile*/
 @media (max-width: 1000px) {
 
+  .histore-back-arrow{
+    display: flex !important;
+  }
+
   .frame3{
     display: flex;
     width: 230px;
@@ -68,6 +72,8 @@ main{
   
   .datenschutz-container h1{
     font-size: 1em;
+    margin-top: 10px;
+    margin-bottom: 0px;
   }
 
   .datenschutz-container h2{
