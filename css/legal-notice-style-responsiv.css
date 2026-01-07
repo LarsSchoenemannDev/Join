@@ -1,0 +1,17 @@
+@media (max-width: 1000px){
+    .histore-back-arrow{
+        display: flex !important;
+    }
+
+    .legal-notice-main-div h1{
+        margin-top: 10px;
+    }
+
+
+}
+
+@media (max-width: 600px){
+    main{
+        padding: 80px 30px 50px 30px;
+    }
+}
