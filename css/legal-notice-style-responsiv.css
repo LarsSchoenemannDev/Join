@@ -7,6 +7,20 @@
         margin-top: 10px;
     }
 
+    .footerMenu-mobile{
+    display: flex;
+    height: 100%;
+    gap: 6px;
+  }
+
+  .frame2 .footerMenu-mobile a.current {
+    background-color: #091931;
+}
+
+.frame2 .footerMenu-mobile a:hover {
+    color: #29ABE2;
+    font-weight: 700;
+}
 
 }
 
