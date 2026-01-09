@@ -1,0 +1,19 @@
+@media (max-width: 1000px){
+    .back-button{
+        display: flex !important;
+    }
+}
+
+@media (max-width: 813px){
+main{
+    padding: 40px 50px 50px 40px;
+}
+}
+
+
+
+@media (max-width: 500px){
+    main{
+        padding: 40px 25px 50px 25px;
+    }
+}
