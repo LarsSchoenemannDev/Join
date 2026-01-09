@@ -19,7 +19,6 @@
      min-width: 440px;
      max-width: 520px;
      height: 376px;
-
  }
 
  .main-content {
@@ -350,6 +349,7 @@
      display: flex;
      flex-grow: 1;
      justify-content: space-between;
+     gap: 8px;
  }
 
  .btn-priority {
@@ -360,7 +360,7 @@
      padding: 15px 26px;
      font-size: 20px;
      font-weight: 400;
-     cursor: pointer;
+     cursor: pointer;     
  }
 
  #prio-urgent+svg path {
@@ -415,7 +415,6 @@
      border: 1px solid #d1d1d1;
      border-radius: 8px;
      outline: none;
-
  }
 
  .input-focus {
@@ -434,7 +433,7 @@
  .btn-priority-flex {
      display: flex;
      align-items: center;
-     gap: 12px;
+     gap: 8px;
  }
 
  .hover-show {
@@ -475,7 +474,7 @@
      display: flex;
      justify-content: space-between;
      align-items: end;
-     margin-top: 380px;
+     margin-top: 500px;
  }
 
  .contactSearch {
@@ -493,17 +492,12 @@
          width: 440px;
      }
 
-     .btn-priority-flex {
-         gap: 8px;
-     }
-
      .label {
          font-size: clamp(16px, 100%, 22px);
      }
-
  }
 
- @media (max-width: 1250px) {
+ @media (max-width: 1400px) {
      .main-content {
          flex-direction: column;
          gap: 20px;
@@ -526,9 +520,6 @@
          height: 20px;
      }
 
-     .btn-priority-flex {
-         gap: 50px
-     }
 
      .footer-add-task {
          justify-content: unset;
@@ -564,12 +555,6 @@
  @media (max-width: 770px) {
      .card {
          width: 100%;
-     }
- }
-
- @media (max-width: 580px) {
-     .btn-priority-flex {
-         gap: 12px;
      }
  }
 
