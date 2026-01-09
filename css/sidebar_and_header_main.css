@@ -110,8 +110,8 @@ main {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    /* max-width: 1650px;
-    position: relative; */
+     max-width: 1650px;
+   /* position: relative;*/
 }
 
 .user-icon {
