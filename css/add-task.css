@@ -230,12 +230,15 @@
  textarea {
      min-height: 120px;
      resize: vertical;
+     font-family: 'Inter', sans-serif;
  }
 
  input::placeholder,
  textarea::placeholder {
      color: #D1D1D1;
+     font-family: 'Inter', sans-serif;
  }
+
 
  input:focus,
  textarea:focus {
@@ -292,8 +295,6 @@
      align-items: center;
      width: 100%;
  }
-
-
 
  .display-flex {
      display: flex;
@@ -360,7 +361,7 @@
      padding: 15px 26px;
      font-size: 20px;
      font-weight: 400;
-     cursor: pointer;     
+     cursor: pointer;
  }
 
  #prio-urgent+svg path {
@@ -474,7 +475,12 @@
      display: flex;
      justify-content: space-between;
      align-items: end;
-     margin-top: 500px;
+     margin-top: 430px;
+ }
+
+ .footer-flex {
+     display: flex;
+     gap: 12px;
  }
 
  .contactSearch {
@@ -487,108 +493,87 @@
      outline: none;
  }
 
- @media (max-width: 1430px) {
-     .card {
-         width: 440px;
+ @media (max-width: 1420px) {
+     .h1-content {
+         margin-bottom: 20px;
+
      }
 
-     .label {
-         font-size: clamp(16px, 100%, 22px);
+     .add-task-content {
+         padding: 24px 12px 24px 12px;
      }
- }
 
- @media (max-width: 1400px) {
      .main-content {
          flex-direction: column;
-         gap: 20px;
      }
 
-     .h1-content {
-         display: flex;
-         justify-content: flex-start;
-         padding-top: 22px;
+     input,
+     textarea {
+         margin-bottom: 8px;
+
      }
 
      .seperator {
-         background-color: rgba(209, 209, 209, 1);
-         width: 100%;
+         width: 425px;
          height: 1px;
      }
 
-     .center-seperator {
-         display: initial;
-         height: 20px;
-     }
-
-
-     .footer-add-task {
-         justify-content: unset;
-         flex-direction: column;
-         margin-top: 120px;
-         gap: 20px
-     }
-
-     .card {
-         height: 355px;
-         width: 720px;
-     }
- }
-
- @media (max-width: 1000px) {
-     .add-task-content {
-         gap: 0px;
-     }
-
-     .card {
-         height: 325px
+     .main-content {
+         gap: clamp(32px, 3vw, 60px);
      }
 
      .field {
-         margin-bottom: 3px;
+         margin-bottom: 0px;
      }
 
      .footer-add-task {
-         margin-top: 130px;
+         margin-top: 0px;
+         flex-direction: column;
      }
  }
 
- @media (max-width: 770px) {
+
+ @media (max-width: 700px) {
+     .add-task-content {
+         padding: 24px 12px 24px 12px;
+         ;
+     }
+ }
+
+ @media(max-width: 480px) {
      .card {
-         width: 100%;
+         min-width: 240px;
      }
- }
 
- @media (max-width: 485px) {
+     .field {
+         min-width: 240px;
+     }
+
+     .seperator {
+         width: 240px;
+     }
+
+     .button-priority {
+         flex-direction: column;
+     }
+
      .btn-priority-flex {
-         display: flex;
-         flex-direction: column;
-         flex-direction: column;
-         justify-content: space-around;
-         width: 100%;
-     }
-
-     .card {
-         height: 307px;
-     }
-
-     .required {
-         display: none;
-     }
-
-     .btn-clear {
-         width: 400px;
-         display: flex;
-         justify-content: center;
-
-     }
-
-     .btn-createTask {
-         width: 400px;
-         display: flex;
          justify-content: center;
      }
 
-     .footer-add-task {
-         margin-top: 130px;
+     .wrapper {
+         align-items: center;
+         display: flex;
+         flex-direction: column;
      }
+
+     .div-field {
+         margin-bottom: 8px;
+     }
+
+     .footer-flex {
+         flex-direction: column;
+         gap: 6px;
+     }
+
  }

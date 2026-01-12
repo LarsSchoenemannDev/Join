@@ -192,8 +192,15 @@ requiredFields.forEach((field) => {
 });
 
 function toggleCategory() {
+    const changeArrow = document.getElementById("category");
     const toggleCategory = document.getElementById("selectCategory");
     toggleCategory.classList.toggle("open")
+    if (toggleCategory.classList.contains("open")) {
+        changeArrow.style.backgroundImage = "url('../assets/img/arrowUup.svg')"
+    } else {
+        changeArrow.style.backgroundImage = "url('../assets/img/arrow_drop_down-icon.svg"
+    }
+
 }
 
 function categorySelector() {
@@ -300,7 +307,7 @@ function validationRequired() {
                 element.style.borderColor = "#E60026";
             }
         }
-    });    
+    });
     return validationRequiredCheck;
 }
 
@@ -311,7 +318,7 @@ async function pushTask() {
         console.log("Daten gesammelt:", data);
         try {
             const response = await postData(path = "/tasks",);
-            console.log("Erfolgreich gespeichert:", response);            
+            console.log("Erfolgreich gespeichert:", response);
         } catch (error) {
             console.error("Fehler beim Senden der Daten:", error);
         }
