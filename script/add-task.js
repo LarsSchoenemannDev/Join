@@ -272,7 +272,6 @@ function getDataFromPage() {
     taskData.subtasks = subTaskInput;
     let priority = document.querySelector('input[name="priority"]:checked');
     taskData.priority = priority ? priority.value : "medium";
-    console.table(taskData);
     return taskData;
 }
 
@@ -301,34 +300,31 @@ function validationRequired() {
                 element.style.borderColor = "#E60026";
             }
         }
-    });
-    return;
+    });    
+    return validationRequiredCheck;
 }
 
-// async function putTasktooApi() {
-//     try {
-//         const response = await fetch(`${BASE_URL}/tasks.json`, {
-//             method: "PUT",
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify(addTask)
-//         });
+async function pushTask() {
+    const isValid = validationRequired();
+    if (isValid === true) {
+        let data = getDataFromPage();
+        console.log("Daten gesammelt:", data);
+        try {
+            const response = await postData(path = "/tasks",);
+            console.log("Erfolgreich gespeichert:", response);            
+        } catch (error) {
+            console.error("Fehler beim Senden der Daten:", error);
+        }
+    }
+}
 
-//         if (!response.ok) {
-//             throw new Error(`HTTP error! status: ${response.status}`);
-//         }
-
-//         const result = await response.json();
-//         console.log('Tasks add updated:');
-//         return result;
-
-//     } catch (error) {
-//         console.error('Error updating contact:', error);
-//         throw error;
-//     }
-// }
-function pushTask() {
-    if (!validationRequired()) return;
-    getDataFromPage();
+async function postData(path = "/tasks",) {
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(taskData)
+    });
+    return responseToJSON = await response.json();
 }
