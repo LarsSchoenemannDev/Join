@@ -97,7 +97,7 @@ input {
 }
 
 /* Cards */
-.card {
+.Cards {
     background: white;
     border: 1px solid #eee;
     border-radius: 8px;
@@ -106,15 +106,15 @@ input {
     border-left: 4px solid #3b82f6;
 }
 
-.card.cyan { border-left-color: #06b6d4; }
+.Cards.cyan { border-left-color: #06b6d4; }
 
-.card h3 {
+.Cards h3 {
     font-size: 0.9rem;
     margin: 0.5rem 0;
     line-height: 1.3;
 }
 
-.card p {
+.Cards p {
     font-size: 0.8rem;
     color: #666;
     margin-bottom: 1rem;
@@ -174,7 +174,7 @@ input {
 
 /* Drag
  and Drop Styles */
-.card.dragging {
+.Cards.dragging {
     opacity: 0.5;
     cursor: grabbing;
 }

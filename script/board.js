@@ -40,7 +40,7 @@ function onDrop(e) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.card').forEach(card => {
+  document.querySelectorAll('.Cards').forEach(card => {
     bindDragEvents(card);
   });
   document.querySelectorAll('.column[data-status]').forEach(col => {
