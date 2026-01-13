@@ -176,3 +176,22 @@ function loadAddTaskFormIntoOverlay() {
        
     // }
 }
+
+
+function renderCard() {
+  const toDoContainer = document.getElementById("toDo-box");
+
+    toDoContainer.innerHTML = `<div class="Cards blue" data-id="c1" draggable="true">
+                    <span class="tag">User Story</span>
+                    <h3>Kochwelt Page & Recipe Recommender</h3>
+                    <p>Build start page with recipe recommendation...</p>
+                    <div class="progress">1/2 Subtasks</div>
+                    <div class="avatars">
+                      <div class="avatar orange">AN</div>
+                      <div class="avatar green">EN</div>
+                      <div class="avatar purple">ME</div>
+                    </div>
+                  </div>`;
+
+}
+renderCard();

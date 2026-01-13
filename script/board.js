@@ -36,6 +36,7 @@ function onDrop(e) {
     col.appendChild(card);
   }
   col.classList.remove('drop-target');
+  noTasksMessage();
 }
 
 
@@ -54,3 +55,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 getData();
 console.log(FetchData);
+
+
+function noTasksMessage() {
+  const messageElement = document.getElementById('toggleMessage');
+  const todoColumn = document.querySelector('.column[data-status="todo"]');
+  if (!messageElement || !todoColumn) return;
+  const hasTasks = todoColumn.querySelectorAll('.Cards').length > 0;
+  if (hasTasks) {
+    messageElement.style.display = 'none';
+  } else {
+    messageElement.style.display = 'block';
+  }
+}
+noTasksMessage();
