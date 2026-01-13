@@ -70,7 +70,10 @@ input {
     background: white;
     border-radius: 12px;
     padding: 1rem;
-    min-height: 400px;
+    /* min-height: 63px; */
+    overflow-y: scroll;
+    overflow-y: auto;
+    max-height: 663px;
 }
 
 .column h2 {
