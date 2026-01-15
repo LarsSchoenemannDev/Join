@@ -4,6 +4,7 @@ let subTaskInput = [];
 let contactsState = [];
 let tempPageInputs = {};
 let taskData = {};
+let createState = false;
 
 const requiredFields = document.querySelectorAll("#title, #duedate, #category");
 const inputSubtask = document.getElementById("subtasks");
@@ -11,7 +12,7 @@ const subtaskBox = document.getElementById("showHidden");
 
 async function init() {
     await getData();
-    renderContact()
+    renderContact();
     clearInputs();
     priorityMedium();
 }
@@ -200,7 +201,6 @@ function toggleCategory() {
     } else {
         changeArrow.style.backgroundImage = "url('../assets/img/arrow_drop_down-icon.svg"
     }
-
 }
 
 function categorySelector() {
@@ -232,9 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 addSubtask();
             }
         });
-    } else {
-        return;
-    }
+    }  
 });
 
 inputSubtask.addEventListener("focus", () => {
@@ -285,6 +283,7 @@ function getDataFromPage() {
 function validationRequired() {
     const taskData = getDataFromPage();
     const requiredFieldsValidation = ["title", "duedate", "category"];
+    const createTaskBTN = document.getElementById("colorChange")
     let validationRequiredCheck = true;
     requiredFieldsValidation.forEach((key) => {
         const value = taskData[key];
@@ -307,26 +306,34 @@ function validationRequired() {
                 element.style.borderColor = "#E60026";
             }
         }
-    });
-    return validationRequiredCheck;
+        if (validationRequiredCheck === true){
+        createTaskBTN.style.background = "#2A3647";
+    }
+
+});
+return validationRequiredCheck;
 }
+
 
 async function pushTask() {
     const isValid = validationRequired();
     if (isValid === true) {
         let data = getDataFromPage();
         console.log("Daten gesammelt:", data);
+        document.querySelector(".popup-added").style.display = "flex";
         try {
             const response = await postData(path = "/tasks",);
-            console.log("Erfolgreich gespeichert:", response);
+            console.log("Erfolgreich Daten an API übergeben", response);
+
         } catch (error) {
             console.error("Fehler beim Senden der Daten:", error);
+            document.querySelector(".popup-added").style.display = "none";
         }
     }
 }
 
-async function postData(path = "/tasks",) {
-    let response = await fetch(BASE_URL + path + ".json", {
+async function postData() {
+    let response = await fetch(BASE_URL + "/tasks" + ".json", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -334,4 +341,9 @@ async function postData(path = "/tasks",) {
         body: JSON.stringify(taskData)
     });
     return responseToJSON = await response.json();
+}
+
+async function CreateTask() {
+    await pushTask();
+    await postData();
 }

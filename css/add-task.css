@@ -46,14 +46,13 @@
 
  .div-field {
      display: flex;
-     flex-direction: column;
-     margin-bottom: 24px;
+     flex-direction: column;     
  }
 
  .field {
      display: flex;
      flex-direction: column;
-     margin-bottom: 18px;
+     margin-bottom: 32px;
  }
 
  label,
@@ -464,6 +463,10 @@
      font-size: 1.313rem;
  }
 
+ .btn-State {
+     background-color: #53555780;
+ }
+
  .btn-createTask:hover {
      background-color: #29ABE2;
      color: #FFFFFF;
@@ -475,7 +478,7 @@
      display: flex;
      justify-content: space-between;
      align-items: end;
-     margin-top: 430px;
+     margin-top: calc(100vh - 90px - 750px);
  }
 
  .footer-flex {
@@ -493,10 +496,29 @@
      outline: none;
  }
 
+ .popup-added {
+     display: none;
+     justify-content: space-between;
+     width: 320px;
+     max-width: 440px;
+ }
+
+ .center {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     position: fixed;
+     top: 50%;
+     left: 230px;
+     right: 0;
+     z-index: 10;
+     pointer-events: none;
+ }
+
+
  @media (max-width: 1420px) {
      .h1-content {
          margin-bottom: 20px;
-
      }
 
      .add-task-content {
@@ -505,12 +527,6 @@
 
      .main-content {
          flex-direction: column;
-     }
-
-     input,
-     textarea {
-         margin-bottom: 8px;
-
      }
 
      .seperator {
@@ -523,7 +539,7 @@
      }
 
      .field {
-         margin-bottom: 0px;
+         margin-bottom: 20px;
      }
 
      .footer-add-task {
@@ -532,6 +548,12 @@
      }
  }
 
+ @media (max-width: 1000px) {
+     .center {
+         left: 0px;
+     }
+
+ }
 
  @media (max-width: 700px) {
      .add-task-content {
@@ -546,7 +568,7 @@
      }
 
      .field {
-         min-width: 240px;
+         min-width: 280px;
      }
 
      .seperator {

@@ -21,7 +21,7 @@ body {
 
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: flex-start;
   padding: 20px 40px;
   margin-top: 34px;
@@ -38,7 +38,9 @@ body {
   font-size: 16px;
 }
 
-.signup-btn, .login-btn, .guest-btn {
+.signup-btn,
+.login-btn,
+.guest-btn {
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -104,7 +106,8 @@ body {
   border-color: #29abe2;
 }
 
-.input-group input.error, .input-group input.error:focus {
+.input-group input.error,
+.input-group input.error:focus {
   border-color: #ff4444;
 }
 
@@ -172,30 +175,49 @@ body {
 .image-sequence {
   position: fixed;
   z-index: 1000;
-  background: rgba(246, 247, 248, 0.9);
+  background: rgba(246, 247, 248, 0.0);
   border-radius: 20px;
   padding: 20px;
 }
 
 .animate-logo {
-  animation: logoMove 1s ease-out forwards;
+  animation: logoMove 1s cubic-bezier(.37,.09,.93,.64) forwards;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .animate-logo img {
-  animation: logoResize 1s ease-out forwards;
+  animation: logoResize 1s ease-out forwards;  
+  
+
 }
 
 @keyframes logoMove {
-  0% { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  100% { top: 34px; left: 20px; transform: translate(0, 0); }
+  0% { 
+    box-shadow: 0 0 0 9000vmax rgba(246, 247, 248, 1);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+  }
+  50% {
+    box-shadow: 0 0 0 9000vmax rgba(246, 247, 248, 1);
+  }
+  80%{
+    box-shadow: 0 0 0 9000vmax rgba(246, 247, 248, 0.8);
+  }
+  100% { 
+    box-shadow: 0 0 0 9000vmax rgba(246, 247, 248, 0.0); 
+    top: 20px; left: 20px; transform: translate(0, 0);
+  }
 }
 
 @keyframes logoResize {
-  0% { height: 380px; }
-  100% { height: 130px; }
+  0% {
+    height: 380px;
+  }
+  
+  100% {
+    height: 140px;
+  }
 }
 
 .logo.hidden {

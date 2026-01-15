@@ -74,7 +74,11 @@
             </div>
           </div>
         </header>
-
+        <div class="center d-none">
+          <div class="btn-priority btn-createTask popup-added"><Span>Task added to board</Span>
+            <img src="..//assets/img/task.svg" alt="Task Logo">
+          </div>
+        </div>
         <section class="add-task-content">
           <div class="wrapper">
             <h1 class="h1-content">Add Task</h1>
@@ -101,7 +105,7 @@
                     </label>
                     <div>
                       <input class="input-icon-calender input-Required" id="duedate" type="date"
-                        placeholder="dd/mm/yyyy" required min="2025-01-01" max="2030-12-31">
+                        placeholder="dd/mm/yyyy" required>
                     </div>
                   </div>
                 </div>
@@ -232,7 +236,8 @@
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                   </button>
-                  <button class="btn-priority btn-priority-flex btn-createTask" onclick="pushTask()">Create Task
+                  <button class="btn-priority btn-priority-flex btn-createTask btn-State" id="colorChange"
+                    onclick="pushTask()">Create Task
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="#29ABE2" xmlns="http://www.w3.org/2000/svg">
                       <mask id="mask0_411527_6018" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                         width="24" height="24">
@@ -250,6 +255,7 @@
         </section>
       </div>
     </div>
+  </div>
 </body>
 <!--<script src="../script/auth-script.js"></script>-->
 <script src="../script/sidebar_and_header_script.js"></script>

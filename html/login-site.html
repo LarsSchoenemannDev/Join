@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join-Log in</title>
-    <link rel="stylesheet" href="../css/login.css" />
-    
-  </head>
 
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join-Log in</title>
+  <link rel="stylesheet" href="../css/login.css" />
 
-    <div class="body-div">
-    
-    <div id="image-sequence" class="image-sequence"></div>
+</head>
+
+<body>
+
+  <div class="body-div">
+
+    <div id="image-sequence" class="image-sequence animate-logo"></div>
 
     <header class="header">
       <div class="logo hidden">
         <img src="../assets/img/Capa 2.svg" alt="Join-Logo" />
       </div>
-      
+
       <div class="auth-nav">
         <span>Not a Join user?</span>
         <button class="signup-btn">Sign up</button>
@@ -31,14 +32,17 @@
         <div class="underline"></div>
         <form class="login-form">
           <div class="input-group">
-            <input id="email" type="email" placeholder="Email" required onfocus="validateInput(this)" oninput="validateInput(this)">
+            <input id="email" type="email" placeholder="Email" required onfocus="validateInput(this)"
+              oninput="validateInput(this)">
             <span class="input-icon"><img src="../assets/img/mail.svg" alt=""></span>
           </div>
 
           <div class="input-group">
-            <input id="password" type="password" placeholder="Password" required onfocus="validateInput(this)" oninput="validateInput(this); updateIcon()">
-            <span id="togglePasswordIcon" class="input-icon" onclick="togglePassword()"><img src="../assets/img/lock.svg" alt=""></span>
-            
+            <input id="password" type="password" placeholder="Password" required onfocus="validateInput(this)"
+              oninput="validateInput(this); updateIcon()">
+            <span id="togglePasswordIcon" class="input-icon" onclick="togglePassword()"><img
+                src="../assets/img/lock.svg" alt=""></span>
+
           </div>
 
           <div class="buttons">
@@ -53,9 +57,10 @@
       <a href="../html/privacy-policy.html" class="footer-link">Privacy Policy</a>
       <a href="../html/legal-notice.html" class="footer-link">Legal notice</a>
     </footer>
+   
+  </div>
+</body>
+<script src="../script/login.js"></script>
+<script src="../script/log-in-site-firebase.js"></script>
 
-    </div>
-  </body>
-  <script src="../script/login.js"></script>
-  <script src="../script/log-in-site-firebase.js"></script>
 </html>
