@@ -8,8 +8,11 @@
 main{
     padding: 40px 50px 50px 40px;
 }
-}
 
+.header{
+        padding: 20px 40px !important;
+    }
+}
 
 
 @media (max-width: 500px){

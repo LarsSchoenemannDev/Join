@@ -24,8 +24,22 @@
 
 }
 
-@media (max-width: 600px){
+@media (max-width: 813px){
+main{
+    padding: 40px 50px 50px 40px;
+}
+
+.header{
+        padding: 20px 40px;
+    }
+}
+
+@media (max-width: 500px){
     main{
-        padding: 80px 30px 50px 30px;
+        padding: 40px 25px 50px 25px;
+    }
+
+    .header{
+        padding: 20px 25px;
     }
 }
