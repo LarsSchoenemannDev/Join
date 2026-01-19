@@ -267,3 +267,73 @@ button:disabled{
 .message.show {
   right: 30px; /* Endposition innerhalb des Bildschirms */
 }
+
+/*Checkbox style*/
+
+
+.checkbox-group {
+  position: relative;
+}
+
+/* echte Checkbox verstecken */
+.checkbox-group input {
+  display: none;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+/* Icon-Container */
+.checkbox-icon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* beide Bilder übereinander */
+.checkbox-icon img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*STANDARD (unchecked)*/
+.unchecked-hover,
+.checked,
+.checked-hover {
+  display: none;
+}
+
+/*UNCHECKED + HOVER*/
+.checkbox-group label:hover .unchecked {
+  display: none;
+}
+
+.checkbox-group label:hover .unchecked-hover {
+  display: block;
+}
+
+/*CHECKED*/
+.checkbox-group input:checked + label .unchecked,
+.checkbox-group input:checked + label .unchecked-hover {
+  display: none;
+}
+
+.checkbox-group input:checked + label .checked {
+  display: block;
+}
+
+/*CHECKED + HOVER*/
+.checkbox-group input:checked + label:hover .checked {
+  display: none;
+}
+
+.checkbox-group input:checked + label:hover .checked-hover {
+  display: block;
+}
