@@ -178,25 +178,26 @@
                       </div>
                       <div id="selectContacts" class="dropdown category-main"></div>
                     </div>
-                    <div class="selectContact" id="selectContact">
+                    <div class="selectContact" id="selectContact"></div>
                     </div>
                   </div>
                   <div class="div-field">
                     <div class="field">
-                      <label for="category">
+                      <label for="categoryBtn">
                         Category<span class="required">*</span>
                       </label>
-                      <div id="selectCategoryHtml"></div>
+                      <button type="button" id="categoryBtn"
+                        class="input-styling input-icon-arrow-down custom-select-select input-Required"
+                        onclick="toggleCategory()">
+                        Select task category
+                      </button>
                       <div id="selectCategory" class="dropdown">
                         <div class="category-main">
-                          <input type="radio" id="SelectTaskCategory" name="priorityCategory"
-                            value="Select task category" checked onclick="categorySelector()">
-                          <label for="SelectTaskCategory" class="contact-row">Select task category</label>
                           <input type="radio" id="TechnicalTask" name="priorityCategory" value="Technical Task"
-                            onclick="categorySelector()">
+                            onclick="categorySelector()" />
                           <label for="TechnicalTask" class="contact-row">Technical Task</label>
                           <input type="radio" id="UserStory" name="priorityCategory" value="User Story"
-                            onclick="categorySelector()">
+                            onclick="categorySelector()" />
                           <label for="UserStory" class="contact-row">User Story</label>
                         </div>
                       </div>
@@ -236,8 +237,8 @@
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                   </button>
-                  <button class="btn-priority btn-priority-flex btn-createTask btn-State" id="colorChange"
-                    onclick="pushTask()">Create Task
+                  <button class="btn-createTask btn-priority-flex btn-State" id="colorChange"
+                    onclick="CreateTask()">Create Task
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="#29ABE2" xmlns="http://www.w3.org/2000/svg">
                       <mask id="mask0_411527_6018" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                         width="24" height="24">

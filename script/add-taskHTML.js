@@ -38,12 +38,6 @@ function letterInitials(contact) {
     `;
 }
 
-function setCategoryHTML(categoryLabel) {
-    return `    <button type="button" onclick="toggleCategory()" id="category"
-        class="input-styling input-icon-arrow-down custom-select-select input-Required">${categoryLabel}</button>             
-    `;
-}
-
 function subTaskContentHMTL(subTaskInput, i) {
     return `
     <div class="sub-container" data-index="${i}">
@@ -60,8 +54,7 @@ function subTaskContentHMTL(subTaskInput, i) {
 
 function changeSubtaskHtml(i, currentValue) {
     return `<div class="input-wrapper"><input type="text" value="${currentValue}" id="edit-input-${i}"
-    title="Enter the new text">
-    
+    title="Enter the new text">    
     <div class="img-container" style="display: flex;">
     <img src="../assets/img/Subtasks accept.svg" class="input-icon-accept" onclick="saveSubtaskEdit(${i})">
     <div class="seperator-small"></div>

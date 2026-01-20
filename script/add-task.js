@@ -4,9 +4,9 @@ let subTaskInput = [];
 let contactsState = [];
 let tempPageInputs = {};
 let taskData = {};
-let createState = false;
+let valid = { title: false, duedate: false, category: false }
 
-const requiredFields = document.querySelectorAll("#title, #duedate, #category");
+const requiredFields = document.querySelectorAll("#title, #duedate ");
 const inputSubtask = document.getElementById("subtasks");
 const subtaskBox = document.getElementById("showHidden");
 
@@ -14,7 +14,6 @@ async function init() {
     await getData();
     renderContact();
     clearInputs();
-    priorityMedium();
 }
 
 async function getData() {
@@ -61,7 +60,6 @@ function contactSearch() {
         renderContact();
         return;
     }
-
     const filtered = contactsState.filter(c =>
         c.name.toLowerCase().includes(value)
     );
@@ -86,10 +84,6 @@ async function postAddTask(data) {
     }
 }
 
-function priorityMedium() {
-    let priorityMedium = document.querySelector('input[name="priority"]:checked')
-}
-
 function toggleContacts() {
     document.getElementById("searchContacts").value = "";
     document.getElementById("selectContacts").classList.add("open");
@@ -104,7 +98,6 @@ function toggleContact(id) {
     contact.checked = !contact.checked;
     assignedToLettersCheckContact();
 }
-
 
 function closeAssigned() {
     document.getElementById("selectContacts").classList.remove('open');
@@ -179,11 +172,14 @@ function onFocus(event) {
 function noneFocus(event) {
     const el = event.target;
     const value = el.value.trim();
+    const id = el.id;
     el.classList.remove("input-focus");
     if (!value) {
         el.classList.add("input-error");
+        valid[id] = false;
     } else {
         el.classList.remove("input-error");
+        valid[id] = true;
     }
 }
 
@@ -192,35 +188,54 @@ requiredFields.forEach((field) => {
     field.addEventListener("blur", noneFocus);
 });
 
-function toggleCategory() {
-    const changeArrow = document.getElementById("category");
+function toggleCategory(event) {
+    if (event) event.stopPropagation();
+    const changeArrow = document.getElementById("categoryBtn");
     const toggleCategory = document.getElementById("selectCategory");
-    toggleCategory.classList.toggle("open")
+    toggleCategory.classList.toggle("open");
     if (toggleCategory.classList.contains("open")) {
-        changeArrow.style.backgroundImage = "url('../assets/img/arrowUup.svg')"
+        changeArrow.style.backgroundImage = "url('../assets/img/arrowUup.svg')";
     } else {
-        changeArrow.style.backgroundImage = "url('../assets/img/arrow_drop_down-icon.svg"
+        changeArrow.style.backgroundImage = "url('../assets/img/arrow_drop_down-icon.svg')";
     }
 }
 
 function categorySelector() {
-    const selectedInput = document.querySelector('input[name="priorityCategory"]:checked');
-    const selectedCategoryValue = selectedInput.value;
-    const categoryContainer = document.getElementById("selectCategoryHtml");
-    categoryContainer.innerHTML = setCategoryHTML(selectedCategoryValue);
-    document.getElementById("selectCategory").classList.remove("open");
+    const selected = document.querySelector('input[name="priorityCategory"]:checked');
+    const label = selected ? selected.value : "Select task category";
+    const button = document.getElementById("categoryBtn");
+    const dropdown = document.getElementById("selectCategory");
+    button.textContent = label;
+    dropdown.classList.remove("open");
+    categorySelectorCheck();
 }
+
+function categorySelectorCheck() {
+    const selected = document.querySelector('input[name="priorityCategory"]:checked');
+    const value = selected ? selected.value.trim() : "";
+    valid.category = (value === "Technical Task" || value === "User Story");
+    const button = document.getElementById("categoryBtn");
+    if (valid.category) {
+        button.classList.remove("input-error");
+        button.classList.add("input-focus");
+    } else {
+        button.classList.add("input-error");
+    }
+}
+
+document.getElementById("categoryBtn").addEventListener("click", categorySelectorCheck);
 
 function clearInputs() {
     document.getElementById("title").value = "";
     document.getElementById("description").value = "";
     document.getElementById("duedate").value = "";
     document.getElementById("prio-medium").checked = true;
-    document.getElementById("SelectTaskCategory").checked = true;
-    categorySelector()
+    document.querySelectorAll('input[name="priorityCategory"]').forEach(r => r.checked = false);
+    document.getElementById("categoryBtn").textContent = "Select task category";
+    valid.category = false;
     document.getElementById("subtasks").value = "";
     document.getElementById("selectContact").innerHTML = "";
-    document.querySelectorAll(".checkbox-input:checked").forEach((Checkbox) => { Checkbox.checked = false; });
+    document.querySelectorAll(".checkbox-input:checked").forEach(cb => cb.checked = false);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -232,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 addSubtask();
             }
         });
-    }  
+    }
 });
 
 inputSubtask.addEventListener("focus", () => {
@@ -251,16 +266,21 @@ document.addEventListener("click", function (event) {
     const clickedInsideDropdown = dropdown.contains(event.target);
     const clickedButton = button.contains(event.target);
     if (!clickedInsideDropdown && !clickedButton) {
+        dropdown.classList.remove("open");
+        button.style.display = "flex";
+        closeAssigned()
     }
 });
 
 document.addEventListener("click", function (event) {
-    const category = document.getElementById("selectCategory");
-    const button = document.querySelector("#selectCategoryHtml button");
-    const clickInsideCategory = category.contains(event.target);
+    const dropdown = document.getElementById("selectCategory");
+    const button = document.getElementById("categoryBtn");
+    const clickInside = dropdown.contains(event.target);
     const clickOnButton = button.contains(event.target);
-    if (!clickInsideCategory && !clickOnButton) {
-        category.classList.remove("open");
+    if (!clickInside && !clickOnButton) {
+        dropdown.classList.remove("open");
+        button.classList.remove("input-focus");
+        button.classList.remove("input-error");
     }
 });
 
@@ -280,58 +300,6 @@ function getDataFromPage() {
     return taskData;
 }
 
-function validationRequired() {
-    const taskData = getDataFromPage();
-    const requiredFieldsValidation = ["title", "duedate", "category"];
-    const createTaskBTN = document.getElementById("colorChange")
-    let validationRequiredCheck = true;
-    requiredFieldsValidation.forEach((key) => {
-        const value = taskData[key];
-        const element = document.getElementById(key);
-        if (element) {
-            element.style.borderColor = "";
-        }
-        if (!value || value.trim() === "") {
-            console.warn("Validierung fehlgeschlagen:", key, "ist leer");
-            validationRequiredCheck = false;
-            if (element) {
-                element.style.borderColor = "#E60026";
-            }
-            return;
-        }
-        if (key === "category" && !["technical task", "user story"].includes(value.toLowerCase().trim())) {
-            console.warn("Validierung fehlgeschlagen: Kategorie nicht gewählt");
-            validationRequiredCheck = false;
-            if (element) {
-                element.style.borderColor = "#E60026";
-            }
-        }
-        if (validationRequiredCheck === true){
-        createTaskBTN.style.background = "#2A3647";
-    }
-
-});
-return validationRequiredCheck;
-}
-
-
-async function pushTask() {
-    const isValid = validationRequired();
-    if (isValid === true) {
-        let data = getDataFromPage();
-        console.log("Daten gesammelt:", data);
-        document.querySelector(".popup-added").style.display = "flex";
-        try {
-            const response = await postData(path = "/tasks",);
-            console.log("Erfolgreich Daten an API übergeben", response);
-
-        } catch (error) {
-            console.error("Fehler beim Senden der Daten:", error);
-            document.querySelector(".popup-added").style.display = "none";
-        }
-    }
-}
-
 async function postData() {
     let response = await fetch(BASE_URL + "/tasks" + ".json", {
         method: "POST",
@@ -343,7 +311,49 @@ async function postData() {
     return responseToJSON = await response.json();
 }
 
+document.addEventListener("click", isValid)
+
+function isValid() {
+    const button = document.getElementById("colorChange");
+    const allValid = Object.values(valid).every(value => value === true);
+    if (allValid) {
+        button.classList.remove("btn-State");
+        button.classList.add("btn-clear");
+        button.classList.remove("no-hover");
+        button.style.cursor = "pointer";
+        button.disabled = false;
+    } else {
+        button.classList.remove("btn-clear");
+        button.classList.add("btn-State");
+        button.classList.add("no-hover");
+        button.style.cursor = "not-allowed";
+        button.disabled = true;
+    };
+}
+
+function popup() {
+    const createPopUp = document.querySelector(".popup-added");
+    createPopUp.classList.remove("show");
+    void createPopUp.offsetWidth;
+    createPopUp.classList.add("show");
+    setTimeout(() => {
+        popupHide()
+    }, 2000)
+}
+
+function popupHide() {
+    const popup = document.querySelector(".popup-added");
+    popup.classList.remove("show");
+    popup.classList.add("hide");
+    setTimeout(() => {
+        popup.classList.remove("hide");
+        popup.style.display = "none";
+    }, 300);
+}
+
 async function CreateTask() {
-    await pushTask();
+    getDataFromPage();
     await postData();
+    clearInputs()
+    popup()
 }
