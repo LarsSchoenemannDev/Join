@@ -173,7 +173,7 @@
                 
                 <section class="column" data-status="done">
                   <h2>Done <span>+</span></h2>
-                  <div class="Cards cyan" data-id="c4" draggable="true">
+                  <div onclick="renderCardOverlay()" class="Cards cyan" data-id="c4" draggable="true">
                     <span class="tag cyan">Technical Task</span>
                     <h3>CSS Architecture Planning</h3>
                     <p>Define CSS naming conventions and structure...</p>
@@ -199,11 +199,19 @@
           <!-- Übernehmen und Stylen -->
           <button class="close-overlay" onclick="closeAddTaskOverlay()">&times;</button>
         </div>
-        <div id="addTaskFormContainer" class="overlay-body">
+        <div id="addTaskFormContainer" class="overlay-body-task">
           <!-- Formular wird hier dynamisch eingefügt -->
         </div>
       </div>
     </div>
+
+
+        
+    <div id="cardOverlay" class="overlay-container" style="display: none">
+        <div id="cardFormContainer" class="overlay-body">
+        </div>
+    </div>
+
 
 
   </body>
