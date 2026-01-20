@@ -330,4 +330,265 @@ input {
 
 .overlay-body {
     padding: 30px;
+    width: 25%;
+
+}
+
+.overlay-body-task {
+    padding: 30px;
+   
+
+}
+
+
+.task-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease;
+}
+
+.task-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.task-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.task-tag {
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+}
+
+.task-tag.user-story {
+    background: #0038FF;
+}
+
+.task-tag.technical-task {
+    background: #1FD7C1;
+}
+
+.task-close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #666;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.task-close-btn:hover {
+    color: #000;
+}
+
+.task-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+    color: #000;
+    text-wrap: wrap;
+}
+
+.task-description {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 16px 0;
+    line-height: 1.5;
+}
+
+.task-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.task-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.task-meta-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+}
+
+.task-meta-value {
+    font-size: 14px;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.priority-indicator {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.priority-indicator.medium {
+    background: #FFA800;
+}
+
+.priority-indicator.high {
+    background: #FF3D00;
+}
+
+.priority-indicator.low {
+    background: #7AE229;
+}
+
+.task-assigned {
+    margin-bottom: 16px;
+}
+
+.task-assigned-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 8px;
+}
+
+.task-assigned-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.assigned-person {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.assigned-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.assigned-avatar.orange {
+    background: #FF7A00;
+}
+
+.assigned-avatar.green {
+    background: #1FD7C1;
+}
+
+.assigned-avatar.purple {
+    background: #9747FF;
+}
+
+.assigned-name {
+    font-size: 14px;
+    color: #000;
+}
+
+.task-subtasks {
+    margin-bottom: 20px;
+}
+
+.task-subtasks-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 8px;
+}
+
+.task-subtasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.subtask-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #000;
+}
+
+.subtask-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #4a5568;
+}
+
+.subtask-text {
+    flex: 1;
+}
+
+.task-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.task-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: none;
+    background: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.task-action-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.delete-btn {
+    color: #666;
+}
+
+.delete-btn:hover {
+    background: #f5f5f5;
+}
+
+.edit-btn {
+    color: #4a5568;
+}
+
+.edit-btn:hover {
+    background: #e8e8e8;
 }

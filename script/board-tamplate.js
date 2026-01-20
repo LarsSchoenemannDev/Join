@@ -195,3 +195,99 @@ function renderCard() {
 
 }
 renderCard();
+
+
+
+// ------------------ Overlay Card Details ------------------
+function renderCardOverlay() {
+    const overlay = document.getElementById("cardOverlay");
+    const formContainer = document.getElementById("cardFormContainer");
+
+    formContainer.innerHTML = `<div id="openTaskOverlay" class="task-card" data-id="c4" draggable="true">
+                    <div class="task-card-header">
+                      <span class="task-tag user-story">User Story</span>
+                      <button class="task-close-btn" onclick="closeCardOverlay()">&times;</button>
+                    </div>
+                   <h3 class="task-title" style="word-wrap: break-word; overflow-wrap: break-word; max-width: 100%;">Kochwelt Page & Recipe Recommender</h3>
+                    <p class="task-description">Build start page with recipe recommendation...</p>
+                    
+                    <div class="task-meta">
+                      <div class="task-meta-item">
+                        <span class="task-meta-label">Due date:</span>
+                        <span class="task-meta-value">10/05/2023</span>
+                      </div>
+                      <div class="task-meta-item">
+                        <span class="task-meta-label">Priority:</span>
+                        <span class="task-meta-value">
+                          Medium
+                          <span class="priority-indicator medium"></span>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="task-assigned">
+                      <div class="task-assigned-label">Assigned To:</div>
+                      <div class="task-assigned-list">
+                        <div class="assigned-person">
+                          <div class="assigned-avatar green">EM</div>
+                          <span class="assigned-name">Emmanuel Mauer</span>
+                        </div>
+                        <div class="assigned-person">
+                          <div class="assigned-avatar purple">MB</div>
+                          <span class="assigned-name">Marcel Bauer</span>
+                        </div>
+                        <div class="assigned-person">
+                          <div class="assigned-avatar orange">AM</div>
+                          <span class="assigned-name">Anton Mayer</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="task-subtasks">
+                      <div class="task-subtasks-label">Subtasks</div>
+                      <div class="task-subtasks-list">
+                        <label class="subtask-item">
+                          <input type="checkbox" checked>
+                          <span class="subtask-text">Implement Recipe Recommendation</span>
+                        </label>
+                        <label class="subtask-item">
+                          <input type="checkbox">
+                          <span class="subtask-text">Start Page Layout</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="task-actions">
+                      <button class="task-action-btn delete-btn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M3 4h10M5.5 4V2.5A1.5 1.5 0 0 1 7 1h2a1.5 1.5 0 0 1 1.5 1.5V4m1.5 0v9a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 13V4h8Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Delete
+                      </button>
+                      <button class="task-action-btn edit-btn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M11.333 2A1.886 1.886 0 0 1 14 4.667l-9 9-3.667 1 1-3.667 9-9Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Edit
+                      </button>
+                    </div>`;
+    
+    overlay.style.display = "flex";
+    document.body.style.overflow = "hidden";
+    
+    overlay.onclick = eventClick;
+}
+
+function closeCardOverlay() {
+    const overlay = document.getElementById("cardOverlay");
+    overlay.style.display = "none";
+    document.body.style.overflow = "auto";
+    overlay.onclick = null; 
+}
+
+function eventClick(event) {
+    const overlay = document.getElementById("cardOverlay");
+    if (event.target === overlay) {
+        closeCardOverlay();
+    }
+}
