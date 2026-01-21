@@ -1,32 +1,38 @@
 .overlay-container .add-task-content {
   display: flex;
-  padding: 40px; 
- 
-  align-items: flex-start !important;   
-   
+  padding: 40px;
+
+  /* align-items: flex-start !important;    */
+
 }
+
+
 
 .overlay-container .h1-content {
   display: flex;
-  justify-content: flex-end;
-
+  justify-content: space-between;
 }
-
 
 
 
 .overlay-body .main-content {
-  gap: 60px; 
+  gap: 60px;
 }
+
+.overlay-body-task {
+  padding: 10px 40px 10px 40px;
+}
+
 .overlay-container .card {
-  max-width: 600px; 
+  max-width: 600px;
 }
+
 
 
 .overlay-container input,
 .overlay-container select,
 .overlay-container textarea {
-  border: 1px solid #d1d5db; 
+  border: 1px solid #d1d5db;
 }
 
 
@@ -44,25 +50,28 @@
 }
 
 .overlay-container .overlay-content {
-    /* background-color: white;
+  /* background-color: white;
     border-radius: 8px;
     /* width: 77%; */
-    max-width: 64%;
-    max-height: 96%;
-    overflow-y: auto;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    animation: slideIn 0.3s ease-out; 
+  /* max-width: 64%;
+  max-height: 96%; */
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.3s ease-out;
 }
 
 
 
 .overlay-container .footer-add-task {
-    margin-top: 70px !important;
-    /* justify-content: flex-end !important; */
+  margin-top: 120px !important;
+  /* justify-content: flex-end !important; */
 }
 
 .overlay-container .footer-add-task .btn-priority-flex {
-    display: flex;
+  display: flex;
 
 }
 
+.main-content {
+  gap: clamp(8px, 2vw, 120px);
+}

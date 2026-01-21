@@ -1,5 +1,5 @@
 
-function openAddTaskOverlay() {
+  function openAddTaskOverlay() {
     const overlay = document.getElementById("addTaskOverlay");
     overlay.style.display = "flex";
 
@@ -7,7 +7,7 @@ function openAddTaskOverlay() {
     if (formContainer. children.length === 0) {
         loadAddTaskFormIntoOverlay();
     }
-
+     init();
     document.body.style.overflow = "hidden";
 }
 
@@ -19,13 +19,11 @@ function closeAddTaskOverlay() {
 
 }
 
-
 // function resetAddTaskForm() {
 //     const formContainer = document.getElementById("addTaskFormContainer");
 //     if (formContainer) {
         
 //     }
 // }
-
 
 // closeAddTaskOverlay() 

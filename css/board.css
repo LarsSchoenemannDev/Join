@@ -270,10 +270,10 @@ input {
 
 .overlay-content {
     background-color: white;
-    border-radius: 8px;
-    width: 90%;
+    border-radius: 12px;
+    /* width: 90%;
     max-width: 1000px;
-    max-height: 90vh;
+    max-height: 90vh; */
     overflow-y: auto;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     animation: slideIn 0.3s ease-out;
@@ -334,11 +334,7 @@ input {
 
 }
 
-.overlay-body-task {
-    padding: 30px;
-   
 
-}
 
 
 .task-card {

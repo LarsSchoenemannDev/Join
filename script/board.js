@@ -53,10 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-getData();
-console.log(FetchData);
-
-
 function noTasksMessage() {
   const messageElement = document.getElementById('toggleMessage');
   const todoColumn = document.querySelector('.column[data-status="todo"]');

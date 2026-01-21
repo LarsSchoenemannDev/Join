@@ -6,14 +6,14 @@ let tempPageInputs = {};
 let taskData = {};
 let valid = { title: false, duedate: false, category: false }
 
-const requiredFields = document.querySelectorAll("#title, #duedate ");
-const inputSubtask = document.getElementById("subtasks");
-const subtaskBox = document.getElementById("showHidden");
+
 
 async function init() {
     await getData();
     renderContact();
     clearInputs();
+    eventsAddTask();
+    console.log("Status", document.readyState)
 }
 
 async function getData() {
@@ -183,10 +183,7 @@ function noneFocus(event) {
     }
 }
 
-requiredFields.forEach((field) => {
-    field.addEventListener("focus", onFocus);
-    field.addEventListener("blur", noneFocus);
-});
+
 
 function toggleCategory(event) {
     if (event) event.stopPropagation();
@@ -223,8 +220,6 @@ function categorySelectorCheck() {
     }
 }
 
-document.getElementById("categoryBtn").addEventListener("click", categorySelectorCheck);
-
 function clearInputs() {
     document.getElementById("title").value = "";
     document.getElementById("description").value = "";
@@ -238,51 +233,65 @@ function clearInputs() {
     document.querySelectorAll(".checkbox-input:checked").forEach(cb => cb.checked = false);
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const subtaskElement = document.getElementById("subtasks");
-    if (subtaskElement) {
-        subtaskElement.addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                addSubtask();
+function eventsAddTask(){
+    console.log("Dom Loaded 🪄", document.readyState);
+    if (document.readyState === "complete") {
+        let requiredFields = document.querySelectorAll("#title, #duedate ");
+        let inputSubtask = document.getElementById("subtasks");
+        let subtaskBox = document.getElementById("showHidden");
+        inputSubtask.addEventListener("focus", () => {
+            subtaskBox.style.display = "flex";
+        });
+        document.addEventListener("click", (e) => {
+            if (!e.target.closest(".input-wrapper")) {
+                subtaskBox.style.display = "none";
             }
         });
-    }
-});
+        document.addEventListener("keyup", function () {
+            let subtaskElement = document.getElementById("subtasks");
+            if (subtaskElement) {
+                subtaskElement.addEventListener("keydown", function (event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        addSubtask();
+                    }
+                });
+            }
+        });
+        document.addEventListener("click", function (event) {
+            let dropdown = document.getElementById("selectContacts");
+            let button = document.getElementById("BTNToggleContacts");
+            let clickedInsideDropdown = dropdown.contains(event.target);
+            let clickedButton = button.contains(event.target);
+            if (!clickedInsideDropdown && !clickedButton) {
+                dropdown.classList.remove("open");
+                button.style.display = "flex";
+                closeAssigned()
+            }
+        });
 
-inputSubtask.addEventListener("focus", () => {
-    subtaskBox.style.display = "flex";
-});
+        document.addEventListener("click", function (event) {
+            let dropdown = document.getElementById("selectCategory");
+            let button = document.getElementById("categoryBtn");
+            let clickInside = dropdown.contains(event.target);
+            let clickOnButton = button.contains(event.target);
+            if (!clickInside && !clickOnButton) {
+                dropdown.classList.remove("open");
+                button.classList.remove("input-focus");
+                button.classList.remove("input-error");
+            }
+        });
+        document.getElementById("categoryBtn").addEventListener("click", categorySelectorCheck);
+        requiredFields.forEach((field) => {
+            field.addEventListener("focus", onFocus);
+            field.addEventListener("blur", noneFocus);
+        });
+        document.addEventListener("click", isValid);
+    } else {
+        console.error("####### Events Not Working #######");
+    };
+}
 
-document.addEventListener("click", (e) => {
-    if (!e.target.closest(".input-wrapper")) {
-        subtaskBox.style.display = "none";
-    }
-});
-
-document.addEventListener("click", function (event) {
-    const dropdown = document.getElementById("selectContacts");
-    const button = document.getElementById("BTNToggleContacts");
-    const clickedInsideDropdown = dropdown.contains(event.target);
-    const clickedButton = button.contains(event.target);
-    if (!clickedInsideDropdown && !clickedButton) {
-        dropdown.classList.remove("open");
-        button.style.display = "flex";
-        closeAssigned()
-    }
-});
-
-document.addEventListener("click", function (event) {
-    const dropdown = document.getElementById("selectCategory");
-    const button = document.getElementById("categoryBtn");
-    const clickInside = dropdown.contains(event.target);
-    const clickOnButton = button.contains(event.target);
-    if (!clickInside && !clickOnButton) {
-        dropdown.classList.remove("open");
-        button.classList.remove("input-focus");
-        button.classList.remove("input-error");
-    }
-});
 
 function getDataFromPage() {
     let inputs = document.querySelectorAll("#title, #description, #duedate");
@@ -310,8 +319,6 @@ async function postData() {
     });
     return responseToJSON = await response.json();
 }
-
-document.addEventListener("click", isValid)
 
 function isValid() {
     const button = document.getElementById("colorChange");
