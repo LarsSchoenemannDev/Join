@@ -7,7 +7,6 @@ let taskData = {};
 let valid = { title: false, duedate: false, category: false }
 
 
-
 async function init() {
     await getData();
     renderContact();
@@ -184,7 +183,6 @@ function noneFocus(event) {
 }
 
 
-
 function toggleCategory(event) {
     if (event) event.stopPropagation();
     const changeArrow = document.getElementById("categoryBtn");
@@ -228,6 +226,7 @@ function clearInputs() {
     document.querySelectorAll('input[name="priorityCategory"]').forEach(r => r.checked = false);
     document.getElementById("categoryBtn").textContent = "Select task category";
     valid.category = false;
+    subTaskInput = [];
     document.getElementById("subtasks").value = "";
     document.getElementById("SubtaskList").innerHTML = "";
     document.getElementById("selectContact").innerHTML = "";

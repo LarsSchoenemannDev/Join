@@ -63,7 +63,7 @@
 
 
 .overlay-container .footer-add-task {
-  margin-top: 120px !important;
+  /* margin-top: 120px !important; */
   /* justify-content: flex-end !important; */
 }
 
@@ -74,4 +74,12 @@
 
 .main-content {
   gap: clamp(8px, 2vw, 120px);
+}
+
+.Subtask-List {
+  max-height: 160px;
+}
+
+.footer-add-task {
+  margin-top: calc(83vh - 90px - 750px);
 }

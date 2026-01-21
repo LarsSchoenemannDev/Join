@@ -1,102 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join</title>
 
-    <!-- adding Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/Favicon/favicon.ico" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="../assets/Favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="../assets/Favicon/favicon-16x16.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="../assets/Favicon/apple-touch-icon.png"
-    />
-    <link rel="manifest" href="../assets/Favicon/site.webmanifest" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join</title>
 
-    <!-- adding Main CSS Style-Sheet -->
-    <link rel="stylesheet" href="../css/standard.css" />
-    <link rel="stylesheet" href="../css/sidebar_and_header_main.css" />
-    <link rel="stylesheet" href="../css/board.css" /> 
-    <link rel="stylesheet" href="../css/board-responsiv.css" />  
-    <link rel="stylesheet" href="../css/sidebar-responsiv.css" />
-    <link rel="stylesheet" href="../css/add-task.css" />
-    <link rel="stylesheet" href="../css/board-overlay.css">
-    
-  </head>
+  <!-- adding Favicon-->
+  <link rel="icon" type="image/x-icon" href="../assets/Favicon/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/Favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/Favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/Favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="../assets/Favicon/site.webmanifest" />
 
-  <body>
-    <div class="body-div">
-      <div class="content-wrapper">
-        <aside class="sidebar">
-          <div class="frame1">
-            <div class="logo">
-              <img src="../assets/img/join-logo.svg" alt="logo" />
+  <!-- adding Main CSS Style-Sheet -->
+  <link rel="stylesheet" href="../css/standard.css" />
+  <link rel="stylesheet" href="../css/sidebar_and_header_main.css" />
+  <link rel="stylesheet" href="../css/board.css" />
+  <link rel="stylesheet" href="../css/board-responsiv.css" />
+  <link rel="stylesheet" href="../css/sidebar-responsiv.css" />
+  <link rel="stylesheet" href="../css/add-task.css" />
+  <link rel="stylesheet" href="../css/board-overlay.css">
+
+</head>
+
+<body>
+  <div class="body-div">
+    <div class="content-wrapper">
+      <aside class="sidebar">
+        <div class="frame1">
+          <div class="logo">
+            <img src="../assets/img/join-logo.svg" alt="logo" />
+          </div>
+          <div class="frame2">
+            <div class="sideMenu">
+              <a href="../html/summary.html"><img src="../assets/img/summary-icon.svg " alt="summary " />Summary</a>
+              <a href="../html/add-task.html"><img src="../assets/img/addTask-icon.svg " alt="add-task " />Add Task
+              </a>
+              <a class="active" href="#"><img src="../assets/img/board-icon.svg " alt="board " />Board</a>
+              <a href="../html/contacts.html"><img src="../assets/img/contacts-icon.svg" alt="contacts " />Contacts</a>
             </div>
-            <div class="frame2">
-              <div class="sideMenu">
-                <a href="../html/summary.html"
-                  ><img
-                    src="../assets/img/summary-icon.svg "
-                    alt="summary "
-                  />Summary</a
-                >
-                <a href="../html/add-task.html"
-                  ><img
-                    src="../assets/img/addTask-icon.svg "
-                    alt="add-task "
-                  />Add Task
-                </a>
-                <a class="active" href="#"
-                  ><img
-                    src="../assets/img/board-icon.svg "
-                    alt="board "
-                  />Board</a
-                >
-                <a href="../html/contacts.html"
-                  ><img
-                    src="../assets/img/contacts-icon.svg"
-                    alt="contacts "
-                  />Contacts</a
-                >
-              </div>
-              <div class="sideMenu hide">
-                <a href="../html/contacts.html"
-                  ><img
-                    src="../assets/img/contacts-icon.svg "
-                    alt="contacts "
-                  />Login</a
-                >
-              </div>
+            <div class="sideMenu hide">
+              <a href="../html/contacts.html"><img src="../assets/img/contacts-icon.svg " alt="contacts " />Login</a>
             </div>
           </div>
-          <div class="frame3">
-            <div class="footerMenu">
-              <a href="../html/privacy-policy.html">Privacy Policy</a>
-              <a href="../html/legal-notice.html">Legal notice</a>
-            </div>
+        </div>
+        <div class="frame3">
+          <div class="footerMenu">
+            <a href="../html/privacy-policy.html">Privacy Policy</a>
+            <a href="../html/legal-notice.html">Legal notice</a>
           </div>
-        </aside>
-        <div class="main-area">
-          <header class="header">
-            <div class="header_content">
+        </div>
+      </aside>
+      <div class="main-area">
+        <header class="header">
+          <div class="header_content">
             <div class="join-icon">
-              <img
-                src="../assets/img/Logo_for_Favicon_construction.png"
-                alt="Join-logo"
-              />
+              <img src="../assets/img/Logo_for_Favicon_construction.png" alt="Join-logo" />
             </div>
             <div class="text">Kanban Project Management Tool</div>
             <div class="icons">
@@ -107,35 +67,46 @@
                 <button class="menu-button" id="menu-button" onclick="tooglemenu()">SM</button>
               </div>
               <div class="dropDown-menu" id="dropDown-menu">
-              <a href="../html/help.html" class="hide" id="switch_help">Help</a>
-              <a href="../html/legal-notice.html">Legal notice</a>
-              <a href="../html/privacy-policy.html">Privacy Policy</a>
-              <a href="">Log Out</a>
-            </div>
-            </div>
-            </div>
-          </header>
-<main>
-            <div class="board-container">
-              <div class="board-header">
-                <h1>Board</h1>
-                <div class="header-actions">
-                  <input type="text" placeholder="Find Task">
-                  <button class="button-task" onclick="openAddTaskOverlay()">Add task +</button>
-                </div>
+                <a href="../html/help.html" class="hide" id="switch_help">Help</a>
+                <a href="../html/legal-notice.html">Legal notice</a>
+                <a href="../html/privacy-policy.html">Privacy Policy</a>
+                <a href="">Log Out</a>
               </div>
-              
-              <div class="board">
-                <section class="column" data-status="todo">
-                  <h2>To do <span>+</span></h2>
-                  <div id="toggleMessage" class="empty">No tasks To do</div>
-                </section>
-                
-                <section class="column" data-status="in-progress">
-                  <h2>In progress <span>+</span></h2>
-                  <div id="toDo-box"></div>
-                  <!-- <div class="Cards blue" data-id="c1" draggable="true">
-                    <span class="tag">User Story</span>
+            </div>
+          </div>
+        </header>
+        <main>
+          <section class="board-container">
+            <div class="board-header">
+              <h1 class="h1-content">Board</h1>
+              <div class="header-actions">
+                <div class="subtask-input-container">
+                  <div class="input-wrapper">
+                    <input id="subtasks" type="text" placeholder="Find Task" class="search-task">
+                    <div class="img-container" id="showHidden" style="display: flex;">
+                      <div class="padding">
+                        <div class="seperator-small"></div>
+                      </div>
+                      <img src="../assets/img/search.svg" class="input-icon-search" onclick="">
+                    </div>
+                  </div>
+                </div>
+                <button class="button-task" onclick="openAddTaskOverlay()">Add task
+                  <img src="..//assets/img/search-add.svg" </button>
+              </div>
+            </div>
+
+            <div class="board">
+              <section class="column" data-status="todo">
+                <h2>To do <img src="..//assets/img/add board.svg" alt="plus symbol"></h2>
+                <div id="toggleMessage" class="empty">No tasks To do</div>
+              </section>
+
+              <section class="column" data-status="in-progress">
+                <h2>In progress <img src="..//assets/img/add board.svg" alt="plus symbol"></h2>
+                <div id="toDo-box"></div>
+                <div class="Cards blue" data-id="c1" draggable="true">
+                    <span class="user-story">User Story</span>
                     <h3>Kochwelt Page & Recipe Recommender</h3>
                     <p>Build start page with recipe recommendation...</p>
                     <div class="progress">1/2 Subtasks</div>
@@ -144,86 +115,86 @@
                       <div class="avatar green">EN</div>
                       <div class="avatar purple">ME</div>
                     </div>
-                  </div> -->
-                </section>
-                
-                <section class="column" data-status="feedback">
-                  <h2>Await feedback <span>+</span></h2>
-                  <div class="Cards cyan" data-id="c2" draggable="true">
-                    <span class="tag cyan">Technical Task</span>
-                    <h3>HTML Base Template Creation</h3>
-                    <p>Create reusable HTML base templates...</p>
-                    <div class="avatars">
-                      <div class="avatar orange">AN</div>
-                      <div class="avatar green">EN</div>
-                      <div class="avatar purple">ME</div>
-                    </div>
                   </div>
-                  <div class="Cards blue" data-id="c3" draggable="true">
-                    <span class="tag">User Story</span>
-                    <h3>Daily Kochwelt Recipe</h3>
-                    <p>Implement daily recipe and portion calculator...</p>
-                    <div class="avatars">
-                      <div class="avatar orange">AN</div>
-                      <div class="avatar green">EN</div>
-                      <div class="avatar purple">ME</div>
-                    </div>
+              </section>
+
+              <section class="column" data-status="feedback">
+                <h2>Await feedback <img src="..//assets/img/add board.svg" alt="plus symbol"></h2>
+                <div class="Cards cyan" data-id="c2" draggable="true">
+                  <span class="tag cyan">Technical Task</span>
+                  <h3>HTML Base Template Creation</h3>
+                  <p>Create reusable HTML base templates...</p>
+                  <div class="avatars">
+                    <div class="avatar orange">AN</div>
+                    <div class="avatar green">EN</div>
+                    <div class="avatar purple">ME</div>
                   </div>
-                </section>
-                
-                <section class="column" data-status="done">
-                  <h2>Done <span>+</span></h2>
-                  <div onclick="renderCardOverlay()" class="Cards cyan" data-id="c4" draggable="true">
-                    <span class="tag cyan">Technical Task</span>
-                    <h3>CSS Architecture Planning</h3>
-                    <p>Define CSS naming conventions and structure...</p>
-                    <div class="progress">2/2 Subtasks</div>
-                    <div class="avatars">
-                      <div class="avatar orange">AN</div>
-                      <div class="avatar green">EN</div>
-                      <div class="avatar purple">ME</div>
-                    </div>
+                </div>
+                <div class="Cards blue" data-id="c3" draggable="true">
+                  <span class="task-tag-user-story">User Story</span>
+                  <h3>Daily Kochwelt Recipe</h3>
+                  <p>Implement daily recipe and portion calculator...</p>
+                  <div class="avatars">
+                    <div class="avatar orange">AN</div>
+                    <div class="avatar green">EN</div>
+                    <div class="avatar purple">ME</div>
                   </div>
-                </section>
-              </div>
+                </div>
+              </section>
+
+              <section class="column" data-status="done">
+                <h2>Done <img src="..//assets/img/add board.svg" alt="plus symbol"></h2>
+                <div onclick="renderCardOverlay()" class="Cards cyan" data-id="c4" draggable="true">
+                  <span class="tag cyan">Technical Task</span>
+                  <h3>CSS Architecture Planning</h3>
+                  <p>Define CSS naming conventions and structure...</p>
+                  <div class="progress">2/2 Subtasks</div>
+                  <div class="avatars">
+                    <div class="avatar orange">AN</div>
+                    <div class="avatar green">EN</div>
+                    <div class="avatar purple">ME</div>
+                  </div>
+                </div>
+              </section>
             </div>
-          </main>
-        </div>
+            </sectino>
+        </main>
       </div>
     </div>
+  </div>
 
-        <!-- Add Task Overlay -->
-    <div id="addTaskOverlay" class="overlay-container" style="display: none;">
-      <div class="overlay-content">        
-          <!-- Übernehmen und Stylen -->  
-        <div id="addTaskFormContainer" class="overlay-body-task">
-          <!-- Formular wird hier dynamisch eingefügt -->
-        </div>
+  <!-- Add Task Overlay -->
+  <div id="addTaskOverlay" class="overlay-container" style="display: none;">
+    <div class="overlay-content">
+      <!-- Übernehmen und Stylen -->
+      <div id="addTaskFormContainer" class="overlay-body-task">
+        <!-- Formular wird hier dynamisch eingefügt -->
       </div>
     </div>
+  </div>
 
 
-        
-    <div id="cardOverlay" class="overlay-container" style="display: none">
-        <div id="cardFormContainer" class="overlay-body">
-        </div>
+
+  <div id="cardOverlay" class="overlay-container" style="display: none">
+    <div id="cardFormContainer" class="overlay-body">
     </div>
+  </div>
 
 
 
-  </body>
-  <!--<script src="../script/auth-script.js"></script>-->
-  <script src="../script/add-taskHTML.js"></script>
-   <script src="../script/board-tamplate.js"></script>
-  
-  <script src="../script/add-task.js"></script>
-  <script src="../script/add-taskHTML.js"></script>
+</body>
+<!--<script src="../script/auth-script.js"></script>-->
+<script src="../script/add-taskHTML.js"></script>
+<script src="../script/board-tamplate.js"></script>
 
-  <script src="../script/board-overlay.js"></script>
-  <script src="../script/board.js"></script>
- 
-  
-  <script src="../script/sidebar_and_header_script.js"></script>
-  
+<script src="../script/add-task.js"></script>
+<script src="../script/add-taskHTML.js"></script>
+
+<script src="../script/board-overlay.js"></script>
+<script src="../script/board.js"></script>
+
+
+<script src="../script/sidebar_and_header_script.js"></script>
+
 
 </html>

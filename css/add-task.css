@@ -333,6 +333,13 @@ textarea:focus {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    max-height: 180px;
+    opacity: 1;
+    transform: translateY(0);
+    overflow-y: auto;    
+    transform: translate(0px, -5px);
+    border-radius: var(--radius-12);
+    margin-top: 10px;
 }
 
 .sub-container {
@@ -565,6 +572,7 @@ textarea:focus {
         opacity: 0;
         transform: translateY(360px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
