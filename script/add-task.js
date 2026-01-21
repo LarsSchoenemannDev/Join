@@ -229,11 +229,12 @@ function clearInputs() {
     document.getElementById("categoryBtn").textContent = "Select task category";
     valid.category = false;
     document.getElementById("subtasks").value = "";
+    document.getElementById("SubtaskList").innerHTML = "";
     document.getElementById("selectContact").innerHTML = "";
     document.querySelectorAll(".checkbox-input:checked").forEach(cb => cb.checked = false);
 }
 
-function eventsAddTask(){
+function eventsAddTask() {
     console.log("Dom Loaded 🪄", document.readyState);
     if (document.readyState === "complete") {
         let requiredFields = document.querySelectorAll("#title, #duedate ");
