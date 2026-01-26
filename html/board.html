@@ -24,7 +24,7 @@
 
 </head>
 
-<body>
+<body onload="boardInit()">
   <div class="body-div">
     <div class="content-wrapper">
       <aside class="sidebar">
@@ -97,67 +97,46 @@
             </div>
 
             <div class="board">
-              <section class="column" data-status="todo">
-                <h2>To do <img src="..//assets/img/add board.svg" alt="plus symbol"></h2>
+              <section class="todo" data-status="todo">
+                <h3 class="header-category ">To do <img src="..//assets/img/add board.svg" alt="plus symbol"></h3>
                 <div id="toggleMessage" class="empty">No tasks To do</div>
+                innhalt der box
               </section>
 
-              <section class="column" data-status="in-progress">
-                <h2>In progress <img src="..//assets/img/add board.svg" alt="plus symbol"></h2>
+              <section class="in-progress" data-status="in-progress">
+                <h3 class="header-category">In progress <img src="..//assets/img/add board.svg"
+                    alt="plus symbol"></h3>
                 <div id="toDo-box"></div>
                 <div class="Cards blue" data-id="c1" draggable="true">
-                    <span class="user-story">User Story</span>
-                    <h3>Kochwelt Page & Recipe Recommender</h3>
-                    <p>Build start page with recipe recommendation...</p>
-                    <div class="progress">1/2 Subtasks</div>
-                    <div class="avatars">
-                      <div class="avatar orange">AN</div>
-                      <div class="avatar green">EN</div>
-                      <div class="avatar purple">ME</div>
-                    </div>
-                  </div>
-              </section>
-
-              <section class="column" data-status="feedback">
-                <h2>Await feedback <img src="..//assets/img/add board.svg" alt="plus symbol"></h2>
-                <div class="Cards cyan" data-id="c2" draggable="true">
-                  <span class="tag cyan">Technical Task</span>
-                  <h3>HTML Base Template Creation</h3>
-                  <p>Create reusable HTML base templates...</p>
+                  <span class="tag">User Story</span>
+                  <h4>Page & Recipe Recommender</h4>
+                  <span>Build start page with recipe recommendation...</span>
+                  <div class="progress">1/2 Subtasks</div>
                   <div class="avatars">
                     <div class="avatar orange">AN</div>
                     <div class="avatar green">EN</div>
                     <div class="avatar purple">ME</div>
-                  </div>
-                </div>
-                <div class="Cards blue" data-id="c3" draggable="true">
-                  <span class="task-tag-user-story">User Story</span>
-                  <h3>Daily Kochwelt Recipe</h3>
-                  <p>Implement daily recipe and portion calculator...</p>
-                  <div class="avatars">
-                    <div class="avatar orange">AN</div>
-                    <div class="avatar green">EN</div>
-                    <div class="avatar purple">ME</div>
+                    <div class="menu-button"> =</div>
                   </div>
                 </div>
               </section>
+              
 
-              <section class="column" data-status="done">
-                <h2>Done <img src="..//assets/img/add board.svg" alt="plus symbol"></h2>
-                <div onclick="renderCardOverlay()" class="Cards cyan" data-id="c4" draggable="true">
-                  <span class="tag cyan">Technical Task</span>
-                  <h3>CSS Architecture Planning</h3>
-                  <p>Define CSS naming conventions and structure...</p>
-                  <div class="progress">2/2 Subtasks</div>
-                  <div class="avatars">
-                    <div class="avatar orange">AN</div>
-                    <div class="avatar green">EN</div>
-                    <div class="avatar purple">ME</div>
-                  </div>
-                </div>
+
+              <div id="contentId"></div>
+
+              <section class="await-feedback" data-status="feedback">
+                <h3 class="header-category">Await feedback <img src="..//assets/img/add board.svg" alt="plus symbol"></h3>
+                innhalt der box
+              </section>
+
+              <section class="done" data-status="done">
+                <h3 class="header-category">Done <img src="..//assets/img/add board.svg" alt="plus symbol"></h3>
+                innhalt der box
               </section>
             </div>
             </sectino>
+          </section>
         </main>
       </div>
     </div>
@@ -173,14 +152,10 @@
     </div>
   </div>
 
-
-
   <div id="cardOverlay" class="overlay-container" style="display: none">
     <div id="cardFormContainer" class="overlay-body">
     </div>
   </div>
-
-
 
 </body>
 <!--<script src="../script/auth-script.js"></script>-->

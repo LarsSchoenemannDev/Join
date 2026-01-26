@@ -189,23 +189,23 @@ function loadAddTaskFormIntoOverlay() {
 }
 
 
-function renderCard() {
-  const toDoContainer = document.getElementById("toDo-box");
+// function renderCard() {
+//   const toDoContainer = document.getElementById("toDo-box");
 
-  toDoContainer.innerHTML = `<div class="Cards blue" data-id="c1" draggable="true">
-                    <span class="tag">User Story</span>
-                    <h3>Kochwelt Page & Recipe Recommender</h3>
-                    <p>Build start page with recipe recommendation...</p>
-                    <div class="progress">1/2 Subtasks</div>
-                    <div class="avatars">
-                      <div class="avatar orange">AN</div>
-                      <div class="avatar green">EN</div>
-                      <div class="avatar purple">ME</div>
-                    </div>
-                  </div>`;
+//   toDoContainer.innerHTML = `<div class="Cards blue" data-id="c1" draggable="true">
+//                     <span class="tag">User Story</span>
+//                     <h3>Kochwelt Page & Recipe Recommender</h3>
+//                     <p>Build start page with recipe recommendation...</p>
+//                     <div class="progress">1/2 Subtasks</div>
+//                     <div class="avatars">
+//                       <div class="avatar orange">AN</div>
+//                       <div class="avatar green">EN</div>
+//                       <div class="avatar purple">ME</div>
+//                     </div>
+//                   </div>`;
 
-}
-renderCard();
+// }
+// renderCard();
 
 
 
@@ -301,4 +301,26 @@ function eventClick(event) {
   if (event.target === overlay) {
     closeCardOverlay();
   }
+}
+
+
+
+function cardHTML() {
+  return `<section class="in-progress" data-status="in-progress">
+                <h3 class="header-category">In progress <img src="..//assets/img/add board.svg"
+                    alt="plus symbol"></h3>
+                <div id="toDo-box"></div>
+                <div class="Cards blue" data-id="c1" draggable="true">
+                  <span class="tag">User Story</span>
+                  <h4>Page & Recipe Recommender</h4>
+                  <span>Build start page with recipe recommendation...</span>
+                  <div class="progress">1/2 Subtasks</div>
+                  <div class="avatars">
+                    <div class="avatar orange">AN</div>
+                    <div class="avatar green">EN</div>
+                    <div class="avatar purple">ME</div>
+                    <div class="menu-button"> =</div>
+                  </div>
+                </div>
+              </section>`;
 }

@@ -1,5 +1,5 @@
 const BASE_URL = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/";
-let FetchData = {};
+let fetchData = {};
 let subTaskInput = [];
 let contactsState = [];
 let tempPageInputs = {};
@@ -23,7 +23,7 @@ async function getData() {
             );
         }
         const data = await response.json();
-        FetchData = data;
+        fetchData = data;
         contactsState = data.contacts.map(contact => ({
             id: contact.id,
             name: contact.name,
@@ -182,7 +182,6 @@ function noneFocus(event) {
     }
 }
 
-
 function toggleCategory(event) {
     if (event) event.stopPropagation();
     const changeArrow = document.getElementById("categoryBtn");
@@ -234,7 +233,7 @@ function clearInputs() {
 }
 
 function eventsAddTask() {
-    console.log("Dom Loaded 🪄", document.readyState);
+    console.log(document.readyState);
     if (document.readyState === "complete") {
         let requiredFields = document.querySelectorAll("#title, #duedate ");
         let inputSubtask = document.getElementById("subtasks");
