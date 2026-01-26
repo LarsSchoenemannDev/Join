@@ -1,8 +1,23 @@
 
+const BASE_URL = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app"
+const form = document.getElementById('login_form')
 let password_input = document.getElementById('password');
 let email_input = document.getElementById('email')
 let fetchedData;
 let emailFound = false;
+
+async function hashPassword(password) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+  // in HEX umwandeln
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+
+  return hashHex;
+}
 
 async function loginValidation() {
     emailFound = false;
@@ -13,7 +28,9 @@ async function loginValidation() {
 
         if (user.email === email_input.value) {
             emailFound = true;
-            if (user.password === password_input.value) {
+            let passwor2 = password_input.value
+            let passwordHased = await hashPassword(passwor2)
+            if (user.password === passwordHased) {
                 console.log("Login erfolgreich für:", user.id);
                 sessionStorage.setItem("userID", user.id);
                 sessionStorage.setItem('userStatus', "loggedIn");
@@ -59,7 +76,8 @@ async function loginDatafetch() {
                 fetchedData[id] = {
                     id : id,
                     email: userData.email,
-                    password: userData.password
+                    password: userData.password,
+                    name: userData.name
                 };
             }
         } else {
@@ -103,11 +121,8 @@ async function loginDatafetchGuest() {
 }
 
 
-function testFunction() {
-console.log("Login erfolgreich für");
-sessionStorage.setItem("userID", "-euneunre");
-sessionStorage.setItem('userStatus', "loggedIn");
-sessionStorage.setItem('name', "Gustav");
-                
- window.location.href = "../html/summary.html";
+function handleForm(event) {
+    event.preventDefault();
 }
+
+form.addEventListener('submit', handleForm);
