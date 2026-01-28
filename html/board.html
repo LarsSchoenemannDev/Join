@@ -97,44 +97,28 @@
             </div>
 
             <div class="board">
-              <section class="todo" data-status="todo">
-                <h3 class="header-category ">To do <img src="..//assets/img/add board.svg" alt="plus symbol"></h3>
-                <div id="toggleMessage" class="empty">No tasks To do</div>
-                innhalt der box
+              <section class="in-progress" data-status="todu">
+                <h3 class="header-category">To do <img src="..//assets/img/add board.svg" alt="plus symbol"></h3>
+                <section id="toduContainer"></section>
               </section>
 
-              <section class="in-progress" data-status="in-progress">
-                <h3 class="header-category">In progress <img src="..//assets/img/add board.svg"
-                    alt="plus symbol"></h3>
-                <div id="toDo-box"></div>
-                <div class="Cards blue" data-id="c1" draggable="true">
-                  <span class="tag">User Story</span>
-                  <h4>Page & Recipe Recommender</h4>
-                  <span>Build start page with recipe recommendation...</span>
-                  <div class="progress">1/2 Subtasks</div>
-                  <div class="avatars">
-                    <div class="avatar orange">AN</div>
-                    <div class="avatar green">EN</div>
-                    <div class="avatar purple">ME</div>
-                    <div class="menu-button"> =</div>
-                  </div>
-                </div>
-              </section>
-              
-
-
-              <div id="contentId"></div>
-
-              <section class="await-feedback" data-status="feedback">
-                <h3 class="header-category">Await feedback <img src="..//assets/img/add board.svg" alt="plus symbol"></h3>
-                innhalt der box
+              <section class="in-progress" data-status="inProgress">
+                <h3 class="header-category">In progress <img src="..//assets/img/add board.svg" alt="plus symbol"></h3>
+                <section id="inProgressContainer" ></section>
               </section>
 
-              <section class="done" data-status="done">
+              <section class="in-progress" data-status="feedBack">
+                <h3 class="header-category">Await feedback <img src="..//assets/img/add board.svg" alt="plus symbol">
+                </h3>
+                <section id="feedBackContainer"></section>
+              </section>
+
+              <section class="in-progress" data-status="done">
                 <h3 class="header-category">Done <img src="..//assets/img/add board.svg" alt="plus symbol"></h3>
-                innhalt der box
+                <section id="doneContainer"></section>
               </section>
             </div>
+            
             </sectino>
           </section>
         </main>
@@ -143,7 +127,7 @@
   </div>
 
   <!-- Add Task Overlay -->
-  <div id="addTaskOverlay" class="overlay-container" style="display: none;">
+  <div id=" addTaskOverlay" class="overlay-container" style="display: none;">
     <div class="overlay-content">
       <!-- Übernehmen und Stylen -->
       <div id="addTaskFormContainer" class="overlay-body-task">
