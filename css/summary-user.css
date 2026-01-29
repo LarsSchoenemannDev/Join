@@ -1,3 +1,9 @@
+.summary-div {
+  display: flex;
+  flex-direction: column;
+  /* width: 100%; fix */
+}
+
 .summary-title {
   display: flex;
   flex-direction: row;
@@ -31,7 +37,7 @@
 .summary-main-board {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: clamp(90px, 12vw, 240px);
   width: 100%;
@@ -44,12 +50,6 @@
     flex-flow: row wrap;
     gap: 20px;
   }
-}
-
-.summary-div {
-  display: flex;
-  flex-direction: column;
-  /* width: 100%; fix */
 }
 
 /* Ensure overview boxes have explicit base styles (avoid relying on nested/SCSS-like rules) */
@@ -225,12 +225,13 @@
   flex-direction: column;
   justify-content: flex-start;
   .welcoming-message {
-    font-size: 46px;
+    font-size: 40px;
     font-weight: 500;
     color: rgba(42, 54, 71, 1);
+    margin-bottom: 20px;
   }
   .user-name {
-    font-size: 64px;
+    font-size: 48px;
     font-weight: 700;
     color: rgba(41, 171, 226, 1);
   }
@@ -245,13 +246,13 @@
 @media (min-width: 1200px) and (max-width: 1360px) {
   .summary-main-board .summary-overview {
     width: 460px;
-    gap: 20px;
+    gap: 16px;
   }
   .summary-main-board .welcome-user .welcoming-message {
-    font-size: 36px;
+    font-size: 32px;
   }
   .summary-main-board .welcome-user .user-name {
-    font-size: 48px;
+    font-size: 40px;
   }
   .summary-overview .overview-box-items {
     height: 120px;
@@ -262,14 +263,14 @@
   }
   .overview-box-items.box-1,
   .overview-box-items.box-2 {
-    width: 220px;
+    width: 210px;
     padding: 32px 14px;
-    gap: 20px;
+    gap: 16px;
   }
   .overview-box-items.box-4,
   .overview-box-items.box-5,
   .overview-box-items.box-6 {
-    width: 140px;
+    width: 130px;
   }
   .overview-box-items.box-1 .task-number span,
   .overview-box-items.box-2 .task-number span,
@@ -352,9 +353,10 @@
     gap: 30px;
   }
   .summary-title {
-    justify-content: space-around;
+    justify-content: flex-start;
     gap: 18px;
   }
+
   .main-title {
     font-weight: 700;
     font-size: 60px;
