@@ -298,6 +298,13 @@
     padding: 0 50px 50px 50px;
     gap: 40px;
   }
+
+  .summary-title .seperator {
+    width: 3px;
+    height: 90px;
+    background-color: rgba(41, 171, 226, 1);
+    /* border-radius: 2px; */
+  }
   .main-title {
     font-size: 52px;
   }
