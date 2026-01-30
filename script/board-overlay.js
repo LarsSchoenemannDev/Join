@@ -12,18 +12,18 @@
 }
 
 
-function closeAddTaskOverlay() {
-    const overlay = document.getElementById("addTaskOverlay");
-    overlay.style.display = "none";
-    document.body.style.overflow = "auto";
+// function closeAddTaskOverlay() {
+//     const overlay = document.getElementById("addTaskOverlay");
+//     overlay.style.display = "none";
+//     document.body.style.overflow = "auto";
 
-}
-
-// function resetAddTaskForm() {
-//     const formContainer = document.getElementById("addTaskFormContainer");
-//     if (formContainer) {
-        
-//     }
 // }
 
-// closeAddTaskOverlay() 
+// // function resetAddTaskForm() {
+// //     const formContainer = document.getElementById("addTaskFormContainer");
+// //     if (formContainer) {
+        
+// //     }
+// // }
+
+// // closeAddTaskOverlay() 

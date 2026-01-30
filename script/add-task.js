@@ -291,7 +291,6 @@ function eventsAddTask() {
     };
 }
 
-
 function getDataFromPage() {
     let inputs = document.querySelectorAll("#title, #description, #duedate");
     inputs.forEach(function (input) {

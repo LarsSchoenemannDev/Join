@@ -1,7 +1,3 @@
-// const BASE_URL = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/";
-
-// let fetchBoardData = {};
-
 
 async function boardInit() {
   await getData();
@@ -16,9 +12,7 @@ function initDragAndDrop() {
     col.addEventListener("dragleave", onDragLeave);
     col.addEventListener("drop", onDrop);
   });
-
 }
-
 
 function stateAdd() {
   if (!fetchData) {
@@ -79,15 +73,47 @@ function renderContact(contacts = []) {
   return html;
 }
 
+function filterPriority(priority) {
+  const prioArray = Array.isArray(priority) ? priority : [priority];
+  let priorityState = "";
+  prioArray.forEach(prio => {
+    if (prio === "urgent") {
+      priorityState = "urgent";
+    } else if (prio === "medium") {
+      priorityState = "medium";
+    } else if (prio === "low") {
+      priorityState = "low";
+    }
+  });
+  return priorityState;
+}
+
+function filterCategory(category){
+  const categoryArray = Array.isArray(category) ? category : [category];
+  let categoryState = "";
+  categoryArray.forEach(category =>{
+    if (category === "Technical Task"){
+      categoryState = "technical-task";
+    }else if (category === "User Story"){
+      categoryState = "user-story"
+    }
+  })
+  return categoryState;
+}
+
 function renderTasksHTML(task, id) {
   return `
-              <section class="in-progress">
+              <section class="in-progress">              
                 <div class="Cards blue" data-id="${id}" draggable="true" ondragstart="onDragStart(event)" 
-         ondragend="onDragEnd(event)">
+                    ondragend="onDragEnd(event)">                 
+                  <p class="tag ${filterCategory(task.category)}">${task.category}</p>   
                   <h4>${task.title}</h4>
                   <span>${task.description}</span>
-                  <div class="avatars">
-                    ${renderContact(task.contacts)}
+                  <div class="progress">${task.subtasks.length} Subtasks</div>
+                  <div class ="nav">
+                  <div class="avatars">${renderContact(task.contacts)}</div>
+                  <div class="${filterPriority(task.priority)} prio-wrapper"></div>            
+                  </div>
                   </div>
                 </div>
               </section>
@@ -162,7 +188,6 @@ async function onDrop(e) {
   await postState()
 }
 
-
 function noTasksMessage() {
   const messageElement = document.getElementById('toggleMessage');
   const todoColumn = document.querySelector('.column[data-status="todo"]');
@@ -176,11 +201,18 @@ function noTasksMessage() {
 }
 noTasksMessage();
 
-function findTask() {
-  let seachInput = document.getElementById(subtask).value
-  for (let i = 0; i < seachInput.length; i++) {
-    seachInput === "subtask"
-    return "Search", seachInput
+function searchBar() {
+  const inputElement = document.getElementById("searchInput");
+  if (!inputElement) return console.error("Suchfeld mit ID 'searchInput' nicht gefunden!");
+
+  const searchInput = inputElement.value.trim().toLowerCase();
+  if (searchInput.length >= 3 && fetchData?.tasks) {
+    const filteredTasks = Object.values(fetchData.tasks).filter(task =>
+      task?.title &&
+      typeof task.title === 'string' &&
+      task.title.toLowerCase().includes(searchInput)
+    );
+    console.log("Gefundene Aufgaben:", filteredTasks);
   }
 }
 

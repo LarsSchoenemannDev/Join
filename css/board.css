@@ -1,4 +1,3 @@
-
 h1 {
     display: flex;
     justify-content: start;
@@ -40,6 +39,13 @@ h1 {
     padding-right: 8px;
 }
 
+.btn-none {
+    display: flex;
+    all: unset;
+    cursor: pointer;
+    padding-right: 8px;
+}
+
 .button-task {
     padding: 15px 30px;
     background: #2A3647;
@@ -63,9 +69,8 @@ h1 {
 }
 
 .board {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
+    display: flex;
+    justify-content: space-between;
 }
 
 .empty {
@@ -100,20 +105,22 @@ h1 {
     border: 1px solid rgba(230, 235, 245, 0.8);
 }
 
-.Cards.blue {
-    border-top: none;
-}
-
-.Cards .tag {
-    display: inline-flex;
+.tag {
     align-items: center;
     padding: 8px 18px;
-    border-radius: 12px;
-    background: #1f4dff;
+    border-radius: 12px;    
     color: #fff;
     font-size: 16px;
     font-weight: 500;
-    line-height: 1;
+    margin-bottom: 18px;
+}
+
+p {
+    width: fit-content;
+}
+
+h4 {
+    margin-bottom: 6px;
 }
 
 .Cards h3 {
@@ -170,48 +177,46 @@ h1 {
     margin-left: -12px;
 }
 
-.Cards .avatar:first-child {
-    margin-left: 0;
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.Cards .avatar.orange {
-    background: #ff8a2a;
+.placeholder {
+    width: 20px;
+    height: 20px;
 }
 
-.Cards .avatar.green {
-    background: #19c6a3;
+.urgent {
+    background-image: url("../assets/img/PrioUP-icon.svg");
+    background-repeat: no-repeat;
 }
 
-.Cards .avatar.purple {
-    background: #4b2aa6;
+.medium {
+    background-image: url("../assets/img/PrioMedium-icon.svg");
+    background-repeat: no-repeat;
 }
 
-.Cards .menu-button {
-    position: absolute;
-    right: 6px;
-    bottom: 6px;
-    width: 26px;
-    height: 26px;
-    font-size: 0;
-    background: transparent;
-    cursor: pointer;
+.low {
+    background-image: url("../assets/img/PrioDown-icon.svg");
+    background-repeat: no-repeat;
 }
 
-.Cards .menu-button::before,
-.Cards .menu-button::after {
-    content: "";
-    position: absolute;
-    left: 5px;
-    right: 5px;
-    height: 3px;
-    border-radius: 999px;
-    background: #ff9a2a;
+.prio-wrapper {
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-position: center;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.Cards .menu-button::before {
-    top: 8px;
+.technical-task {
+    background-color: #1FD7C1;
 }
 
-.Cards .menu-button::after {
-    top: 15px;
+.user-story {
+    background-color: #0038FF;
 }
+

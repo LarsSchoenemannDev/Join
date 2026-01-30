@@ -519,8 +519,7 @@ textarea:focus {
 }
 
 .btn-createTask.btn-State:hover {
-    background-color: #53555780;
-    /* bleibt grau */
+    background-color: #53555780;    
     color: var(--color-white);
     cursor: not-allowed;
 }

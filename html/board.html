@@ -82,16 +82,17 @@
               <div class="header-actions">
                 <div class="subtask-input-container">
                   <div class="input-wrapper">
-                    <input id="subtasks" type="text" placeholder="Find Task" class="search-task">
+                    <input id="searchInput" oninput="searchBar()" type="text" placeholder="Find Task" class="search-task">
                     <div class="img-container" id="showHidden" style="display: flex;">
                       <div class="padding">
                         <div class="seperator-small"></div>
-                      </div>
-                      <img src="../assets/img/search.svg" class="input-icon-search" onclick="">
+                      </div>                      
+                        <img src="../assets/img/search.svg" class="input-icon-search" alt="search icon">
+                      </button>
                     </div>
                   </div>
                 </div>
-                <button class="button-task" onclick="openAddTaskOverlay()">Add task
+                <button class="button-task" onclick="popup()">Add task
                   <img src="..//assets/img/search-add.svg" </button>
               </div>
             </div>
@@ -104,7 +105,7 @@
 
               <section class="in-progress" data-status="inProgress">
                 <h3 class="header-category">In progress <img src="..//assets/img/add board.svg" alt="plus symbol"></h3>
-                <section id="inProgressContainer" ></section>
+                <section id="inProgressContainer"></section>
               </section>
 
               <section class="in-progress" data-status="feedBack">
@@ -118,7 +119,6 @@
                 <section id="doneContainer"></section>
               </section>
             </div>
-            
             </sectino>
           </section>
         </main>
