@@ -357,6 +357,13 @@
     gap: 18px;
   }
 
+  .summary-title .seperator {
+    width: 3px;
+    height: 90px;
+    background-color: rgba(41, 171, 226, 1);
+    /* border-radius: 2px; */
+  }
+
   .main-title {
     font-weight: 700;
     font-size: 60px;
