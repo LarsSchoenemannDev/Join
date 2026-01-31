@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="../css/summary-user.css">
 </head>
 
-<body onload="greetingGuest()">
+<body onload="greetingGuest(), initializeTasks();">
     <div class="body-div">
         <div class="content-wrapper">
             <aside class="sidebar">
@@ -83,14 +83,14 @@
                                 <div class="overview-box-items box-1" id="todo-box">
                                     <img src="../assets/img/summary-edit-default.svg" alt="" />
                                     <div class="task-number">
-                                        <span>1</span>
+                                        <span id="toDoNumbers"></span>
                                         <h4 class="tasks-text">To-do</h4>
                                     </div>
                                 </div>
                                 <div class="overview-box-items box-2" id="done-box">
                                     <img src="../assets/img/summary-done-default.svg" alt="" />
                                     <div class="task-number">
-                                        <span>1</span>
+                                        <span id="doneNumbers"></span>
                                         <h4 class="tasks-text">Done</h4>
                                     </div>
                                 </div>
@@ -98,27 +98,27 @@
                                     <div class="left-box">
                                         <img class="urgent-badge" src="../assets/img/summary-calender-priority.svg" alt=""></img>
                                         <div class="urgent-task">
-                                            <span>1</span>
+                                            <span id="urgentNumbers"></span>
                                             <h5 class="tasks-text">urgent</h5>
                                         </div>
                                     </div>
                                     <div class="box-seprator"></div>
                                     <!-- <img src="../assets/img/summary-calender-vector.svg" alt="" /> -->
                                     <div class="right-box">
-                                        <h4 class="urgency-date">October 16, 2022</h4>
+                                        <h4 class="urgency-date" id="dueDate">October 16, 2022</h4>
                                         <h5 class="deadline">Upcoming Deadline</h5>
                                     </div>
                                 </div>
                                 <div class="overview-box-items box-4" id="tasks-in-board-box">
-                                    <span>5</span>
+                                    <span id="totalTasksNumbers"></span>
                                     <h5 class="tasks-text">Tasks in Board</h5>
                                 </div>
                                 <div class="overview-box-items box-5" id="tasks-in-progress-box">
-                                    <span>2</span>
+                                    <span id="inProgressNumber"></span>
                                     <h5 class="tasks-text">Tasks In Progress</h5>
                                 </div>
                                 <div class="overview-box-items box-6" id="awaiting-feedback-box">
-                                    <span>2</span>
+                                    <span id="awaitingFeedbackNumber"></span>
                                     <h5 class="tasks-text">Awaiting Feedback</h5>
                                 </div>
                             </div>
