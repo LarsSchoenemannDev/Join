@@ -449,21 +449,12 @@
   .summary-main-board .welcome-user .user-name {
     font-size: 54px;
   }
-  .welcome-page {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+
   .welcomeMsg {
-    font-weight: 400;
     font-size: 48px;
   }
   .signedUser {
-    text-transform: capitalize;
     font-size: 56px;
-    font-weight: 700;
-    color: rgba(41, 171, 226, 1);
   }
 }
 
@@ -522,21 +513,12 @@
   .summary-main-board .welcome-user {
     display: none;
   }
-  .welcome-page {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+
   .welcomeMsg {
-    font-weight: 400;
     font-size: 48px;
   }
   .signedUser {
-    text-transform: capitalize;
     font-size: 56px;
-    font-weight: 700;
-    color: rgba(41, 171, 226, 1);
   }
 }
 
@@ -616,22 +598,12 @@
   .summary-main-board .welcome-user {
     display: none;
   }
-  .welcome-page {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+
   .welcomeMsg {
-    font-weight: 400;
     font-size: 36px;
-    margin-bottom: 15px;
   }
   .signedUser {
-    text-transform: capitalize;
     font-size: 48px;
-    font-weight: 700;
-    color: rgba(41, 171, 226, 1);
   }
 }
 
@@ -724,22 +696,11 @@
     gap: 14px;
     width: 100%;
   }
-  .welcome-page {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
   .welcomeMsg {
-    font-weight: 400;
     font-size: 38px;
-    margin-bottom: 15px;
   }
   .signedUser {
-    text-transform: capitalize;
     font-size: 38px;
-    font-weight: 700;
-    color: rgba(41, 171, 226, 1);
   }
 }
 
@@ -771,5 +732,20 @@
     align-items: center;
     text-align: center;
     width: 100%;
+  }
+  .welcome-page {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .welcomeMsg {
+    font-weight: 400;
+    margin-bottom: 15px;
+  }
+  .signedUser {
+    text-transform: capitalize;
+    font-weight: 700;
+    color: rgba(41, 171, 226, 1);
   }
 }
