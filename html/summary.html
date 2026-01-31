@@ -60,7 +60,7 @@
                                 <img src="../assets/img/help.svg" alt="help" id="help" />
                             </a>
                             <div class="user-icon">
-                                <button class="menu-button" id="menu-button" onclick="tooglemenu()">SM</button>
+                                <button class="menu-button" id="menu-button" aria-label="Toggle menu" onclick="tooglemenu()" ></button>
                             </div>
                             <div class="dropDown-menu" id="dropDown-menu">
                                 <a href="../html/help.html" class="hide" id="switch_help">Help</a>
@@ -124,14 +124,14 @@
                             </div>
                             <div class="welcome-user">
                                 <h4 class="welcoming-message">Good morning,</h4>
-                                <h2 class="user-name">Sofia Müller</h2>
+                                <h2 class="user-name" id="userName"></h2>
                             </div>
                         </section>
                     </div>
 
                     <div class="welcome-page">
                         <h4 class="welcomeMsg"></h4>
-                        <h2 class="signedUser"></h2>
+                        <h2 class="signedUser" id="signedUser"></h2>
                     </div>
                 </main>
             </div>

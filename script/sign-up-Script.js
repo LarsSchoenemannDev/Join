@@ -147,7 +147,7 @@ function updateSubmitButtonState() {
 // go back to login page function:
 
 function goBackToLogin() {
-  window.location.href = "../html/index.html";
+  window.location.href = "../index.html";
 }
 
 // backArrow.addEventListener('click', () =>{

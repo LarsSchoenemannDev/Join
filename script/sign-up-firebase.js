@@ -1,8 +1,7 @@
-let BASE_URL = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app"
-
+let BASE_URL =
+  "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app";
 
 document.addEventListener("DOMContentLoaded", () => {
-
   const form = document.getElementById("signupForm");
   const nameInput = document.getElementById("name");
   const emailInput = document.getElementById("email");
@@ -14,17 +13,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // SHA-256 Hash-Funktion
   async function hashPassword(password) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(password);
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
 
-  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
 
-  // in HEX umwandeln
-  const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+    // in HEX umwandeln
+    const hashHex = hashArray
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
 
-  return hashHex;
-}
+    return hashHex;
+  }
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -46,41 +47,37 @@ document.addEventListener("DOMContentLoaded", () => {
     const userData = {
       name: trimName,
       email: trimEmail,
-      password: hashedPassword
-    }
+      password: hashedPassword,
+    };
 
     try {
       const response = await fetch(BASE_URL + "/users" + ".json", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(userData)
-        });
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
 
-        if (!response.ok) {
-            console.error(`HTTP error! status: ${response.status}`);
-        }
-
+      if (!response.ok) {
+        console.error(`HTTP error! status: ${response.status}`);
+      }
 
       const result = await response.json();
       console.log("User created:", result.name);
-
 
       // Erfolg anzeigen
       messageBox?.classList.add("show");
       showSuccessMessage();
 
-      
-  form.reset();
-  button.disabled = true;
-  UpdateIcon(passwordInput, iconPasswordDivMain);
-  UpdateIcon(passwordConfirm, iconPasswordDivConfirm);
+      form.reset();
+      button.disabled = true;
+      UpdateIcon(passwordInput, iconPasswordDivMain);
+      UpdateIcon(passwordConfirm, iconPasswordDivConfirm);
 
       setTimeout(() => {
-        window.location.href = "../html/login-site.html";
+        window.location.href = "../index.html";
       }, 2000);
-
     } catch (err) {
       console.error(err);
       errorBox.style.color = "red";
