@@ -66,7 +66,7 @@ async function deleteContactFromEditOverlay(event) {
     try {
         await deleteContact(foundId);
         await loadDataBase();
-        createContactList();
+        await createContactList();
         closeEditContactOverlay();
         container.classList.add('d-none');
         popupMessage('Contact successfully deleted!');
@@ -215,7 +215,7 @@ async function saveEditedContact() {
     try {
         await updateContactInFirebase(contactId, updatedContact);
         await loadDataBase();
-        createContactList();
+        await createContactList();
         closeEditContactOverlay();
         container.classList.add('d-none');
         popupMessage('Contact successfully saved!');
