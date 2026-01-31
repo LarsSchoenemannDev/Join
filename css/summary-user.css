@@ -17,7 +17,6 @@
   width: 3px;
   height: 100%;
   background-color: rgba(41, 171, 226, 1);
-  /* border-radius: 2px; */
 }
 
 .main-title {
@@ -231,6 +230,7 @@
     margin-bottom: 20px;
   }
   .user-name {
+    text-transform: capitalize;
     font-size: 48px;
     font-weight: 700;
     color: rgba(41, 171, 226, 1);
@@ -449,8 +449,12 @@
   .summary-main-board .welcome-user .user-name {
     font-size: 54px;
   }
-  .welcome-page {
-    display: none !important;
+
+  .welcomeMsg {
+    font-size: 48px;
+  }
+  .signedUser {
+    font-size: 56px;
   }
 }
 
@@ -467,7 +471,7 @@
     margin-bottom: 50px;
   }
   .summary-title .seperator {
-    width: 90px;
+    width: 120px;
     height: 3px;
     border-radius: 2px;
     order: 3;
@@ -509,16 +513,12 @@
   .summary-main-board .welcome-user {
     display: none;
   }
-  .welcome-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
   .welcomeMsg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    font-size: 48px;
+  }
+  .signedUser {
+    font-size: 56px;
   }
 }
 
@@ -598,16 +598,12 @@
   .summary-main-board .welcome-user {
     display: none;
   }
-  .welcome-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
   .welcomeMsg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    font-size: 36px;
+  }
+  .signedUser {
+    font-size: 48px;
   }
 }
 
@@ -700,16 +696,11 @@
     gap: 14px;
     width: 100%;
   }
-  .welcome-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   .welcomeMsg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    font-size: 38px;
+  }
+  .signedUser {
+    font-size: 38px;
   }
 }
 
@@ -726,7 +717,7 @@
 
 .welcome-animation {
   animation: fadeIn 2s ease-in;
-  display: flex !important;
+  display: block !important;
 }
 
 .fade-in {
@@ -735,15 +726,26 @@
 
 /* Mobile welcome animation styles */
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .welcome-animation {
     justify-content: center;
     align-items: center;
     text-align: center;
     width: 100%;
   }
-  .welcome-animation .welcomeMsg {
+  .welcome-page {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .welcomeMsg {
     font-weight: 400;
-    font-size: 50px !important;
+    margin-bottom: 15px;
+  }
+  .signedUser {
+    text-transform: capitalize;
+    font-weight: 700;
+    color: rgba(41, 171, 226, 1);
   }
 }
