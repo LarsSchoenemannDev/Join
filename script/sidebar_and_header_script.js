@@ -29,10 +29,17 @@ function getNameInitialsMenuButton() {
 }
 
 function showUserNameWelcomeMsg() {
-  userNameWelcomeMsg.textContent = userName;
+  if (userNameWelcomeMsg) {
+    userNameWelcomeMsg.textContent = userName;
+  } else {
+    return;
+  }
 }
 
 function showSignedUserName() {
+  if (!signedUser) {
+    return;
+  }
   if (!userName) {
     signedUser.textContent = "";
   } else {
