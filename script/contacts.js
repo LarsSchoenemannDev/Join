@@ -22,6 +22,7 @@ const editContactPopup = document.querySelector(".edit-contact-popup");
 const contactDashboard = document.querySelector(".contact-dashboard");
 const contactSection = document.querySelector(".contacts");
 const contactBox = document.querySelector(".contact-box");
+const dialogElement = document.getElementById("edit-menu-dialog");
 
 /**
  * Load contacts from Firebase realtime Database,
@@ -97,14 +98,13 @@ function buildContactItemHTML(contact, color, showAlphabet) {
  */
 async function createContactList() {
   const array = getContactArray();
-  fetchedData = array;
   if (!array.length) {
     contactListEl.innerHTML =
       '<div class="no-contacts" style="padding: 20px; text-align: center; color: #888;">No contacts available</div>';
     return;
   }
-  let last = "";
-  let html = "";
+  let last,
+    html = "";
   let needsUpdate = false;
   array.forEach((contact, index) => {
     contact.color = colors[index % colors.length];
@@ -327,40 +327,44 @@ function handleEditToolClick(event) {
   }
 }
 
-function openEditMenuDialog() {
-  const editMenuDialog = document.getElementById("edit-menu-dialog");
-  if (!editMenuDialog) return;
-  const editToolEls = document.getElementById("contact-edit-tools");
-  if (!editToolEls) return;
+// ===============================
 
-  editMenuDialog.classList.remove("slide-out");
-  editMenuDialog.innerHTML = renderEditToolsDialog();
-  editMenuDialog.classList.add("editToolClicked");
+// function openEditMenuDialog() {
+//   const editMenuDialog = document.getElementById("edit-menu-dialog");
+//   if (!editMenuDialog) return;
+//   const editToolEls = document.getElementById("contact-edit-tools");
+//   if (!editToolEls) return;
 
-  editMenuDialog.offsetHeight;
-  editMenuDialog.showModal();
-  editMenuDialog.classList.add("slide-in");
-}
+//   editMenuDialog.classList.remove("slide-out");
+//   editMenuDialog.innerHTML = renderEditToolsDialog();
+//   editMenuDialog.classList.add("editToolClicked");
 
-function closeEditMenuDialog() {
-  const editMenuDialog = document.getElementById("edit-menu-dialog");
-  if (!editMenuDialog) return;
+//   editMenuDialog.offsetHeight;
+//   editMenuDialog.showModal();
+//   editMenuDialog.classList.add("slide-in");
+// }
 
-  // Remove outside click listener
-  document.removeEventListener("click", handleOutsideClick);
+// function closeEditMenuDialog() {
+//   const editMenuDialog = document.getElementById("edit-menu-dialog");
+//   if (!editMenuDialog) return;
 
-  editMenuDialog.classList.remove("editToolClicked");
-  editMenuDialog.classList.remove("slide-in");
-  editMenuDialog.offsetHeight;
-  editMenuDialog.classList.add("slide-out");
-  editMenuDialog.close();
-  setTimeout(() => {
-    if (editMenuDialog) {
-      editMenuDialog.classList.remove("slide-out");
-      editMenuDialog.innerHTML = "";
-    }
-  }, 500);
-}
+//   // Remove outside click listener
+//   document.removeEventListener("click", handleOutsideClick);
+
+//   editMenuDialog.classList.remove("editToolClicked");
+//   editMenuDialog.classList.remove("slide-in");
+//   editMenuDialog.offsetHeight;
+//   editMenuDialog.classList.add("slide-out");
+//   editMenuDialog.close();
+//   setTimeout(() => {
+//     if (editMenuDialog) {
+//       editMenuDialog.classList.remove("slide-out");
+//       editMenuDialog.innerHTML = "";
+//     }
+//   }, 500);
+// }
+
+//===================================
 
 /**
  * get data from input fields in add-contact-popup dynamically
@@ -408,7 +412,7 @@ async function addNewContact() {
     try {
       await saveContact(newContact);
       await loadDataBase();
-      createContactList();
+      await createContactList();
       closePopupOverlay();
       popupMessage("Contact successfully created!");
     } catch (error) {
@@ -544,12 +548,12 @@ async function deleteFloatingData(event) {
 
   const contactData = saveDataAsFoundContact();
   if (!contactData) return;
-  const { foundContact, contactName, contactEmail } = contactData;
+  const { foundContact, foundId, contactName, contactEmail } = contactData;
   if (foundContact) {
     try {
-      await deleteContact(foundContact.id);
+      await deleteContact(foundId);
       await loadDataBase();
-      createContactList();
+      await createContactList();
       container.classList.add("d-none");
       popupMessage("Contact successfully deleted!");
     } catch (error) {
@@ -565,4 +569,80 @@ async function deleteFloatingData(event) {
     );
     alert("Error: Contact could not be found");
   }
+}
+
+// Dialog function for edit and delete contact on small screens
+
+dialogElement.addEventListener("click", () => {
+  dialogElement.showModal();
+  dialogElement.classList.add("slide-in");
+  dialogElement.innerHTML = renderEditToolsDialog();
+});
+
+// function openEditMenuDialog() {}
+
+//==============================
+function openEditMenuDialog() {
+  const editMenuDialog = document.getElementById("edit-menu-dialog");
+  if (!editMenuDialog) return;
+  const editToolEls = document.getElementById("contact-edit-tools");
+  if (!editToolEls) return;
+
+  editMenuDialog.classList.remove("slide-out");
+  editMenuDialog.innerHTML = renderEditToolsDialog();
+  editMenuDialog.classList.add("editToolClicked");
+
+  editMenuDialog.offsetHeight;
+  editMenuDialog.showModal();
+  editMenuDialog.classList.add("slide-in");
+}
+
+function closeEditMenuDialog() {
+  const editMenuDialog = document.getElementById("edit-menu-dialog");
+  if (!editMenuDialog) return;
+
+  // Remove outside click listener
+  // document.removeEventListener("click", handleOutsideClick);
+
+  editMenuDialog.classList.remove("editToolClicked");
+  editMenuDialog.classList.remove("slide-in");
+  editMenuDialog.offsetHeight;
+  editMenuDialog.classList.add("slide-out");
+  editMenuDialog.close();
+  setTimeout(() => {
+    if (editMenuDialog) {
+      editMenuDialog.classList.remove("slide-out");
+      editMenuDialog.innerHTML = "";
+    }
+  }, 500);
+}
+
+//===========================
+
+function EditMenuDialog() {
+  const checkQueries = window.matchMedia("(max-width: 958px)");
+  if (checkQueries.matches) {
+    dialogElement.classList.remove("slide-in");
+    closeDialog();
+    dialogElement.classList.remove("slide-out");
+    setTimeout(() => {
+      dialogElement.classList.remove("slide-out");
+      dialogElement.innerHTML = "";
+    }, 500);
+    renderEditContactOverlay();
+  }
+}
+
+function closeDialog() {
+  dialogElement.close();
+}
+
+dialogElement.addEventListener("click", (event) => {
+  if (event.target == dialogElement) {
+    dialogElement.close();
+  }
+});
+
+function preventEventBubbling(event) {
+  event.stopPropagation();
 }

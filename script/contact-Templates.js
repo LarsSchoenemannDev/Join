@@ -7,8 +7,14 @@
  * @param {string} alphabetHeader alphabet header for grouping contacts
  * @returns {string} HTML template for contact list item
  */
-function renderContactListTemplate(name, email, color, initials, alphabetHeader) {
-    return `
+function renderContactListTemplate(
+  name,
+  email,
+  color,
+  initials,
+  alphabetHeader,
+) {
+  return `
     <div class="contact-list-items">
                     ${alphabetHeader}
                     <div class="contact-container"  onclick="showFloatingCard(event)">
@@ -30,14 +36,20 @@ function renderContactListTemplate(name, email, color, initials, alphabetHeader)
  * @param {string} initials initials of the clicked contact
  * @returns {string} HTML template for floating contact card
  */
-function renderFloatingContactTemplate(name, email, phone, backgroundColor, initials) {
-    return `
+function renderFloatingContactTemplate(
+  name,
+  email,
+  phone,
+  backgroundColor,
+  initials,
+) {
+  return `
     <div class="floating-contact">
                 <div id="contact-header">
                     <div class="contact-badge" id="contact-symbol" style="background-color: ${backgroundColor}">${initials}</div>
                     <div id="contact-text">
                         <div id="contact-name">${name}</div>
-                        <div id="contact-edit-tools" >
+                        <div id="contact-edit-tools">
                             <div id="edit" class="edit-delete-component-default" onclick="renderEditContactOverlay()">
                                 <img src="" alt="" />
                                 <span>Edit</span>
@@ -56,13 +68,11 @@ function renderFloatingContactTemplate(name, email, phone, backgroundColor, init
                     <h4 id="contact-phone">Phone</h4>
                     <span id="span-phone">${phone}</span>
                 </div>
-            </div>
-    
-    `
+            </div>`;
 }
 
 function renderAddContactTemplate() {
-    return `
+  return `
   <div class="add-contact-overlay">
                 <div class="add-contact-overview">
                   <div class="join-logo-contact">
@@ -151,7 +161,7 @@ function renderAddContactTemplate() {
                   </div>
                 </div>
               </div>
-  `
+  `;
 }
 
 /**
@@ -164,7 +174,7 @@ function renderAddContactTemplate() {
  * @returns {string} HTML template for edit contact overlay
  */
 function renderEditContactTemplate(name, email, phone, contactColor, initials) {
-    return `
+  return `
               <div class="edit-contact-overlay">
                 <div class="edit-contact-overview">
                   <div class="join-logo-contact">
@@ -247,5 +257,19 @@ function renderEditContactTemplate(name, email, phone, contactColor, initials) {
                 </div>
               </div>
             
-    `
+    `;
+}
+
+function renderEditToolsDialog() {
+  return `
+  <div class="editMenuDialogContainer">
+   <div id="editDialog" class="edit-delete-component-default" onclick="(renderEditContactOverlay(), EditMenuDialog(),preventEventBubbling(event))">
+        <img src="" alt="" />
+        <span>Edit</span>
+   </div>
+   <div id="deleteDialog" class="edit-delete-component-default" onclick="(deleteFloatingData(event), preventEventBubbling(event))">
+        <img src="" alt="" />
+        <span>Delete</span>
+   </div>
+  </div>`;
 }
