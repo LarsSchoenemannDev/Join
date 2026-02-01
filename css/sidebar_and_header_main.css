@@ -169,9 +169,11 @@ main {
   padding: 8px;
 }
 
-.dropDown-menu.show {
-  top: 250px;
-}
+/* .dropDown-menu.show {
+  position: absolute;
+  right: 0;
+  top: 280px;
+} */
 
 .dropDown-menu a {
   font-weight: 400;
