@@ -32,7 +32,7 @@ async function getData() {
             checked: false
         }));
     } catch (error) {
-        console.error("Fehler beim Laden der Daten:", error);
+        return
     }
 }
 

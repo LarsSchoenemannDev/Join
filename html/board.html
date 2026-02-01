@@ -82,12 +82,13 @@
               <div class="header-actions">
                 <div class="subtask-input-container">
                   <div class="input-wrapper">
-                    <input id="searchInput" oninput="searchBar()" type="text" placeholder="Find Task" class="search-task">
+                    <input id="searchInput" oninput="searchBar()" type="text" placeholder="Find Task"
+                      class="search-task">
                     <div class="img-container" id="showHidden" style="display: flex;">
                       <div class="padding">
                         <div class="seperator-small"></div>
-                      </div>                      
-                        <img src="../assets/img/search.svg" class="input-icon-search" alt="search icon">
+                      </div>
+                      <img src="../assets/img/search.svg" class="input-icon-search" alt="search icon">
                       </button>
                     </div>
                   </div>
@@ -100,23 +101,28 @@
             <div class="board">
               <section class="in-progress" data-status="todu">
                 <h3 class="header-category">To do <img src="..//assets/img/add board.svg" alt="plus symbol"></h3>
-                <section id="toduContainer"></section>
+                <div id="toggleMessage" class="empty emptyDisplay">No tasks To do</div>
+                <section id="toduContainer" class="cardsContainer"></section>
               </section>
+
 
               <section class="in-progress" data-status="inProgress">
                 <h3 class="header-category">In progress <img src="..//assets/img/add board.svg" alt="plus symbol"></h3>
-                <section id="inProgressContainer"></section>
+                <div id="toggleMessage" class="empty emptyDisplay">No tasks In progress</div>
+                <section id="inProgressContainer" class="cardsContainer"></section>
               </section>
 
               <section class="in-progress" data-status="feedBack">
                 <h3 class="header-category">Await feedback <img src="..//assets/img/add board.svg" alt="plus symbol">
                 </h3>
-                <section id="feedBackContainer"></section>
+                <div id="toggleMessage" class="empty emptyDisplay">No tasks Await feedback </div>
+                <section id="feedBackContainer" class="cardsContainer"></section>
               </section>
 
               <section class="in-progress" data-status="done">
-                <h3 class="header-category">Done <img src="..//assets/img/add board.svg" alt="plus symbol"></h3>
-                <section id="doneContainer"></section>
+                <h3 class="header-category">Done</h3>
+                <div id="toggleMessage" class="empty emptyDisplay">No tasks Done</div>
+                <section id="doneContainer" class="cardsContainer"></section>
               </section>
             </div>
             </sectino>

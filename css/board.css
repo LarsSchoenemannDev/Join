@@ -84,6 +84,10 @@ h1 {
     width: 300px;
 }
 
+.emptyDisplay{
+    display: none;
+}
+
 .header-category {
     display: flex;
     justify-content: space-between;
@@ -96,7 +100,7 @@ h1 {
     margin-bottom: 12px;
 }
 
-.Cards {
+.cards {
     width: 300px;
     background: #fff;
     border-radius: 26px;
@@ -108,7 +112,7 @@ h1 {
 .tag {
     align-items: center;
     padding: 8px 18px;
-    border-radius: 12px;    
+    border-radius: 12px;
     color: #fff;
     font-size: 16px;
     font-weight: 500;
@@ -123,7 +127,7 @@ h4 {
     margin-bottom: 6px;
 }
 
-.Cards h3 {
+.cards h3 {
     margin: 16px 0 10px;
     font-size: 22px;
     line-height: 1.15;
@@ -131,7 +135,7 @@ h4 {
     color: #1e2430;
 }
 
-.Cards>span {
+.cards>span {
     display: block;
     margin: 0 0 18px;
     font-size: 16px;
@@ -139,7 +143,7 @@ h4 {
     color: #aab2bd;
 }
 
-.Cards .progress {
+.cards .progress {
     display: flex;
     align-items: center;
     gap: 14px;
@@ -149,7 +153,7 @@ h4 {
     color: #1e2430;
 }
 
-.Cards .progress::before {
+.cards .progress::before {
     content: "";
     width: 125px;
     height: 8px;
@@ -157,14 +161,14 @@ h4 {
     background: #3d73ff;
 }
 
-.Cards .avatars {
+.cards .avatars {
     display: flex;
     align-items: center;
     position: relative;
     padding-right: 42px;
 }
 
-.Cards .avatar {
+.cards .avatar {
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -219,4 +223,3 @@ h4 {
 .user-story {
     background-color: #0038FF;
 }
-

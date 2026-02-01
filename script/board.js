@@ -3,6 +3,7 @@ async function boardInit() {
   await getData();
   stateAdd();
   renderBoard();
+  updateAllEmptyMessages();
 }
 
 function initDragAndDrop() {
@@ -88,13 +89,13 @@ function filterPriority(priority) {
   return priorityState;
 }
 
-function filterCategory(category){
+function filterCategory(category) {
   const categoryArray = Array.isArray(category) ? category : [category];
   let categoryState = "";
-  categoryArray.forEach(category =>{
-    if (category === "Technical Task"){
+  categoryArray.forEach(category => {
+    if (category === "Technical Task") {
       categoryState = "technical-task";
-    }else if (category === "User Story"){
+    } else if (category === "User Story") {
       categoryState = "user-story"
     }
   })
@@ -102,9 +103,7 @@ function filterCategory(category){
 }
 
 function renderTasksHTML(task, id) {
-  return `
-              <section class="in-progress">              
-                <div class="Cards blue" data-id="${id}" draggable="true" ondragstart="onDragStart(event)" 
+  return `<div class="cards" data-id="${id}" draggable="true" ondragstart="onDragStart(event)" 
                     ondragend="onDragEnd(event)">                 
                   <p class="tag ${filterCategory(task.category)}">${task.category}</p>   
                   <h4>${task.title}</h4>
@@ -115,14 +114,12 @@ function renderTasksHTML(task, id) {
                   <div class="${filterPriority(task.priority)} prio-wrapper"></div>            
                   </div>
                   </div>
-                </div>
-              </section>
+                </div>     
   `;
 }
 
 function renderContactHTML(contact) {
-  return `
-              <div class="avatar" style="background-color:${contact.color}">
+  return `<div class="avatar" style="background-color:${contact.color}">
                 ${contact.initials}
               </div>
   `;
@@ -157,6 +154,7 @@ function onDragStart(e) {
   const id = card.getAttribute('data-id');
   e.dataTransfer.setData('text/plain', id);
   card.classList.add('dragging');
+
 }
 
 function onDragEnd(e) {
@@ -165,14 +163,19 @@ function onDragEnd(e) {
 
 function onDragOver(e) {
   e.preventDefault();
+  updateAllEmptyMessages()
+  
 }
 
 function onDragEnter(e) {
   e.currentTarget.classList.add('drop-target');
+  updateAllEmptyMessages()
 }
 
 function onDragLeave(e) {
   e.currentTarget.classList.remove('drop-target');
+  updateAllEmptyMessages()
+
 }
 
 async function onDrop(e) {
@@ -185,31 +188,32 @@ async function onDrop(e) {
   }
   col.classList.remove("drop-target");
   renderBoard();
+  updateAllEmptyMessages()
   await postState()
 }
 
-function noTasksMessage() {
-  const messageElement = document.getElementById('toggleMessage');
-  const todoColumn = document.querySelector('.column[data-status="todo"]');
-  if (!messageElement || !todoColumn) return;
-  const hasTasks = todoColumn.querySelectorAll('.Cards').length > 0;
-  if (hasTasks) {
-    messageElement.style.display = 'none';
-  } else {
-    messageElement.style.display = 'block';
-  }
+function updateAllEmptyMessages() {
+  const columns = document.querySelectorAll(".in-progress[data-status]");
+  columns.forEach(column => {
+    const cardContainer = column.querySelector(".cardsContainer");
+    const emptyMessage = column.querySelector(".empty");
+    if (cardContainer && emptyMessage) {
+      if (cardContainer.children.length === 0) {
+        emptyMessage.classList.remove("emptyDisplay");
+      } else {
+        emptyMessage.classList.add("emptyDisplay");
+      }
+    }
+  });
 }
-noTasksMessage();
 
 function searchBar() {
   const inputElement = document.getElementById("searchInput");
   if (!inputElement) return console.error("Suchfeld mit ID 'searchInput' nicht gefunden!");
-
   const searchInput = inputElement.value.trim().toLowerCase();
   if (searchInput.length >= 3 && fetchData?.tasks) {
     const filteredTasks = Object.values(fetchData.tasks).filter(task =>
-      task?.title &&
-      typeof task.title === 'string' &&
+      task?.title && typeof task.title === 'string' &&
       task.title.toLowerCase().includes(searchInput)
     );
     console.log("Gefundene Aufgaben:", filteredTasks);
