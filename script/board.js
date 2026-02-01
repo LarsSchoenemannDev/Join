@@ -175,7 +175,6 @@ function onDragEnter(e) {
 function onDragLeave(e) {
   e.currentTarget.classList.remove('drop-target');
   updateAllEmptyMessages()
-
 }
 
 async function onDrop(e) {

@@ -4,7 +4,7 @@
     overlay.style.display = "flex";
 
     const formContainer = document.getElementById("addTaskFormContainer");
-    if (formContainer. children.length === 0) {
+    if (formContainer.children.length === 0) {
         loadAddTaskFormIntoOverlay();
     }
      init();

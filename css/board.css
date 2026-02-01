@@ -72,6 +72,11 @@ h1 {
     display: flex;
     justify-content: space-between;
 }
+.drop-target {
+    background-color: rgba(59, 130, 246, 0.1);
+    outline: 2px dashed #3b82f6;
+    outline-offset: -4px;
+}
 
 .empty {
     text-align: center;
