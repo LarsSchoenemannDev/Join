@@ -24,20 +24,23 @@ async function getData() {
         }
         const data = await response.json();
         fetchData = data;
-        contactsState = data.contacts.map(contact => ({
+        contactsState = data?.contacts?.filter(c => c).map(contact => ({
             id: contact.id,
             name: contact.name,
             initials: contact.initials,
             color: contact.color,
             checked: false
-        }));
+        })) || [];
     } catch (error) {
-        return
+        console.log("error: ", error);
+
     }
 }
 
 function renderContact(list = contactsState) {
     let html = "";
+    console.log("Dom Activ");
+    
     for (let i = 0; i < list.length; i++) {
         const contact = list[i];
         html += renderContactHTML(contact.initials, contact.name, contact.color, contact.id, contact.checked);

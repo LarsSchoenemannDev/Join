@@ -72,6 +72,7 @@ h1 {
     display: flex;
     justify-content: space-between;
 }
+
 .drop-target {
     background-color: rgba(59, 130, 246, 0.1);
     outline: 2px dashed #3b82f6;
@@ -89,7 +90,7 @@ h1 {
     width: 300px;
 }
 
-.emptyDisplay{
+.emptyDisplay {
     display: none;
 }
 
@@ -227,4 +228,60 @@ h4 {
 
 .user-story {
     background-color: #0038FF;
+}
+
+#addTaskOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.overlay-container .overlay-content {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    
+    height: auto;
+    min-height: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    z-index: 10;
+    border-radius: 18px;
+}
+
+.close-overlay {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    color: #666;
+    font-size: 24px;
+    padding: 4px 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.close-overlay:hover {
+    color: #333;
+}
+
+.overlay-body-task {
+    padding: 30px;
+    background-color: #fff;    
+}
+.add-task-content{
+    padding: 0;
+}
+.overlay-container .h1-content{
+    margin-bottom: 40px;
+}
+
+@media (max-width:1420px ) {
+    
 }
