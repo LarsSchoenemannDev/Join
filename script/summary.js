@@ -76,7 +76,7 @@ function buildSummaryItemNumbers1() {
   let doneCount = 0;
 
   Object.values(tasksFetchedData).forEach((task) => {
-    if (task.state === "toDo") {
+    if (task.state === "todu") {
       toDoCount++;
     } else if (task.state === "done") {
       doneCount++;

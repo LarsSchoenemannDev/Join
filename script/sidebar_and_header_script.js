@@ -1,7 +1,8 @@
 //Hier bitte alle globale Variablen setzen
 let menuButton = document.getElementById("menu-button");
-let user_icon = document.getElementById("user-icon");
+let userIcon = document.getElementById("user-icon");
 let switchHelp = document.getElementById("switch_help");
+const dropDownMenu = document.getElementById("dropDown-menu");
 const userName = sessionStorage.getItem("name");
 const userNameWelcomeMsg = document.getElementById("userName");
 const signedUser = document.getElementById("signedUser");
@@ -31,18 +32,11 @@ function getNameInitialsMenuButton() {
 function showUserNameWelcomeMsg() {
   if (userNameWelcomeMsg) {
     userNameWelcomeMsg.textContent = userName;
-  } else {
-    return;
   }
 }
 
 function showSignedUserName() {
-  if (!signedUser) {
-    return;
-  }
-  if (!userName) {
-    signedUser.textContent = "";
-  } else {
+  if (signedUser) {
     signedUser.textContent = userName;
   }
 }
@@ -67,17 +61,34 @@ function showSignedUserName() {
 //   menuButton.textContent = initials;
 // }
 
-function tooglemenu() {
-  let msg = document.getElementById("dropDown-menu");
-  msg.classList.toggle("show");
+function toggleMenu() {
+  updateMenuPosition();
+  dropDownMenu.classList.toggle("hide");
 }
 
-function helpOnResizeSwitch() {
-  if (window.innerWidth <= 768) {
+// function helpOnResizeSwitch() {
+//   if (window.innerWidth <= 768) {
+//     switchHelp.classList.remove("hide");
+//     dropDownMenu.style.position = "absolute";
+//     dropDownMenu.style.right = "0";
+//     dropDownMenu.style.top = "280px";
+//   } else {
+//     switchHelp.classList.add("hide");
+//   }
+// }
+
+// window.addEventListener("resize", updateMenuPosition);
+
+function updateMenuPosition() {
+  const checkQueries = window.matchMedia("(max-width: 991px)");
+
+  if (checkQueries.matches) {
     switchHelp.classList.remove("hide");
+    dropDownMenu.style.top = "280px";
   } else {
     switchHelp.classList.add("hide");
+    dropDownMenu.style.top = "230px";
   }
+  dropDownMenu.style.position = "absolute";
+  dropDownMenu.style.right = "0";
 }
-
-window.onresize = helpOnResizeSwitch;
