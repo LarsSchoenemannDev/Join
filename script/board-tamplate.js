@@ -1,4 +1,4 @@
-async function loadAddTaskFormIntoOverlay() {
+function loadAddTaskFormIntoOverlay() {
   const formContainer = document.getElementById("addTaskFormContainer");
   return formContainer.innerHTML = ` 
           <div class="center d-none">

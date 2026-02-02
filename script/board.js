@@ -3,7 +3,7 @@ async function boardInit() {
   await getData();
   stateAdd();
   renderBoard();
-  updateAllEmptyMessages();
+  updateAllEmptyMessages();  
 }
 
 function initDragAndDrop() {
@@ -63,12 +63,11 @@ function maincardHTML(contentId, tasks) {
   }
 }
 
-function renderContact(contacts = []) {
+function renderTaskContact(contacts = []) {
   let html = "";
-
   contacts.forEach(contact => {
     if (contact.checked) {
-      html += renderContactHTML(contact);
+      html += renderContactAvatarHTML(contact);
     }
   });
   return html;
@@ -110,7 +109,7 @@ function renderTasksHTML(task, id) {
                   <span>${task.description}</span>
                   <div class="progress">${task.subtasks.length} Subtasks</div>
                   <div class ="nav">
-                  <div class="avatars">${renderContact(task.contacts)}</div>
+                  <div class="avatars">${renderTaskContact(task.contacts)}</div>
                   <div class="${filterPriority(task.priority)} prio-wrapper"></div>            
                   </div>
                   </div>
@@ -118,7 +117,7 @@ function renderTasksHTML(task, id) {
   `;
 }
 
-function renderContactHTML(contact) {
+function renderContactAvatarHTML(contact) {
   return `<div class="avatar" style="background-color:${contact.color}">
                 ${contact.initials}
               </div>

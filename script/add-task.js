@@ -7,9 +7,8 @@ let taskData = {};
 let valid = { title: false, duedate: false, category: false }
 
 
-async function init() {
-    await getData();
-    renderContact();
+async function initAddTask(){
+    await getData();    
     clearInputs();
     eventsAddTask();
     console.log("Status", document.readyState)
@@ -38,15 +37,22 @@ async function getData() {
 }
 
 function renderContact(list = contactsState) {
-    let html = "";
-    console.log("Dom Activ");
-    
-    for (let i = 0; i < list.length; i++) {
-        const contact = list[i];
-        html += renderContactHTML(contact.initials, contact.name, contact.color, contact.id, contact.checked);
-    }
-    document.getElementById("selectContacts").innerHTML = html;
+  const el = document.getElementById("selectContacts");
+  if (!el) return; // AddTask ist gerade nicht im DOM → nichts tun
+
+  let content = "";
+  for (const contact of list) {
+    content += renderContactHTML(
+      contact.initials,
+      contact.name,
+      contact.color,
+      contact.id,
+      contact.checked
+    );
+  }
+  el.innerHTML = content;
 }
+
 
 function assignedToLettersCheckContact() {
     const container = document.getElementById("selectContact");
@@ -87,6 +93,7 @@ async function postAddTask(data) {
 }
 
 function toggleContacts() {
+    renderContact();
     document.getElementById("searchContacts").value = "";
     document.getElementById("selectContacts").classList.add("open");
     document.getElementById("BTNToggleContacts").style.display = "none";
@@ -236,8 +243,6 @@ function clearInputs() {
 }
 
 function eventsAddTask() {
-    console.log(document.readyState);
-    if (document.readyState === "complete") {
         let requiredFields = document.querySelectorAll("#title, #duedate ");
         let inputSubtask = document.getElementById("subtasks");
         let subtaskBox = document.getElementById("showHidden");
@@ -289,9 +294,7 @@ function eventsAddTask() {
             field.addEventListener("blur", noneFocus);
         });
         document.addEventListener("click", isValid);
-    } else {
-        console.error("####### Events Not Working #######");
-    };
+
 }
 
 function getDataFromPage() {

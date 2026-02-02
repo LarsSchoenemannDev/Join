@@ -1,14 +1,18 @@
 
-async function openAddTaskOverlay() {
+function openAddTaskOverlay() {
   const overlay = document.getElementById("addTaskOverlay");
   overlay.style.display = "flex";
-
-  const formContainer = document.getElementById("addTaskFormContainer");
-  if (formContainer.children.length === 0) {
-    await loadAddTaskFormIntoOverlay();    
-  }
-  init();
+  loadAddTaskFormIntoOverlay();
+  setTimeout(() => {    
+    addTaskinit(); 
+  }, 0);
   document.body.style.overflow = "hidden";
+}
+
+
+async function addTaskinit(){
+  await getData(); 
+  eventsAddTask();
 }
 
 
