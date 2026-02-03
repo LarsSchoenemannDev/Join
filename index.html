@@ -6,24 +6,24 @@
     <title>Join</title>
     <link
       rel="shortcut icon"
-      href="../assets/Favicon/favicon.ico"
+      href="/assets/Favicon/favicon.ico"
       type="image/x-icon"
     />
-    <link rel="stylesheet" href="../css/standard.css" />
-    <link rel="stylesheet" href="../css/login.css" />
-    <link rel="stylesheet" href="../css/login-responsiv.css" />
+    <link rel="stylesheet" href="/css/standard.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="stylesheet" href="/css/login-responsiv.css" />
   </head>
 
-  <body>
+  <body onload="animateLoginMobile()">
     <div class="bgAnimationMobile d-none"></div>
-    <div class="body-div">
+    <div class="body-div" id="login-page-div">
       <div id="image-sequence" class="image-sequence animate-logo">
         <img src="" alt="" id="animate-image" />
       </div>
 
       <header class="header">
         <div class="logo hidden">
-          <img src="../assets/img/Capa 2.svg" alt="Join-Logo" />
+          <img src="/assets/img/Capa 2.svg" alt="Join-Logo" />
         </div>
 
         <div class="auth-nav">
@@ -47,7 +47,7 @@
                 oninput="validateInput(this)"
               />
               <span class="input-icon"
-                ><img src="../assets/img/mail.svg" alt=""
+                ><img src="/assets/img/mail.svg" alt=""
               /></span>
             </div>
 
@@ -67,7 +67,7 @@
                 id="togglePasswordIcon"
                 class="input-icon"
                 onclick="togglePassword()"
-                ><img src="../assets/img/lock.svg" alt=""
+                ><img src="/assets/img/lock.svg" alt=""
               /></span>
             </div>
 
@@ -93,11 +93,18 @@
         </div>
       </main>
 
+      <!-- auth-nav in mobile version -->
+
+      <div class="auth-nav-mobile">
+        <span>Not a Join user?</span>
+        <button class="signup-btn" onclick="goToSignUp()">Sign up</button>
+      </div>
+
       <footer class="footer">
-        <a href="../html/privacy-policy.html" class="footer-link"
+        <a href="/html/privacy-policy.html" class="footer-link"
           >Privacy Policy</a
         >
-        <a href="../html/legal-notice.html" class="footer-link">Legal notice</a>
+        <a href="/html/legal-notice.html" class="footer-link">Legal notice</a>
       </footer>
     </div>
   </body>

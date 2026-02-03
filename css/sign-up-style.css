@@ -42,7 +42,10 @@ header {
 }
 
 footer {
-  /* margin-top: 200px; */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -50,21 +53,23 @@ footer {
 }
 
 .footer_links {
-  width: 290px;
+  /* width: 290px; */
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 30px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 .footer_links_PP_LN {
   color: #a8a8a8;
-  height: 25px;
+  line-height: 35px;
+  /* height: 25px; */
 }
 
 .footer_links_PP_LN:hover {
   color: #29abe2;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 #privacy-policy a {
@@ -103,7 +108,8 @@ a {
 } */
 
 .signup-container {
-  height: 630px;
+  height: auto;
+  /* height: 630px; */
   width: 100%;
   max-width: 560px;
   background-color: #ffffff;
