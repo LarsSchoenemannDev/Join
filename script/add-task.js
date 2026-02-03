@@ -117,7 +117,7 @@ function closeAssigned() {
 }
 
 function createSubtasks() {
-    const subtask = document.getElementById("showHidden");
+    const subtask = document.getElementById("showHiddenSubtasks");
     const input = document.getElementById("subtasks");
     input.focus();
     input.classList.toggle("input-icon-cancel,.input-icon-accept,.seperator-small")
@@ -169,7 +169,7 @@ function cancelSubtask() {
     const input = document.getElementById("subtasks")
     input.value = ``;
     input.focus();
-    document.getElementById("showHidden").style.display = "";
+    document.getElementById("showHiddenSubtasks").style.display = "";
 }
 
 function onFocus(event) {
@@ -245,7 +245,7 @@ function clearInputs() {
 function eventsAddTask() {
         let requiredFields = document.querySelectorAll("#title, #duedate ");
         let inputSubtask = document.getElementById("subtasks");
-        let subtaskBox = document.getElementById("showHidden");
+        let subtaskBox = document.getElementById("showHiddenSubtasks");
         inputSubtask.addEventListener("focus", () => {
             subtaskBox.style.display = "flex";
         });

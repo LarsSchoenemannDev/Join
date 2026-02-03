@@ -137,7 +137,7 @@ function loadAddTaskFormIntoOverlay() {
                       <div class="subtask-input-container">
                         <div class="input-wrapper">
                           <input id="subtasks" type="text" onclick="createSubtasks()" placeholder="Add new subtask">
-                          <div class="img-container" id="showHidden">
+                          <div class="img-container" id="showHiddenSubtasks">
                             <img src="../assets/img/Subtasks cancel.svg" class="input-icon-cancel"
                               onclick="cancelSubtask()">
                             <div class="seperator-small"></div>
