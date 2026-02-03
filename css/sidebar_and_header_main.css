@@ -308,13 +308,13 @@ main {
   background-color: #091931;
 }
 
-@media (min-width: 320px) and (max-width: 767px) {
+@media (max-width: 767px) {
   /* .sidebar {
         display: none;
     } */
 
   .header {
-    padding: 20px 30px;
+    padding: 20px;
   }
   .header .icons {
     position: absolute;
@@ -322,6 +322,6 @@ main {
   }
 
   /* .main-area {
-        padding: 80px 30px 50px 30px;
-    } */
+    padding: 80px 30px 50px 30px;
+  } */
 }

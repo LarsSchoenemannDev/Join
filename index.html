@@ -15,8 +15,11 @@
   </head>
 
   <body>
+    <div class="bgAnimationMobile d-none"></div>
     <div class="body-div">
-      <div id="image-sequence" class="image-sequence animate-logo"></div>
+      <div id="image-sequence" class="image-sequence animate-logo">
+        <img src="" alt="" id="animate-image" />
+      </div>
 
       <header class="header">
         <div class="logo hidden">
@@ -68,6 +71,12 @@
               /></span>
             </div>
 
+            <!-- Error Message-->
+
+            <div class="error-msg d-none">
+              Check your email and password. Please try again.
+            </div>
+
             <div class="buttons">
               <button
                 type="submit"
@@ -76,7 +85,9 @@
               >
                 Log in
               </button>
-              <button type="button" class="guest-btn">Guest Log in</button>
+              <button type="button" class="guest-btn" onclick="guestLogin()">
+                Guest Log in
+              </button>
             </div>
           </form>
         </div>
@@ -90,6 +101,6 @@
       </footer>
     </div>
   </body>
-  <script src="../script/login.js"></script>
-  <script src="../script/log-in-site-firebase.js"></script>
+  <script src="/script/login.js"></script>
+  <script src="/script/log-in-site-firebase.js"></script>
 </html>

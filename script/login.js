@@ -1,3 +1,5 @@
+const errorMsg = document.querySelector(".error-msg");
+
 function togglePassword() {
   let p = document.getElementById("password");
   let img = document.getElementById("togglePasswordIcon").querySelector("img");
@@ -45,6 +47,7 @@ function validateInput(input) {
   }
 
   if (isValid) {
+    errorMsg.classList.add("d-none");
     input.classList.remove("error");
   } else {
     input.classList.add("error");
@@ -65,8 +68,25 @@ async function loadImageSequence() {
 
 window.addEventListener("load", loadImageSequence);
 
-// sign Up Function
+// sign Up Button Function
 
 function goToSignUp() {
   window.location.href = "../html/sign-up.html";
 }
+
+// animation by page load in mobile view max-width 992px
+
+// function animateBgMobile() {
+//   const checkqueries = window.matchMedia("(max-width: 992px)");
+//   const animateImage = document.getElementById("animate-image");
+//   if (checkqueries.matches) {
+//     const animationBackground = document.querySelector(".bgAnimationMobile");
+
+//     animationBackground.classList.remove("d-none");
+//     animationBackground.classList.add("animate-bg-mobile");
+//     setTimeout(() => {
+//       animateImage.classList.add("animate-logo");
+//     }, 1500);
+//   }
+//   animationBackground.style.display = "none";
+// }

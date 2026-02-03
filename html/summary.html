@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../css/sidebar_and_header_main.css" />
     <link rel="stylesheet" href="../css/sidebar-responsiv.css" />
     <link rel="stylesheet" href="../css/summary-user.css">
+    <link rel="stylesheet" href="../css/summary-responsive.css">
 </head>
 
 <body onload="greetingGuest(), initializeTasks();">
@@ -71,7 +72,7 @@
                         </div>
                     </div>
                 </header>
-                <main class="main">
+                <main>
                     <div class="summary-div">
                         <section class="summary-title">
                             <h1 class="main-title">Join 360</h1>
@@ -80,7 +81,8 @@
                         </section>
                         <section class="summary-main-board">
                             <div class="summary-overview">
-                                <div class="overview-box-items box-1" id="todo-box">
+                                <div class="boxContainer">
+                                    <div class="overview-box-items box-1" id="todo-box">
                                     <img src="../assets/img/summary-edit-default.svg" alt="" />
                                     <div class="task-number">
                                         <span id="toDoNumbers"></span>
@@ -94,7 +96,9 @@
                                         <h4 class="tasks-text">Done</h4>
                                     </div>
                                 </div>
-                                <div class="overview-box-items box-3" id="urgency-box">
+                                </div>
+                                <div class="boxContainer">
+                                    <div class="overview-box-items box-3" id="urgency-box">
                                     <div class="left-box">
                                         <img class="urgent-badge" src="../assets/img/summary-calender-priority.svg" alt=""></img>
                                         <div class="urgent-task">
@@ -103,24 +107,28 @@
                                         </div>
                                     </div>
                                     <div class="box-seprator"></div>
-                                    <!-- <img src="../assets/img/summary-calender-vector.svg" alt="" /> -->
+                                    
                                     <div class="right-box">
                                         <h4 class="urgency-date" id="dueDate"></h4>
                                         <h5 class="deadline">Upcoming Deadline</h5>
                                     </div>
                                 </div>
-                                <div class="overview-box-items box-4" id="tasks-in-board-box">
+                                </div>
+                                <div class="boxContainer">
+                                     <div class="overview-box-items box-4" id="tasks-in-board-box">
                                     <span id="totalTasksNumbers"></span>
-                                    <h5 class="tasks-text">Tasks in Board</h5>
+                                    <h5 class="tasks-text">Tasks in <br> Board</h5>
                                 </div>
                                 <div class="overview-box-items box-5" id="tasks-in-progress-box">
                                     <span id="inProgressNumber"></span>
-                                    <h5 class="tasks-text">Tasks In Progress</h5>
+                                    <h5 class="tasks-text">Tasks In <br> Progress</h5>
                                 </div>
                                 <div class="overview-box-items box-6" id="awaiting-feedback-box">
                                     <span id="awaitingFeedbackNumber"></span>
-                                    <h5 class="tasks-text">Awaiting Feedback</h5>
+                                    <h5 class="tasks-text">Awaiting <br> Feedback</h5>
                                 </div>
+                                </div>
+                               
                             </div>
                             <div class="welcome-user">
                                 <h4 class="welcoming-message">Good morning,</h4>
@@ -129,6 +137,8 @@
                         </section>
                     </div>
 
+
+                    <!-- Welcome Page with Animation appears when width <= 991px -->
                     <div class="welcome-page">
                         <h4 class="welcomeMsg"></h4>
                         <h2 class="signedUser" id="signedUser"></h2>
@@ -139,7 +149,7 @@
     </div>
 
 </body>
-<!--<script src="../script/auth-script.js"></script>-->
+
 <script src="../script/sidebar_and_header_script.js"></script>
 <script src="../script/summary.js"></script>
 

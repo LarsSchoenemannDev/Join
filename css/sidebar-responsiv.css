@@ -50,7 +50,7 @@
     height: 30px;
   }
 
-  .frame1{
+  .frame1 {
     width: 100%;
   }
 
@@ -58,15 +58,33 @@
     margin-bottom: 0px; /* Platz für Bottom-Bar */
   }
 
-  .text{
+  .text {
     display: none;
   }
-  
-  .help{
+
+  .help {
     display: none;
   }
-  
-  .join-icon{
+
+  .join-icon {
     display: flex;
+  }
 }
+
+@media (max-width: 450px) {
+  .sidebar .frame2 .sideMenu a {
+    width: 90px;
+    font-size: 12px;
+  }
+
+  .frame2 a img {
+    width: 25px;
+    height: 25px;
+  }
+  /* .header {
+    padding: 20px;
+  }
+  .header .icons {
+    right: 0;
+  } */
 }

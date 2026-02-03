@@ -1,10 +1,82 @@
-@media (max-width: 768px) {
-.header_img{
+@media (max-width: 991px) {
+  .header_img {
     max-width: 70px;
-    margin-left: 30px;
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .signup-heading h1 {
+    font-size: 45px;
+  }
+  /* form {
+    width: 90%;
+  } */
 }
 
-.signup-heading h1{
-    font-size: 45px;
+@media (max-width: 767px) {
+  .content {
+    padding: 20px;
+  }
+  .signup-container {
+    padding: 40px 20px;
+  }
+  .signup-heading h1 {
+    font-size: 40px;
+  }
+  form {
+    width: 90%;
+  }
 }
+
+@media (max-width: 450px) {
+  .header_img {
+    max-width: 70px;
+    margin-left: 0;
+    margin-top: 0;
+  }
+  .signup-heading h1 {
+    font-size: 36px;
+  }
+  .signup-heading .seperator {
+    width: 70px;
+  }
+
+  .input-icon {
+    padding: 4px;
+  }
+  form {
+    width: 100%;
+  }
+  .back-arrow {
+    top: 65px;
+    left: 30px;
+  }
+}
+
+@media (max-width: 400px) {
+  .signup-container {
+    padding: 20px 10px;
+  }
+  .signup-heading h1 {
+    font-size: 32px;
+  }
+
+  .checkbox-group label {
+    gap: 5px;
+  }
+
+  .checkbox-group label a {
+    font-size: 12px;
+  }
+
+  .checkbox-group label span {
+    font-size: 12px;
+  }
+
+  .back-arrow {
+    width: 20px;
+    height: 20px;
+    top: 50px;
+    left: 15px;
+  }
 }
