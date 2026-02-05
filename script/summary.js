@@ -141,7 +141,7 @@ function startWelcomeAnimation() {
   const welcomePage = document.querySelector(".welcome-page");
   const welcomeMsg = document.querySelector(".welcomeMsg");
   const signedUser = document.getElementById("signedUser");
-  // Hide summary overview initially
+
   summaryDiv.style.display = "none";
   welcomePage.classList.add("welcome-animation");
   welcomeMsg.textContent = `Good morning!`;
@@ -151,7 +151,6 @@ function startWelcomeAnimation() {
     welcomePage.classList.remove("welcome-animation");
     welcomePage.style.display = "none";
     summaryDiv.style.display = "block";
-    // summaryDiv.classList.add('fade-in');
   }, 3000);
 }
 

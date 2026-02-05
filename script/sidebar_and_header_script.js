@@ -33,6 +33,9 @@ if (!userName || typeof userName !== "string") {
   showSignedUserName();
 }
 
+/**
+ * use initials to show in menu button and if the user is guest then show G in menu button
+ */
 function getNameInitialsMenuButton() {
   if (sessionStorage.getItem("name") === "Guest") {
     initials = "G";
@@ -41,6 +44,10 @@ function getNameInitialsMenuButton() {
   }
   menuButton.textContent = initials;
 }
+
+/**
+ * based on initials show the welcome message and signed user name in summmary page  and if the user is guest then show empty string in welcome message and signed user name
+ */
 
 function showUserNameWelcomeMsg() {
   if (userNameWelcomeMsg) {
@@ -62,6 +69,9 @@ function showSignedUserName() {
   }
 }
 
+/**
+ * die function to show or hide the dropdown menu by clicking on menu button
+ */
 function toggleMenu() {
   if (!dropDownMenu) {
     console.error("dropDownMenu element not found");
@@ -71,18 +81,10 @@ function toggleMenu() {
   dropDownMenu.classList.toggle("hide");
 }
 
-// function helpOnResizeSwitch() {
-//   if (window.innerWidth <= 768) {
-//     switchHelp.classList.remove("hide");
-//     dropDownMenu.style.position = "absolute";
-//     dropDownMenu.style.right = "0";
-//     dropDownMenu.style.top = "280px";
-//   } else {
-//     switchHelp.classList.add("hide");
-//   }
-// }
-
-// window.addEventListener("resize", updateMenuPosition);
+/**
+ * check the screen size and update the position of dropdown menu accordingly
+ * and adds or removes the "hide" class from the switchHelp element based on the screen size
+ */
 
 function updateMenuPosition() {
   if (!dropDownMenu) return;

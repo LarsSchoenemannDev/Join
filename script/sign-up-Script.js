@@ -128,6 +128,9 @@ function checkPassword() {
   }
 }
 
+/**
+ * Function to show a success message after signing up
+ */
 function showSuccessMessage() {
   const msg = document.getElementById("message");
   msg.classList.add("show");
@@ -149,9 +152,3 @@ function updateSubmitButtonState() {
 function goBackToLogin() {
   window.location.href = "../index.html";
 }
-
-// backArrow.addEventListener('click', () =>{
-//   //window.location.href = '#';
-//   console.log("SVG clicked"); // Als test
-
-// });

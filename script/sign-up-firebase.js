@@ -1,3 +1,7 @@
+/**
+ * This script handles the user registration process by sending user data to a Firebase Realtime Database.
+ */
+
 let BASE_URL =
   "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app";
 
