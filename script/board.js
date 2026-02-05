@@ -102,7 +102,7 @@ function filterCategory(category) {
 }
 
 function renderTasksHTML(task, id) {
-  return `<div class="cards" data-id="${id}" draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)" onclick="taskDetailsOverlay(this)">                 
+  return `<div class="cards" data-id="${id}" draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)" onclick="openTaskDetailsOverlay(this)">                 
                   <p class="tag ${filterCategory(task.category)}">${task.category}</p>   
                   <h4>${task.title}</h4>
                   <span>${task.description}</span>
@@ -217,17 +217,20 @@ function searchBar() {
 }
 
 
-function taskDetailsOverlay(id) {
+function openTaskDetailsOverlay(id) {
   const taskID = id.getAttribute("data-id").trim();
   console.dir(fetchData.tasks[taskID]);
   const task = fetchData.tasks[taskID];
-  let wrapper = document.getElementById("wrappertoggel");
+  let wrapper = document.getElementById("taskDetailsOverlay");
   let contentRef = document.getElementById("contentRefTaskCard")
   contentRef.innerHTML = taskPopup(task)
-  wrapper.style.display = "flex";  
+  wrapper.style.display = "flex";
+  document.body.style.overflow = "hidden"
 }
-function closetaskDetailsOverlay(){
-  document.getElementById("wrappertoggel").style.display = "none"
+
+function closetaskDetailsOverlay() {
+  document.getElementById("taskDetailsOverlay").style.display = "none"
+  document.body.style.overflow = "auto";
 }
 
 function dateStringChange(taskduedate) {

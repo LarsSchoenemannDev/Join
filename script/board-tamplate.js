@@ -9,7 +9,11 @@ function loadAddTaskFormIntoOverlay() {
   <section class="add-task-content">
           <div class="wrapper">
             <h1 class="h1-content">Add Task
-            <button class="close-overlay" onclick="closeAddTaskOverlay()">&times;</button></h1>
+          <button class="close-overlay" onclick="closeAddTaskOverlay()">
+            <img class="icon normal" src="../assets/img/close-icon.svg" alt="close">
+            <img class="icon hover" src="../assets/img/close-hover.svg" alt="close hover">
+          </button>
+          </button></h1>
             <main class="main-content">
               <section class="card">
                 <div>
@@ -185,13 +189,15 @@ function loadAddTaskFormIntoOverlay() {
     `;
 }
 
-
-
 function taskPopup(task) {
   return `<div class="detail-card">
     <div class="detail-header">
       <div class="tag ${filterCategory(task.category)}">${task.category}</div>
-      <button class="close-overlay" onclick="closetaskDetailsOverlay()">×</button>
+      
+        <button class="close-overlay" onclick="closetaskDetailsOverlay()">
+        <img class="icon normal" src="../assets/img/close-icon.svg" alt="close">
+        <img class="icon hover" src="../assets/img/close-hover.svg" alt="close hover">
+      </button>
     </div>
     <h2 class="detail-title">${task.title}</h2>
     <p class="detail-description">${task.description}</p>

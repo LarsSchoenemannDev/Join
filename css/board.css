@@ -304,7 +304,8 @@ h4 {
     background-color: var(--color-tag-userstory);
 }
 
-#addTaskOverlay, wrappertoggel {
+#addTaskOverlay,
+taskDetailsOverlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -330,19 +331,32 @@ h4 {
 }
 
 .close-overlay {
-    position: absolute;
-    top: var(--space-12);
-    right: var(--space-12);
-    background: transparent;
-    color: var(--color-overlay-close);
-    font-size: 24px;
-    padding: 4px var(--space-8);
     border: none;
+    background: none;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    position: relative;
     cursor: pointer;
 }
 
-.close-overlay:hover {
-    color: var(--color-overlay-close-hover);
+.close-overlay .icon {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.close-overlay .hover {
+    opacity: 0;
+}
+
+.close-overlay:hover .normal {
+    opacity: 0;
+}
+
+.close-overlay:hover .hover {
+    opacity: 1;
 }
 
 .overlay-body-task {
@@ -372,8 +386,7 @@ h4 {
 
 .detail-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between;    
     margin-bottom: var(--space-24);
 }
 
@@ -386,7 +399,7 @@ h4 {
 }
 
 .detail-title {
-    font-size: 61px;
+    font-size: 48px;
     font-weight: var(--fw-bold);
     color: var(--color-text-heading);
     margin-bottom: var(--space-24);
@@ -524,3 +537,15 @@ h4 {
     cursor: pointer;
 }
 
+.overlay-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.2);
+}
