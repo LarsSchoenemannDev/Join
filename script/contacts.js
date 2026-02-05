@@ -294,7 +294,7 @@ function checkQueriesForContacts() {
  * @param {Event} event
  */
 function handleContactClick(event) {
-  const checkQueries = window.matchMedia("(max-width: 767px)");
+  const checkQueries = window.matchMedia("(max-width: 991px)");
   if (checkQueries.matches) {
     contactSection.style.display = "none";
     contactDashboard.style.display = "block";
@@ -321,7 +321,7 @@ function handleEditToolClick(event) {
   event.stopPropagation();
   const editToolEls = document.getElementById("contact-edit-tools");
   if (!editToolEls) return;
-  const checkquery = window.matchMedia("(max-width: 767px)");
+  const checkquery = window.matchMedia("(max-width: 991px)");
   if (checkquery.matches) {
     openEditMenuDialog();
   }
@@ -620,7 +620,7 @@ function closeEditMenuDialog() {
 //===========================
 
 function EditMenuDialog() {
-  const checkQueries = window.matchMedia("(max-width: 958px)");
+  const checkQueries = window.matchMedia("(max-width: 991px)");
   if (checkQueries.matches) {
     dialogElement.classList.remove("slide-in");
     closeDialog();
