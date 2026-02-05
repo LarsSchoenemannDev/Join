@@ -337,7 +337,7 @@ input[type="number"]::-webkit-inner-spin-button {
     width: clamp(90%, 90vw, 80%);
     height: calc(100vh - 180px);
     top: 51%;
-    right: calc(100vw - 98%);
+    right: calc(100vw - 95%);
   }
   .edit-contact-overlay .edit-contact-overview {
     width: 100%;

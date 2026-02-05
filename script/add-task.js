@@ -294,7 +294,6 @@ function eventsAddTask() {
             field.addEventListener("blur", noneFocus);
         });
         document.addEventListener("click", isValid);
-
 }
 
 function getDataFromPage() {
