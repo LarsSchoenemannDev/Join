@@ -1,9 +1,13 @@
 const BASE_URL =
   "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app";
+const guestURL =
+  "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/Guest";
+
 const form = document.getElementById("login_form");
 let passwordInput = document.getElementById("password");
 let emailInput = document.getElementById("email");
 let fetchedData;
+let fetchedDataGuest;
 let emailFound = false;
 const inputs = document.querySelectorAll("input");
 
@@ -62,14 +66,9 @@ async function loginValidation() {
   }
 }
 
-async function guestLogin() {
-  await loginDatafetchGuest();
-  console.log("Guest has logged in");
-  //   userNameWelcomeMsg.textContent = "";
-  menuButton.textContent = "G";
-  window.location.href = "../html/summary.html";
-}
-
+/**
+ * fetch data from firebase with "GET" Methode for the registered users
+ */
 async function loginDatafetch() {
   try {
     const response = await fetch(BASE_URL + "/users.json");
@@ -99,30 +98,56 @@ async function loginDatafetch() {
   }
 }
 
+/**
+ * the function to direct the "guest" to summary page by checking the guest data from firebase
+ * and rendering the guest name initial "G" in the header
+ * and ignore the name of guest in welcome message
+ */
+
+async function guestLogin() {
+  await loginDatafetchGuest();
+
+  if (fetchedDataGuest && fetchedDataGuest.name === "Guest") {
+    console.log(fetchedDataGuest.name + " has logged in");
+    sessionStorage.setItem("name", fetchedDataGuest.name);
+    window.location.href = "../html/summary.html";
+  } else {
+    console.error("Guest login failed - invalid guest data");
+  }
+}
+
+/**
+ * fetch data from firebase with "GET" Methode for guest user
+ * @returns fetched data from firebase for guest in a direct structure, so the information can be used to extract initials for header.
+ */
 async function loginDatafetchGuest() {
   try {
-    const response = await fetch(BASE_URL + "/Guest.json");
+    const response = await fetch(guestURL + ".json");
     if (!response.ok) {
       console.error(`HTTP error! status: ${response.status}`);
+      return;
     }
 
     const responseToJson = await response.json();
+    console.log("Guest API response:", responseToJson); // Debug log
 
     if (responseToJson && typeof responseToJson === "object") {
-      fetchedData = {};
-      for (const [id, userData] of Object.entries(responseToJson)) {
-        fetchedData = {
-          email: userData.email,
-          password: userData.password,
-        };
+      // Check if data is directly the guest object or nested
+      if (responseToJson.name) {
+        // Direct structure: { "name": "Guest" }
+        fetchedDataGuest = { name: responseToJson.name };
+      } else {
+        // Nested structure: { "id": { "name": "Guest" } }
+        const firstEntry = Object.values(responseToJson)[0];
+        fetchedDataGuest = firstEntry ? { name: firstEntry.name } : {};
       }
+      console.log("fetchedDataGuest:", fetchedDataGuest); // Debug log
     } else {
-      fetchedData = {};
+      fetchedDataGuest = {};
     }
   } catch (error) {
     console.error("Fehler beim laden der Daten:", error);
-
-    fetchedData = {};
+    fetchedDataGuest = {};
   }
 }
 

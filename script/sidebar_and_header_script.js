@@ -8,6 +8,14 @@ const userNameWelcomeMsg = document.getElementById("userName");
 const signedUser = document.getElementById("signedUser");
 let initials = "";
 
+// Ensure dropdown starts hidden
+if (dropDownMenu && !dropDownMenu.classList.contains("hide")) {
+  dropDownMenu.classList.add("hide");
+}
+
+/**
+ * a function to get the initials from the user name to show in header
+ */
 if (!userName || typeof userName !== "string") {
   initials = "??";
 } else {
@@ -26,42 +34,39 @@ if (!userName || typeof userName !== "string") {
 }
 
 function getNameInitialsMenuButton() {
+  if (sessionStorage.getItem("name") === "Guest") {
+    initials = "G";
+    menuButton.textContent = initials;
+    return;
+  }
   menuButton.textContent = initials;
 }
 
 function showUserNameWelcomeMsg() {
   if (userNameWelcomeMsg) {
-    userNameWelcomeMsg.textContent = userName;
+    if (sessionStorage.getItem("name") === "Guest") {
+      userNameWelcomeMsg.textContent = "";
+    } else {
+      userNameWelcomeMsg.textContent = userName;
+    }
   }
 }
 
 function showSignedUserName() {
   if (signedUser) {
-    signedUser.textContent = userName;
+    if (sessionStorage.getItem("name") === "Guest") {
+      signedUser.textContent = "";
+    } else {
+      signedUser.textContent = userName;
+    }
   }
 }
 
-// if (userName !== null && userName.trim() !== "") {
-//   if (userName.length === 1) {
-//     // Nur ein Name vorhanden
-//     initials = userName[0][0].toUpperCase();
-//     menuButtonName();
-//   } else {
-//     // Mehrere Namen: erstes und letztes Wort
-//     initials =
-//       userName[0][0].toUpperCase() +
-//       userName[userName.length - 1][0].toUpperCase();
-//     menuButtonName();
-//   }
-// } else {
-//   menuButton.textContent = "";
-// }
-
-// function menuButtonName() {
-//   menuButton.textContent = initials;
-// }
-
 function toggleMenu() {
+  if (!dropDownMenu) {
+    console.error("dropDownMenu element not found");
+    return;
+  }
   updateMenuPosition();
   dropDownMenu.classList.toggle("hide");
 }
@@ -80,13 +85,15 @@ function toggleMenu() {
 // window.addEventListener("resize", updateMenuPosition);
 
 function updateMenuPosition() {
+  if (!dropDownMenu) return;
+
   const checkQueries = window.matchMedia("(max-width: 991px)");
 
   if (checkQueries.matches) {
-    switchHelp.classList.remove("hide");
+    if (switchHelp) switchHelp.classList.remove("hide");
     dropDownMenu.style.top = "280px";
   } else {
-    switchHelp.classList.add("hide");
+    if (switchHelp) switchHelp.classList.add("hide");
     dropDownMenu.style.top = "230px";
   }
   dropDownMenu.style.position = "absolute";
