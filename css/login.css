@@ -48,6 +48,10 @@ body {
   margin-top: 10px;
 }
 
+.auth-nav-mobile {
+  display: none;
+}
+
 .signup-btn,
 .login-btn,
 .guest-btn {
@@ -176,7 +180,7 @@ body {
   padding: 12px 30px;
   background: white;
   color: #2a3647;
-  border: 2px solid #2a3647;
+  border: 1px solid #2a3647;
   font-size: 18px;
   transition: all 75ms linear;
 }
@@ -189,6 +193,10 @@ body {
 }
 
 .footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
   gap: 30px;
@@ -198,7 +206,8 @@ body {
 .footer-link {
   color: #a8a8a8;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 35px;
 }
 
 .footer-link:hover {

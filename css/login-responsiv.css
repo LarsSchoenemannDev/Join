@@ -2,6 +2,18 @@
   .main {
     padding: 20px;
   }
+  .auth-nav {
+    display: none;
+  }
+
+  .auth-nav-mobile {
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 16px;
+  }
 
   .animate-bg-mobile {
     position: fixed;
@@ -9,18 +21,20 @@
     top: 0;
     width: 100%;
     height: 100vh;
-    /* z-index: 999; */
-    animation: BackgroundFadeOut 2s ease-in forwards;
+    animation: BackgroundFadeOut 3s ease-out forwards;
     background-color: rgba(42, 54, 71, 1);
     /* display: block !important; */
   }
-  .image-sequence {
-    position: fixed;
-    z-index: 1000;
-    background-color: transparent;
-    border-radius: 20px;
-    padding: 20px;
+
+  @keyframes BackgroundFadeOut {
+    from {
+      opacity: 1; /* Start at full visibility */
+    }
+    to {
+      opacity: 0; /* Start at full transparency */
+    }
   }
+
   .animate-logo {
     animation: logoMove 1s cubic-bezier(0.37, 0.09, 0.93, 0.64) forwards;
     top: 50%;
@@ -28,43 +42,20 @@
     transform: translate(-50%, -50%);
   }
 
-  .animate-logo img {
-    /* content: url("/assets/img/Logo-Login-Mobile.svg"); */
+  .animate-logo-mobile img {
     animation:
       logoResize 1s ease-out forwards,
       logoChangeImg 1s ease-out forwards;
   }
 
-  @keyframes BackgroundFadeOut {
-    from {
-      background-color: rgba(42, 54, 71, 1);
-      opacity: 1; /* Start at full visibility */
-    }
-    to {
-      background-color: rgba(42, 54, 71, 1);
-      opacity: 0; /* Start at full transparency */
-    }
-  }
-
   @keyframes logoMove {
     0% {
-      background: transparent;
-      box-shadow: 0 0 0 9000vmax rgba(246, 247, 248, 1);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
-    50% {
-      background: transparent;
-      box-shadow: 0 0 0 9000vmax rgba(246, 247, 248, 1);
-    }
-    80% {
-      background: transparent;
-      box-shadow: 0 0 0 9000vmax rgba(246, 247, 248, 0.8);
-    }
+
     100% {
-      background: transparent;
-      box-shadow: 0 0 0 9000vmax rgba(246, 247, 248, 0);
       top: 20px;
       left: 20px;
       transform: translate(0, 0);
@@ -83,17 +74,61 @@
 
   @keyframes logoChangeImg {
     0% {
-      content: url("/assets/img/Logo-Login-Mobile.svg");
+      content: url("../assets/img/Logo-Login-Mobile.svg");
     }
 
     100% {
-      content: url("/assets/img/Logo-logged-in-mobile.svg");
+      content: url("../assets/img/Logo-logged-in-mobile.svg");
     }
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 768px) {
   .main {
-    padding: 0px 10px 0px 10px;
+    padding: 20px;
+  }
+
+  .login-container {
+    padding: 48px;
+  }
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login-form .input-group {
+    width: 90%;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .main {
+    padding: 20px;
+  }
+
+  .login-container {
+    padding: 48px 24px;
+  }
+
+  .login-container h1 {
+    font-size: 46px;
+  }
+  .login-form .input-group {
+    width: 100%;
+  }
+
+  .auth-nav-mobile {
+    gap: 10px;
+    font-size: 14px;
   }
 }

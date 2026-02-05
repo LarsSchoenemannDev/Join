@@ -74,19 +74,31 @@ function goToSignUp() {
   window.location.href = "../html/sign-up.html";
 }
 
-// animation by page load in mobile view max-width 992px
+/**
+ * Function to check screen size and start login animation in mobile view max-width 991px
+ * Called on page load in index.html
+ */
 
-// function animateBgMobile() {
-//   const checkqueries = window.matchMedia("(max-width: 992px)");
-//   const animateImage = document.getElementById("animate-image");
-//   if (checkqueries.matches) {
-//     const animationBackground = document.querySelector(".bgAnimationMobile");
+function animateLoginMobile() {
+  const checkqueries = window.matchMedia("(max-width: 991px)");
+  if (checkqueries.matches) {
+    startAnimateLoginMobile();
+  }
+}
 
-//     animationBackground.classList.remove("d-none");
-//     animationBackground.classList.add("animate-bg-mobile");
-//     setTimeout(() => {
-//       animateImage.classList.add("animate-logo");
-//     }, 1500);
-//   }
-//   animationBackground.style.display = "none";
-// }
+function startAnimateLoginMobile() {
+  const animateImage = document.getElementById("animate-image");
+  const animationBackground = document.querySelector(".bgAnimationMobile");
+  const bodyDiv = document.getElementById("login-page-div");
+
+  bodyDiv.style.display = "none";
+  animationBackground.classList.add("animate-bg-mobile");
+  animationBackground.style.display = "block";
+  animateImage.classList.add("animate-logo-mobile");
+
+  setTimeout(() => {
+    animationBackground.classList.remove("animate-bg-mobile");
+    animationBackground.style.display = "none";
+    bodyDiv.style.display = "block";
+  }, 1000);
+}

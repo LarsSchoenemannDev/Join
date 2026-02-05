@@ -55,7 +55,7 @@
 
 @media (max-width: 400px) {
   .signup-container {
-    padding: 20px 10px;
+    padding: 40px 10px;
   }
   .signup-heading h1 {
     font-size: 32px;
@@ -76,7 +76,7 @@
   .back-arrow {
     width: 20px;
     height: 20px;
-    top: 50px;
+    top: 65px;
     left: 15px;
   }
 }
