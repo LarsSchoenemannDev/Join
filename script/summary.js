@@ -145,7 +145,7 @@ function startWelcomeAnimation() {
   summaryDiv.style.display = "none";
   welcomePage.classList.add("welcome-animation");
   welcomeMsg.textContent = `Good morning!`;
-  signedUser.textContent = userName ? `${userName}` : "";
+  signedUser.textContent = userName === "Guest" ? "" : `${userName}`;
   welcomePage.style.display = "flex";
   setTimeout(() => {
     welcomePage.classList.remove("welcome-animation");

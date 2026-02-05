@@ -2,34 +2,38 @@
 *,
 *::before,
 *::after {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-
-@font-face {
-    font-family: 'Inter';
-    font-weight: 400;
-    font-style: normal;
-    src: url(../assets/fonts/Inter/static/Inter_18pt-Regular.ttf) format('truetype');
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 @font-face {
-    font-family: 'Inter';
-    font-weight: 500;
-    font-style: normal;
-    src: url(../assets/fonts/Inter/static/Inter_18pt-Medium.ttf) format('truetype');
+  font-family: "Inter";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; /*This ensures text remains visible using a fallback font while custom fonts load, preventing invisible text*/
+  src: url(../assets/fonts/Inter/static/Inter_18pt-Regular.ttf)
+    format("truetype");
 }
 
 @font-face {
-    font-family: 'Inter';
-    font-weight: 700;
-    font-style: normal;
-    src: url(../assets/fonts/Inter/static/Inter_18pt-Bold.ttf) format('truetype');
+  font-family: "Inter";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap; /*This ensures text remains visible using a fallback font while custom fonts load, preventing invisible text*/
+  src: url(../assets/fonts/Inter/static/Inter_18pt-Medium.ttf)
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap; /*This ensures text remains visible using a fallback font while custom fonts load, preventing invisible text*/
+  src: url(../assets/fonts/Inter/static/Inter_18pt-Bold.ttf) format("truetype");
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #F6F7F8;
+  font-family: "Inter", sans-serif;
+  background-color: #f6f7f8;
 }
