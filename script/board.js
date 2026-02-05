@@ -3,7 +3,7 @@ async function boardInit() {
   await getData();
   stateAdd();
   renderBoard();
-  updateAllEmptyMessages();  
+  updateAllEmptyMessages();
 }
 
 function initDragAndDrop() {
@@ -74,7 +74,7 @@ function renderTaskContact(contacts = []) {
 }
 
 function filterPriority(priority) {
-  const prioArray = Array.isArray(priority) ? priority : [priority];
+  let prioArray = Array.isArray(priority) ? priority : [priority];
   let priorityState = "";
   prioArray.forEach(prio => {
     if (prio === "urgent") {
@@ -102,8 +102,7 @@ function filterCategory(category) {
 }
 
 function renderTasksHTML(task, id) {
-  return `<div class="cards" data-id="${id}" draggable="true" ondragstart="onDragStart(event)" 
-                    ondragend="onDragEnd(event)">                 
+  return `<div class="cards" data-id="${id}" draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)" onclick="taskDetailsOverlay(this)">                 
                   <p class="tag ${filterCategory(task.category)}">${task.category}</p>   
                   <h4>${task.title}</h4>
                   <span>${task.description}</span>
@@ -135,10 +134,9 @@ async function postState() {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const responseData = await response.json();
-    console.log("update erfolgreich:", responseData);
     return responseData;
   } catch (error) {
-    console.error("ehler beim update:", error);
+    console.error("Fehler beim update:", error);
   }
 }
 
@@ -163,7 +161,7 @@ function onDragEnd(e) {
 function onDragOver(e) {
   e.preventDefault();
   updateAllEmptyMessages()
-  
+
 }
 
 function onDragEnter(e) {
@@ -218,3 +216,77 @@ function searchBar() {
   }
 }
 
+
+function taskDetailsOverlay(id) {
+  const taskID = id.getAttribute("data-id").trim();
+  console.dir(fetchData.tasks[taskID]);
+  const task = fetchData.tasks[taskID];
+  let wrapper = document.getElementById("wrappertoggel");
+  let contentRef = document.getElementById("contentRefTaskCard")
+  contentRef.innerHTML = taskPopup(task)
+  wrapper.style.display = "flex";  
+}
+function closetaskDetailsOverlay(){
+  document.getElementById("wrappertoggel").style.display = "none"
+}
+
+function dateStringChange(taskduedate) {
+  const [y, m, d] = taskduedate.split("-");
+  return `${d}/${m}/${y}`;
+}
+
+function capitalizeLetters(taskpriority) {
+  return taskpriority[0].toUpperCase() + taskpriority.slice(1);
+}
+
+function capitalizeLettersFullName(taskFullName) {
+  let html = "";
+  taskFullName.forEach(contact => {
+    if (contact.checked) {
+
+      html += renderContactAvatarHTML(contact);
+    }
+  });
+  return html;
+}
+
+function renderTaskContactDetails(contacts = []) {
+  let html = "";
+  contacts.forEach(contact => {
+    if (contact.checked) {
+      html += renderTaskContactDetailsHTML(contact);
+    }
+  });
+  return html;
+}
+
+
+function renderTaskContactDetailsHTML(contact) {
+  return `<div class="assignee-item">
+          <section class="contact-section">
+          <div class="initials-circle" style="background-color: ${(contact.color)}">${(contact.initials)}</div>          
+          <p>${(contact.name)}</p>
+          </section>
+        </div>
+  `;
+}
+
+function renderTaskSubTaskDetails(subtasks = [], i) {
+  let html = "";
+  subtasks.forEach((subtasksData, i) => {
+    {
+      html += renderTaskSubTaskDetailsHTML(subtasksData, i);
+    }
+  });
+  return html;
+}
+
+function renderTaskSubTaskDetailsHTML(subtasks, i) {
+  return ` 
+      <div class="subtask-item">
+        <input type="checkbox" id="subtask-${i}" class="checkbox-input-subtask">
+        <label for="subtask-${i}">${subtasks}</label>
+      </div>
+
+   `;
+}

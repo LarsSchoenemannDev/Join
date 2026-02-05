@@ -33,6 +33,7 @@
     --space-8: 8px;
     --space-12: 12px;
     --space-18: 18px;
+    --space-24: 24px;
 
     /* Sizes */
     --w-column: 310px;
@@ -50,6 +51,9 @@
     /* Effects */
     --shadow-card: 0 14px 35px rgba(20, 30, 55, 0.08);
     --border-card: 1px solid rgba(230, 235, 245, 0.8);
+
+    --fs-detail-label: 20px;
+
 }
 
 h1 {
@@ -132,7 +136,7 @@ h1 {
 
 .board {
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between;
 }
 
 .drop-target {
@@ -209,7 +213,7 @@ h4 {
     color: var(--color-text-heading);
 }
 
-.cards > span {
+.cards>span {
     display: block;
     margin: 0 0 var(--space-18);
     font-size: 16px;
@@ -300,7 +304,7 @@ h4 {
     background-color: var(--color-tag-userstory);
 }
 
-#addTaskOverlay {
+#addTaskOverlay, wrappertoggel {
     position: fixed;
     top: 0;
     left: 0;
@@ -354,4 +358,169 @@ h4 {
     margin-bottom: 40px;
 }
 
+.detail-card {
+    background-color: var(--color-white);
+    width: 100%;
+    max-width: 525px;
+    padding: 48px 40px;
+    border-radius: var(--radius-26);
+    box-shadow: var(--shadow-card);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-24);
+}
+
+.close-overlay-btn {
+    font-size: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-dark);
+}
+
+.detail-title {
+    font-size: 61px;
+    font-weight: var(--fw-bold);
+    color: var(--color-text-heading);
+    margin-bottom: var(--space-24);
+    line-height: 1.2;
+}
+
+.detail-description {
+    font-size: var(--fs-detail-label);
+    color: #000;
+    margin-bottom: var(--space-24);
+}
+
+.detail-info-row {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: var(--space-24);
+    font-size: var(--fs-detail-label);
+}
+
+.detail-label {
+    color: var(--color-text-subtle);
+    min-width: 120px;
+    display: inline-block;
+}
+
+.detail-value-prio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.detail-section {
+    margin-top: var(--space-24);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+.assignee-list,
+.subtask-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    margin-top: var(--space-8);
+}
+
+.checkbox-box {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("../assets/img/checkbox.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px 24px;
+    cursor: pointer;
+}
+
+.checkbox-input:checked+.checkbox-box {
+    background-image: url("../assets/img/checkboxChecked.svg");
+    background-size: 24px 24px;
+}
+
+.assignee-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 7px 3px;
+    font-size: 19px;
+}
+
+.contact-section {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.assignee-item .avatar {
+    margin-left: 0;
+}
+
+.detail-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--space-8);
+    margin-top: auto;
+    padding-top: var(--space-24);
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--color-text-dark);
+}
+
+.footer-separator {
+    width: 1px;
+    height: 24px;
+    background-color: var(--color-seperator);
+}
+
+.subtask-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 7px 3px;
+    font-size: 16px;
+}
+
+.checkbox-input-subtask {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    background-image: url("../assets/img/checkbox.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px 24px;
+    border-radius: none !important;
+    border: none !important;
+}
+
+.checkbox-input-subtask:checked {
+    background-image: url("../assets/img/checkboxChecked.svg");
+}
+
+.subtask-item label {
+    cursor: pointer;
+}
 

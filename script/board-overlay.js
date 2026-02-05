@@ -22,10 +22,3 @@ function closeAddTaskOverlay() {
   document.body.style.overflow = "auto";
 }
 
-// // function resetAddTaskForm() {
-// //     const formContainer = document.getElementById("addTaskFormContainer");
-// //     if (formContainer) {
-// //     }
-// // }
-
-// // closeAddTaskOverlay() 
