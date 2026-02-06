@@ -189,7 +189,7 @@ function loadAddTaskFormIntoOverlay() {
     `;
 }
 
-function taskPopup(task) {
+function taskPopup(task, taskID) {
   return `<div class="detail-card">
     <div class="detail-header">
       <div class="tag ${filterCategory(task.category)}">${task.category}</div>
@@ -219,7 +219,7 @@ function taskPopup(task) {
     <div class="detail-section">
       <span class="detail-label">Subtasks</span>
       <div class="subtask-list">
-        ${renderTaskSubTaskDetails(task.subtasks)}
+        ${renderTaskSubTaskDetails(taskID)}
       </div>
     </div>
     <div class="detail-footer">

@@ -39,8 +39,7 @@ async function getData() {
 
 function renderContact(list = contactsState) {
   const el = document.getElementById("selectContacts");
-  if (!el) return; // AddTask ist gerade nicht im DOM → nichts tun
-
+  if (!el) return; 
   let content = "";
   for (const contact of list) {
     content += renderContactHTML(

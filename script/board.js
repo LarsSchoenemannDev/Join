@@ -4,6 +4,7 @@ async function boardInit() {
   stateAdd();
   renderBoard();
   updateAllEmptyMessages();
+  subTasksStateAdd();
 }
 
 function initDragAndDrop() {
@@ -223,7 +224,7 @@ function openTaskDetailsOverlay(id) {
   const task = fetchData.tasks[taskID];
   let wrapper = document.getElementById("taskDetailsOverlay");
   let contentRef = document.getElementById("contentRefTaskCard")
-  contentRef.innerHTML = taskPopup(task)
+  contentRef.innerHTML = taskPopup(task, taskID)
   wrapper.style.display = "flex";
   document.body.style.overflow = "hidden"
 }
@@ -263,7 +264,6 @@ function renderTaskContactDetails(contacts = []) {
   return html;
 }
 
-
 function renderTaskContactDetailsHTML(contact) {
   return `<div class="assignee-item">
           <section class="contact-section">
@@ -274,22 +274,53 @@ function renderTaskContactDetailsHTML(contact) {
   `;
 }
 
-function renderTaskSubTaskDetails(subtasks = [], i) {
+function renderTaskSubTaskDetails(taskId) {
+  const task = fetchData.tasks[taskId];
   let html = "";
-  subtasks.forEach((subtasksData, i) => {
-    {
-      html += renderTaskSubTaskDetailsHTML(subtasksData, i);
-    }
+  task.subtasks.forEach((subtask, i) => {
+    html += renderTaskSubTaskDetailsHTML(subtask, i, taskId);
   });
   return html;
 }
 
-function renderTaskSubTaskDetailsHTML(subtasks, i) {
+function renderTaskSubTaskDetailsHTML(subtask, i, taskId) {
+  const isChecked = subtask.state === "check" ? "checked" : "";
   return ` 
       <div class="subtask-item">
-        <input type="checkbox" id="subtask-${i}" class="checkbox-input-subtask">
-        <label for="subtask-${i}">${subtasks}</label>
+        <input class="checkbox-input-subtask" type="checkbox" id="subtask-${taskId}-${i}" onchange="toggleSubtask('${taskId}', ${i})"${isChecked}>
+        <label for="subtask-${taskId}-${i}">${subtask.title}</label>
       </div>
+    `;
+}
 
-   `;
+async function toggleSubtask(taskId, subtaskIndex) {
+  const subtask = fetchData.tasks[taskId].subtasks[subtaskIndex];
+  if (subtask.state === "uncheck") {
+    subtask.state = "check";
+  } else {
+    subtask.state = "uncheck";
+  }
+  console.log(`Status geändert: ${subtask.title} ist jetzt ${subtask.state}`);
+  await postState()
+}
+
+async function subTasksStateAdd() {
+  if (!fetchData) return;
+  Object.values(fetchData.tasks).forEach(task => {
+    if (task.subtasks && Array.isArray(task.subtasks)) {
+      task.subtasks = task.subtasks.map((subtask, index) => {
+        if (typeof subtask === "string") {
+          return {
+            title: subtask,
+            state: "uncheck"
+          };
+        }
+        if (subtask.state === undefined) {
+          subtask.state = "uncheck";
+        }
+        return subtask;
+      });
+    }
+  });
+  await postState()
 }
