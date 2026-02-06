@@ -217,7 +217,6 @@ function searchBar() {
   }
 }
 
-
 function openTaskDetailsOverlay(id) {
   const taskID = id.getAttribute("data-id").trim();
   const task = fetchData.tasks[taskID];
@@ -231,6 +230,7 @@ function openTaskDetailsOverlay(id) {
 function closetaskDetailsOverlay() {
   document.getElementById("taskDetailsOverlay").style.display = "none"
   document.body.style.overflow = "auto";
+  renderBoard()
 }
 
 function dateStringChange(taskduedate) {
@@ -325,14 +325,24 @@ async function subTasksStateAdd() {
 
 async function deleteTaskOnBoard(id) {
   if (fetchData.tasks[id]) {
-    console.log("Gefunden");
     delete fetchData.tasks[id];
-    console.log("Gelöscht");
     closetaskDetailsOverlay()
     renderBoard()
     await postState()
-  }else{
+  } else {
     return
   }
 }
 
+function editTaskOnBoard(id) {
+  const task = fetchData.tasks[id];
+  const overlayContainer = document.getElementById('taskDetailsOverlay'); 
+  if (!overlayContainer) {
+    console.error("Das Haupt-Overlay 'taskDetailsOverlay' wurde nicht gefunden!");
+    return;
+  }
+  if (task) {    
+    overlayContainer.innerHTML = taskPopupEditMode(task, id);   
+    overlayContainer.classList.remove('d-none'); 
+  }
+}
