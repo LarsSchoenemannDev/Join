@@ -1,5 +1,9 @@
 const errorMsg = document.querySelector(".error-msg");
 
+/**
+ * Function to toggle password visibility and update the icon accordingly
+ * Called on click of the toggle password icon in index.html
+ */
 function togglePassword() {
   let p = document.getElementById("password");
   let img = document.getElementById("togglePasswordIcon").querySelector("img");
@@ -26,6 +30,11 @@ function updateIcon() {
   }
 }
 
+/**
+ * validate input fields for email and password
+ * @param {*String} input
+ *
+ */
 function validateInput(input) {
   let isValid = true;
 
@@ -55,6 +64,9 @@ function validateInput(input) {
   return isValid;
 }
 
+/**
+ *  function to show the logo animation on page load
+ */
 async function loadImageSequence() {
   const container = document.getElementById("image-sequence");
   container.innerHTML = '<img src="../assets/img/Capa 2.svg" alt="Logo Intro">';
