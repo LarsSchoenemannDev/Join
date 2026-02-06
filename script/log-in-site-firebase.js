@@ -1,7 +1,7 @@
 const BASE_URL =
   "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app";
 const guestURL =
-  "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/Guest";
+  "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/guest";
 
 const form = document.getElementById("login_form");
 let passwordInput = document.getElementById("password");
