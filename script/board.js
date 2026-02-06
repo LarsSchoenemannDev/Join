@@ -220,7 +220,6 @@ function searchBar() {
 
 function openTaskDetailsOverlay(id) {
   const taskID = id.getAttribute("data-id").trim();
-  console.dir(fetchData.tasks[taskID]);
   const task = fetchData.tasks[taskID];
   let wrapper = document.getElementById("taskDetailsOverlay");
   let contentRef = document.getElementById("contentRefTaskCard")
@@ -300,7 +299,6 @@ async function toggleSubtask(taskId, subtaskIndex) {
   } else {
     subtask.state = "uncheck";
   }
-  console.log(`Status geändert: ${subtask.title} ist jetzt ${subtask.state}`);
   await postState()
 }
 
@@ -324,3 +322,17 @@ async function subTasksStateAdd() {
   });
   await postState()
 }
+
+async function deleteTaskOnBoard(id) {
+  if (fetchData.tasks[id]) {
+    console.log("Gefunden");
+    delete fetchData.tasks[id];
+    console.log("Gelöscht");
+    closetaskDetailsOverlay()
+    renderBoard()
+    await postState()
+  }else{
+    return
+  }
+}
+

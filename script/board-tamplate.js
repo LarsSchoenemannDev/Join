@@ -223,7 +223,7 @@ function taskPopup(task, taskID) {
       </div>
     </div>
     <div class="detail-footer">
-      <button class="action-btn">
+      <button class="action-btn" onclick=deleteTaskOnBoard('${taskID}')>
         <img src="../assets/img/SubTask delete.svg" alt=""> Delete
       </button>
       <div class="footer-separator"></div>
