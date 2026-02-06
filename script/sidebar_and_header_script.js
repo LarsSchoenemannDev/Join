@@ -1,4 +1,3 @@
-//Hier bitte alle globale Variablen setzen
 let menuButton = document.getElementById("menu-button");
 let userIcon = document.getElementById("user-icon");
 let switchHelp = document.getElementById("switch_help");
@@ -100,4 +99,13 @@ function updateMenuPosition() {
   }
   dropDownMenu.style.position = "absolute";
   dropDownMenu.style.right = "0";
+}
+
+/**
+ * define a function to remove userId,userStatus and name and go back to login page when user click log out button
+ */
+function logOut() {
+  sessionStorage.removeItem("userID");
+  sessionStorage.removeItem("userStatus");
+  sessionStorage.removeItem("name");
 }
