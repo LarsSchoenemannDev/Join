@@ -574,41 +574,6 @@ taskDetailsOverlay {
 }
 
 .overlay-container {
-<<<<<<< HEAD
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
-.edit-mode-container {
-    background: #00000054;
-}
-
-.edit-mode-popup {
-    background-color: var(--color-white);
-    padding: 40px 40px;
-    height: 80vh;
-    overflow: auto;
-    border-radius: 30px;
-}
-
-.close-overlay {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.edit-header {
-    display: flex;
-    justify-content: space-between;
-}
-=======
   display: none;
   position: fixed;
   top: 0;
@@ -620,4 +585,3 @@ taskDetailsOverlay {
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.2);
 }
->>>>>>> 83dacc47674e3248e19571eae6fffb5769b5696e
