@@ -1,3 +1,7 @@
+/**
+ * Füllt den Container mit dem HTML-Template für das "Add Task"-Formular.
+ * @returns {string} Der gesetzte InnerHTML-String des Formular-Containers.
+ */
 function loadAddTaskFormIntoOverlay() {
   const formContainer = document.getElementById("addTaskFormContainer");
   return formContainer.innerHTML = ` 
@@ -189,6 +193,12 @@ function loadAddTaskFormIntoOverlay() {
     `;
 }
 
+/**
+ * Erzeugt das HTML für die Detail-Ansicht einer Aufgabe.
+ * @param {Object} task - Das Aufgaben-Objekt mit Eigenschaften wie `category`, `title`, `description`, `duedate`, `priority`, `contacts`, `subtasks`.
+ * @param {string} taskID - Die ID der Aufgabe.
+ * @returns {string} HTML-String für das Task-Detail-Popup.
+ */
 function taskPopup(task, taskID) {
   return `<div class="detail-card">
     <div class="detail-header">
@@ -235,6 +245,12 @@ function taskPopup(task, taskID) {
     `;
 }
 
+/**
+ * Erzeugt das HTML für die Editier-Ansicht eines Tasks (Edit Mode).
+ * @param {Object} task - Das Aufgaben-Objekt.
+ * @param {string} id - Die ID der Aufgabe.
+ * @returns {string} HTML-String für das Edit-Task-Popup.
+ */
 function taskPopupEditMode(task, id) {
   const isUrgent = task.priority === 'urgent' ? 'checked' : '';
   const isMedium = task.priority === 'medium' ? 'checked' : '';
@@ -291,8 +307,8 @@ function taskPopupEditMode(task, id) {
                 </svg>
               </label>
 
-              <input type="radio" id="prio-medium" name="priority" value="medium" class="prio-input ">
-              <label for="prio-medium" class="btn-priority btn-priority-flex #prio-medium:${isMedium}">
+              <input type="radio" id="prio-medium" name="priority" value="medium" class="prio-input d-none" ${isMedium}>
+              <label for="prio-medium" class="btn-priority btn-priority-flex #prio-medium:">
                 Medium <svg width="20" height="8" viewBox="0 0 20 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0_156_994)">
                     <path
@@ -355,7 +371,6 @@ function taskPopupEditMode(task, id) {
             </div>
           </div>
           ${renderTaskSubTaskDetails(id)}
-
         </section>
       </main>
       <section class="footer-add-task">
@@ -370,3 +385,50 @@ function taskPopupEditMode(task, id) {
   </section>
   `;
 }
+
+// renderTaskSubTaskDetailsEdit(){
+//   return `<div class="sub-container" data-index="0">
+//         <span class="display-flex">• dasda</span>
+//         <div class="hover-show">
+//             <img src="../assets/img/Subtasks change.svg" class="input-icon-cancel" onclick="changeSubtask(0)">
+//             <div class="seperator-small"></div>
+//             <img src="../assets/img/SubTask delete.svg" class="input-icon-accept" onclick="deleteSubtask(0)">
+//         </div>
+//     </div>    
+//   `;
+// }
+
+
+/**
+ * Rendert die Card-HTML für eine Aufgabe auf dem Board.
+ * @param {Object} task - Das Aufgaben-Objekt.
+ * @param {string} id - Die ID der Aufgabe.
+ * @returns {string} HTML-String für die Task-Card.
+ */
+function renderTasksHTML(task, id) {
+  return `<div class="cards" data-id="${id}" draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)" onclick="openTaskDetailsOverlay(this)">                 
+                  <p class="tag ${filterCategory(task.category)}">${task.category}</p>   
+                  <h4>${task.title}</h4>
+                  <span>${task.description}</span>
+                  <div class="progress">${task.subtasks.length} Subtasks</div>
+                  <div class ="nav">
+                  <div class="avatars">${renderTaskContact(task.contacts)}</div>
+                  <div class="${filterPriority(task.priority)} prio-wrapper"></div>            
+                  </div>
+                  </div>
+                </div>     
+  `;
+}
+
+/**
+ * Erzeugt HTML für ein Kontakt-Avatar-Element.
+ * @param {{color:string, initials:string}} contact - Kontaktobjekt mit `color` und `initials`.
+ * @returns {string} HTML-String für das Avatar-Element.
+ */
+function renderContactAvatarHTML(contact) {
+  return `<div class="avatar" style="background-color:${contact.color}">
+                ${contact.initials}
+              </div>
+  `;
+}
+

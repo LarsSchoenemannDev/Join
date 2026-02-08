@@ -560,5 +560,15 @@ taskDetailsOverlay {
     padding: 40px 40px;
     height: 80vh;
     overflow: auto;
+    border-radius: 30px;
 }
 
+.close-overlay {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.edit-header {
+    display: flex;
+    justify-content: space-between;
+}

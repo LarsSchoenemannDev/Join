@@ -1,4 +1,9 @@
 
+/**
+ * Initialisiert das Board: lädt Daten, setzt Stati, rendert das Board und Subtasks.
+ * @async
+ * @returns {Promise<void>}
+ */
 async function boardInit() {
   await getData();
   stateAdd();
@@ -7,6 +12,10 @@ async function boardInit() {
   subTasksStateAdd();
 }
 
+/**
+ * Registriert Drag-&-Drop-Event-Listener für alle Spalten mit `data-status`.
+ * @returns {void}
+ */
 function initDragAndDrop() {
   document.querySelectorAll(".in-progress[data-status]").forEach(col => {
     col.addEventListener("dragover", onDragOver);
@@ -16,6 +25,10 @@ function initDragAndDrop() {
   });
 }
 
+/**
+ * Stellt sicher, dass alle Tasks ein `state`-Feld haben. Falls nicht, wird `todu` gesetzt.
+ * @returns {void}
+ */
 function stateAdd() {
   if (!fetchData) {
     return
@@ -27,6 +40,11 @@ function stateAdd() {
   })
 }
 
+/**
+ * Liefert eine Liste von Aufgaben mit dem angegebenen Zustand.
+ * @param {string} state - Gesuchter Task-State (z.B. "todu", "inProgress").
+ * @returns {Array<{id:string, task:Object}>} Array von Paaren aus ID und Task-Objekt.
+ */
 function taskByState(state) {
   let entries = Object.entries(fetchData.tasks);
   let result = [];
@@ -36,6 +54,10 @@ function taskByState(state) {
   return result
 }
 
+/**
+ * Rendert das komplette Board: verteilt Tasks auf die Spalten und initialisiert Drag&Drop.
+ * @returns {void}
+ */
 function renderBoard() {
   let todo = taskByState("todu");
   let inProgress = taskByState("inProgress");
@@ -49,12 +71,25 @@ function renderBoard() {
   initDragAndDrop();
 }
 
+/**
+ * Rendert den Header-Bereich einer Spalte (Titel + Zähler).
+ * @param {string} headId - Element-ID des Header-Containers.
+ * @param {string} title - Anzuzeigender Titel.
+ * @param {number} count - Anzahl der Tasks.
+ * @returns {void}
+ */
 function headRenderHTML(headId, title, count) {
   const contentHead = document.getElementById(headId);
   contentHead.innerHTML = "";
   contentHead.innerHTML = headcardHTML(title, count);
 }
 
+/**
+ * Fügt die Task-Cards in den angegebenen Container ein.
+ * @param {string} contentId - ID des Containers, in den die Cards eingefügt werden.
+ * @param {Array<{id:string,task:Object}>} tasks - Array der anzuzeigenden Tasks.
+ * @returns {void}
+ */
 function maincardHTML(contentId, tasks) {
   let contentRef = document.getElementById(contentId);
   contentRef.innerHTML = "";
@@ -64,6 +99,11 @@ function maincardHTML(contentId, tasks) {
   }
 }
 
+/**
+ * Rendert Avatare der zugewiesenen Kontakte für eine Task.
+ * @param {Array<Object>} [contacts=[]] - Array von Kontaktobjekten, jedes sollte ein `checked`-Flag haben.
+ * @returns {string} HTML-String mit den Avatar-Elementen.
+ */
 function renderTaskContact(contacts = []) {
   let html = "";
   contacts.forEach(contact => {
@@ -74,6 +114,11 @@ function renderTaskContact(contacts = []) {
   return html;
 }
 
+/**
+ * Normalisiert und filtert Prioritäts-Werte und gibt eine CSS-Klasse zurück.
+ * @param {string|Array<string>} priority - Priorität oder Array von Prioritäten.
+ * @returns {string} CSS-Klassenname für die Priorität ("urgent" | "medium" | "low" | "").
+ */
 function filterPriority(priority) {
   let prioArray = Array.isArray(priority) ? priority : [priority];
   let priorityState = "";
@@ -89,6 +134,11 @@ function filterPriority(priority) {
   return priorityState;
 }
 
+/**
+ * Mapping von Kategorie-Namen zu CSS-Klassen.
+ * @param {string|Array<string>} category - Kategorie-Name oder Array von Kategorien.
+ * @returns {string} CSS-Klassenname für die Kategorie.
+ */
 function filterCategory(category) {
   const categoryArray = Array.isArray(category) ? category : [category];
   let categoryState = "";
@@ -102,28 +152,12 @@ function filterCategory(category) {
   return categoryState;
 }
 
-function renderTasksHTML(task, id) {
-  return `<div class="cards" data-id="${id}" draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)" onclick="openTaskDetailsOverlay(this)">                 
-                  <p class="tag ${filterCategory(task.category)}">${task.category}</p>   
-                  <h4>${task.title}</h4>
-                  <span>${task.description}</span>
-                  <div class="progress">${task.subtasks.length} Subtasks</div>
-                  <div class ="nav">
-                  <div class="avatars">${renderTaskContact(task.contacts)}</div>
-                  <div class="${filterPriority(task.priority)} prio-wrapper"></div>            
-                  </div>
-                  </div>
-                </div>     
-  `;
-}
-
-function renderContactAvatarHTML(contact) {
-  return `<div class="avatar" style="background-color:${contact.color}">
-                ${contact.initials}
-              </div>
-  `;
-}
-
+/**
+ * Sendet den aktuellen `fetchData`-Zustand an das Backend (PATCH auf BASE_URL).
+ * Bei Fehlern wird die Exception geloggt.
+ * @async
+ * @returns {Promise<Object|undefined>} Rückgabe der Antwortdaten oder `undefined` bei Fehler.
+ */
 async function postState() {
   try {
     const response = await fetch(BASE_URL + ".json", {
@@ -141,12 +175,23 @@ async function postState() {
   }
 }
 
+/**
+ * (Unbenutzte Hilfsfunktion) Sollte eigentlich Drag-Events an ein Card-Element binden.
+ * Hinweis: Implementierung nutzt `e` und `id`, die aktuell nicht definiert sind.
+ * @param {Element} card - Card-Element.
+ * @returns {void}
+ */
 function bindDragEvents(card) {
   e.dataTransfer.setData("text", id);
   e.dataTransfer.effectAllowed = "move";
 
 }
 
+/**
+ * Drag-Start-Handler: setzt die Card-ID in den DataTransfer und markiert die Card.
+ * @param {DragEvent} e
+ * @returns {void}
+ */
 function onDragStart(e) {
   const card = e.currentTarget;
   const id = card.getAttribute('data-id');
@@ -155,26 +200,52 @@ function onDragStart(e) {
 
 }
 
+/**
+ * Drag-End-Handler: entfernt die Drag-Markierung.
+ * @param {DragEvent} e
+ * @returns {void}
+ */
 function onDragEnd(e) {
   e.currentTarget.classList.remove('dragging');
 }
 
+/**
+ * Drag-Over-Handler: verhindert das Default-Verhalten, sodass Drop möglich ist.
+ * @param {DragEvent} e
+ * @returns {void}
+ */
 function onDragOver(e) {
   e.preventDefault();
   updateAllEmptyMessages()
 
 }
 
+/**
+ * Drag-Enter-Handler: markiert die Zielspalte visuell.
+ * @param {DragEvent} e
+ * @returns {void}
+ */
 function onDragEnter(e) {
   e.currentTarget.classList.add('drop-target');
   updateAllEmptyMessages()
 }
 
+/**
+ * Drag-Leave-Handler: entfernt die visuelle Markierung der Zielspalte.
+ * @param {DragEvent} e
+ * @returns {void}
+ */
 function onDragLeave(e) {
   e.currentTarget.classList.remove('drop-target');
   updateAllEmptyMessages()
 }
 
+/**
+ * Drop-Handler: aktualisiert den State der losgelassenen Card und speichert ihn.
+ * @async
+ * @param {DragEvent} e
+ * @returns {Promise<void>}
+ */
 async function onDrop(e) {
   e.preventDefault();
   const col = e.currentTarget;
@@ -189,6 +260,10 @@ async function onDrop(e) {
   await postState()
 }
 
+/**
+ * Aktualisiert die Sichtbarkeit der "empty"-Hinweise in allen Spalten.
+ * @returns {void}
+ */
 function updateAllEmptyMessages() {
   const columns = document.querySelectorAll(".in-progress[data-status]");
   columns.forEach(column => {
@@ -204,6 +279,11 @@ function updateAllEmptyMessages() {
   });
 }
 
+/**
+ * Sucht nach Tasks anhand des Inhalts des Suchfelds `#searchInput`.
+ * Schreibt gefundene Aufgaben in die Konsole (nur bei ≥3 Zeichen).
+ * @returns {void}
+ */
 function searchBar() {
   const inputElement = document.getElementById("searchInput");
   if (!inputElement) return console.error("Suchfeld mit ID 'searchInput' nicht gefunden!");
@@ -217,6 +297,11 @@ function searchBar() {
   }
 }
 
+/**
+ * Öffnet das Detail-Overlay für eine Task und füllt den Inhalt.
+ * @param {Element} id - Das Card-Element (wird zur Beschaffung der `data-id` genutzt).
+ * @returns {void}
+ */
 function openTaskDetailsOverlay(id) {
   const taskID = id.getAttribute("data-id").trim();
   const task = fetchData.tasks[taskID];
@@ -227,21 +312,40 @@ function openTaskDetailsOverlay(id) {
   document.body.style.overflow = "hidden"
 }
 
+/**
+ * Schließt das Task-Detail-Overlay, setzt das Scrolling zurück und rendert das Board neu.
+ * @returns {void}
+ */
 function closetaskDetailsOverlay() {
   document.getElementById("taskDetailsOverlay").style.display = "none"
   document.body.style.overflow = "auto";
   renderBoard()
 }
 
+/**
+ * Formatiert ein Datum von `YYYY-MM-DD` nach `DD/MM/YYYY`.
+ * @param {string} taskduedate - Datum im Format `YYYY-MM-DD`.
+ * @returns {string} Formatiertes Datum `DD/MM/YYYY`.
+ */
 function dateStringChange(taskduedate) {
   const [y, m, d] = taskduedate.split("-");
   return `${d}/${m}/${y}`;
 }
 
+/**
+ * Capitalizes the first letter of a priority string.
+ * @param {string} taskpriority - Prioritäts-String.
+ * @returns {string}
+ */
 function capitalizeLetters(taskpriority) {
   return taskpriority[0].toUpperCase() + taskpriority.slice(1);
 }
 
+/**
+ * Rendert Avatare für vollständige Namen (genutzt z.B. in Detail-Ansichten).
+ * @param {Array<Object>} taskFullName - Array von Kontaktobjekten.
+ * @returns {string} HTML-String mit Avatar-Elementen.
+ */
 function capitalizeLettersFullName(taskFullName) {
   let html = "";
   taskFullName.forEach(contact => {
@@ -253,6 +357,11 @@ function capitalizeLettersFullName(taskFullName) {
   return html;
 }
 
+/**
+ * Rendert die detaillierten Kontakt-Elemente für eine Task (Name + Initialen).
+ * @param {Array<Object>} [contacts=[]] - Array von Kontaktobjekten.
+ * @returns {string} HTML-String mit Kontakt-Details.
+ */
 function renderTaskContactDetails(contacts = []) {
   let html = "";
   contacts.forEach(contact => {
@@ -263,6 +372,11 @@ function renderTaskContactDetails(contacts = []) {
   return html;
 }
 
+/**
+ * Erzeugt das HTML für ein einzelnes Kontakt-Detail-Element.
+ * @param {{color:string, initials:string, name:string}} contact
+ * @returns {string} HTML-String für das Kontakt-Detail.
+ */
 function renderTaskContactDetailsHTML(contact) {
   return `<div class="assignee-item">
           <section class="contact-section">
@@ -273,6 +387,11 @@ function renderTaskContactDetailsHTML(contact) {
   `;
 }
 
+/**
+ * Rendert die Subtask-Liste für eine Task.
+ * @param {string} taskId - ID der Task.
+ * @returns {string} HTML-String mit Subtask-Items.
+ */
 function renderTaskSubTaskDetails(taskId) {
   const task = fetchData.tasks[taskId];
   let html = "";
@@ -282,6 +401,13 @@ function renderTaskSubTaskDetails(taskId) {
   return html;
 }
 
+/**
+ * Erzeugt das HTML für ein einzelnes Subtask-Element.
+ * @param {{title:string,state:string}} subtask - Subtask-Objekt.
+ * @param {number} i - Index der Subtask in der Liste.
+ * @param {string} taskId - ID der übergeordneten Task.
+ * @returns {string} HTML-String für das Subtask-Element.
+ */
 function renderTaskSubTaskDetailsHTML(subtask, i, taskId) {
   const isChecked = subtask.state === "check" ? "checked" : "";
   return ` 
@@ -292,6 +418,13 @@ function renderTaskSubTaskDetailsHTML(subtask, i, taskId) {
     `;
 }
 
+/**
+ * Toggles den Zustand einer Subtask zwischen `check` und `uncheck` und speichert den Stand.
+ * @async
+ * @param {string} taskId - ID der Task.
+ * @param {number} subtaskIndex - Index der Subtask.
+ * @returns {Promise<void>}
+ */
 async function toggleSubtask(taskId, subtaskIndex) {
   const subtask = fetchData.tasks[taskId].subtasks[subtaskIndex];
   if (subtask.state === "uncheck") {
@@ -302,6 +435,11 @@ async function toggleSubtask(taskId, subtaskIndex) {
   await postState()
 }
 
+/**
+ * Normalisiert Subtasks: wandelt string-Subtasks in Objektform um und stellt sicher, dass `state` gesetzt ist.
+ * @async
+ * @returns {Promise<void>}
+ */
 async function subTasksStateAdd() {
   if (!fetchData) return;
   Object.values(fetchData.tasks).forEach(task => {
@@ -323,6 +461,12 @@ async function subTasksStateAdd() {
   await postState()
 }
 
+/**
+ * Löscht eine Task aus `fetchData`, schliesst das Overlay und persistiert die Änderung.
+ * @async
+ * @param {string} id - ID der zu löschenden Task.
+ * @returns {Promise<void>}
+ */
 async function deleteTaskOnBoard(id) {
   if (fetchData.tasks[id]) {
     delete fetchData.tasks[id];
@@ -334,6 +478,11 @@ async function deleteTaskOnBoard(id) {
   }
 }
 
+/**
+ * Wechselt eine Task in den Edit-Modus, indem das Detail-Overlay mit Edit-HTML befüllt wird.
+ * @param {string} id - ID der zu editierenden Task.
+ * @returns {void}
+ */
 function editTaskOnBoard(id) {
   const task = fetchData.tasks[id];
   const overlayContainer = document.getElementById('taskDetailsOverlay'); 
@@ -344,5 +493,6 @@ function editTaskOnBoard(id) {
   if (task) {    
     overlayContainer.innerHTML = taskPopupEditMode(task, id);   
     overlayContainer.classList.remove('d-none'); 
+    eventsAddTask();
   }
 }
