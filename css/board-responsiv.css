@@ -58,7 +58,7 @@
     justify-content: flex-start;
     gap: 18px;
     overflow-x: auto;
-    cursor: grabbing;
+    /* cursor: grabbing; */
     /*/scroll-behavior: smooth; */
     width: 100%;
   }
