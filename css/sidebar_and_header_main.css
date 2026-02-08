@@ -71,8 +71,8 @@ main {
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  position: absolute;
-  right: 28px;
+  /* position: absolute; */
+  /* right: 28px; */
 }
 
 .header .icons .help {
@@ -107,7 +107,7 @@ main {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1650px;
+  /* max-width: 1650px; */
   position: relative;
 }
 

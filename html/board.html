@@ -80,7 +80,7 @@
             <div class="board-header">
               <h1 class="h1-content">Board</h1>
               <div class="header-actions">
-                <div class="subtask-input-container">
+                <div class="subtask-input-container disapear">
                   <div class="input-wrapper">
                     <input id="searchInput" oninput="searchBar()" type="text" placeholder="Find Task"
                       class="search-task">
@@ -93,39 +93,54 @@
                     </div>
                   </div>
                 </div>
+
+                
                 <button class="button-task" onclick="openAddTaskOverlay()">Add task
-                  <img src="..//assets/img/search-add.svg" </button>
+                  <img src="../assets/img/search-add.svg" alt=""/> </button>
               </div>
             </div>
+<!-- should appears in screen size 1199 -->
 
+                <div class="subtask-input-container show-hidden">
+                  <div class="input-wrapper">
+                    <input id="searchInput" oninput="searchBar()" type="text" placeholder="Find Task"
+                      class="search-task">
+                    <div class="img-container-search" id="showHidden" style="display: flex;">
+                      <div class="padding">
+                        <div class="seperator-small"></div>
+                      </div>
+                      <img src="../assets/img/search.svg" class="input-icon-search" alt="search icon">
+                      </button>
+                    </div>
+                  </div>
+                </div>
             <div class="board">
               <section class="in-progress" data-status="todu">
-                <h3 class="header-category">To do <img src="..//assets/img/add board.svg" alt="plus symbol"></h3>
+                <div class="header-category"><h3>To do</h3><img src="../assets/img/add%20board.svg" alt="plus symbol"></div>
                 <div id="toggleMessage" class="empty emptyDisplay">No tasks To do</div>
                 <section id="toduContainer" class="cardsContainer"></section>
               </section>
 
 
               <section class="in-progress" data-status="inProgress">
-                <h3 class="header-category">In progress <img src="..//assets/img/add board.svg" alt="plus symbol"></h3>
+                <div class="header-category"><h3>In progress</h3><img src="../assets/img/add%20board.svg" alt="plus symbol"></div>
                 <div id="toggleMessage" class="empty emptyDisplay">No tasks In progress</div>
                 <section id="inProgressContainer" class="cardsContainer"></section>
               </section>
 
               <section class="in-progress" data-status="feedBack">
-                <h3 class="header-category">Await feedback <img src="..//assets/img/add board.svg" alt="plus symbol">
-                </h3>
+                <div class="header-category"><h3>Await feedback</h3><img src="../assets/img/add%20board.svg" alt="plus symbol"></div>
                 <div id="toggleMessage" class="empty emptyDisplay">No tasks Await feedback </div>
                 <section id="feedBackContainer" class="cardsContainer"></section>
               </section>
 
               <section class="in-progress" data-status="done">
-                <h3 class="header-category">Done</h3>
+                <div class="header-category"><h3>Done</h3><img src="../assets/img/add%20board.svg" alt="plus symbol"></div>
                 <div id="toggleMessage" class="empty emptyDisplay">No tasks Done</div>
                 <section id="doneContainer" class="cardsContainer"></section>
               </section>
             </div>
-            </sectino>
+            </section>
           </section>
         </main>
       </div>
