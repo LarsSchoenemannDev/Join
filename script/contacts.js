@@ -403,8 +403,10 @@ async function getDataToMakeNewContact() {
  */
 async function addNewContact() {
   const newContact = await getDataToMakeNewContact();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   console.log("Creating new contact:", newContact);
-  if (!newContact.email.includes("@")) {
+  if (!emailRegex.test(newContact.email)) {
     alert("Please enter a valid email address");
     return;
   }
