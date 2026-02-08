@@ -12,13 +12,12 @@
 
 @media (max-width: 992px) {
   body {
-    overflow-x: hidden;
+    /* overflow-x: auto; */
   }
 
   .board {
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    overflow-x: hidden;
   }
 
   .board-header h1 {
@@ -36,7 +35,7 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    /* overflow: visible; */
+    overflow-x: auto;
   }
 
   .in-progress .header-category h3 {
@@ -49,20 +48,24 @@
     height: 30px;
   }
 
+  /* .in-progress::-webkit-scrollbar {
+    width: 0;
+  } */
+
   .cardsContainer {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     gap: 18px;
     overflow-x: auto;
-    overflow-y: hidden;
-    scroll-behavior: smooth;
+    cursor: grabbing;
+    /*/scroll-behavior: smooth; */
     width: 100%;
   }
 
-  .cardsContainer::-webkit-scrollbar {
-    display: none;
-  }
+  /* .cardsContainer::-webkit-scrollbar {
+    width: 0;
+  } */
 
   .cards {
     width: 280px;
