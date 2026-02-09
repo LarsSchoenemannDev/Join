@@ -10,12 +10,10 @@ function togglePassword() {
 
   if (p.type === "password") {
     p.type = "text";
-    img.src = "../assets/img/visibility.svg";
+    img.src = "assets/img/visibility.svg";
   } else {
     p.type = "password";
-    img.src = p.value
-      ? "../assets/img/visibility_off.svg"
-      : "../assets/img/lock.svg";
+    img.src = p.value ? "assets/img/visibility_off.svg" : "assets/img/lock.svg";
   }
 }
 
@@ -24,9 +22,7 @@ function updateIcon() {
   let img = document.getElementById("togglePasswordIcon").querySelector("img");
 
   if (p.type === "password") {
-    img.src = p.value
-      ? "../assets/img/visibility_off.svg"
-      : "../assets/img/lock.svg";
+    img.src = p.value ? "assets/img/visibility_off.svg" : "assets/img/lock.svg";
   }
 }
 
@@ -69,7 +65,7 @@ function validateInput(input) {
  */
 async function loadImageSequence() {
   const container = document.getElementById("image-sequence");
-  container.innerHTML = '<img src="../assets/img/Capa 2.svg" alt="Logo Intro">';
+  container.innerHTML = '<img src="assets/img/Capa 2.svg" alt="Logo Intro">';
   container.style.display = "block";
 
   container.classList.add("animate-logo");
@@ -83,7 +79,7 @@ window.addEventListener("load", loadImageSequence);
 // sign Up Button Function
 
 function goToSignUp() {
-  window.location.href = "../html/sign-up.html";
+  window.location.href = "html/sign-up.html";
 }
 
 /**

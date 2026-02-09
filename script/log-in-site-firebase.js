@@ -47,7 +47,7 @@ async function loginValidation() {
         sessionStorage.setItem("userStatus", "loggedIn");
         sessionStorage.setItem("name", user.name);
 
-        window.location.href = "../html/summary.html";
+        window.location.href = "html/summary.html";
       } else {
         console.error("Login daten sind falsch");
         errorMsg.classList.remove("d-none");
@@ -110,7 +110,7 @@ async function guestLogin() {
   if (fetchedDataGuest && fetchedDataGuest.name === "Guest") {
     console.log(fetchedDataGuest.name + " has logged in");
     sessionStorage.setItem("name", fetchedDataGuest.name);
-    window.location.href = "../html/summary.html";
+    window.location.href = "html/summary.html";
   } else {
     console.error("Guest login failed - invalid guest data");
   }
