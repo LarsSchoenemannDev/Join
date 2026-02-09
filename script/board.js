@@ -259,8 +259,8 @@ function searchBar() {
   if (!inputElement || !fetchData?.tasks) return [];
   const searchInput = inputElement.value.trim().toLowerCase();
   if (searchInput.length < 3) return [];
-  return Object.values(fetchData.tasks).filter((task) => {
-    return typeof task?.title === "string" && task.title.toLowerCase().includes(searchInput);
+  return Object.values(fetchData.tasks).filter((task) => {       
+    return typeof task?.title === "string" && task.title.toLowerCase().includes(searchInput);  
   });
 }
 
@@ -292,13 +292,13 @@ function openTaskDetailsOverlay(el) {
  */
 function closetaskDetailsOverlay() {
   const wrapper = document.getElementById("taskDetailsOverlay");
-  if (wrapper) {
-    wrapper.style.display = "none";
-    wrapper.innerHTML = "";
-  }
+  if (!wrapper) return;
+  wrapper.style.display = "none";
+  wrapper.innerHTML = "";
   document.body.style.overflow = "auto";
   renderBoard();
 }
+
 
 /**
  * Converts a date string from "YYYY-MM-DD" to "DD/MM/YYYY".
@@ -410,12 +410,16 @@ async function deleteTaskOnBoard(id) {
  */
 function editTaskOnBoard(id) {
   const task = fetchData?.tasks?.[id];
-  if (!task) return;
-  const overlayContainer = document.getElementById("taskDetailsOverlay");
-  if (!overlayContainer) return;
-  overlayContainer.innerHTML = taskPopupEditMode(task, id);
-  overlayContainer.classList.remove("d-none");    
+  const overlay = document.getElementById("taskDetailsOverlay");
+  if (!task || !overlay) return;
+  overlay.innerHTML = taskPopupEditMode(task, id);
+  overlay.style.display = "flex";
+  document.body.style.overflow = "hidden";
+  bindAddTaskListeners(document);
+  renderContact();
+  assignedToLettersCheckContact();
 }
+
 
 /**
  * Renders edit-mode subtasks for a task.

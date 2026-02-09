@@ -647,7 +647,7 @@ textarea:focus {
     }
 }
 
-@media(max-width: 480px) {
+@media(max-width: 620px) {
     .card {
         min-width: 240px;
     }

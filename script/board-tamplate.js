@@ -255,8 +255,8 @@ function taskPopupEditMode(task, id) {
   const isUrgent = task.priority === "urgent" ? "checked" : "";
   const isMedium = task.priority === "medium" ? "checked" : "";
   const isLow = task.priority === "low" ? "checked" : "";
-  return `
-  <section class="add-task-content edit-mode-container">
+  return `<div class="overlay-content">
+  <section class="add-task-content">
     <div class="edit-mode-popup">
       <div class="edit-header">
         <h1 class="h1-content">Edit Task</h1>
@@ -267,16 +267,16 @@ function taskPopupEditMode(task, id) {
       <main class="main-content">
         <section class="card">
           <div class="field">
-            <label for="title-${id}">Title<span class="required">*</span></label>
-            <input id="title-${id}" type="text" value="${task.title}" required class="input-Required">
+            <label for="title">Title<span class="required">*</span></label>
+            <input id="title" type="text" value="${task.title}" required class="input-Required">
           </div>
           <div class="field">
-            <label for="description-${id}">Description</label>
-            <textarea id="description-${id}" style="height: 120px;">${task.description}</textarea>
+            <label for="description">Description</label>
+            <textarea id="description" style="height: 120px;">${task.description}</textarea>
           </div>
           <div class="field">
             <label>Due date<span class="required">*</span></label>
-            <input class="input-icon-calender input-Required" id="duedate-${id}" type="date" value="${task.duedate}" required>
+            <input class="input-icon-calender input-Required" id="duedate" type="date" value="${task.duedate}" required>
           </div>
         </section>
         <div class="center-seperator">
@@ -357,6 +357,7 @@ function taskPopupEditMode(task, id) {
       </section>
     </div>
   </section>
+  </div>
   `;
 }
 

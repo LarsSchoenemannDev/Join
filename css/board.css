@@ -136,7 +136,8 @@ h1 {
   justify-content: space-between;
   gap: 54px;
   /* justify-content: center; */
-  padding: 80px 80px 50px 80px; /* optisch passt to summary Seite.*/
+  padding: 80px 80px 50px 80px;
+  /* optisch passt to summary Seite.*/
   /* padding: 50px 50px; */
   width: 100%;
 }
@@ -242,7 +243,7 @@ h4 {
   color: var(--color-text-heading);
 }
 
-.cards > span {
+.cards>span {
   display: block;
   margin: 0 0 var(--space-18);
   font-size: 16px;
@@ -488,7 +489,7 @@ taskDetailsOverlay {
   cursor: pointer;
 }
 
-.checkbox-input:checked + .checkbox-box {
+.checkbox-input:checked+.checkbox-box {
   background-image: url("../assets/img/checkboxChecked.svg");
   background-size: 24px 24px;
 }
@@ -555,7 +556,6 @@ taskDetailsOverlay {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 24px 24px;
-  border-radius: none !important;
   border: none !important;
 }
 
@@ -580,20 +580,18 @@ taskDetailsOverlay {
   background-color: rgba(0, 0, 0, 0.2) !important;
 }
 
-.edit-header{
+.edit-header {
   display: flex;
   justify-content: space-between;
 }
 
-
-
 .edit-mode-container {
-    background: #00000054;
+  background: #00000054;
 }
 
 .edit-mode-popup {
-    background-color: var(--color-white);
-    padding: 40px 40px;
-    height: 80vh;
-    overflow: auto;
+  background-color: var(--color-white);
+  padding: 40px 40px;
+  overflow: auto;
 }
+
