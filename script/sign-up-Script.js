@@ -150,5 +150,5 @@ function updateSubmitButtonState() {
 // go back to login page function:
 
 function goBackToLogin() {
-  window.location.href = "../index.html";
+  window.location.href = "../html/index.html";
 }

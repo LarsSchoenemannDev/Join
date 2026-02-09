@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
       UpdateIcon(passwordConfirm, iconPasswordDivConfirm);
 
       setTimeout(() => {
-        window.location.href = "../index.html";
+        window.location.href = "../html/index.html";
       }, 2000);
     } catch (err) {
       console.error(err);
