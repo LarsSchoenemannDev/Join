@@ -415,15 +415,9 @@ taskDetailsOverlay {
 }
 
 .detail-header {
-<<<<<<< HEAD
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: var(--space-24);
-=======
   display: flex;
   justify-content: space-between;
   margin-bottom: var(--space-24);
->>>>>>> 83dacc47674e3248e19571eae6fffb5769b5696e
 }
 
 .close-overlay-btn {
@@ -583,5 +577,5 @@ taskDetailsOverlay {
   justify-content: center;
   align-items: center;
   z-index: 10;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.2) !important;
 }

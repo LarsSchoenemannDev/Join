@@ -319,7 +319,7 @@ function openTaskDetailsOverlay(id) {
 function closetaskDetailsOverlay() {
   document.getElementById("taskDetailsOverlay").style.display = "none"
   document.body.style.overflow = "auto";
-  renderBoard()
+  renderBoard();
 }
 
 /**
