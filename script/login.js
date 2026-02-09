@@ -69,7 +69,7 @@ function validateInput(input) {
  */
 async function loadImageSequence() {
   const container = document.getElementById("image-sequence");
-  container.innerHTML = '<img src="../assets/img/Capa 2.svg" alt="Logo Intro">';
+  container.innerHTML = '<img src="assets/img/Capa 2.svg" alt="Logo Intro">';
   container.style.display = "block";
 
   container.classList.add("animate-logo");
@@ -83,7 +83,7 @@ window.addEventListener("load", loadImageSequence);
 // sign Up Button Function
 
 function goToSignUp() {
-  window.location.href = "../html/sign-up.html";
+  window.location.href = "html/sign-up.html";
 }
 
 /**
