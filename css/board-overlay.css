@@ -83,3 +83,9 @@
 .footer-add-task {
   margin-top: calc(83vh - 90px - 750px);
 }
+
+@media (max-width: 530px) {
+  .overlay-container .add-task-content {
+    padding: 1px;
+  }
+}
