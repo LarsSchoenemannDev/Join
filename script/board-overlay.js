@@ -8,6 +8,7 @@ function openAddTaskOverlay() {
   const overlay = document.getElementById("addTaskOverlay");
   overlay.style.display = "flex";
   loadAddTaskFormIntoOverlay(); 
+  bindAddTaskListeners(document);
   addTaskinit(); 
   document.body.style.overflow = "hidden";
 }
@@ -28,6 +29,5 @@ function closeAddTaskOverlay() {
  * @returns {Promise<void>}
  */
 async function addTaskinit() {
-  await getData();
-  eventsAddTask();
+  await getData();  
 }

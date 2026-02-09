@@ -579,3 +579,21 @@ taskDetailsOverlay {
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.2) !important;
 }
+
+.edit-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+.edit-mode-container {
+    background: #00000054;
+}
+
+.edit-mode-popup {
+    background-color: var(--color-white);
+    padding: 40px 40px;
+    height: 80vh;
+    overflow: auto;
+}
