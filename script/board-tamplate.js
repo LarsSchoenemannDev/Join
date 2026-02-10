@@ -329,6 +329,28 @@ function taskPopupEditMode(task, id) {
             </div>
             <div class="selectContact" id="selectContact"></div>
           </div>
+                            <div class="div-field">
+                    <div class="field">
+                      <label for="categoryBtn">
+                        Category<span class="required">*</span>
+                      </label>
+                      <button type="button" id="categoryBtn"
+                        class="input-styling input-icon-arrow-down custom-select-select input-Required"
+                        onclick="toggleCategory()">
+                        Select task category
+                      </button>
+                      <div id="selectCategory" class="dropdown">
+                        <div class="category-main">
+                          <input type="radio" id="TechnicalTask" name="priorityCategory" value="Technical Task"
+                            onclick="categorySelector()" />
+                          <label for="TechnicalTask" class="contact-row">Technical Task</label>
+                          <input type="radio" id="UserStory" name="priorityCategory" value="User Story"
+                            onclick="categorySelector()" />
+                          <label for="UserStory" class="contact-row">User Story</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
           <div class="div-field">
             <div class="field">
               <label for="subtasks">Subtasks</label>
@@ -342,10 +364,9 @@ function taskPopupEditMode(task, id) {
                   </div>
                 </div>
               </div>
-              <div id="SubtaskList" class="Subtask-List"></div>
+              <div id="SubtaskList" class="Subtask-List"></div>              
             </div>
-          </div>          
-          ${renderSubtasksDetailsEdit(task, id)}
+          </div>  
         </section>
       </main>
       <section class="footer-add-task edit">
@@ -393,7 +414,7 @@ function renderTasksHTML(task, id) {
                   <p class="tag ${filterCategory(task.category)}">${task.category}</p>   
                   <h4>${task.title}</h4>
                   <span>${task.description}</span>
-                  <div class="progress">${task.subtasks.length} Subtasks</div>
+                  <div class="progress">${task.subtasks?.length} Subtasks</div>
                   <div class ="nav">
                   <div class="avatars">${renderTaskContact(task.contacts)}</div>
                   <div class="${filterPriority(task.priority)} prio-wrapper"></div>            

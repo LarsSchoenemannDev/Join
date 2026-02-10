@@ -207,7 +207,7 @@ function changeSubtask(i) {
 function saveSubtaskEdit(i) {
   const subEdit = document.getElementById(`edit-input-${i}`);
   if (!subEdit) return;
-  subTaskInput[i] = subEdit.value.trim();
+  subTaskInput[i] = subEdit.value.trim();  
   renderSubtasks();
 }
 

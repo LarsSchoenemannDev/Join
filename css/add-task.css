@@ -336,7 +336,7 @@ textarea:focus {
     max-height: 180px;
     opacity: 1;
     transform: translateY(0);
-    overflow-y: auto;    
+    overflow-y: auto;
     transform: translate(0px, -5px);
     border-radius: var(--radius-12);
     margin-top: 10px;
@@ -350,7 +350,7 @@ textarea:focus {
     gap: 16px;
     right: 8px;
     padding-bottom: 8px;
-    margin-top: 6px;
+    margin-top: 6px;   
 }
 
 .input-icon-cancel,
@@ -519,7 +519,7 @@ textarea:focus {
 }
 
 .btn-createTask.btn-State:hover {
-    background-color: #53555780;    
+    background-color: #53555780;
     color: var(--color-white);
     cursor: not-allowed;
 }

@@ -452,13 +452,16 @@ function editTaskOnBoard(id) {
   const task = fetchData?.tasks?.[id];
   const overlay = document.getElementById("taskDetailsOverlay");
   if (!task || !overlay) return;
+  prepareEditState(task);
   overlay.innerHTML = taskPopupEditMode(task, id);
   overlay.style.display = "flex";
   document.body.style.overflow = "hidden";
   bindAddTaskListeners(document);
   renderContact();
   assignedToLettersCheckContact();
+  renderSubtasks();
 }
+
 
 /**
  * Renders edit-mode subtasks for a task.
@@ -495,15 +498,140 @@ function editChangeSubtask(taskId, i) {
 }
 
 /**
- * Deletes a subtask from a task and re-renders the edit-mode subtasks container.
- * @param {string} taskId
- * @param {number} i
+ * Opens the edit mode overlay for one task.
+ * @param {string} id Firebase task id
  * @returns {void}
  */
-function editDeleteSubtask(taskId, i) {
-  const task = fetchData?.tasks?.[taskId];
-  if (!task?.subtasks) return;
-  task.subtasks.splice(i, 1);
-  const box = document.getElementById("subtasksEditContainer");
-  if (box) box.innerHTML = renderSubtasksDetailsEdit(task, taskId);
+function editTaskOnBoard(id) {
+  const task = fetchData?.tasks?.[id];
+  const overlay = document.getElementById("taskDetailsOverlay");
+  if (!task || !overlay) return;
+  loadEditState(task);
+  overlay.innerHTML = taskPopupEditMode(task, id);
+  overlay.style.display = "flex";
+  document.body.style.overflow = "hidden";
+  bindAddTaskListeners(document);
+  renderContact();
+  assignedToLettersCheckContact();
+  renderSubtasks();
+}
+
+/**
+ * Loads task values into the global edit states.
+ * @param {any} task
+ * @returns {void}
+ */
+function loadEditState(task) {
+  subTaskInput = (task.subtasks || []).map((s) => (typeof s === "string" ? s : s.title));
+  const assignedIds = new Set((task.contacts || []).map((c) => c.id));
+  contactsState = contactsState.map((c) => ({
+    ...c,
+    checked: assignedIds.has(c.id),
+  }));
+}
+
+/**
+ * Opens the edit mode overlay for one task.
+ * @param {string} id Firebase task id
+ * @returns {void}
+ */
+function editTaskOnBoard(id) {
+  const task = fetchData?.tasks?.[id];
+  const overlay = document.getElementById("taskDetailsOverlay");
+  if (!task || !overlay) return;
+  loadEditState(task);
+  overlay.innerHTML = taskPopupEditMode(task, id);
+  overlay.style.display = "flex";
+  document.body.style.overflow = "hidden";
+  bindAddTaskListeners(document);
+  renderContact();
+  assignedToLettersCheckContact();
+  renderSubtasks();
+}
+
+/**
+ * Loads task values into the global edit states.
+ * @param {any} task
+ * @returns {void}
+ */
+function loadEditState(task) {
+  subTaskInput = (task.subtasks || []).map((s) => (typeof s === "string" ? s : s.title));
+  const assignedIds = new Set((task.contacts || []).map((c) => c.id));
+  contactsState = contactsState.map((c) => ({...c,
+    checked: assignedIds.has(c.id),
+  }));
+}
+
+/**
+ * Opens the edit mode overlay for one task.
+ * @param {string} id Firebase task id
+ * @returns {void}
+ */
+function editTaskOnBoard(id) {
+  const task = fetchData?.tasks?.[id];
+  const overlay = document.getElementById("taskDetailsOverlay");
+  if (!task || !overlay) return;
+  loadEditState(task);
+  overlay.innerHTML = taskPopupEditMode(task, id);
+  overlay.style.display = "flex";
+  document.body.style.overflow = "hidden";
+  bindAddTaskListeners(document);
+  renderContact();
+  assignedToLettersCheckContact();
+  renderSubtasks();
+}
+
+/**
+ * Reads an input/textarea value by id.
+ * @param {string} id
+ * @returns {string}
+ */
+function getValue(id) {
+  const el = document.getElementById(id);
+  return el ? el.value.trim() : "";
+}
+
+/**
+ * Reads the checked radio value of a group.
+ * @param {string} name
+ * @param {string} fallback
+ * @returns {string}
+ */
+function getCheckedValue(name, fallback = "") {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.value : fallback;
+}
+
+/**
+ * Loads task values into the global edit states.
+ * @param {any} task
+ * @returns {void}
+ */
+function loadEditState(task) {
+  subTaskInput = (task.subtasks || []).map((s) => (typeof s === "string" ? s : s.title));
+  const assignedIds = new Set((task.contacts || []).map((c) => c.id));
+  contactsState = contactsState.map((c) => ({
+    ...c,
+    checked: assignedIds.has(c.id),
+  }));
+}
+
+/**
+ * Saves the edited task and updates Firebase.
+ * @param {string} id Firebase task id
+ * @returns {Promise<void>}
+ */
+async function saveEditedTask(id) {
+  const task = fetchData?.tasks?.[id];
+  if (!task) return;
+  task.title = getValue("title");
+  task.description = getValue("description");
+  task.duedate = getValue("duedate");
+  task.priority = getCheckedValue("priority", task.priority);
+  task.category = getCheckedValue("priorityCategory", task.category);
+  task.contacts = contactsState.filter((c) => c.checked);
+  task.subtasks = subTaskInput.map((title) => ({ title, state: "uncheck" }));
+  await postState();
+  closetaskDetailsOverlay();
+  renderBoard();
 }
