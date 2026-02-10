@@ -9,6 +9,7 @@ async function boardInit() {
   renderBoard();
   updateAllEmptyMessages();
   await subTasksStateAdd();
+  initSearch();
 }
 
 /**
@@ -251,17 +252,56 @@ function updateAllEmptyMessages() {
 }
 
 /**
- * Reads the search input and filters tasks by title.
- * @returns {Task[]}
+ * Reads the board search input and filters tasks by title.
+ * Only runs if the board page exists (board-container is present).
+ * If the input has less than 3 characters, the full board will be rendered again.
+ * @returns {void}
  */
 function searchBar() {
-  const inputElement = document.getElementById("searchInput");
-  if (!inputElement || !fetchData?.tasks) return [];
-  const searchInput = inputElement.value.trim().toLowerCase();
-  if (searchInput.length < 3) return [];
-  return Object.values(fetchData.tasks).filter((task) => {       
-    return typeof task?.title === "string" && task.title.toLowerCase().includes(searchInput);  
+  const input = document.getElementById("searchInput");
+  const board = document.querySelector(".board-container");
+  if (!board || !input || !fetchData?.tasks) return;
+  const q = input.value.trim().toLowerCase();
+  if (q.length < 3) {
+    renderBoard();
+    updateAllEmptyMessages();
+    return;
+  }
+  const filtered = Object.entries(fetchData.tasks).filter(([id, task]) => {
+    return typeof task?.title === "string" && task.title.toLowerCase().includes(q);
   });
+  renderBoardFromEntries(filtered);
+  updateAllEmptyMessages();
+}
+
+/**
+ * Renders the board using a filtered list of task entries.
+ * Each entry must be a tuple of [taskId, taskObject].
+ * @param {Array<[string, any]>} entries - Filtered tasks as [id, task] pairs.
+ * @returns {void}
+ */
+function renderBoardFromEntries(entries) {
+  const tasks = entries.map(([id, task]) => ({ id, task }));
+  const todo = tasks.filter((t) => t.task.state === "todu");
+  const inProgress = tasks.filter((t) => t.task.state === "inProgress");
+  const feedBack = tasks.filter((t) => t.task.state === "feedBack");
+  const done = tasks.filter((t) => t.task.state === "done");
+  maincardHTML("toduContainer", todo);
+  maincardHTML("inProgressContainer", inProgress);
+  maincardHTML("feedBackContainer", feedBack);
+  maincardHTML("doneContainer", done);
+  initDragAndDrop();
+}
+
+/**
+ * Binds the search input listener on the board page.
+ * Should be called once during board initialization.
+ * @returns {void}
+ */
+function initSearch() {
+  const input = document.getElementById("searchInput");
+  if (!input) return;
+  input.addEventListener("input", searchBar);
 }
 
 /**
@@ -419,7 +459,6 @@ function editTaskOnBoard(id) {
   renderContact();
   assignedToLettersCheckContact();
 }
-
 
 /**
  * Renders edit-mode subtasks for a task.
