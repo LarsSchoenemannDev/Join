@@ -259,9 +259,10 @@ function taskPopupEditMode(task, id) {
   <section class="add-task-content">
     <div class="edit-mode-popup">
       <div class="edit-header">
-        <h1 class="h1-content">Edit Task</h1>
+        <h1 class="h1-content edit">Edit Task</h1>
         <button class="close-overlay" onclick="closetaskDetailsOverlay()">
-          <img src="../assets/img/close-icon.svg" alt="close">
+        <img class="icon normal" src="../assets/img/close-icon.svg" alt="close">
+        <img class="icon hover" src="../assets/img/close-hover.svg" alt="close hover">
         </button>
       </div>
       <main class="main-content">
@@ -347,11 +348,13 @@ function taskPopupEditMode(task, id) {
           ${renderSubtasksDetailsEdit(task, id)}
         </section>
       </main>
-      <section class="footer-add-task">
-        <p class="required">* <span>This field is required</span></p>
+      <section class="footer-add-task edit">
+        <p class="required">*
+                <span style="color: #000000;">This field is required</span>
+              </p>
         <div class="footer-flex">
           <button class="btn-createTask btn-priority-flex" onclick="saveEditedTask('${id}')">
-            Ok <img src="../assets/img/check-icon-white.svg" alt="">
+            Ok <img src="../assets/img/create-contact-check.svg" alt="check">
           </button>
         </div>
       </section>
