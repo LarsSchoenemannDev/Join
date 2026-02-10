@@ -1,5 +1,6 @@
 /* Responsive */
 
+
 @media (max-width: 1200px) {
   .subtask-input-container.disapear {
     display: none !important;
@@ -89,6 +90,7 @@
     height: 40px;
   }
 }
+
 /* @media (max-width: 865px) {
   .board {
     grid-template-columns: 1fr;
