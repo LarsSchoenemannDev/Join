@@ -27,20 +27,16 @@
     <link rel="manifest" href="../assets/Favicon/site.webmanifest" />
 
     <!-- adding Main CSS Style-Sheet -->
-    <link rel="stylesheet" href="../css/sign-up-style.css" />
     <link rel="stylesheet" href="../css/standard.css" />
+    <link rel="stylesheet" href="../css/sign-up-style.css" />
     <link rel="stylesheet" href="../css/sign-up-responsiv.css" />
   </head>
-  <body>
-    <main>
-      <header>
-        <img
-          class="header_img"
-          src="../assets/img/Capa 2.svg"
-          alt="Join-logo"
-        />
-      </header>
+  <body id="sign-up-body">
+    <header id="sign-up-header">
+      <img class="header-img" src="../assets/img/Capa 2.svg" alt="Join-logo" />
+    </header>
 
+    <main id="sign-up-main-page">
       <div class="content">
         <div class="signup-container">
           <div class="back-arrow" id="back-arrow" onclick="goBackToLogin()">
@@ -178,21 +174,23 @@
           </form>
         </div>
       </div>
-      <!-- for the message when signup successfully-->
-      <div class="message" id="message">
-        <span>You Signed Up successfully</span>
-      </div>
-      <footer>
-        <div class="footer_links">
-          <a class="footer_links_PP_LN" href="../html/privacy-policy.html"
-            >Privacy Policy</a
-          >
-          <a class="footer_links_PP_LN" href="../html/legal-notice.html"
-            >Legal notice</a
-          >
-        </div>
-      </footer>
     </main>
+
+    <footer id="sign-up-footer">
+      <div class="footer_links">
+        <a class="footer_links_PP_LN" href="../html/privacy-policy.html"
+          >Privacy Policy</a
+        >
+        <a class="footer_links_PP_LN" href="../html/legal-notice.html"
+          >Legal notice</a
+        >
+      </div>
+    </footer>
+
+    <!-- for the message when signup successfully-->
+    <div class="message" id="message">
+      <span>You Signed Up successfully</span>
+    </div>
   </body>
   <script src="../script/sign-up-firebase.js"></script>
   <script src="../script/sign-up-Script.js"></script>

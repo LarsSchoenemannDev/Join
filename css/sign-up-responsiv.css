@@ -1,9 +1,9 @@
 @media (max-width: 991px) {
-  .header_img {
+  /* #sign-up-header .header-img {
     max-width: 70px;
     margin-left: 0;
     margin-top: 0;
-  }
+  } */
 
   .signup-heading h1 {
     font-size: 45px;
@@ -14,7 +14,12 @@
 }
 
 @media (max-width: 767px) {
-  .content {
+  #sign-up-header .header-img {
+    max-width: 70px;
+    margin-left: 0;
+    margin-top: 0;
+  }
+  #sign-up-main-page .content {
     padding: 20px;
   }
   .signup-container {
@@ -29,7 +34,10 @@
 }
 
 @media (max-width: 450px) {
-  .header_img {
+  #sign-up-main-page {
+    padding: 20px 0 90px 0;
+  }
+  #sign-up-header .header-img {
     max-width: 70px;
     margin-left: 0;
     margin-top: 0;
