@@ -97,7 +97,8 @@
   .overview-box-items.box-4 .tasks-text,
   .overview-box-items.box-5 .tasks-text,
   .overview-box-items.box-6 .tasks-text {
-    font-size: 14px;
+    font-size: 16px;
+    /* font-size: 14px; */
   }
 
   .overview-box-items img {
@@ -172,7 +173,8 @@
   .overview-box-items.box-4 .tasks-text,
   .overview-box-items.box-5 .tasks-text,
   .overview-box-items.box-6 .tasks-text {
-    font-size: 12px;
+    font-size: 16px;
+    /* font-size: 12px; */
   }
 
   .summary-overview .boxContainer .overview-box-items img {
@@ -184,7 +186,8 @@
   }
 
   .overview-box-items.box-3 .right-box .urgency-date {
-    font-size: 14px;
+    /* font-size: 14px; */
+    font-size: 16px;
   }
 
   .left-box {
