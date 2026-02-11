@@ -154,6 +154,7 @@ h1 {
   background-color: var(--color-drop-bg);
   outline: 2px dashed var(--color-drop-outline);
   outline-offset: -4px;
+  z-index: 30;
 }
 
 .empty {

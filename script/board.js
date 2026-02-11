@@ -10,6 +10,7 @@ async function boardInit() {
   updateAllEmptyMessages();
   await subTasksStateAdd();
   initSearch();
+  progressSubtask()
 }
 
 /**
@@ -462,7 +463,6 @@ function editTaskOnBoard(id) {
   renderSubtasks();
 }
 
-
 /**
  * Renders edit-mode subtasks for a task.
  * @param {Task} task
@@ -557,7 +557,8 @@ function editTaskOnBoard(id) {
 function loadEditState(task) {
   subTaskInput = (task.subtasks || []).map((s) => (typeof s === "string" ? s : s.title));
   const assignedIds = new Set((task.contacts || []).map((c) => c.id));
-  contactsState = contactsState.map((c) => ({...c,
+  contactsState = contactsState.map((c) => ({
+    ...c,
     checked: assignedIds.has(c.id),
   }));
 }
@@ -635,3 +636,28 @@ async function saveEditedTask(id) {
   closetaskDetailsOverlay();
   renderBoard();
 }
+
+
+function progressSubtask() {
+  let counter = 0;
+  if (fetchData) {
+    Object.values(fetchData.tasks).forEach(subtask => {
+      let subtasktest = subtask
+      Object.values(subtasktest.subtasks).forEach(x => {
+        console.log(x.state);
+        if (x.state === "check") {  
+          counter ++;
+        }
+      })
+    })
+  }
+  console.log(counter);  
+}
+
+// console.log(fetchData.tasks)
+
+// console.log("Key´s", Object.keys(fetchData.tasks))
+
+// console.log("Values", Object.values(fetchData.tasks))
+
+// console.log("Entries", Object.entries(fetchData.tasks))

@@ -78,6 +78,7 @@
 
 .Subtask-List {
   max-height: 160px;
+  overflow: auto;
 }
 
 .footer-add-task {
