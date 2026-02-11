@@ -133,11 +133,12 @@ body {
   color: #e60026;
   font-size: 14px;
   margin-bottom: 15px;
+  visibility: hidden;
 }
 
-.error-msg.d-none {
+/* .error-msg.d-none {
   display: none;
-}
+} */
 
 /* .input-group input.error,
 .input-group input.error:focus {
