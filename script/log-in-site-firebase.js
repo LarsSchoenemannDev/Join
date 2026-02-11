@@ -27,7 +27,8 @@ async function hashPassword(password) {
 }
 
 async function loginValidation() {
-  errorMsg.classList.add("d-none");
+  errorMsg.style.visibility = "hidden";
+  // errorMsg.classList.add("d-none");
   inputs.forEach((input) => {
     input.style.borderColor = "#29abe2";
   });
@@ -50,7 +51,8 @@ async function loginValidation() {
         window.location.href = "../html/summary.html";
       } else {
         console.error("Login daten sind falsch");
-        errorMsg.classList.remove("d-none");
+        errorMsg.style.visibility = "visible";
+        // errorMsg.classList.remove("d-none");
         inputs.forEach((input) => {
           input.style.borderColor = "#e60026";
         });
@@ -59,7 +61,8 @@ async function loginValidation() {
   }
   if (!emailFound) {
     // console.error("Benutzer nicht gefunden");
-    errorMsg.classList.remove("d-none");
+    errorMsg.style.visibility = "visible";
+    // errorMsg.classList.remove("d-none");
     inputs.forEach((input) => {
       input.style.borderColor = "#e60026";
     });
