@@ -1,22 +1,28 @@
-body {
-  height: 100vh;
+#login-body {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  /* justify-content: center; */
   align-items: center;
-  background: #f6f7f8;
+  /* background: #f6f7f8; */
 }
 
-.body-div {
-  /* max-width: 1920px; */
+/* .body-div {
+  
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-}
-.header {
+} */
+
+/* CSS Header */
+#login-header {
   width: 100%;
-  height: 170px;
+  max-width: 1920px;
+  height: 180px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -30,18 +36,18 @@ body {
   padding: 20px 40px;
 } */
 
-/* .logo {
+#login-header .logo {
   width: auto;
   height: 140px;
 }
 
-.logo img {
+#login-header .logo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-} */
+}
 
-.auth-nav {
+#login-header .auth-nav {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -50,7 +56,8 @@ body {
 }
 
 .auth-nav-mobile {
-  display: none;
+  visibility: hidden;
+  /* display: none; */
 }
 
 .signup-btn,
@@ -75,14 +82,21 @@ body {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
-.main {
+/* CSS Main section */
+
+#login-main {
   flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  gap: 50px;
   align-items: center;
+  width: 100%;
+  height: calc(100% - 70px);
+  padding: 20px 20px 90px 20px;
 }
 
-.login-container {
+#login-main .login-container {
   background: white;
   padding: 48px 100px;
   /* padding: 60px 40px; */
@@ -90,16 +104,16 @@ body {
   box-shadow: 0 0 14px 3px rgba(0, 0, 0, 0.04);
   text-align: center;
   /* width: 472px; */
-  width: 600px;
+  /* width: 600px; */
 }
 
-.login-container h1 {
+#login-main .login-container h1 {
   font-size: 54px;
   font-weight: 700;
   margin-bottom: 10px;
 }
 
-.underline {
+#login-main .login-container .underline {
   width: 120px;
   height: 3px;
   background: #29abe2;
@@ -194,18 +208,19 @@ body {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
-.footer {
-  position: absolute;
+#login-footer {
+  /* position: absolute;
   bottom: 0;
-  left: 0;
+  left: 0; */
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 30px;
-  padding: 20px;
+  height: 70px;
 }
 
-.footer-link {
+#login-footer .footer-link {
   color: #a8a8a8;
   text-decoration: none;
   font-size: 16px;

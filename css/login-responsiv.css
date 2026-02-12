@@ -1,13 +1,14 @@
 @media (max-width: 991px) {
-  .main {
+  #login-main {
     padding: 20px;
   }
-  .auth-nav {
+  #login-header .auth-nav {
     display: none;
   }
 
-  .auth-nav-mobile {
-    margin: 50px auto;
+  #login-main .auth-nav-mobile {
+    visibility: visible;
+    /* margin: 50px auto; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +17,8 @@
   }
 
   .animate-bg-mobile {
-    position: fixed;
+    position: absolute;
+    /* position: fixed; */
     left: 0;
     top: 0;
     width: 100%;
@@ -84,11 +86,11 @@
 }
 
 @media (max-width: 768px) {
-  .main {
+  /* #login-main {
     padding: 20px;
-  }
+  } */
 
-  .login-container {
+  #login-main .login-container {
     padding: 48px;
   }
   .login-form {
@@ -112,18 +114,18 @@
 }
 
 @media (max-width: 576px) {
-  .main {
+  /* #login-main {
     padding: 20px;
-  }
+  } */
 
-  .login-container {
+  #login-main .login-container {
     padding: 48px 24px;
   }
 
-  .login-container h1 {
+  #login-main .login-container h1 {
     font-size: 46px;
   }
-  .login-form .input-group {
+  #login-main .login-form .input-group {
     width: 100%;
   }
 

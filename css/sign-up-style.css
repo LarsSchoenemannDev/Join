@@ -216,7 +216,7 @@ button:disabled {
   cursor: not-allowed;
 }
 
-.input-icon {
+/* .input-icon {
   width: 100%;
   position: relative;
   display: flex;
@@ -225,25 +225,69 @@ button:disabled {
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 6px 16px;
+} */
+
+.input-icon {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 6px 16px;
+  margin-top: 20px;
 }
 
-.input-icon svg {
+/* .input-icon svg {
   width: 18px;
   height: 18px;
-}
+} */
+
+/* .input-icon svg {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  margin-right: 10px;
+} */
 
 .input-icon-div-switch {
+  /* width: 18px;
+  height: 18px; */
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  margin-right: -10px;
+  cursor: pointer;
+}
+/* .input-icon-div-switch {
   width: 18px;
   height: 18px;
-  pointer-events: auto; /* verhindert Klickprobleme */
-  margin: 6px;
-}
+  pointer-events: auto; 
+
+  margin-right: 10px;
+} */
 
 .input-icon input {
   width: 100%;
 }
 
 .input-icon:focus-within {
+  border-color: #29abe2;
+  border: 1px solid #29abe2;
+}
+
+.input-icon.active {
   border-color: #29abe2;
   border: 1px solid #29abe2;
 }
@@ -347,4 +391,65 @@ button:disabled {
 
 .checkbox-group input:checked + label:hover .checked-hover {
   display: block;
+}
+
+.error-message {
+  color: rgba(230, 0, 38, 1);
+  font-weight: 400;
+  font-size: 16px;
+  margin-top: 20px;
+  visibility: hidden;
+}
+
+.fa-regular.fa-envelope,
+.fa-regular.fa-user,
+.fa-solid.fa-lock {
+  color: rgba(168, 168, 168, 1);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  margin-right: 10px;
+}
+
+.fa-solid.fa-lock {
+  color: rgba(168, 168, 168, 1);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+
+  cursor: pointer;
+}
+
+.fa-regular.fa-eye {
+  color: rgba(168, 168, 168, 1);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.fa-regular.fa-eye-slash {
+  color: rgba(168, 168, 168, 1);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  margin-right: 10px;
+  cursor: pointer;
 }

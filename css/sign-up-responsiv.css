@@ -31,6 +31,11 @@
   form {
     width: 90%;
   }
+
+  #error-message {
+    font-size: 12px;
+    visibility: hidden;
+  }
 }
 
 @media (max-width: 450px) {
@@ -86,5 +91,8 @@
     height: 20px;
     top: 65px;
     left: 15px;
+  }
+  #privacy-policy {
+    font-size: 12px;
   }
 }

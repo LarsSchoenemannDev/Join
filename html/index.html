@@ -41,9 +41,13 @@
     <link rel="stylesheet" href="../css/login-responsiv.css" />
   </head>
 
-  <body onload="animateLoginMobile()">
+  <body id="login-body" onload="animateLoginMobile()">
     <div class="bgAnimationMobile d-none"></div>
-    <div class="body-div" id="login-page-div">
+    <!-- <div class="body-div" id="login-page-div">
+      
+    </div> -->
+
+    <header id="login-header">
       <div id="image-sequence" class="image-sequence animate-logo">
         <img
           src="../assets/img/Capa 2.svg"
@@ -51,78 +55,71 @@
           id="animate-image"
         />
       </div>
+      <div class="logo hidden">
+        <img src="../assets/img/Capa 2.svg" alt="Join-Logo" />
+      </div>
 
-      <header class="header">
-        <div class="logo hidden">
-          <img src="../assets/img/Capa 2.svg" alt="Join-Logo" />
-        </div>
+      <div class="auth-nav">
+        <span>Not a Join user?</span>
+        <button class="signup-btn" onclick="goToSignUp()">Sign up</button>
+      </div>
+    </header>
 
-        <div class="auth-nav">
-          <span>Not a Join user?</span>
-          <button class="signup-btn" onclick="goToSignUp()">Sign up</button>
-        </div>
-      </header>
+    <main id="login-main">
+      <div class="login-container">
+        <h1>Log in</h1>
+        <div class="underline"></div>
+        <form class="login-form" id="login_form">
+          <div class="input-group">
+            <input
+              id="email"
+              type="email"
+              placeholder="Email"
+              required
+              onfocus="validateInput(this)"
+              oninput="validateInput(this)"
+            />
+            <span class="input-icon"
+              ><img src="../assets/img/mail.svg" alt=""
+            /></span>
+          </div>
 
-      <main class="main">
-        <div class="login-container">
-          <h1>Log in</h1>
-          <div class="underline"></div>
-          <form class="login-form" id="login_form">
-            <div class="input-group">
-              <input
-                id="email"
-                type="email"
-                placeholder="Email"
-                required
-                onfocus="validateInput(this)"
-                oninput="validateInput(this)"
-              />
-              <span class="input-icon"
-                ><img src="../assets/img/mail.svg" alt=""
-              /></span>
-            </div>
+          <div class="input-group">
+            <input
+              id="password"
+              type="password"
+              placeholder="Password"
+              required
+              onfocus="validateInput(this)"
+              oninput="
+                validateInput(this);
+                updateIcon();
+              "
+            />
+            <span
+              id="togglePasswordIcon"
+              class="input-icon"
+              onclick="togglePassword()"
+              ><img src="../assets/img/lock.svg" alt=""
+            /></span>
+          </div>
 
-            <div class="input-group">
-              <input
-                id="password"
-                type="password"
-                placeholder="Password"
-                required
-                onfocus="validateInput(this)"
-                oninput="
-                  validateInput(this);
-                  updateIcon();
-                "
-              />
-              <span
-                id="togglePasswordIcon"
-                class="input-icon"
-                onclick="togglePassword()"
-                ><img src="../assets/img/lock.svg" alt=""
-              /></span>
-            </div>
+          <!-- Error Message-->
 
-            <!-- Error Message-->
+          <div class="error-msg d-none">
+            Check your email and password. Please try again.
+          </div>
 
-            <div class="error-msg d-none">
-              Check your email and password. Please try again.
-            </div>
-
-            <div class="buttons">
-              <button
-                type="submit"
-                class="login-btn"
-                onclick="loginValidation()"
-              >
-                Log in
-              </button>
-              <button type="button" class="guest-btn" onclick="guestLogin()">
-                Guest Log in
-              </button>
-            </div>
-          </form>
-        </div>
-      </main>
+          <div class="buttons">
+            <button type="submit" class="login-btn" onclick="loginValidation()">
+              Log in
+            </button>
+            <button type="button" class="guest-btn" onclick="guestLogin()">
+              Guest Log in
+            </button>
+          </div>
+        </form>
+      </div>
 
       <!-- auth-nav in mobile version -->
 
@@ -130,14 +127,14 @@
         <span>Not a Join user?</span>
         <button class="signup-btn" onclick="goToSignUp()">Sign up</button>
       </div>
+    </main>
 
-      <footer class="footer">
-        <a href="../html/privacy-policy.html" class="footer-link"
-          >Privacy Policy</a
-        >
-        <a href="../html/legal-notice.html" class="footer-link">Legal notice</a>
-      </footer>
-    </div>
+    <footer id="login-footer">
+      <a href="../html/privacy-policy.html" class="footer-link"
+        >Privacy Policy</a
+      >
+      <a href="../html/legal-notice.html" class="footer-link">Legal notice</a>
+    </footer>
   </body>
   <script src="../script/login.js"></script>
   <script src="../script/log-in-site-firebase.js"></script>
