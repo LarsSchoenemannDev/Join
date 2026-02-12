@@ -11,6 +11,7 @@
 
 #sign-up-header {
   width: 100%;
+  max-width: 1920px;
   height: 180px;
   display: flex;
   align-items: center;
@@ -27,6 +28,7 @@
 
 #sign-up-main-page {
   display: flex;
+  flex: 1;
   /* flex-direction: column; */
   justify-content: center;
   align-items: center;
