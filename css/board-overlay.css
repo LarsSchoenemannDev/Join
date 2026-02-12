@@ -89,13 +89,22 @@
   .edit {
     margin-top: 0px !important;
     flex-direction: unset !important;
-    margin-top: 40px !important;
+    margin-top: 42px !important;
     font-size: 48px;
+    margin-bottom: 32px !important;
   }
 }
 
 @media (max-width: 530px) {
   .overlay-container .add-task-content {
     padding: 1px;
+  }
+}
+
+@media (max-width: 620px) {
+
+
+  .btn-priority-flex {
+    width: 280px;
   }
 }

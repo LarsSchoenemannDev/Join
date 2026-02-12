@@ -325,7 +325,7 @@ textarea:focus {
 
 .display-flex {
     display: flex;
-    width: 81.5%;
+    width: 80%;
     padding-left: 20px;
 }
 
@@ -350,7 +350,7 @@ textarea:focus {
     gap: 16px;
     right: 8px;
     padding-bottom: 8px;
-    margin-top: 6px;   
+    margin-top: 6px;
 }
 
 .input-icon-cancel,
@@ -648,6 +648,8 @@ textarea:focus {
 }
 
 @media(max-width: 620px) {
+  
+
     .card {
         min-width: 240px;
     }
@@ -662,16 +664,20 @@ textarea:focus {
 
     .button-priority {
         flex-direction: column;
+
     }
 
     .btn-priority-flex {
         justify-content: center;
-    }
 
+    }
+    
     .wrapper {
         align-items: center;
         display: flex;
         flex-direction: column;
+        width: 100%;
+        justify-content: center;
     }
 
     .div-field {
@@ -680,6 +686,17 @@ textarea:focus {
 
     .footer-flex {
         flex-direction: column;
+        justify-content: center;
         gap: 6px;
     }
+
+    .footer-add-task edit {
+        display: flex;
+        justify-content: center;
+    }
+
+    .required {
+        display: none;
+    }
+
 }
