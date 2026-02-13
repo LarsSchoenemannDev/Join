@@ -1,19 +1,13 @@
 .overlay-container .add-task-content {
   display: flex;
   padding: 40px;
-
-  /* align-items: flex-start !important;    */
-
 }
-
-
 
 .overlay-container .h1-content {
   display: flex;
   justify-content: space-between;
+  min-width: 300px;
 }
-
-
 
 .overlay-body .main-content {
   gap: 60px;
@@ -27,21 +21,16 @@
   max-width: 600px;
 }
 
-
-
 .overlay-container input,
 .overlay-container select,
 .overlay-container textarea {
   border: 1px solid #d1d5db;
 }
 
-
 .overlay-container .button-task {
   padding: 12px 24px;
   font-size: 1rem;
 }
-
-
 
 .overlay-container .overlay-header {
   display: flex;
@@ -50,26 +39,13 @@
 }
 
 .overlay-container .overlay-content {
-  /* background-color: white;
-    border-radius: 8px;
-    /* width: 77%; */
-  /* max-width: 64%;
-  max-height: 96%; */
   overflow-y: auto;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   animation: slideIn 0.3s ease-out;
 }
 
-
-
-.overlay-container .footer-add-task {
-  /* margin-top: 120px !important; */
-  /* justify-content: flex-end !important; */
-}
-
 .overlay-container .footer-add-task .btn-priority-flex {
   display: flex;
-
 }
 
 .main-content {
@@ -93,7 +69,9 @@
     font-size: 48px;
     margin-bottom: 32px !important;
   }
-}
+  .h1-content{
+    font-size: 32px;
+  }}
 
 @media (max-width: 530px) {
   .overlay-container .add-task-content {
@@ -102,8 +80,6 @@
 }
 
 @media (max-width: 620px) {
-
-
   .btn-priority-flex {
     width: 280px;
   }

@@ -1,15 +1,14 @@
-
-main{
+main {
     align-items: flex-start !important;
 }
 
-.headline{
+.headline {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.histore-back-arrow{
+.histore-back-arrow {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -21,13 +20,13 @@ main{
 
 }
 
-.histore-back-arrow:hover{
-background-color: #afb3bb3b;
-cursor: pointer;
+.histore-back-arrow:hover {
+    background-color: #afb3bb3b;
+    cursor: pointer;
 
 }
 
-.legal-notice-main-div{
+.legal-notice-main-div {
     max-width: 900px;
 }
 
@@ -35,70 +34,74 @@ cursor: pointer;
     margin-bottom: 20px;
 }
 
-.diensteanbieter{
+.diensteanbieter {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
 }
 
-.contacts-info{
+.contacts-info {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.Vorbehalt-miner{
+.Vorbehalt-miner {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.student-name-list{
+.student-name-list {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.postcode-and-city{
+.postcode-and-city {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.acceptance-of-terms{
+.acceptance-of-terms {
     margin-bottom: 20px;
 }
 
-.scope-and-ownership{
+.scope-and-ownership {
     margin-bottom: 20px;
 }
 
-.scope-and-ownership-text{
+.scope-and-ownership-text {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.proprietary-rights{
+.proprietary-rights {
     margin-bottom: 20px;
 }
 
-.use-of-the-product{
+.use-of-the-product {
     margin-bottom: 20px;
 }
 
-.disclaimer-of-warranties{
+.disclaimer-of-warranties {
     margin-bottom: 20px;
 }
 
-.indemnity{
+.indemnity {
     margin-bottom: 20px;
 }
 
-.indemnity-mail-date{
+.indemnity-mail-date {
     display: flex;
     flex-direction: column;
     gap: 15px;
     margin-top: 20px;
+}
+
+a {
+    color: #29ABE2;
 }

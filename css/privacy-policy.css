@@ -1,16 +1,14 @@
-/*Datenschutz-style*/
-
-main{
+main {
     align-items: flex-start !important;
 }
 
-.headline{
+.headline {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.histore-back-arrow{
+.histore-back-arrow {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -22,8 +20,8 @@ main{
 
 }
 
-.histore-back-arrow:hover{
-background-color: #afb3bb3b;
+.histore-back-arrow:hover {
+    background-color: #afb3bb3b;
 
 }
 
@@ -31,7 +29,6 @@ background-color: #afb3bb3b;
     max-width: 900px;
 }
 
-/* Überschriften */
 .datenschutz-container h1 {
     color: black;
     font-size: 2em;
@@ -45,26 +42,23 @@ background-color: #afb3bb3b;
     font-size: 1.4em;
 }
 
-/* Absätze */
 .datenschutz-container p {
     line-height: 1.6;
     margin-bottom: 15px;
 }
 
-/* Listen */
 .datenschutz-container ul {
     margin-left: 20px;
     margin-bottom: 15px;
 }
 
-/* Tabelle */
 .datenschutz-container table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-.datenschutz-container th, 
+.datenschutz-container th,
 .datenschutz-container td {
     border: 1px solid #ddd;
     padding: 8px;
@@ -76,14 +70,12 @@ background-color: #afb3bb3b;
     color: #fff;
 }
 
-/* Links */
 .datenschutz-container a {
-    color: #1a73e8;
+    color: #29ABE2;
     text-decoration: none;
 }
 
 .datenschutz-container a:hover {
     text-decoration: underline;
 }
-
 

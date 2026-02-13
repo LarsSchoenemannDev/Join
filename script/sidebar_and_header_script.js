@@ -109,3 +109,7 @@ function logOut() {
   sessionStorage.removeItem("userStatus");
   sessionStorage.removeItem("name");
 }
+
+function popUpClose(){
+  dropDownMenu
+}

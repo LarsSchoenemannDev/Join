@@ -84,8 +84,7 @@
 }
 
 .dropDown-menu.show {
-    right: 0px;
-    /* Endposition innerhalb des Bildschirms */
+    right: 0px;    
 }
 
 .dropDown-menu a:hover {

@@ -648,8 +648,6 @@ textarea:focus {
 }
 
 @media(max-width: 620px) {
-  
-
     .card {
         min-width: 240px;
     }
@@ -671,7 +669,7 @@ textarea:focus {
         justify-content: center;
 
     }
-    
+
     .wrapper {
         align-items: center;
         display: flex;

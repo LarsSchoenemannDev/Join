@@ -139,7 +139,7 @@ main {
 
 .menu-button:hover {
   background-color: rgba(220, 220, 220, 0.69);
-  cursor: pointer;
+  cursor: pointer;  
 }
 
 /*.header .icons .user-icon:hover {
@@ -189,6 +189,7 @@ main {
 
 .dropDown-menu a:hover {
   background-color: #2a3d59;
+  border-radius: 12px;
 }
 
 .hide {
