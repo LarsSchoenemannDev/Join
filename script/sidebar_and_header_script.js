@@ -73,11 +73,28 @@ function showSignedUserName() {
  */
 function toggleMenu() {
   if (!dropDownMenu) {
-    console.error("dropDownMenu element not found");
+    return;
+  }
+  if (!menuOverlay) {
     return;
   }
   updateMenuPosition();
+  menuOverlay.classList.toggle("hidden");
   dropDownMenu.classList.toggle("hide");
+}
+
+const menuOverlay = document.querySelector(".menuOverlay");
+if (menuOverlay) {
+  menuOverlay.addEventListener("click", (event) => {
+    if (event.target === menuOverlay) {
+      closeDropdownMenu();
+    }
+  });
+}
+
+function closeDropdownMenu() {
+  if (dropDownMenu) dropDownMenu.classList.add("hide");
+  if (menuOverlay) menuOverlay.classList.add("hidden");
 }
 
 /**
@@ -109,4 +126,3 @@ function logOut() {
   sessionStorage.removeItem("userStatus");
   sessionStorage.removeItem("name");
 }
-
