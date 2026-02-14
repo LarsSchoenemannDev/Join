@@ -202,6 +202,7 @@ main {
 
 .menuOverlay.hidden {
   display: none;
+  
 }
 
 .dropDown-menu a:hover {

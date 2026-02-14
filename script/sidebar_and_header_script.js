@@ -105,7 +105,7 @@ function closeDropdownMenu() {
 function updateMenuPosition() {
   if (!dropDownMenu) return;
 
-  const checkQueries = window.matchMedia("(max-width: 991px)");
+  const checkQueries = window.matchMedia("(max-width: 992px)");
 
   if (checkQueries.matches) {
     if (switchHelp) switchHelp.classList.remove("hide");
