@@ -123,7 +123,6 @@ async function createContactList() {
   if (needsUpdate) {
     await pushContactsToAPI();
   }
-  console.log("Contact list rendered with", array.length, "contacts");
 }
 
 async function pushContactsToAPI() {
@@ -211,7 +210,6 @@ function findContactInFirebase(contactName, contactEmail) {
   if (!fetchedData || typeof fetchedData !== "object") return null;
   for (const [id, data] of Object.entries(fetchedData)) {
     if (data.name === contactName && data.email === contactEmail) {
-      console.log("Found contact with ID:", id);
       return data;
     }
   }
@@ -226,15 +224,8 @@ function findContactInFirebase(contactName, contactEmail) {
  * render floating contact card container innerHTML using renderFloatingContactTemplate function with 5 parameters
  */
 function renderFloatingCard(foundContact, contactColor) {
-  console.log("Rendering contact:", foundContact);
   const initials = getInitials(foundContact.name);
   const backgroundColor = contactColor || "rgba(255, 122, 0, 1)";
-  console.log(
-    "Floating template - Color:",
-    backgroundColor,
-    "Contact:",
-    foundContact.name,
-  );
   container.innerHTML = renderFloatingContactTemplate(
     foundContact.name,
     foundContact.email,
@@ -404,8 +395,6 @@ async function getDataToMakeNewContact() {
 async function addNewContact() {
   const newContact = await getDataToMakeNewContact();
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  console.log("Creating new contact:", newContact);
   if (!emailRegex.test(newContact.email)) {
     alert("Please enter a valid email address");
     return;
@@ -508,12 +497,6 @@ function getDataFromClickedContactFloating() {
   }
   const contactName = nameElement.textContent.trim();
   const contactEmail = emailElement.textContent.trim();
-  console.log(
-    "Delete from Floating Container - Name:",
-    contactName,
-    "Email:",
-    contactEmail,
-  );
   return { contactName, contactEmail };
 }
 
@@ -527,7 +510,6 @@ function saveDataAsFoundContact() {
   const { contactName, contactEmail } = contactData;
   for (const [id, data] of Object.entries(fetchedData)) {
     if (data.name === contactName && data.email === contactEmail) {
-      console.log("✓ Match found! ID:", id);
       return { foundContact: data, foundId: id, contactName, contactEmail };
     }
   }

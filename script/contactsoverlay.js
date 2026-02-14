@@ -17,7 +17,6 @@ function findDataFromEditOverlayToDelete() {
         alert('Error: Contact information is missing');
         return null;
     }
-    console.log('Delete from Edit Overlay - Name:', contactName, 'Email:', contactEmail);
     return { contactName, contactEmail };
 }
 
@@ -33,10 +32,8 @@ function foundContactUndIdEditOverlay() {
     const contactData = findDataFromEditOverlayToDelete();
     if (!contactData) return null;
     const { contactName, contactEmail } = contactData;
-    console.log('Searching for - Name:', `"${contactName}"`, 'Email:', `"${contactEmail}"`);
     for (const [id, data] of Object.entries(fetchedData)) {
         if (data.name === contactName && data.email === contactEmail) {
-            console.log('✓ Match found! ID:', id);
             return { foundContact: data, foundId: id, contactName, contactEmail };
         }
     }
@@ -90,7 +87,6 @@ function openEditContactOverlay() {
     const contactSymbol = document.getElementById('contact-symbol');
     if (contactSymbol) {
         contactColor = contactSymbol.style.backgroundColor;
-        console.log('Found color from floating card:', contactColor);
     }
     for (const [id, data] of Object.entries(fetchedData)) {
         if (data.name === document.getElementById('contact-name').textContent.trim() &&
@@ -101,7 +97,6 @@ function openEditContactOverlay() {
             break;
         }
     }
-    console.log('Open Edit Overlay - Found Contact:', foundContact, 'ID:', foundID, 'Color:', contactColor);
     return { foundContact, foundID, contactColor };
 }
 

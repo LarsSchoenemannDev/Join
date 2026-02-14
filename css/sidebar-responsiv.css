@@ -1,15 +1,18 @@
 @media (max-width: 992px) {
   .content-wrapper {
-    flex-direction: column; /* statt nebeneinander */
+    flex-direction: column;
+    /* statt nebeneinander */
     flex: 1;
   }
 
   .sidebar {
     position: sticky;
     bottom: 0;
-    order: 3; /* nach main und header */
+    order: 3;
+    /* nach main und header */
     width: 100%;
-    height: 80px; /* z. B. für Bottom-Bar */
+    height: 80px;
+    /* z. B. für Bottom-Bar */
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -20,7 +23,8 @@
 
   .sidebar .logo,
   .sidebar .frame3 {
-    display: none; /* nur die Hauptnavigation zeigen */
+    display: none;
+    /* nur die Hauptnavigation zeigen */
   }
 
   .sidebar .frame2 {
@@ -38,9 +42,9 @@
 
   .sidebar .frame2 a {
     justify-content: center;
-    padding: 0;
+    padding: 1px;
     flex-direction: column;
-    width: 110px;
+    width: 120px;
     height: 100%;
     border-radius: 20px;
   }
@@ -55,7 +59,8 @@
   }
 
   .main-area {
-    margin-bottom: 0px; /* Platz für Bottom-Bar */
+    margin-bottom: 0px;
+    /* Platz für Bottom-Bar */
   }
 
   .text {
@@ -69,6 +74,11 @@
   .join-icon {
     display: flex;
   }
+
+  .hide {
+    display: flex !important;
+  }
+
 }
 
 @media (max-width: 450px) {
@@ -81,6 +91,7 @@
     width: 25px;
     height: 25px;
   }
+
   /* .header {
     padding: 20px;
   }

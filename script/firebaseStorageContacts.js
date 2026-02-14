@@ -28,8 +28,6 @@ async function loadDataBase() {
         } else {
             fetchedData = {};
         }
-
-        console.log('Loaded contacts from Firebase:', fetchedData);
         return fetchedData;
     } catch (error) {
         console.error('Error loading database:', error);
@@ -55,7 +53,6 @@ async function saveContact(contact) {
         }
 
         const result = await response.json();
-        console.log('Contact saved:', result);
         return result
 
     } catch (error) {
@@ -80,7 +77,6 @@ async function deleteContact(contactId) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const result = await response.json();
-        console.log('Contact deleted:', contactId);
         return result;
     } catch (error) {
         console.error('Error deleting contact:', error);
@@ -104,7 +100,6 @@ async function updateContactInFirebase(contactId, updatedContact) {
         }
 
         const result = await response.json();
-        console.log('Contact updated:', contactId);
         return result;
 
     } catch (error) {

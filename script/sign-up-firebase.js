@@ -25,7 +25,6 @@ async function registerUser(name, email, password) {
     }
 
     const result = await response.json();
-    console.log("User created:", result.name, result.email);
   } catch (err) {
     console.error(err);
     showErrorMessage("Registration failed. Please try again.");
@@ -52,12 +51,10 @@ async function fetchExistingUserName() {
           existingNames.push(userData.name);
         }
       }
-      console.log("Fetched names:", existingNames);
       return existingNames;
     }
   } catch (error) {
     console.error(error);
-    console.log("fetching failed.");
     return [];
   }
 }
@@ -82,12 +79,10 @@ async function fetchExistingUserEmail() {
           existingEmails.push(userData.email);
         }
       }
-      console.log("Fetched emails:", existingEmails);
       return existingEmails;
     }
   } catch (error) {
     console.error(error);
-    console.log("fetching failed.");
     return [];
   }
 }

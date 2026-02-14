@@ -359,7 +359,6 @@ async function signupRegistrationInFirebase() {
     const hashedPassword = await hashPassword(password);
 
     await registerUser(name, email, hashedPassword);
-    console.log(`user with following details registered: ${name}, ${email}`);
     showSuccessMessage();
     resetPageDefaults();
     setTimeout(() => {

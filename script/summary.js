@@ -47,7 +47,6 @@ async function loadTaskDataFromFirebase() {
       tasksFetchedData = {};
     }
 
-    console.log("Loaded tasks from Firebase:", tasksFetchedData);
     return tasksFetchedData;
   } catch (error) {
     console.error("Error loading database:", error);
@@ -67,7 +66,6 @@ async function getTasksArray() {
       tasks.push({ id, ...data });
     }
   });
-  console.log("tasks Array:", tasks);
   return tasks;
 }
 

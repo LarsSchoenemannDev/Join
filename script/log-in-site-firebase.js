@@ -42,8 +42,7 @@ async function loginValidation() {
       emailFound = true;
       let passwor2 = passwordInput.value;
       let passwordHased = await hashPassword(passwor2);
-      if (user.password === passwordHased) {
-        console.log("Login erfolgreich für:", user.id);
+      if (user.password === passwordHased) {        
         sessionStorage.setItem("userID", user.id);
         sessionStorage.setItem("userStatus", "loggedIn");
         sessionStorage.setItem("name", user.name);
@@ -110,8 +109,7 @@ async function loginDatafetch() {
 async function guestLogin() {
   await loginDatafetchGuest();
 
-  if (fetchedDataGuest && fetchedDataGuest.name === "Guest") {
-    console.log(fetchedDataGuest.name + " has logged in");
+  if (fetchedDataGuest && fetchedDataGuest.name === "Guest") {    
     sessionStorage.setItem("name", fetchedDataGuest.name);
     window.location.href = "../html/summary.html";
   } else {
@@ -132,7 +130,6 @@ async function loginDatafetchGuest() {
     }
 
     const responseToJson = await response.json();
-    console.log("Guest API response:", responseToJson); // Debug log
 
     if (responseToJson && typeof responseToJson === "object") {
       // Check if data is directly the guest object or nested
@@ -144,7 +141,6 @@ async function loginDatafetchGuest() {
         const firstEntry = Object.values(responseToJson)[0];
         fetchedDataGuest = firstEntry ? { name: firstEntry.name } : {};
       }
-      console.log("fetchedDataGuest:", fetchedDataGuest); // Debug log
     } else {
       fetchedDataGuest = {};
     }
