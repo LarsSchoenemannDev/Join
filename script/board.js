@@ -9,8 +9,7 @@ async function boardInit() {
   renderBoard();
   updateAllEmptyMessages();
   await subTasksStateAdd();
-  initSearch();
-  progresssingel()
+  initSearch();  
 }
 
 /**
