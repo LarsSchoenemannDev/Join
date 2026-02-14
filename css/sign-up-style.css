@@ -15,7 +15,8 @@
   height: 180px;
   display: flex;
   align-items: center;
-  padding: 20px 40px;
+  padding: var(--content-left);
+     
 }
 
 #sign-up-header .header-img {
@@ -24,6 +25,7 @@
   margin-top: 40px;
   /* margin-left: 40px; */
   /* max-width: 90px; */
+   margin-left: 20px;
 }
 
 #sign-up-main-page {

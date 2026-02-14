@@ -110,6 +110,3 @@ function logOut() {
   sessionStorage.removeItem("name");
 }
 
-function popUpClose(){
-  dropDownMenu
-}
