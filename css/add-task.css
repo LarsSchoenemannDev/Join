@@ -250,7 +250,7 @@ input[type="radio"] {
     cursor: pointer;
 }
 
-.checkbox-input:checked+.checkbox-box {
+.checkbox-input:checked + .checkbox-box {
     background-image: url("../assets/img/checkboxChecked.svg");
     background-size: 24px 24px;
 }

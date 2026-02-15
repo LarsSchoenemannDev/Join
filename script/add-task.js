@@ -329,7 +329,7 @@ function clearInputs() {
   const categoryBtn = document.getElementById("categoryBtn");
   const subtasks = document.getElementById("subtasks");
   const subtaskList = document.getElementById("SubtaskList");
-  const selectContact = document.getElementById("selectContact");
+  const selectContact = document.getElementById("selectContact"); 
   if (title) title.value = "";
   if (description) description.value = "";
   if (duedate) duedate.value = "";
@@ -341,8 +341,9 @@ function clearInputs() {
   if (subtasks) subtasks.value = "";
   if (subtaskList) subtaskList.innerHTML = "";
   if (selectContact) selectContact.innerHTML = "";
-  document.querySelectorAll(".checkbox-input:checked").forEach((cb) => (cb.checked = false));
+  contactsState.forEach(contact =>{contact.checked = false;})  
 }
+
 
 /**
  * Reads values from the add-task form and builds a task payload.
