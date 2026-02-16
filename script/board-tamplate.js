@@ -126,7 +126,7 @@ function loadAddTaskFormIntoOverlay() {
                     </label>
                     <button type="button" id="categoryBtn"
                       class="input-styling input-icon-arrow-down custom-select-select input-Required"
-                      onclick="toggleCategory()">
+                      onclick="toggleCategory(),onblur=categorySelectorCheck()" >
                       Select task category
                     </button>
                     <div id="selectCategory" class="dropdown">
@@ -275,7 +275,7 @@ function taskPopupEditMode(task, id) {
                     <label for="title">
                       Title<span class="required">*</span>
                     </label>
-                    <input id="title" type="text" placeholder="Enter a title" class="input-Required">                    
+                    <input id="title" type="text" ${task.title} class="input-Required">                    
                     <div class="invalid-feedback">This field is required.</div>
                   </div>
           <div class="field">
@@ -342,11 +342,11 @@ function taskPopupEditMode(task, id) {
                       <label for="categoryBtn">
                         Category<span class="required">*</span>
                       </label>
-                      <button type="button" id="categoryBtn"
-                        class="input-styling input-icon-arrow-down custom-select-select input-Required"
-                        onclick="toggleCategory()">
-                        Select task category
-                      </button>
+                    <button type="button" id="categoryBtn"
+                      class="input-styling input-icon-arrow-down custom-select-select input-Required"
+                      onclick="toggleCategory(),onblur=categorySelectorCheck()" >
+                      Select task category
+                    </button>
                       <div id="selectCategory" class="dropdown">
                         <div class="category-main">
                           <input type="radio" id="TechnicalTask" name="priorityCategory" value="Technical Task"

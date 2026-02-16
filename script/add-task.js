@@ -292,8 +292,7 @@ function toggleCategory(event) {
   if (dropdown.classList.contains("open")) {
     changeArrow.style.backgroundImage = "url('../assets/img/arrowUup.svg')";
   } else if (dropdown.classList.contains("close")) {
-    changeArrow.style.backgroundImage = "url('../assets/img/arrow_drop_down-icon.svg')";
-    categorySelectorCheck()
+    changeArrow.style.backgroundImage = "url('../assets/img/arrow_drop_down-icon.svg')";    
   }
 }
 
