@@ -10,7 +10,7 @@
   --color-empty-border: #ccc;
 
   --color-drop-bg: rgba(59, 130, 246, 0.1);
-  --color-drop-outline: #3b82f6;
+  --color-drop-outline: #3b83f69a;
 
   --color-seperator: rgba(209, 209, 209, 1);
 
@@ -271,6 +271,12 @@ h4 {
   color: var(--color-white);
   border: 3px solid var(--color-white);
   margin-left: -12px;
+}
+
+.cards.dragging {
+    opacity: 0.7;
+    transform: rotate(3deg);
+    transition: transform 0.2s;
 }
 
 .nav {

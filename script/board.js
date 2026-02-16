@@ -9,7 +9,7 @@ async function boardInit() {
   renderBoard();
   updateAllEmptyMessages();
   await subTasksStateAdd();
-  initSearch();  
+  initSearch();
 }
 
 /**
@@ -192,25 +192,24 @@ function onDragOver(e) {
 }
 
 /**
- * Drag enter handler: highlights drop target.
- * @param {DragEvent} e
- * @returns {void}
+ * 
+ * @param {DragEvent} e 
  */
 function onDragEnter(e) {
-  const col = /** @type {HTMLElement} */ (e.currentTarget);
+  e.preventDefault();
+  const col = e.currentTarget;
   col.classList.add("drop-target");
-  updateAllEmptyMessages();
 }
 
 /**
- * Drag leave handler: removes drop target highlight.
- * @param {DragEvent} e
- * @returns {void}
+ * 
+ * @param {DragEvent} e 
  */
 function onDragLeave(e) {
-  const col = /** @type {HTMLElement} */ (e.currentTarget);
-  col.classList.remove("drop-target");
-  updateAllEmptyMessages();
+  const col = e.currentTarget;
+  if (!col.contains(e.relatedTarget)) {
+    col.classList.remove("drop-target");
+  }
 }
 
 /**
