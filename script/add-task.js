@@ -317,12 +317,15 @@ function categorySelectorCheck() {
   const value = selected ? selected.value.trim() : "";
   valid.category = value === "Technical Task" || value === "User Story";
   const button = document.getElementById("categoryBtn");
+  const errorFeedBack = document.getElementById("errorCategory");
   if (!button) return;
   if (valid.category) {
     button.classList.remove("input-error");
     button.classList.add("input-focus");
+    errorFeedBack.style.display = "block"
   } else {
     button.classList.add("input-error");
+    errorFeedBack.style.display = "flex"
   }
 }
 

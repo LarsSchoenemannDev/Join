@@ -573,6 +573,14 @@ textarea:focus {
     animation: pop-out 300ms ease forwards;
 }
 
+.invalid-feedback {
+    display: block;
+    margin-top: 8px;    
+    width: 100%;    
+    font-size: 80%;
+    color: #ff4136;
+}
+
 
 @keyframes popup-in {
     from {

@@ -1,5 +1,35 @@
 /* Responsive */
+@media (max-width: 1424px) {
+  .board-container{
+   padding-left: 18px;
+   padding-top: 80px;
+   padding-right: 18px;
+  }
+  .board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px
+  }
 
+  .cardsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 18px;
+    width: clamp(180px, 16vw, 320px);
+  }
+
+  .header-category {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: clamp(180px, 16vw, 320px);
+  }
+  .in-progress{
+    width: clamp(180px, 16vw, 320px);
+  }
+}
 
 @media (max-width: 1200px) {
   .subtask-input-container.disapear {
@@ -11,9 +41,8 @@
   }
 }
 
-@media (max-width: 992px) {
-  body {
-  }
+@media (max-width: 1065px) {
+  body {}
 
   .board {
     grid-template-columns: repeat(1, 1fr);
@@ -81,4 +110,3 @@
     height: 40px;
   }
 }
-
