@@ -131,7 +131,7 @@ function toggleContacts() {
  * @returns {void}
  */
 function toggleContact(id) {
-  const contact = contactsState.find((c) => c.id === id);
+  const contact = contactsState.find((c) => String(c.id) === String(id));
   if (!contact) return;
   contact.checked = !contact.checked;
   assignedToLettersCheckContact();
