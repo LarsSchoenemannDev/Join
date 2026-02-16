@@ -468,6 +468,14 @@ input[type="number"]::-webkit-inner-spin-button {
   }
 }
 
+#validationErrorMsg {
+  color: rgba(230, 0, 38, 1);
+  font-weight: 400;
+  font-size: 16px;
+  margin: 20px 0;
+  visibility: hidden;
+}
+
 /* @media (max-width: 767px) {
   .add-contact-overlay {
     flex-direction: column;
