@@ -574,7 +574,7 @@ textarea:focus {
 }
 
 .invalid-feedback {
-    display: none;
+    visibility: hidden;
     margin-top: 8px;    
     width: 100%;    
     font-size: 80%;

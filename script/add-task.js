@@ -269,11 +269,11 @@ function noneFocus(event) {
   el.classList.remove("input-focus");
   if (!value) {
     el.classList.add("input-error");
-    childEl.style.display = "flex"
+    childEl.style.visibility = "visible"
     valid[id] = false;
   } else {
     el.classList.remove("input-error");
-    childEl.style.display = "none"
+    childEl.style.visibility = "hidden"
     valid[id] = true;
   }
 }
@@ -287,13 +287,13 @@ function toggleCategory(event) {
   if (event) event.stopPropagation();
   const changeArrow = document.getElementById("categoryBtn");
   const dropdown = document.getElementById("selectCategory");
-  if (!changeArrow || !dropdown) return;  
+  if (!changeArrow || !dropdown) return;
   dropdown.classList.toggle("open");
   if (dropdown.classList.contains("open")) {
     changeArrow.style.backgroundImage = "url('../assets/img/arrowUup.svg')";
-  } else {
+  } if else (dropdown.classList) {
     changeArrow.style.backgroundImage = "url('../assets/img/arrow_drop_down-icon.svg')";
-    
+
   }
 }
 
@@ -326,10 +326,10 @@ function categorySelectorCheck() {
   if (valid.category) {
     button.classList.remove("input-error");
     button.classList.add("input-focus");
-    errorFeedBack.style.display = "none";
+    errorFeedBack.style.visibility = "hidden";
   } else {
     button.classList.add("input-error");
-    errorFeedBack.style.display = "flex";
+    errorFeedBack.style.visibility = "visible";
   }
 }
 
@@ -480,20 +480,18 @@ function handleGlobalClick(e) {
   const contactsBtn = document.getElementById("BTNToggleContacts");
   if (contactsDropdown && contactsBtn) {
     const inside = contactsDropdown.contains(e.target) || contactsBtn.contains(e.target);
-    if (!inside) categorySelectorCheck(), closeAssigned();
+    if (!inside) closeAssigned();
   }
-
   const categoryDropdown = document.getElementById("selectCategory");
   const categoryBtn = document.getElementById("categoryBtn");
   if (categoryDropdown && categoryBtn) {
-    const inside = categoryDropdown.contains(e.target) || categoryBtn.contains(e.target);    
+    const inside = categoryDropdown.contains(e.target) || categoryBtn.contains(e.target);
     if (!inside) {
       categoryDropdown.classList.remove("open");
       categoryBtn.classList.remove("input-focus");
       categoryBtn.classList.remove("input-error");
     }
   }
-
   if (typeof isValid === "function") isValid();
 }
 

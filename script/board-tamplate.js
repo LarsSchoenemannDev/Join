@@ -25,7 +25,8 @@ function loadAddTaskFormIntoOverlay() {
                     <label for="title">
                       Title<span class="required">*</span>
                     </label>
-                    <input id="title" type="text" placeholder="Enter a title" required class="input-Required">
+                    <input id="title" type="text" placeholder="Enter a title" class="input-Required">                    
+                    <div class="invalid-feedback">This field is required.</div>
                   </div>
                 </div>
                 <div>
@@ -42,6 +43,7 @@ function loadAddTaskFormIntoOverlay() {
                     <div>
                       <input class="input-icon-calender input-Required" id="duedate" type="date"
                         placeholder="dd/mm/yyyy" required>
+                        <div class="invalid-feedback">This field is required.</div>
                     </div>
                   </div>
                 </div>
@@ -117,28 +119,30 @@ function loadAddTaskFormIntoOverlay() {
                     <div class="selectContact" id="selectContact"></div>
                     </div>
                   </div>
-                  <div class="div-field">
-                    <div class="field">
-                      <label for="categoryBtn">
-                        Category<span class="required">*</span>
-                      </label>
-                      <button type="button" id="categoryBtn"
-                        class="input-styling input-icon-arrow-down custom-select-select input-Required"
-                        onclick="toggleCategory()">
-                        Select task category
-                      </button>
-                      <div id="selectCategory" class="dropdown">
-                        <div class="category-main">
-                          <input type="radio" id="TechnicalTask" name="priorityCategory" value="Technical Task"
-                            onclick="categorySelector()" />
-                          <label for="TechnicalTask" class="contact-row">Technical Task</label>
-                          <input type="radio" id="UserStory" name="priorityCategory" value="User Story"
-                            onclick="categorySelector()" />
-                          <label for="UserStory" class="contact-row">User Story</label>
-                        </div>
+                <div class="div-field">
+                  <div class="field">
+                    <label for="categoryBtn">
+                      Category<span class="required">*</span>
+                    </label>
+                    <button type="button" id="categoryBtn"
+                      class="input-styling input-icon-arrow-down custom-select-select input-Required"
+                      onclick="toggleCategory()">
+                      Select task category
+                    </button>
+                    <div id="selectCategory" class="dropdown">
+                      <div class="category-main">
+                        <input type="radio" id="TechnicalTask" name="priorityCategory" value="Technical Task"
+                          onclick="categorySelector()" />
+                        <label for="TechnicalTask" class="contact-row">Technical Task</label>
+                        <input type="radio" id="UserStory" name="priorityCategory" value="User Story"
+                          onclick="categorySelector()" />
+                        <label for="UserStory" class="contact-row">User Story</label>
+                        
                       </div>
                     </div>
+                    <div id="errorCategory" class="invalid-feedback">This field is required.</div>
                   </div>
+                </div>
                   <div class="div-field">
                     <div class="field">
                       <label for="subtasks">Subtasks</label>
@@ -267,18 +271,22 @@ function taskPopupEditMode(task, id) {
       </div>
       <main class="main-content">
         <section class="card">
-          <div class="field">
-            <label for="title">Title<span class="required">*</span></label>
-            <input id="title" type="text" value="${task.title}" required class="input-Required">
-          </div>
+                  <div class="field">
+                    <label for="title">
+                      Title<span class="required">*</span>
+                    </label>
+                    <input id="title" type="text" placeholder="Enter a title" class="input-Required">                    
+                    <div class="invalid-feedback">This field is required.</div>
+                  </div>
           <div class="field">
             <label for="description">Description</label>
             <textarea id="description" style="height: 120px;">${task.description}</textarea>
           </div>
-          <div class="field">
-            <label>Due date<span class="required">*</span></label>
-            <input class="input-icon-calender input-Required" id="duedate" type="date" value="${task.duedate}" required>
-          </div>
+                    <div>
+                      <input class="input-icon-calender input-Required" id="duedate" type="date"
+                        placeholder="dd/mm/yyyy" required>
+                        <div class="invalid-feedback">This field is required.</div>
+                    </div>
         </section>
         <div class="center-seperator">
           <div class="seperator"></div>
