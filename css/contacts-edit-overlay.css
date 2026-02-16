@@ -129,8 +129,7 @@
           &:focus-within {
             border: 1px solid #29abe2;
           }
-          input {
-            field-sizing: content;
+          input {            
             outline: none;
             border: none;
           }
@@ -239,7 +238,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* ========== Media Queries für Responsiveness ========== */
 
-@media (min-width: 1200) and (max-width: 1439) {
+@media (min-width: 1200px) and (max-width: 1439px) {
   .edit-contact-overlay .edit-contact-overview {
     padding: 66px 38px;
   }
