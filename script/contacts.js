@@ -227,8 +227,7 @@ function findContactInFirebase(contactName, contactEmail) {
  * render floating contact card container innerHTML using renderFloatingContactTemplate function with 5 parameters
  */
 function renderFloatingCard(foundContact) {
-  // const initials = getInitials(foundContact.name);
-  // const backgroundColor = contactColor || "rgba(255, 122, 0, 1)";
+  console.log("renderFloatingCard called");
   container.innerHTML = renderFloatingContactTemplate(
     foundContact.name,
     foundContact.email,
@@ -237,6 +236,7 @@ function renderFloatingCard(foundContact) {
     foundContact.initials,
   );
   container.classList.remove("d-none");
+
   checkQueriesForEditTools();
 }
 
@@ -263,6 +263,7 @@ function renderFloatingCard(foundContact) {
  * renders floating contact card using renderFloatingCard funtion with 2 parameters or error message
  */
 function showFloatingCard(event) {
+  console.log("showFloatingCard called", event.target);
   floatingContainer();
   const contactData = getContactDataFromDOM(event);
   if (!contactData) return;
@@ -280,6 +281,10 @@ function showFloatingCard(event) {
     );
     container.innerHTML = "<h2>Contact not found</h2>";
     container.classList.remove("d-none");
+    // Force reflow to ensure animation triggers
+    container.offsetHeight;
+    container.classList.remove("slide-out");
+    container.classList.add("slide-in");
   }
 }
 
@@ -302,6 +307,19 @@ function checkQueriesForContacts() {
  * @param {Event} event
  */
 function handleContactClick(event) {
+  console.log(
+    "handleContactClick aufgerufen, Target:",
+    event.target,
+    "Current Target:",
+    event.currentTarget,
+  );
+  // Only process if clicked on contact-container or its children
+  const contactContainer = event.target.closest(".contact-container");
+  if (!contactContainer) return;
+
+  // Prevent multiple calls from event bubbling
+  event.stopPropagation();
+
   const checkQueries = window.matchMedia("(max-width: 991px)");
   if (checkQueries.matches) {
     contactSection.style.display = "none";
@@ -399,6 +417,7 @@ async function getDataToMakeNewContact() {
     phone: phoneInputField.value.trim(),
     initials: initials,
     color: contactColor,
+    checked: false,
   };
   console.log(newContact);
   return newContact;
@@ -424,13 +443,22 @@ async function getDataToMakeNewContact() {
  */
 async function addNewContact() {
   const newContact = await getDataToMakeNewContact();
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(newContact.email)) {
-    alert("Please enter a valid email address");
+  const contactName = document.getElementById("name_input").value.trim();
+  const contactEmail = document.getElementById("email_input").value.trim();
+  const contactPhone = document.getElementById("phone_input").value.trim();
+  // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // if (!emailRegex.test(newContact.email)) {
+  //   alert("Please enter a valid email address");
+  //   return;
+  // }
+  if (!contactName || !contactEmail || !contactPhone) {
+    contactErrorMsg("Please fill in all fields");
+
     return;
   }
   if (newContact.name && newContact.email && newContact.phone) {
     try {
+      await validateContactForm();
       await saveContact(newContact);
       await loadDataBase();
       await createContactList();
@@ -441,7 +469,7 @@ async function addNewContact() {
       alert("Failed to add contact. Please try again.");
     }
   } else {
-    alert("Please fill in all fields");
+    contactErrorMsg("Please fill in all fields");
   }
 }
 

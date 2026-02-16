@@ -1,8 +1,8 @@
-const storageUrl = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/contacts";
-const BASE_URL = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/";
+const storageUrl =
+  "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/contacts";
+const BASE_URL =
+  "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/";
 let fetchedData = {};
-
-
 
 /**
  * defines async function to fetch Contact Data throw Firebase realtime Database:
@@ -11,99 +11,152 @@ let fetchedData = {};
  * @returns fetchedData object containing contacts with their IDs or {} in case of error.
  */
 async function loadDataBase() {
-    try {
-        const response = await fetch(storageUrl + ".json");
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const responseToJson = await response.json();
-
-        // Firebase returns object with IDs as keys: { "-NxAbc": {name, email, phone}, ... }
-        // Convert to object where each contact has its id: { "-NxAbc": {id: "-NxAbc", name, email, phone}, ... }
-        if (responseToJson && typeof responseToJson === 'object') {
-            fetchedData = {};
-            for (const [id, contactData] of Object.entries(responseToJson)) {
-                fetchedData[id] = { id, ...contactData };
-            }
-        } else {
-            fetchedData = {};
-        }
-        return fetchedData;
-    } catch (error) {
-        console.error('Error loading database:', error);
-        fetchedData = {};
-        return {};
+  try {
+    const response = await fetch(storageUrl + ".json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-}
+    const responseToJson = await response.json();
 
+    // Firebase returns object with IDs as keys: { "-NxAbc": {name, email, phone}, ... }
+    // Convert to object where each contact has its id: { "-NxAbc": {id: "-NxAbc", name, email, phone}, ... }
+    if (responseToJson && typeof responseToJson === "object") {
+      fetchedData = {};
+      for (const [id, contactData] of Object.entries(responseToJson)) {
+        fetchedData[id] = { id, ...contactData };
+      }
+    } else {
+      fetchedData = {};
+    }
+    return fetchedData;
+  } catch (error) {
+    console.error("Error loading database:", error);
+    fetchedData = {};
+    return {};
+  }
+}
 
 // Save new contact to Firebase realtime Database:
 async function saveContact(contact) {
-    try {
-        const response = await fetch(storageUrl + ".json", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(contact)
-        });
+  try {
+    const response = await fetch(storageUrl + ".json", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(contact),
+    });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.json();
-        return result
-
-    } catch (error) {
-        console.error('Error saving contact:', error);
-        throw error;
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error saving contact:", error);
+    throw error;
+  }
 }
 
 /**
  * defines an async function to delete contact from Firebase realtime Database:
  * fetch storageUrl/contactId using DELETE method and return the result.
- * @param {String} contactId 
+ * @param {String} contactId
  * @returns an object containing the result of the delete operation or throws an error in case of failure.
  */
 async function deleteContact(contactId) {
-    try {
-        const response = await fetch(`${storageUrl}/${contactId}.json`, {
-            method: "DELETE",
-        });
+  try {
+    const response = await fetch(`${storageUrl}/${contactId}.json`, {
+      method: "DELETE",
+    });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const result = await response.json();
-        return result;
-    } catch (error) {
-        console.error('Error deleting contact:', error);
-        throw error;
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error deleting contact:", error);
+    throw error;
+  }
 }
 
 // Update existing contact in Firebase realtime Database:
 async function updateContactInFirebase(contactId, updatedContact) {
-    try {
-        const response = await fetch(`${storageUrl}/${contactId}.json`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(updatedContact)
-        });
+  try {
+    const response = await fetch(`${storageUrl}/${contactId}.json`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedContact),
+    });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.json();
-        return result;
-
-    } catch (error) {
-        console.error('Error updating contact:', error);
-        throw error;
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error updating contact:", error);
+    throw error;
+  }
+}
+
+/**
+ * an async function to fetch existing user names from the Firebase Realtime Database and return them as an array. This function is used to check if a user name is already registered before allowing a new registration.
+ * @returns an Array with possible registered Names
+ */
+async function fetchExistingContactName() {
+  try {
+    const response = await fetch(storageUrl + ".json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const existingNames = [];
+
+    if (data && typeof data === "object") {
+      for (const [id, contactData] of Object.entries(data)) {
+        if (contactData.name) {
+          existingNames.push(contactData.name);
+        }
+      }
+      return existingNames;
+    }
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
+/**
+ * an async function to fetch existing contact emails from the Firebase Realtime Database and return them as an array. This function is used to check if an email is already exists before allowing to be saved again.
+ * @returns an Array of already saved contact Emails
+ */
+async function fetchExistingContactEmail() {
+  try {
+    const response = await fetch(storageUrl + ".json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const existingEmails = [];
+
+    if (data && typeof data === "object") {
+      for (const [id, contactData] of Object.entries(data)) {
+        if (contactData.email) {
+          existingEmails.push(contactData.email);
+        }
+      }
+      return existingEmails;
+    }
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }

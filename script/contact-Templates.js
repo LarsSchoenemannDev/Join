@@ -107,6 +107,7 @@ function renderAddContactTemplate() {
                           placeholder="Full Name"
                           id="name_input"
                           required
+                          onblur="contactNameValidation()"
                         />
                         <img
                           src="../assets/img/add-contact-person-icon.svg"
@@ -119,6 +120,7 @@ function renderAddContactTemplate() {
                           placeholder="aa@bb.de"
                           id="email_input"
                           required
+                          onblur="contactEmailValidation()"
                         />
                         <img
                           src="../assets/img/add-contact-mail-icon.svg"
@@ -131,12 +133,15 @@ function renderAddContactTemplate() {
                           placeholder="+49 123 4567890"
                           id="phone_input"
                           required
+                          onblur="contactPhoneValidation()"
                         />
                         <img
                           src="../assets/img/add-contact-call-icon.svg"
                           alt=""
                         />
                       </div>
+
+                      <div id="validationErrorMsg"></div>
 
                       <div class="add-contact-buttons">
                         <button
