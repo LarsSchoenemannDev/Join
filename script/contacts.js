@@ -227,7 +227,7 @@ function findContactInFirebase(contactName, contactEmail) {
  * render floating contact card container innerHTML using renderFloatingContactTemplate function with 5 parameters
  */
 function renderFloatingCard(foundContact) {
-  console.log("renderFloatingCard called");
+  
   container.innerHTML = renderFloatingContactTemplate(
     foundContact.name,
     foundContact.email,
@@ -262,8 +262,7 @@ function renderFloatingCard(foundContact) {
  * finds contact in fetchedData by name and email
  * renders floating contact card using renderFloatingCard funtion with 2 parameters or error message
  */
-function showFloatingCard(event) {
-  console.log("showFloatingCard called", event.target);
+function showFloatingCard(event) {  
   floatingContainer();
   const contactData = getContactDataFromDOM(event);
   if (!contactData) return;
@@ -307,12 +306,6 @@ function checkQueriesForContacts() {
  * @param {Event} event
  */
 function handleContactClick(event) {
-  console.log(
-    "handleContactClick aufgerufen, Target:",
-    event.target,
-    "Current Target:",
-    event.currentTarget,
-  );
   // Only process if clicked on contact-container or its children
   const contactContainer = event.target.closest(".contact-container");
   if (!contactContainer) return;
@@ -419,7 +412,7 @@ async function getDataToMakeNewContact() {
     color: contactColor,
     checked: false,
   };
-  console.log(newContact);
+  
   return newContact;
 }
 
