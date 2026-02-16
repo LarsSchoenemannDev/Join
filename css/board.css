@@ -1,4 +1,4 @@
-:root {  
+:root {
   --color-text-dark: #2a3647;
   --color-text-muted: #a8a8a8;
   --color-text-heading: #1e2430;
@@ -21,7 +21,7 @@
 
   --color-tag-technical: #1fd7c1;
   --color-tag-userstory: #0038ff;
-  
+
   --radius-12: 12px;
   --radius-18: 18px;
   --radius-26: 26px;
@@ -31,7 +31,7 @@
   --space-12: 12px;
   --space-18: 18px;
   --space-24: 24px;
- 
+
   --w-column: 310px;
   --w-search: 280px;
   --size-avatar: 38px;
@@ -57,7 +57,7 @@ h1 {
 }
 
 .header-actions {
-  display: flex;  
+  display: flex;
   gap: 24px;
   align-items: center;
 }
@@ -68,13 +68,13 @@ h1 {
 
 .board-header {
   display: flex;
-  justify-content: space-between;  
+  justify-content: space-between;
 }
 
 .search-task {
   padding: 15px 30px;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-12);  
+  border-radius: var(--radius-12);
 }
 
 .img-container-search {
@@ -125,9 +125,10 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 54px; 
+  gap: 54px;
   padding: 80px 80px 50px 80px;
   width: 100%;
+  max-width: 1920px;
 }
 
 .board {
@@ -151,7 +152,7 @@ h1 {
   background-color: var(--color-empty-bg);
   border: 2px dashed var(--color-empty-border);
   border-radius: var(--radius-12);
-  width: 100%; 
+  width: 100%;
 }
 
 .emptyDisplay {
@@ -224,7 +225,7 @@ h4 {
   color: var(--color-text-heading);
 }
 
-.cards>span {
+.cards > span {
   display: block;
   margin: 0 0 var(--space-18);
   font-size: 16px;
@@ -470,7 +471,7 @@ taskDetailsOverlay {
   cursor: pointer;
 }
 
-.checkbox-input:checked+.checkbox-box {
+.checkbox-input:checked + .checkbox-box {
   background-image: url("../assets/img/checkboxChecked.svg");
   background-size: 24px 24px;
 }
@@ -584,4 +585,3 @@ taskDetailsOverlay {
   padding-right: 20px;
   align-items: flex-start !important;
 }
-
