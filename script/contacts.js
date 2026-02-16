@@ -368,6 +368,7 @@ async function getDataToMakeNewContact() {
   const nameInputField = document.getElementById("name_input");
   const emailInputField = document.getElementById("email_input");
   const phoneInputField = document.getElementById("phone_input");
+  const initials = getInitials(nameInputField.value.trim());
 
   if (!nameInputField || !emailInputField || !phoneInputField) {
     console.error("Input fields not found in DOM");
@@ -378,6 +379,7 @@ async function getDataToMakeNewContact() {
     name: nameInputField.value.trim(),
     email: emailInputField.value.trim(),
     phone: phoneInputField.value.trim(),
+    initials: initials,
   };
   return newContact;
 }
