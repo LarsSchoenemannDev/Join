@@ -71,6 +71,7 @@ function getContactArray() {
  * @returns a function call: renderContactListTemplate with 5 parameters
  */
 function buildContactItemHTML(contact, color, showAlphabet) {
+  const contactColor = contact.color;
   const initials = contact.initials;
   const firstLetter = contact.name ? contact.name.charAt(0).toUpperCase() : "#";
   const alphabetHeader = showAlphabet
@@ -79,7 +80,7 @@ function buildContactItemHTML(contact, color, showAlphabet) {
   return renderContactListTemplate(
     contact.name,
     contact.email,
-    color,
+    contactColor,
     initials,
     alphabetHeader,
   );
@@ -106,9 +107,11 @@ async function createContactList() {
   let last,
     html = "";
   let needsUpdate = false;
-  array.forEach((contact, index) => {
-    contact.color = colors[index % colors.length];
 
+  // array.forEach((contact, index) => {
+  //   contact.color = colors[index % colors.length];
+
+  array.forEach((contact) => {
     if (!contact.initials) {
       contact.initials = getInitials(contact.name);
       needsUpdate = true;
@@ -223,19 +226,33 @@ function findContactInFirebase(contactName, contactEmail) {
  * set background color with fallback
  * render floating contact card container innerHTML using renderFloatingContactTemplate function with 5 parameters
  */
-function renderFloatingCard(foundContact, contactColor) {
-  const initials = getInitials(foundContact.name);
-  const backgroundColor = contactColor || "rgba(255, 122, 0, 1)";
+function renderFloatingCard(foundContact) {
+  // const initials = getInitials(foundContact.name);
+  // const backgroundColor = contactColor || "rgba(255, 122, 0, 1)";
   container.innerHTML = renderFloatingContactTemplate(
     foundContact.name,
     foundContact.email,
     foundContact.phone,
-    backgroundColor,
-    initials,
+    foundContact.color,
+    foundContact.initials,
   );
   container.classList.remove("d-none");
   checkQueriesForEditTools();
 }
+
+// function renderFloatingCard(foundContact, contactColor) {
+//   const initials = getInitials(foundContact.name);
+//   const backgroundColor = contactColor || "rgba(255, 122, 0, 1)";
+//   container.innerHTML = renderFloatingContactTemplate(
+//     foundContact.name,
+//     foundContact.email,
+//     foundContact.phone,
+//     backgroundColor,
+//     initials,
+//   );
+//   container.classList.remove("d-none");
+//   checkQueriesForEditTools();
+// }
 
 /**
  * @param {Event} event
@@ -369,6 +386,7 @@ async function getDataToMakeNewContact() {
   const emailInputField = document.getElementById("email_input");
   const phoneInputField = document.getElementById("phone_input");
   const initials = getInitials(nameInputField.value.trim());
+  const contactColor = colors[Math.floor(Math.random() * colors.length)];
 
   if (!nameInputField || !emailInputField || !phoneInputField) {
     console.error("Input fields not found in DOM");
@@ -380,9 +398,19 @@ async function getDataToMakeNewContact() {
     email: emailInputField.value.trim(),
     phone: phoneInputField.value.trim(),
     initials: initials,
+    color: contactColor,
   };
+  console.log(newContact);
   return newContact;
 }
+
+// function badgeColor(){
+//   let badgeColor;
+//   for (let i = 0; i < colors.length; i++) {
+//      badgeColor = colors[i];
+
+//   }
+// }
 
 /**
  * add new contacts to the list from add-contact-popup
