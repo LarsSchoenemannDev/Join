@@ -240,20 +240,6 @@ function renderFloatingCard(foundContact) {
   checkQueriesForEditTools();
 }
 
-// function renderFloatingCard(foundContact, contactColor) {
-//   const initials = getInitials(foundContact.name);
-//   const backgroundColor = contactColor || "rgba(255, 122, 0, 1)";
-//   container.innerHTML = renderFloatingContactTemplate(
-//     foundContact.name,
-//     foundContact.email,
-//     foundContact.phone,
-//     backgroundColor,
-//     initials,
-//   );
-//   container.classList.remove("d-none");
-//   checkQueriesForEditTools();
-// }
-
 /**
  * @param {Event} event
  * Ensures that the floating card is displayed when a contact is clicked, by calling up all four functions sequentially:
@@ -263,7 +249,7 @@ function renderFloatingCard(foundContact) {
  * renders floating contact card using renderFloatingCard funtion with 2 parameters or error message
  */
 function showFloatingCard(event) {
-  console.log("showFloatingCard called", event.target);
+  // console.log("showFloatingCard called", event.target);
   floatingContainer();
   const contactData = getContactDataFromDOM(event);
   if (!contactData) return;
@@ -283,7 +269,7 @@ function showFloatingCard(event) {
     container.classList.remove("d-none");
     // Force reflow to ensure animation triggers
     container.offsetHeight;
-    container.classList.remove("slide-out");
+    // container.classList.remove("slide-out");
     container.classList.add("slide-in");
   }
 }
