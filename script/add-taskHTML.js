@@ -8,15 +8,15 @@
  * @returns {string}
  */
 function renderContactHTML(initials, name, color, id, checked) {
-  return `    
+    return `    
     <ul class="contact-row">
+    <label class="checkbox">
         <div class="contact-left">
             <span class="initials-circle" style="background-color: ${color};">
                 ${initials}
             </span>
             <span class="contact-name">${name}</span>
-        </div>
-        <label class="checkbox">
+        </div>        
             <input class="checkbox-input" type="checkbox" ${checked ? "checked" : ""} onclick="toggleContact('${id}')">
             <span class="checkbox-box"></span>
         </label>
@@ -32,7 +32,7 @@ function renderContactHTML(initials, name, color, id, checked) {
  * @returns {string}
  */
 function renderContactSearchHTML(initials, name, color) {
-  return `    
+    return `    
     <ul class="contact-row">
         <div class="contact-left">
             <span class="initials-circle" style="background-color: ${color};">${initials}</span>
@@ -52,12 +52,20 @@ function renderContactSearchHTML(initials, name, color) {
  * @returns {string}
  */
 function letterInitials(contact) {
-  return `
+    return `
     <span class="initials-circle" style="background-color: ${contact.color}">
         ${contact.initials}
     </span>
     `;
 }
+
+function letterInitialsMax(contact) {
+    return `<span class="initials-circle counter">
+            + ${contact}
+            </span>
+    `;
+}
+
 
 /**
  * Builds the HTML for a single subtask list entry.
@@ -66,7 +74,7 @@ function letterInitials(contact) {
  * @returns {string}
  */
 function subTaskContentHMTL(subTaskInput, i) {
-  return `
+    return `
     <div class="sub-container" data-index="${i}">
         <span class="display-flex">&bull; ${subTaskInput}</span>
         <div class="hover-show">
@@ -86,7 +94,7 @@ function subTaskContentHMTL(subTaskInput, i) {
  * @returns {string}
  */
 function changeSubtaskHtml(i, currentValue) {
-  return `<div class="input-wrapper"><input type="text" value="${currentValue}" id="edit-input-${i}"
+    return `<div class="input-wrapper"><input type="text" value="${currentValue}" id="edit-input-${i}"
     title="Enter the new text">    
     <div class="img-container" style="display: flex;">
     <img src="../assets/img/Subtasks accept.svg" class="input-icon-accept" onclick="saveSubtaskEdit(${i})">

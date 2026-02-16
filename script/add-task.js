@@ -28,13 +28,14 @@ async function getData() {
   /** @type {FetchData} */
   const data = await response.json();
   fetchData = data;
-  contactsState = (data?.contacts?.filter((c) => c) || []).map((contact) => ({
+  contactsState = Object.values(data?.contacts || {}).map(contact => ({
     id: contact.id,
     name: contact.name,
     initials: contact.initials,
     color: contact.color,
     checked: false,
   }));
+
 }
 
 /**
@@ -60,10 +61,18 @@ function assignedToLettersCheckContact() {
   const container = document.getElementById("selectContact");
   if (!container) return;
   container.innerHTML = "";
-  contactsState.filter((c) => c.checked).forEach((c) => {
-    container.innerHTML += letterInitials(c);
+  let contactCounter = 0;
+  contactsState.filter(c => c.checked).forEach(c => {
+    contactCounter++;
+    if (contactCounter <= 8) {
+      container.innerHTML += letterInitials(c);
+    } else if (contactCounter === 9) {
+      const totalChecked = contactsState.filter(x => x.checked).length;
+      container.innerHTML += letterInitialsMax(totalChecked - 8);
+    }
   });
 }
+
 
 /**
  * Filters contacts by the search input and re-renders the list.
@@ -329,7 +338,7 @@ function clearInputs() {
   const categoryBtn = document.getElementById("categoryBtn");
   const subtasks = document.getElementById("subtasks");
   const subtaskList = document.getElementById("SubtaskList");
-  const selectContact = document.getElementById("selectContact"); 
+  const selectContact = document.getElementById("selectContact");
   if (title) title.value = "";
   if (description) description.value = "";
   if (duedate) duedate.value = "";
@@ -341,7 +350,7 @@ function clearInputs() {
   if (subtasks) subtasks.value = "";
   if (subtaskList) subtaskList.innerHTML = "";
   if (selectContact) selectContact.innerHTML = "";
-  contactsState.forEach(contact =>{contact.checked = false;})  
+  contactsState.forEach(contact => { contact.checked = false; })
 }
 
 

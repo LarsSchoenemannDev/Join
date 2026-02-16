@@ -138,9 +138,6 @@ input[type="radio"] {
 }
 
 .contact-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding: 10px 16px;
     font-family: var(--font-family);
     font-weight: 400;
@@ -187,6 +184,13 @@ input[type="radio"] {
     color: rgba(255, 255, 255, 1);
     font-size: 16px;
     font-weight: 400;
+}
+
+.counter {
+    color: var(--color-text);
+    font-weight: 700;
+    border-color: var(--color-text);
+    background-color: var(--color-hover-row);
 }
 
 .dropdown {
@@ -237,11 +241,14 @@ input[type="radio"] {
 
 .checkbox {
     margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .checkbox-box {
     display: inline-block;
-    width: 24px;
+    width: 44px;
     height: 24px;
     background-image: url("../assets/img/checkbox.svg");
     background-repeat: no-repeat;
@@ -250,7 +257,7 @@ input[type="radio"] {
     cursor: pointer;
 }
 
-.checkbox-input:checked + .checkbox-box {
+.checkbox-input:checked+.checkbox-box {
     background-image: url("../assets/img/checkboxChecked.svg");
     background-size: 24px 24px;
 }
@@ -565,6 +572,7 @@ textarea:focus {
     display: flex;
     animation: pop-out 300ms ease forwards;
 }
+
 
 @keyframes popup-in {
     from {
