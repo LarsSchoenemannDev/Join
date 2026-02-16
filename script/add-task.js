@@ -263,14 +263,17 @@ function onFocus(event) {
  */
 function noneFocus(event) {
   const el = /** @type {HTMLInputElement} */ (event.target);
+  const childEl = el.nextElementSibling
   const value = el.value.trim();
   const id = el.id;
   el.classList.remove("input-focus");
   if (!value) {
     el.classList.add("input-error");
+    childEl.style.display = "flex"
     valid[id] = false;
   } else {
     el.classList.remove("input-error");
+    childEl.style.display = "none"
     valid[id] = true;
   }
 }
@@ -284,12 +287,13 @@ function toggleCategory(event) {
   if (event) event.stopPropagation();
   const changeArrow = document.getElementById("categoryBtn");
   const dropdown = document.getElementById("selectCategory");
-  if (!changeArrow || !dropdown) return;
+  if (!changeArrow || !dropdown) return;  
   dropdown.classList.toggle("open");
   if (dropdown.classList.contains("open")) {
     changeArrow.style.backgroundImage = "url('../assets/img/arrowUup.svg')";
   } else {
     changeArrow.style.backgroundImage = "url('../assets/img/arrow_drop_down-icon.svg')";
+    
   }
 }
 
@@ -318,16 +322,17 @@ function categorySelectorCheck() {
   valid.category = value === "Technical Task" || value === "User Story";
   const button = document.getElementById("categoryBtn");
   const errorFeedBack = document.getElementById("errorCategory");
-  if (!button) return;
+  if (!button || !errorFeedBack) return;
   if (valid.category) {
     button.classList.remove("input-error");
     button.classList.add("input-focus");
-    errorFeedBack.style.display = "block"
+    errorFeedBack.style.display = "none";
   } else {
     button.classList.add("input-error");
-    errorFeedBack.style.display = "flex"
+    errorFeedBack.style.display = "flex";
   }
 }
+
 
 /**
  * Resets all add-task inputs and UI states to defaults.
@@ -475,13 +480,13 @@ function handleGlobalClick(e) {
   const contactsBtn = document.getElementById("BTNToggleContacts");
   if (contactsDropdown && contactsBtn) {
     const inside = contactsDropdown.contains(e.target) || contactsBtn.contains(e.target);
-    if (!inside) closeAssigned();
+    if (!inside) categorySelectorCheck(), closeAssigned();
   }
 
   const categoryDropdown = document.getElementById("selectCategory");
   const categoryBtn = document.getElementById("categoryBtn");
   if (categoryDropdown && categoryBtn) {
-    const inside = categoryDropdown.contains(e.target) || categoryBtn.contains(e.target);
+    const inside = categoryDropdown.contains(e.target) || categoryBtn.contains(e.target);    
     if (!inside) {
       categoryDropdown.classList.remove("open");
       categoryBtn.classList.remove("input-focus");
