@@ -256,6 +256,8 @@ function taskPopup(task, taskID) {
  * @returns {string}
  */
 function taskPopupEditMode(task, id) {
+  console.dir(task);
+
   const isUrgent = task.priority === "urgent" ? "checked" : "";
   const isMedium = task.priority === "medium" ? "checked" : "";
   const isLow = task.priority === "low" ? "checked" : "";
@@ -273,18 +275,18 @@ function taskPopupEditMode(task, id) {
         <section class="card">
                   <div class="field">
                     <label for="title">
-                      Title<span class="required">*</span>
+                      Title<span class="required"></span>
                     </label>
-                    <input id="title" type="text" ${task.title} class="input-Required">                    
+                    <input id="title" type="text" placeholder = "${task.title}"class="input-Required" >                    
                     <div class="invalid-feedback">This field is required.</div>
                   </div>
           <div class="field">
             <label for="description">Description</label>
-            <textarea id="description" style="height: 120px;">${task.description}</textarea>
+            <textarea id="description" style="height: 120px;" placeholder="${task.description}"></textarea>
           </div>
                     <div>
                       <input class="input-icon-calender input-Required" id="duedate" type="date"
-                        placeholder="dd/mm/yyyy" required>
+                        placeholder="${task.duedate}" required>
                         <div class="invalid-feedback">This field is required.</div>
                     </div>
         </section>
@@ -337,15 +339,15 @@ function taskPopupEditMode(task, id) {
             </div>
             <div class="selectContact" id="selectContact"></div>
           </div>
-                            <div class="div-field">
-                    <div class="field">
-                      <label for="categoryBtn">
-                        Category<span class="required">*</span>
-                      </label>
+            <div class="div-field">
+              <div class="field">
+                <label for="categoryBtn">
+                  Category<span class="required">*</span>
+                </label>
                     <button type="button" id="categoryBtn"
                       class="input-styling input-icon-arrow-down custom-select-select input-Required"
-                      onclick="toggleCategory(),onblur=categorySelectorCheck()" >
-                      Select task category
+                      onclick="toggleCategory()" onblur=categorySelectorCheck() >
+                      ${task.category}
                     </button>
                       <div id="selectCategory" class="dropdown">
                         <div class="category-main">
