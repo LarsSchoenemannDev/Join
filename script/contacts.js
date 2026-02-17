@@ -227,7 +227,6 @@ function findContactInFirebase(contactName, contactEmail) {
  * render floating contact card container innerHTML using renderFloatingContactTemplate function with 5 parameters
  */
 function renderFloatingCard(foundContact) {
-  console.log("renderFloatingCard called");
   container.innerHTML = renderFloatingContactTemplate(
     foundContact.name,
     foundContact.email,
@@ -268,9 +267,9 @@ function showFloatingCard(event) {
     container.innerHTML = "<h2>Contact not found</h2>";
     container.classList.remove("d-none");
     // Force reflow to ensure animation triggers
-    container.offsetHeight;
+    // container.offsetHeight;
     // container.classList.remove("slide-out");
-    container.classList.add("slide-in");
+    // container.classList.add("slide-in");
   }
 }
 
@@ -293,12 +292,6 @@ function checkQueriesForContacts() {
  * @param {Event} event
  */
 function handleContactClick(event) {
-  console.log(
-    "handleContactClick aufgerufen, Target:",
-    event.target,
-    "Current Target:",
-    event.currentTarget,
-  );
   // Only process if clicked on contact-container or its children
   const contactContainer = event.target.closest(".contact-container");
   if (!contactContainer) return;
@@ -405,7 +398,7 @@ async function getDataToMakeNewContact() {
     color: contactColor,
     checked: false,
   };
-  console.log(newContact);
+
   return newContact;
 }
 

@@ -395,6 +395,7 @@ taskDetailsOverlay {
   background-color: var(--color-white);
   width: 100%;
   max-width: 525px;
+  min-width: 480px;
   padding: 48px 40px;
   border-radius: var(--radius-26);
   box-shadow: var(--shadow-card);

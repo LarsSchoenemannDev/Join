@@ -28,13 +28,15 @@ async function getData() {
   /** @type {FetchData} */
   const data = await response.json();
   fetchData = data;
-  contactsState = Object.values(data?.contacts || {}).map(contact => ({
-    id: contact.id,
-    name: contact.name,
-    initials: contact.initials,
-    color: contact.color,
-    checked: false,
-  }));
+  contactsState = Object.entries(data?.contacts || {}).map(([key, contact]) => {
+    return {
+      id: key,
+      name: contact.name,
+      initials: contact.initials,
+      color: contact.color,
+      checked: false,
+    };
+  });
 
 }
 
@@ -131,7 +133,7 @@ function toggleContacts() {
  * @returns {void}
  */
 function toggleContact(id) {
-  const contact = contactsState.find((c) => c.id === id);
+  const contact = contactsState.find((c) => String(c.id) === String(id));
   if (!contact) return;
   contact.checked = !contact.checked;
   assignedToLettersCheckContact();
@@ -292,7 +294,7 @@ function toggleCategory(event) {
   if (dropdown.classList.contains("open")) {
     changeArrow.style.backgroundImage = "url('../assets/img/arrowUup.svg')";
   } else if (dropdown.classList.contains("close")) {
-    changeArrow.style.backgroundImage = "url('../assets/img/arrow_drop_down-icon.svg')";    
+    changeArrow.style.backgroundImage = "url('../assets/img/arrow_drop_down-icon.svg')";
   }
 }
 
