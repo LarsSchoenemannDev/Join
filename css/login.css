@@ -48,7 +48,7 @@
 }
 
 #login-header .logo.hidden {
-  display: none;
+  visibility: hidden;
 }
 
 #login-header .logo img {
@@ -242,24 +242,24 @@
   font-weight: 700;
 }
 
-.animate-image {
-  position: absolute;
-  left: 20px;
-  top: 20px;
-  /* position: fixed;*/
-  /* z-index: 1000; */
+.image-sequence {
+  /* position: absolute; */
+  /* left: 20px;
+  top: 20px; */
+  position: fixed;
+  z-index: 1000;
   background: #f6f7f800;
   border-radius: 20px;
   padding: 20px;
 }
 
-.animate-image.animate-logo {
+.image-sequence.animate-logo {
   animation: logoMove 1s cubic-bezier(0.37, 0.09, 0.93, 0.64) forwards;
   /* position: absolute; */
-  /* position: fixed; */
-  /* top: 50%;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); */
+  transform: translate(-50%, -50%);
 }
 
 .animate-logo img {
@@ -288,7 +288,7 @@
   100% {
     background: transparent;
     box-shadow: 0 0 0 9000vmax rgba(246, 247, 248, 0);
-    top: 20px;
+    top: 0px;
     left: 20px;
     /* left: var(--content-left); */
     transform: translate(0, 0);

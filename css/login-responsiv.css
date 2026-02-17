@@ -58,8 +58,8 @@
     }
 
     100% {
-      top: 20px;
-      left: 40px;
+      top: 0px;
+      left: 20px;
       transform: translate(0, 0);
     }
   }
@@ -108,8 +108,8 @@
   }
 
   .animate-bg-mobile {
-    position: absolute;
-    /* position: fixed; */
+    /* position: absolute; */
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
@@ -149,7 +149,7 @@
     }
 
     100% {
-      top: 30px;
+      top: 35px;
       left: 20px;
       transform: translate(0, 0);
     }

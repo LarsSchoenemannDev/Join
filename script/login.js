@@ -73,9 +73,12 @@ async function loadImageSequence() {
   container.style.display = "block";
 
   container.classList.add("animate-logo");
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  container.style.display = "none";
-  document.querySelector(".logo").classList.remove("hidden");
+  setTimeout(() => {
+    container.style.display = "none";
+    document.querySelector(".logo").style.visibility = "visible";
+  }, 1500);
+
+  // await new Promise((resolve) => setTimeout(resolve, 2000));
 }
 
 window.addEventListener("load", loadImageSequence);
@@ -91,26 +94,28 @@ function goToSignUp() {
  * Called on page load in index.html
  */
 
-function animateLoginMobile() {
-  const checkqueries = window.matchMedia("(max-width: 991px)");
-  if (checkqueries.matches) {
-    startAnimateLoginMobile();
-  }
-}
+// function animateLoginMobile() {
+//   const checkqueries = window.matchMedia("(max-width: 991px)");
+//   if (checkqueries.matches) {
+//     startAnimateLoginMobile();
+//   } else {
+//     loadImageSequence();
+//   }
+// }
 
-function startAnimateLoginMobile() {
-  const animateImage = document.getElementById("animate-image");
-  const animationBackground = document.querySelector(".bgAnimationMobile");
-  const bodyDiv = document.getElementById("login-page-div");
+// function startAnimateLoginMobile() {
+//   const animateImage = document.getElementById("animate-image");
+//   const animationBackground = document.querySelector(".bgAnimationMobile");
+//   const bodyDiv = document.getElementById("login-page-div");
 
-  bodyDiv.style.display = "none";
-  animationBackground.classList.add("animate-bg-mobile");
-  animationBackground.style.display = "block";
-  animateImage.classList.add("animate-logo-mobile");
+//   bodyDiv.style.display = "none";
+//   animationBackground.classList.add("animate-bg-mobile");
+//   animationBackground.style.display = "block";
+//   animateImage.classList.add("animate-logo-mobile");
 
-  setTimeout(() => {
-    animationBackground.classList.remove("animate-bg-mobile");
-    animationBackground.style.display = "none";
-    bodyDiv.style.display = "block";
-  }, 1000);
-}
+//   setTimeout(() => {
+//     animationBackground.classList.remove("animate-bg-mobile");
+//     animationBackground.style.display = "none";
+//     bodyDiv.style.display = "block";
+//   }, 1000);
+// }
