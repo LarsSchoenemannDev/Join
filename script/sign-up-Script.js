@@ -329,37 +329,43 @@ function confirmPasswordValidation() {
   const confirmPasswordInput = document.getElementById(
     "signup-confirm-password",
   );
-  if (!confirmPassword) {
-    showErrorMessage("please confirm your password.");
-    confirmPasswordInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
-    return false;
-  }
+  // if (!confirmPassword) {
+  //   showErrorMessage("please confirm your password.");
+  //   confirmPasswordInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
+  //   return false;
+  // }
   if (password !== confirmPassword) {
     showErrorMessage("Your passwords don't match. Please try again.");
     confirmPasswordInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
-  } else {
-    errorMsg.style.visibility = "hidden";
-    confirmPasswordInput.parentElement.style.borderColor = "#ccc";
-    return true;
   }
-}
-
-function confirmPasswordValidationOnInput() {
-  const password = document.getElementById("signup-password").value.trim();
-  const confirmPassword = document
-    .getElementById("signup-confirm-password")
-    .value.trim();
-  const confirmPasswordInput = document.getElementById(
-    "signup-confirm-password",
-  );
-
   if (password === confirmPassword) {
     errorMsg.style.visibility = "hidden";
     confirmPasswordInput.parentElement.style.borderColor = "#29abe2";
     return true;
   }
+  // } else {
+  //   errorMsg.style.visibility = "hidden";
+  //   confirmPasswordInput.parentElement.style.borderColor = "#ccc";
+  //   return true;
+  // }
 }
+
+// function confirmPasswordValidationOnInput() {
+//   const password = document.getElementById("signup-password").value.trim();
+//   const confirmPassword = document
+//     .getElementById("signup-confirm-password")
+//     .value.trim();
+//   const confirmPasswordInput = document.getElementById(
+//     "signup-confirm-password",
+//   );
+
+//   if (password === confirmPassword) {
+//     errorMsg.style.visibility = "hidden";
+//     confirmPasswordInput.parentElement.style.borderColor = "#29abe2";
+//     return true;
+//   }
+// }
 
 /**
  * a function which triggers the registration process in Firebase if all the validation checks pass successfully. It retrieves the values from the input fields and calls the registerUser function, which is responsible for creating a new user account in Firebase with the provided name, email, and password.
