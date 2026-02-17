@@ -59,6 +59,97 @@
 
     100% {
       top: 20px;
+      left: 40px;
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes logoResize {
+    0% {
+      height: 260px;
+    }
+
+    100% {
+      height: 140px;
+    }
+  }
+
+  @keyframes logoChangeImg {
+    0% {
+      content: url("../assets/img/Logo-Login-Mobile.svg");
+    }
+
+    100% {
+      content: url("../assets/img/Logo-logged-in-mobile.svg");
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  /* #login-main {
+    padding-top: 40px;
+  } */
+  #login-header {
+    padding-top: 40px;
+  }
+
+  #login-header .logo {
+    width: 70px;
+    height: auto;
+  }
+  #login-main .auth-nav-mobile {
+    visibility: visible;
+    /* margin: 50px auto; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 16px;
+  }
+
+  .animate-bg-mobile {
+    position: absolute;
+    /* position: fixed; */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    animation: BackgroundFadeOut 3s ease-out forwards;
+    background-color: rgba(42, 54, 71, 1);
+    /* display: block !important; */
+  }
+
+  @keyframes BackgroundFadeOut {
+    from {
+      opacity: 1; /* Start at full visibility */
+    }
+    to {
+      opacity: 0; /* Start at full transparency */
+    }
+  }
+
+  .animate-logo {
+    animation: logoMove 1s cubic-bezier(0.37, 0.09, 0.93, 0.64) forwards;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .animate-logo-mobile img {
+    animation:
+      logoResize 1s ease-out forwards,
+      logoChangeImg 1s ease-out forwards;
+  }
+
+  @keyframes logoMove {
+    0% {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    100% {
+      top: 30px;
       left: 20px;
       transform: translate(0, 0);
     }
@@ -83,12 +174,6 @@
       content: url("../assets/img/Logo-logged-in-mobile.svg");
     }
   }
-}
-
-@media (max-width: 768px) {
-  /* #login-main {
-    padding: 20px;
-  } */
 
   #login-main .login-container {
     padding: 48px;

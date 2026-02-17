@@ -74,8 +74,8 @@ async function loadImageSequence() {
 
   container.classList.add("animate-logo");
   await new Promise((resolve) => setTimeout(resolve, 2000));
-  // container.style.display = 'none';
-  // document.querySelector('.logo').classList.remove('hidden');
+  container.style.display = "none";
+  document.querySelector(".logo").classList.remove("hidden");
 }
 
 window.addEventListener("load", loadImageSequence);
