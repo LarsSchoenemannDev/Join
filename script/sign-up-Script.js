@@ -3,6 +3,7 @@ const policyCheckbox = document.getElementById("privacy");
 const inputFields = document.querySelectorAll(".input-icon input");
 const signupForm = document.getElementById("signupForm");
 const errorMsg = document.getElementById("error-message");
+const checkboxAcceptance = document.getElementById("signupCheckedMsg");
 
 /**
  * This event listener prevents the default form submission behavior, which would cause a page reload. Instead, it allows  to handle the form submission with JavaScript, enabling us to perform validation and send the data to the server without refreshing the page.
@@ -17,10 +18,20 @@ signupForm.addEventListener("submit", (e) => {
 submitBtn.disabled = !policyCheckbox.checked;
 
 /**
- * Enable or disable the submit button based on the checkbox state.
+ * Enable or disable the submit button based on the checkbox state and form validation.
+ * Button is only enabled when checkbox is checked AND all fields are valid.
  */
-policyCheckbox.addEventListener("change", () => {
-  submitBtn.disabled = !policyCheckbox.checked;
+policyCheckbox.addEventListener("change", async () => {
+  checkboxAcceptance.style.visibility = policyCheckbox.checked
+    ? "hidden"
+    : "visible";
+
+  if (policyCheckbox.checked) {
+    const isValid = await signupValidation();
+    submitBtn.disabled = !isValid;
+  } else {
+    submitBtn.disabled = true;
+  }
 });
 
 /**
@@ -41,8 +52,6 @@ inputFields.forEach((input) => {
       inputContainer.classList.remove("active");
     }
   });
-
-  // input.addEventListener("input", nullCheckValidation);
 });
 
 /**
@@ -167,7 +176,7 @@ async function nameValidation() {
 
   if (/[0-9]/.test(name)) {
     showErrorMessage("Name cannot contain numbers.");
-    nameInput.value = name.replace(/[0-9]/g, "");
+    // nameInput.value = name.replace(/[0-9]/g, "");
     return false;
   }
 
@@ -202,7 +211,6 @@ async function existingNameValidation() {
       showErrorMessage(
         "This name is already taken. Please choose another one.",
       );
-      nameInput.value = "";
       nameInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
       return false;
     }
@@ -234,7 +242,7 @@ async function emailValidation() {
 
   if (!emailRegex.test(email)) {
     showErrorMessage("Please enter a valid email address.");
-    emailInput.value = "";
+    // emailInput.value = "";
     emailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
@@ -270,14 +278,13 @@ async function existingEmailValidation() {
       showErrorMessage(
         "This email is already registered. Please use a different email.",
       );
-      emailInput.value = "";
+      // emailInput.value = "";
       emailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
       return false;
     }
     return true;
   } catch (error) {
     console.error("Error validating email:", error);
-    // Bei Fehler: Allow registration (fail-safe)
     return true;
   }
 }
@@ -293,14 +300,13 @@ function passwordValidation() {
 
   if (password.length < 6) {
     showErrorMessage("Password must be at least 6 characters long.");
-    passwordInput.value = "";
+    // passwordInput.value = "";
     passwordInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
 
   if (/\s/.test(password)) {
     showErrorMessage("Password cannot contain spaces.");
-    passwordInput.value = "";
     passwordInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
@@ -323,14 +329,34 @@ function confirmPasswordValidation() {
   const confirmPasswordInput = document.getElementById(
     "signup-confirm-password",
   );
+  if (!confirmPassword) {
+    showErrorMessage("please confirm your password.");
+    confirmPasswordInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
+    return false;
+  }
   if (password !== confirmPassword) {
     showErrorMessage("Your passwords don't match. Please try again.");
-    confirmPasswordInput.value = "";
     confirmPasswordInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   } else {
     errorMsg.style.visibility = "hidden";
-    // confirmPasswordInput.parentElement.style.borderColor = "#29abe2";
+    confirmPasswordInput.parentElement.style.borderColor = "#ccc";
+    return true;
+  }
+}
+
+function confirmPasswordValidationOnInput() {
+  const password = document.getElementById("signup-password").value.trim();
+  const confirmPassword = document
+    .getElementById("signup-confirm-password")
+    .value.trim();
+  const confirmPasswordInput = document.getElementById(
+    "signup-confirm-password",
+  );
+
+  if (password === confirmPassword) {
+    errorMsg.style.visibility = "hidden";
+    confirmPasswordInput.parentElement.style.borderColor = "#29abe2";
     return true;
   }
 }
@@ -345,7 +371,7 @@ async function signupRegistrationInFirebase() {
   }
   try {
     submitBtn.disabled = true;
-    submitBtn.textContent = "Signing up...";
+    submitBtn.textContent = "wait...";
 
     const name = document
       .getElementById("signup-name")

@@ -132,6 +132,7 @@
                 id="signup-confirm-password"
                 placeholder="Confirm Passwort"
                 onblur="confirmPasswordValidation()"
+                oninput="confirmPasswordValidationOnInput()"
               />
 
               <div
@@ -194,6 +195,9 @@
               </label>
             </div>
 
+            <!-- Message for the checkbox -->
+            <div id="signupCheckedMsg">privacy policy must be accepted</div>
+
             <div class="button_container">
               <button
                 id="submit_button"
@@ -210,10 +214,14 @@
 
     <footer id="sign-up-footer">
       <div class="footer_links">
-        <a class="footer_links_PP_LN" href="../html/privacy-policy-officially.html"
+        <a
+          class="footer_links_PP_LN"
+          href="../html/privacy-policy-officially.html"
           >Privacy Policy</a
         >
-        <a class="footer_links_PP_LN" href="../html/legal-notice-officially.html"
+        <a
+          class="footer_links_PP_LN"
+          href="../html/legal-notice-officially.html"
           >Legal notice</a
         >
       </div>
