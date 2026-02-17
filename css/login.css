@@ -248,6 +248,7 @@
   top: 20px; */
   position: fixed;
   z-index: 1000;
+
   background: #f6f7f800;
   border-radius: 20px;
   padding: 20px;
