@@ -9,7 +9,7 @@ async function boardInit() {
   renderBoard();
   updateAllEmptyMessages();
   await subTasksStateAdd();
-  initSearch(); 
+  initSearch();
 }
 
 /**
@@ -267,11 +267,14 @@ function searchBar() {
     return;
   }
   const filtered = Object.entries(fetchData.tasks).filter(([id, task]) => {
-    return typeof task?.title === "string" && task.title.toLowerCase().includes(q);
+    const titleMatch = typeof task?.title === "string" && task.title.toLowerCase().includes(q);
+    const descMatch = typeof task?.description === "string" && task.description.toLowerCase().includes(q);
+    return titleMatch || descMatch;
   });
   renderBoardFromEntries(filtered);
   updateAllEmptyMessages();
 }
+
 
 /**
  * Renders the board using a filtered list of task entries.
@@ -399,7 +402,7 @@ function getSubtaskStats(task) {
   const subtasks = task.subtasks || [];
   const total = subtasks.length;
   const checked = subtasks.filter(sub => sub.state === "check").length;
-  return {total, checked };
+  return { total, checked };
 }
 
 /**
