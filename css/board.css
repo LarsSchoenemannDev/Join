@@ -248,7 +248,7 @@ h4 {
 progress {
   appearance: none;
   -webkit-appearance: none;
-  width: 100%;
+  width: 40%;
   height: 12px;
   border-radius: 16px;
   border: none;
@@ -266,10 +266,17 @@ progress::-webkit-progress-value {
   border-radius: 16px;
 }
 
-/* Firefox */
 progress::-moz-progress-bar {
   background-color: var(--color-progress);
   border-radius: 16px;
+}
+
+.progress-scale{
+  margin-bottom: 12px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 8px;
 }
 
 .cards .avatars {
