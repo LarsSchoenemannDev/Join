@@ -225,7 +225,7 @@ h4 {
   color: var(--color-text-heading);
 }
 
-.cards > span {
+.cards>span {
   display: block;
   margin: 0 0 var(--space-18);
   font-size: 16px;
@@ -234,7 +234,7 @@ h4 {
   font-weight: 400;
 }
 
-progress::-webkit-progress-value  {
+.cards .progress {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -243,16 +243,33 @@ progress::-webkit-progress-value  {
   font-weight: 500;
   color: #000000;
   font-weight: 400;
-  border: red;
-  opacity: 0,5
 }
 
-.cards .progress::before {
-  content: "";
-  width: 125px;
-  height: 8px;
-  border-radius: var(--radius-12);
-  background: var(--color-progress);
+progress {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 200px;
+  height: 12px;
+  border-radius: 16px;
+  border: none;
+  background-color: #c9cbcf94; 
+  overflow: hidden; 
+}
+
+progress::-webkit-progress-bar {
+  background-color: #c9cbcf94; 
+  border-radius: 16px;
+}
+
+progress::-webkit-progress-value {
+  background-color: var(--color-progress); 
+  border-radius: 16px;
+}
+
+/* Firefox */
+progress::-moz-progress-bar {
+  background-color: var(--color-progress);
+  border-radius: 16px;
 }
 
 .cards .avatars {
@@ -276,9 +293,9 @@ progress::-webkit-progress-value  {
 }
 
 .cards.dragging {
-    opacity: 0.7;
-    transform: rotate(3deg);
-    transition: transform 0.2s;
+  opacity: 0.7;
+  transform: rotate(3deg);
+  transition: transform 0.2s;
 }
 
 .nav {
@@ -480,7 +497,7 @@ taskDetailsOverlay {
   cursor: pointer;
 }
 
-.checkbox-input:checked + .checkbox-box {
+.checkbox-input:checked+.checkbox-box {
   background-image: url("../assets/img/checkboxChecked.svg");
   background-size: 24px 24px;
 }

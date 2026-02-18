@@ -425,8 +425,8 @@ function renderTasksHTML(task, id) {
                   <p class="tag ${filterCategory(task.category)}">${task.category}</p>   
                   <h4>${task.title}</h4>
                   <span>${task.description}</span>
-                  <label  >${stats.checked}/${stats.total} Subtasks</label>
-                  <progress class="progress"value="${stats.checked}" max="${stats.total}"> 32% </progress>
+                  <label>${stats.checked}/${stats.total} Subtasks</label>
+                  <progress value="${stats.checked}" max="${stats.total}"> 32% </progress>
                   <div class ="nav">
                   <div class="avatars" >${renderTaskContact(task.contacts, 4)}</div>
                   <div class="${filterPriority(task.priority)} prio-wrapper"></div>            
