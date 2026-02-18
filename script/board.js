@@ -9,7 +9,7 @@ async function boardInit() {
   renderBoard();
   updateAllEmptyMessages();
   await subTasksStateAdd();
-  initSearch();
+  initSearch(); 
 }
 
 /**
@@ -393,6 +393,13 @@ function renderTaskSubTaskDetails(taskId) {
     html += renderTaskSubTaskDetailsHTML(task.subtasks[i], i, taskId);
   }
   return html;
+}
+
+function getSubtaskStats(task) {
+  const subtasks = task.subtasks || [];
+  const total = subtasks.length;
+  const checked = subtasks.filter(sub => sub.state === "check").length;
+  return {total, checked };
 }
 
 /**

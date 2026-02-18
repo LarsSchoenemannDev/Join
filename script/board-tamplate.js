@@ -420,11 +420,12 @@ function renderSubtasksDetailsEditHTML(subtask, i, id) {
  * @returns {string}
  */
 function renderTasksHTML(task, id) {
+  const stats = getSubtaskStats(task)
   return `<div class="cards" data-id="${id}" draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)" onclick="openTaskDetailsOverlay(this)">                 
                   <p class="tag ${filterCategory(task.category)}">${task.category}</p>   
                   <h4>${task.title}</h4>
                   <span>${task.description}</span>
-                  <div class="progress">${task.subtasks?.length} Subtasks</div>
+                  <div class="progress">${stats.checked} / ${stats.total}Subtasks</div>
                   <div class ="nav">
                   <div class="avatars">${renderTaskContact(task.contacts)}</div>
                   <div class="${filterPriority(task.priority)} prio-wrapper"></div>            
