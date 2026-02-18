@@ -189,9 +189,9 @@ input[type="radio"] {
 
 .counter {
   color: var(--color-text);
-  font-weight: 700;
+  font-weight: 600;
   border-color: var(--color-text);
-  background-color: var(--color-hover-row);
+  background-color: #fff;
 }
 
 .dropdown {
@@ -261,7 +261,7 @@ input[type="radio"] {
   cursor: pointer;
 }
 
-.checkbox-input:checked + .checkbox-box {
+.checkbox-input:checked+.checkbox-box {
   background-image: url("../assets/img/checkboxChecked.svg");
   background-size: 24px 24px;
 }
@@ -409,11 +409,11 @@ textarea:focus {
   cursor: pointer;
 }
 
-#prio-urgent + label svg path {
+#prio-urgent+label svg path {
   fill: var(--color-urgent);
 }
 
-#prio-urgent:checked + label {
+#prio-urgent:checked+label {
   background-color: var(--color-urgent);
   border-color: var(--color-urgent);
   color: var(--color-white);
@@ -421,15 +421,15 @@ textarea:focus {
   font-size: 21px;
 }
 
-#prio-urgent:checked + label svg path {
+#prio-urgent:checked+label svg path {
   fill: var(--color-white);
 }
 
-#prio-medium + label svg path {
+#prio-medium+label svg path {
   fill: var(--color-medium);
 }
 
-#prio-medium:checked + label {
+#prio-medium:checked+label {
   background-color: var(--color-medium);
   border-color: var(--color-medium);
   color: var(--color-white);
@@ -437,15 +437,15 @@ textarea:focus {
   font-size: 21px;
 }
 
-#prio-medium:checked + label svg path {
+#prio-medium:checked+label svg path {
   fill: var(--color-white);
 }
 
-#prio-low + label svg path {
+#prio-low+label svg path {
   fill: var(--color-low);
 }
 
-#prio-low:checked + label {
+#prio-low:checked+label {
   background-color: var(--color-low);
   border-color: var(--color-low);
   color: var(--color-white);
@@ -453,7 +453,7 @@ textarea:focus {
   font-size: 21px;
 }
 
-#prio-low:checked + label svg path {
+#prio-low:checked+label svg path {
   fill: var(--color-white);
 }
 

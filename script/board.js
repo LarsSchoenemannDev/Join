@@ -103,14 +103,20 @@ function maincardHTML(contentId, tasks) {
  * @param {Contact[]} [contacts=[]]
  * @returns {string}
  */
-function renderTaskContact(contacts = []) {
+function renderTaskContact(contacts = [], maxVisible = 4) {
   let html = "";
-  for (let i = 0; i < contacts.length; i++) {
-    if (contacts[i].checked) html += renderContactAvatarHTML(contacts[i]);
+  const checkedContacts = contacts.filter(c => c.checked);
+  const totalChecked = checkedContacts.length;
+  for (let i = 0; i < checkedContacts.length; i++) {    
+    if (i < maxVisible) {
+      html += letterInitials(checkedContacts[i]);
+    } else if (i === maxVisible) {      
+      const remaining = totalChecked - maxVisible;
+      html += letterInitialsMax(remaining);
+    }    
   }
   return html;
 }
-
 /**
  * Normalizes priority values and returns a CSS state string.
  * @param {string|string[]} priority

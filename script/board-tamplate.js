@@ -277,16 +277,16 @@ function taskPopupEditMode(task, id) {
                     <label for="title">
                       Title<span class="required"></span>
                     </label>
-                    <input id="title" type="text" placeholder = "${task.title}"class="input-Required" >                    
+                    <input id="title" type="text" class="input-Required" value="${task.title}" >                    
                     <div class="invalid-feedback">This field is required.</div>
                   </div>
           <div class="field">
             <label for="description">Description</label>
-            <textarea id="description" style="height: 120px;" placeholder="${task.description}"></textarea>
+            <textarea id="description" style="height: 120px;" >${task.description}</textarea>
           </div>
                     <div>
                       <input class="input-icon-calender input-Required" id="duedate" type="date"
-                        placeholder="${task.duedate}" required>
+                         required value="${task.duedate}">
                         <div class="invalid-feedback">This field is required.</div>
                     </div>
         </section>
@@ -425,9 +425,9 @@ function renderTasksHTML(task, id) {
                   <p class="tag ${filterCategory(task.category)}">${task.category}</p>   
                   <h4>${task.title}</h4>
                   <span>${task.description}</span>
-                  <div class="progress">${stats.checked} / ${stats.total}Subtasks</div>
+                  <div class="progress">${stats.checked}/${stats.total} Subtasks</div>
                   <div class ="nav">
-                  <div class="avatars">${renderTaskContact(task.contacts)}</div>
+                  <div class="avatars">${renderTaskContact(task.contacts, 4)}</div>
                   <div class="${filterPriority(task.priority)} prio-wrapper"></div>            
                   </div>
                   </div>
@@ -440,12 +440,12 @@ function renderTasksHTML(task, id) {
  * @param {{color: string, initials: string}} contact
  * @returns {string}
  */
-function renderContactAvatarHTML(contact) {
-  return `<div class="avatar" style="background-color:${contact.color}">
-      ${contact.initials}
-    </div>
-    `;
-}
+// function renderContactAvatarHTML(contact) {
+//   return `<div class="avatar" style="background-color:${contact.color}">
+//       ${contact.initials}
+//     </div>
+//     `;
+// }
 
 /**
  * Builds HTML for a single subtask item in the details view.
