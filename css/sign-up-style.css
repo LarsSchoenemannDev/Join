@@ -317,13 +317,13 @@ button:disabled {
   color: #ffffff;
   font-size: 19px;
   position: fixed;
-  right: -300px;
-  top: 10%;
-  transform: translateY(-50%);
-  transition: right 1s ease-in-out;
+  bottom: -300px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: bottom 1s ease-in-out;
 }
 .message.show {
-  right: 30px; /* Endposition innerhalb des Bildschirms */
+  bottom: 50%; /* Endposition innerhalb des Bildschirms */
 }
 
 /*Checkbox style*/
@@ -462,5 +462,5 @@ button:disabled {
   font-size: 16px;
   margin-top: 20px;
   text-align: center;
-  visibility: visible;
+  visibility: hidden;
 }

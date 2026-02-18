@@ -22,10 +22,6 @@ submitBtn.disabled = !policyCheckbox.checked;
  * Button is only enabled when checkbox is checked AND all fields are valid.
  */
 policyCheckbox.addEventListener("change", async () => {
-  checkboxAcceptance.style.visibility = policyCheckbox.checked
-    ? "hidden"
-    : "visible";
-
   if (policyCheckbox.checked) {
     const isValid = await signupValidation();
     submitBtn.disabled = !isValid;
@@ -342,6 +338,9 @@ function confirmPasswordValidation() {
   if (password === confirmPassword) {
     errorMsg.style.visibility = "hidden";
     confirmPasswordInput.parentElement.style.borderColor = "#29abe2";
+    checkboxAcceptance.style.visibility = policyCheckbox.checked
+      ? "hidden"
+      : "visible";
     return true;
   }
   // } else {
