@@ -234,7 +234,7 @@ h4 {
   font-weight: 400;
 }
 
-.cards .progress {
+progress::-webkit-progress-value  {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -243,6 +243,8 @@ h4 {
   font-weight: 500;
   color: #000000;
   font-weight: 400;
+  border: red;
+  opacity: 0,5
 }
 
 .cards .progress::before {
