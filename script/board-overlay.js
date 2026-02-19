@@ -1,4 +1,3 @@
-
 /**
  * Öffnet das Overlay zum Erstellen einer neuen Aufgabe.
  * Lädt das Formular in das Overlay, initialisiert die Daten und deaktiviert das Body-Scrolling.
@@ -7,9 +6,9 @@
 function openAddTaskOverlay() {
   const overlay = document.getElementById("addTaskOverlay");
   overlay.style.display = "flex";
-  loadAddTaskFormIntoOverlay(); 
+  loadAddTaskFormIntoOverlay();
   bindAddTaskListeners(document);
-  addTaskinit(); 
+  addTaskinit();
   document.body.style.overflow = "hidden";
 }
 
@@ -29,5 +28,38 @@ function closeAddTaskOverlay() {
  * @returns {Promise<void>}
  */
 async function addTaskinit() {
-  await getData();  
+  await getData();
 }
+
+/**
+ * function to close the add task overlay when clicking outside the form
+ */
+const addTaskOverlayEl = document.getElementById("addTaskOverlay");
+addTaskOverlayEl.addEventListener("click", (event) => {
+  if (event.target === addTaskOverlayEl) {
+    closeAddTaskOverlay();
+  }
+});
+
+/**
+ * Closes the task details overlay and re-renders the board.
+ * @returns {void}
+ */
+function closeTaskDetailsOverlay() {
+  const wrapper = document.getElementById("taskDetailsOverlay");
+  if (!wrapper) return;
+  wrapper.style.display = "none";
+  wrapper.innerHTML = "";
+  document.body.style.overflow = "auto";
+  renderBoard();
+}
+
+/**
+ * function to close the task details overlay when clicking outside the form
+ */
+const taskDetailsOverlayEl = document.getElementById("taskDetailsOverlay");
+taskDetailsOverlayEl.addEventListener("click", (event) => {
+  if (event.target === taskDetailsOverlayEl) {
+    closeTaskDetailsOverlay();
+  }
+});
