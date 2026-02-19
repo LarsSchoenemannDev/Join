@@ -105,15 +105,15 @@ function maincardHTML(contentId, tasks) {
  */
 function renderTaskContact(contacts = [], maxVisible = 4) {
   let html = "";
-  const checkedContacts = contacts.filter(c => c.checked);
+  const checkedContacts = contacts.filter((c) => c.checked);
   const totalChecked = checkedContacts.length;
-  for (let i = 0; i < checkedContacts.length; i++) {    
+  for (let i = 0; i < checkedContacts.length; i++) {
     if (i < maxVisible) {
       html += letterInitials(checkedContacts[i]);
-    } else if (i === maxVisible) {      
+    } else if (i === maxVisible) {
       const remaining = totalChecked - maxVisible;
       html += letterInitialsMax(remaining);
-    }    
+    }
   }
   return html;
 }
@@ -198,8 +198,8 @@ function onDragOver(e) {
 }
 
 /**
- * 
- * @param {DragEvent} e 
+ *
+ * @param {DragEvent} e
  */
 function onDragEnter(e) {
   e.preventDefault();
@@ -208,8 +208,8 @@ function onDragEnter(e) {
 }
 
 /**
- * 
- * @param {DragEvent} e 
+ *
+ * @param {DragEvent} e
  */
 function onDragLeave(e) {
   const col = e.currentTarget;
@@ -228,7 +228,8 @@ async function onDrop(e) {
   e.preventDefault();
   const col = /** @type {HTMLElement} */ (e.currentTarget);
   const newState = col.getAttribute("data-status") || "";
-  const cardId = e.dataTransfer.getData("text/plain") || e.dataTransfer.getData("text");
+  const cardId =
+    e.dataTransfer.getData("text/plain") || e.dataTransfer.getData("text");
   if (fetchData?.tasks?.[cardId]) {
     fetchData.tasks[cardId].state = /** @type {any} */ (newState);
     await postState();
@@ -273,14 +274,16 @@ function searchBar() {
     return;
   }
   const filtered = Object.entries(fetchData.tasks).filter(([id, task]) => {
-    const titleMatch = typeof task?.title === "string" && task.title.toLowerCase().includes(q);
-    const descMatch = typeof task?.description === "string" && task.description.toLowerCase().includes(q);
+    const titleMatch =
+      typeof task?.title === "string" && task.title.toLowerCase().includes(q);
+    const descMatch =
+      typeof task?.description === "string" &&
+      task.description.toLowerCase().includes(q);
     return titleMatch || descMatch;
   });
   renderBoardFromEntries(filtered);
   updateAllEmptyMessages();
 }
-
 
 /**
  * Renders the board using a filtered list of task entries.
@@ -347,7 +350,6 @@ function closetaskDetailsOverlay() {
   renderBoard();
 }
 
-
 /**
  * Converts a date string from "YYYY-MM-DD" to "DD/MM/YYYY".
  * @param {string} taskduedate
@@ -407,7 +409,7 @@ function renderTaskSubTaskDetails(taskId) {
 function getSubtaskStats(task) {
   const subtasks = task.subtasks || [];
   const total = subtasks.length;
-  const checked = subtasks.filter(sub => sub.state === "check").length;
+  const checked = subtasks.filter((sub) => sub.state === "check").length;
   return { total, checked };
 }
 
@@ -436,7 +438,8 @@ async function subTasksStateAdd() {
   Object.values(fetchData.tasks).forEach((task) => {
     if (!Array.isArray(task.subtasks)) return;
     task.subtasks = task.subtasks.map((subtask) => {
-      if (typeof subtask === "string") return { title: subtask, state: "uncheck" };
+      if (typeof subtask === "string")
+        return { title: subtask, state: "uncheck" };
       if (subtask.state === undefined) subtask.state = "uncheck";
       return subtask;
     });
@@ -459,39 +462,46 @@ async function deleteTaskOnBoard(id) {
 }
 
 /**
- * Switches the task overlay into edit mode.
- * @param {string} id
+ * Renders edit-mode subtasks directly into the DOM using the global subTaskInput array.
+ * Searches within the taskDetailsOverlay to avoid conflicts with Add Task overlay.
+ * @param {string} id - Task ID for the edit handlers
  * @returns {void}
  */
-function editTaskOnBoard(id) {
-  const task = fetchData?.tasks?.[id];
-  const overlay = document.getElementById("taskDetailsOverlay");
-  if (!task || !overlay) return;
-  prepareEditState(task);
-  overlay.innerHTML = taskPopupEditMode(task, id);
-  overlay.style.display = "flex";
-  document.body.style.overflow = "hidden";
-  bindAddTaskListeners(document);
-  renderContact();
-  assignedToLettersCheckContact();
-  renderSubtasks();
+function renderSubtasksDetailsEdit(id) {
+  // Search within the task details overlay to avoid conflicts
+  const taskDetailsOverlay = document.getElementById("taskDetailsOverlay");
+  const searchContext = taskDetailsOverlay || document;
+
+  const subTaskContent = searchContext.querySelector("#SubtaskList");
+  if (!subTaskContent) return;
+
+  if (!subTaskInput || subTaskInput.length === 0) {
+    subTaskContent.innerHTML = "";
+    return;
+  }
+
+  let html = "";
+  for (let i = 0; i < subTaskInput.length; i++) {
+    const title = subTaskInput[i];
+    if (!title) continue;
+    // Create temporary subtask object for template rendering
+    html += renderSubtasksDetailsEditHTML({ title, state: "uncheck" }, i, id);
+  }
+  subTaskContent.innerHTML = html;
 }
 
 /**
- * Renders edit-mode subtasks for a task.
- * @param {Task} task
- * @param {string} id
- * @returns {string}
+ * Deletes a subtask in edit mode and re-renders the subtask list.
+ * @param {string} taskId
+ * @param {number} i
+ * @returns {void}
  */
-function renderSubtasksDetailsEdit(task, id) {
-  if (!task?.subtasks || !Array.isArray(task.subtasks) || task.subtasks.length === 0) return "";
-  let html = "";
-  for (let i = 0; i < task.subtasks.length; i++) {
-    const subtask = task.subtasks[i];
-    if (!subtask?.title) continue;
-    html += renderSubtasksDetailsEditHTML(subtask, i, id);
-  }
-  return html;
+function editDeleteSubtask(taskId, i) {
+  subTaskInput.splice(i, 1);
+  renderSubtasksDetailsEdit(taskId);
+
+  const focusinput = document.getElementById("subtasks");
+  if (focusinput) focusinput.focus();
 }
 
 /**
@@ -501,11 +511,12 @@ function renderSubtasksDetailsEdit(task, id) {
  * @returns {void}
  */
 function editChangeSubtask(taskId, i) {
-  const subContainer = document.querySelector(`.sub-container[data-index="${i}"]`);
+  const subContainer = document.querySelector(
+    `.sub-container[data-index="${i}"]`,
+  );
   if (!subContainer) return;
-  const task = fetchData?.tasks?.[taskId];
-  if (!task?.subtasks?.[i]) return;
-  const currentValue = task.subtasks[i].title;
+  if (!subTaskInput[i]) return;
+  const currentValue = subTaskInput[i];
   subContainer.innerHTML = changeSubtaskHtml(i, currentValue);
   const newInputField = document.getElementById(`edit-input-${i}`);
   if (newInputField) newInputField.focus();
@@ -517,17 +528,24 @@ function editChangeSubtask(taskId, i) {
  * @returns {void}
  */
 function editTaskOnBoard(id) {
-  const task = fetchData?.tasks?.[id];
-  const overlay = document.getElementById("taskDetailsOverlay");
-  if (!task || !overlay) return;
-  loadEditState(task);
-  overlay.innerHTML = taskPopupEditMode(task, id);
-  overlay.style.display = "flex";
-  document.body.style.overflow = "hidden";
-  bindAddTaskListeners(document);
-  renderContact();
-  assignedToLettersCheckContact();
-  renderSubtasks();
+  try {
+    const task = fetchData?.tasks?.[id];
+    const overlay = document.getElementById("taskDetailsOverlay");
+    if (!task || !overlay) return;
+
+    loadEditState(task);
+    overlay.innerHTML = taskPopupEditMode(task, id);
+    overlay.style.display = "flex";
+    document.body.style.overflow = "hidden";
+
+    bindAddTaskListeners(document);
+    renderContact();
+    assignedToLettersCheckContact();
+    renderSubtasksDetailsEdit(id); // Renders subtasks into #SubtaskList
+  } catch (error) {
+    console.error("Error opening task edit mode:", error);
+    document.body.style.overflow = "auto";
+  }
 }
 
 /**
@@ -536,64 +554,14 @@ function editTaskOnBoard(id) {
  * @returns {void}
  */
 function loadEditState(task) {
-  subTaskInput = (task.subtasks || []).map((s) => (typeof s === "string" ? s : s.title));
+  subTaskInput = (task.subtasks || []).map((s) =>
+    typeof s === "string" ? s : s.title,
+  );
   const assignedIds = new Set((task.contacts || []).map((c) => c.id));
   contactsState = contactsState.map((c) => ({
     ...c,
     checked: assignedIds.has(c.id),
   }));
-}
-
-/**
- * Opens the edit mode overlay for one task.
- * @param {string} id Firebase task id
- * @returns {void}
- */
-function editTaskOnBoard(id) {
-  const task = fetchData?.tasks?.[id];
-  const overlay = document.getElementById("taskDetailsOverlay");
-  if (!task || !overlay) return;
-  loadEditState(task);
-  overlay.innerHTML = taskPopupEditMode(task, id);
-  overlay.style.display = "flex";
-  document.body.style.overflow = "hidden";
-  bindAddTaskListeners(document);
-  renderContact();
-  assignedToLettersCheckContact();
-  renderSubtasks();
-}
-
-/**
- * Loads task values into the global edit states.
- * @param {any} task
- * @returns {void}
- */
-function loadEditState(task) {
-  subTaskInput = (task.subtasks || []).map((s) => (typeof s === "string" ? s : s.title));
-  const assignedIds = new Set((task.contacts || []).map((c) => c.id));
-  contactsState = contactsState.map((c) => ({
-    ...c,
-    checked: assignedIds.has(c.id),
-  }));
-}
-
-/**
- * Opens the edit mode overlay for one task.
- * @param {string} id Firebase task id
- * @returns {void}
- */
-function editTaskOnBoard(id) {
-  const task = fetchData?.tasks?.[id];
-  const overlay = document.getElementById("taskDetailsOverlay");
-  if (!task || !overlay) return;
-  loadEditState(task);
-  overlay.innerHTML = taskPopupEditMode(task, id);
-  overlay.style.display = "flex";
-  document.body.style.overflow = "hidden";
-  bindAddTaskListeners(document);
-  renderContact();
-  assignedToLettersCheckContact();
-  renderSubtasks();
 }
 
 /**
@@ -618,37 +586,37 @@ function getCheckedValue(name, fallback = "") {
 }
 
 /**
- * Loads task values into the global edit states.
- * @param {any} task
- * @returns {void}
- */
-function loadEditState(task) {
-  subTaskInput = (task.subtasks || []).map((s) => (typeof s === "string" ? s : s.title));
-  const assignedIds = new Set((task.contacts || []).map((c) => c.id));
-  contactsState = contactsState.map((c) => ({
-    ...c,
-    checked: assignedIds.has(c.id),
-  }));
-}
-
-/**
  * Saves the edited task and updates Firebase.
+ * Preserves existing subtask states instead of resetting them.
  * @param {string} id Firebase task id
  * @returns {Promise<void>}
  */
 async function saveEditedTask(id) {
-  const task = fetchData?.tasks?.[id];
-  if (!task) return;
-  task.title = getValue("title");
-  task.description = getValue("description");
-  task.duedate = getValue("duedate");
-  task.priority = getCheckedValue("priority", task.priority);
-  task.category = getCheckedValue("priorityCategory", task.category);
-  task.contacts = contactsState.filter((c) => c.checked);
-  task.subtasks = subTaskInput.map((title) => ({ title, state: "uncheck" }));
-  await postState();
-  closetaskDetailsOverlay();
-  renderBoard();
+  try {
+    const task = fetchData?.tasks?.[id];
+    if (!task) return;
+
+    task.title = getValue("title");
+    task.description = getValue("description");
+    task.duedate = getValue("duedate");
+    task.priority = getCheckedValue("priority", task.priority);
+    task.category = getCheckedValue("priorityCategory", task.category);
+    task.contacts = contactsState.filter((c) => c.checked);
+
+    const existingSubtasks = task.subtasks || [];
+    task.subtasks = subTaskInput.map((title, index) => {
+      const existing = existingSubtasks.find((s) => s.title === title);
+      return {
+        title,
+        state: existing?.state || "uncheck",
+      };
+    });
+
+    await postState();
+    closetaskDetailsOverlay();
+    renderBoard();
+  } catch (error) {
+    console.error("Error saving edited task:", error);
+    alert("Fehler beim Speichern der Aufgabe. Bitte versuchen Sie es erneut.");
+  }
 }
-
-

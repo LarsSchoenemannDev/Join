@@ -170,7 +170,14 @@ function closeAssigned() {
  * @returns {void}
  */
 function createSubtasks() {
-  const input = document.getElementById("subtasks");
+  let input = null;
+  const activeOverlay = getActiveOverlay();
+  if (activeOverlay) {
+    input = activeOverlay.querySelector("#subtasks");
+  }
+  if (!input) {
+    input = document.getElementById("subtasks");
+  }
   if (!input) return;
   input.focus();
   input.classList.toggle(
@@ -183,10 +190,31 @@ function createSubtasks() {
  * @returns {void}
  */
 function addSubtask() {
-  const subTask = document.getElementById("subtasks");
-  if (!subTask) return;
+  // Try to find the subtask input field
+  let subTask = null;
+  
+  // First try in the active overlay context
+  const activeOverlay = getActiveOverlay();
+  if (activeOverlay) {
+    subTask = activeOverlay.querySelector("#subtasks");
+  }
+  
+  // Fallback to document-wide search
+  if (!subTask) {
+    subTask = document.getElementById("subtasks");
+  }
+  
+  if (!subTask) {
+    console.warn("Subtask input field #subtasks not found");
+    return;
+  }
+  
   const subTaskValue = subTask.value.trim();
-  if (subTaskValue.length <= 3) return;
+  if (subTaskValue.length === 0) {
+    console.log("Subtask value is empty");
+    return;
+  }
+  
   subTaskInput.push(subTaskValue);
   renderSubtasks();
   subTask.value = "";
@@ -195,16 +223,50 @@ function addSubtask() {
 
 /**
  * Renders the current subtask list into the subtask container.
+ * Only renders in the currently active/visible overlay.
  * @returns {void}
  */
 function renderSubtasks() {
-  const subTaskContent = document.getElementById("SubtaskList");
+  // Check which overlay is currently active
+  const addTaskOverlay = document.getElementById("addTaskOverlay");
+  const taskDetailsOverlay = document.getElementById("taskDetailsOverlay");
+  
+  let activeContainer = null;
+  
+  // Determine the active overlay by checking display style
+  if (addTaskOverlay && addTaskOverlay.style.display === "flex") {
+    activeContainer = addTaskOverlay;
+  } else if (taskDetailsOverlay && taskDetailsOverlay.style.display === "flex") {
+    activeContainer = taskDetailsOverlay;
+  }
+  
+  // If no active overlay, try to find SubtaskList in the current document
+  if (!activeContainer) {
+    const subTaskContent = document.getElementById("SubtaskList");
+    if (subTaskContent) {
+      renderSubtaskList(subTaskContent);
+    }
+    return;
+  }
+  
+  // Find SubtaskList within the active overlay only
+  const subTaskContent = activeContainer.querySelector("#SubtaskList");
   if (!subTaskContent) return;
+  
+  renderSubtaskList(subTaskContent);
+}
+
+/**
+ * Helper function to render subtasks into a specific container.
+ * @param {HTMLElement} container
+ * @returns {void}
+ */
+function renderSubtaskList(container) {
   let htmlContent = "";
   for (let i = 0; i < subTaskInput.length; i++) {
     htmlContent += subTaskContentHMTL(subTaskInput[i], i);
   }
-  subTaskContent.innerHTML = htmlContent;
+  container.innerHTML = htmlContent;
 }
 
 /**
@@ -213,13 +275,20 @@ function renderSubtasks() {
  * @returns {void}
  */
 function changeSubtask(i) {
-  const newSubtask = document.querySelector(
+  const activeOverlay = getActiveOverlay();
+  const searchContext = activeOverlay || document;
+  
+  const newSubtask = searchContext.querySelector(
     `.sub-container[data-index="${i}"]`,
   );
   if (!newSubtask) return;
   const currentValue = subTaskInput[i] || "";
   newSubtask.innerHTML = changeSubtaskHtml(i, currentValue);
-  const newInputField = document.getElementById(`edit-input-${i}`);
+  
+  let newInputField = searchContext.querySelector(`#edit-input-${i}`);
+  if (!newInputField) {
+    newInputField = document.getElementById(`edit-input-${i}`);
+  }
   if (newInputField) newInputField.focus();
 }
 
@@ -229,7 +298,13 @@ function changeSubtask(i) {
  * @returns {void}
  */
 function saveSubtaskEdit(i) {
-  const subEdit = document.getElementById(`edit-input-${i}`);
+  const activeOverlay = getActiveOverlay();
+  const searchContext = activeOverlay || document;
+  
+  let subEdit = searchContext.querySelector(`#edit-input-${i}`);
+  if (!subEdit) {
+    subEdit = document.getElementById(`edit-input-${i}`);
+  }
   if (!subEdit) return;
   subTaskInput[i] = subEdit.value.trim();
   renderSubtasks();
@@ -241,10 +316,35 @@ function saveSubtaskEdit(i) {
  * @returns {void}
  */
 function deleteSubtask(i) {
-  const focusinput = document.getElementById("subtasks");
   subTaskInput.splice(i, 1);
   renderSubtasks();
+  
+  let focusinput = null;
+  const activeOverlay = getActiveOverlay();
+  if (activeOverlay) {
+    focusinput = activeOverlay.querySelector("#subtasks");
+  }
+  if (!focusinput) {
+    focusinput = document.getElementById("subtasks");
+  }
   if (focusinput) focusinput.focus();
+}
+
+/**
+ * Gets the currently active overlay element.
+ * @returns {HTMLElement|null}
+ */
+function getActiveOverlay() {
+  const addTaskOverlay = document.getElementById("addTaskOverlay");
+  const taskDetailsOverlay = document.getElementById("taskDetailsOverlay");
+  
+  if (addTaskOverlay && addTaskOverlay.style.display === "flex") {
+    return addTaskOverlay;
+  } else if (taskDetailsOverlay && taskDetailsOverlay.style.display === "flex") {
+    return taskDetailsOverlay;
+  }
+  
+  return null;
 }
 
 /**
@@ -252,8 +352,18 @@ function deleteSubtask(i) {
  * @returns {void}
  */
 function cancelSubtask() {
-  const input = document.getElementById("subtasks");
-  const box = document.getElementById("showHiddenSubtasks");
+  let input = null;
+  let box = null;
+  
+  const activeOverlay = getActiveOverlay();
+  if (activeOverlay) {
+    input = activeOverlay.querySelector("#subtasks");
+    box = activeOverlay.querySelector("#showHiddenSubtasks");
+  }
+  
+  if (!input) input = document.getElementById("subtasks");
+  if (!box) box = document.getElementById("showHiddenSubtasks");
+  
   if (!input || !box) return;
   input.value = "";
   input.focus();
@@ -499,19 +609,29 @@ function bindAddTaskListeners(root = document) {
 }
 
 function handleGlobalClick(e) {
-  const subtaskBox = document.getElementById("showHiddenSubtasks");
+  const activeOverlay = getActiveOverlay();
+  
+  let subtaskBox = activeOverlay ? activeOverlay.querySelector("#showHiddenSubtasks") : null;
+  if (!subtaskBox) subtaskBox = document.getElementById("showHiddenSubtasks");
   if (subtaskBox && !e.target.closest(".input-wrapper"))
     subtaskBox.style.display = "none";
 
-  const contactsDropdown = document.getElementById("selectContacts");
-  const contactsBtn = document.getElementById("BTNToggleContacts");
+  let contactsDropdown = activeOverlay ? activeOverlay.querySelector("#selectContacts") : null;
+  let contactsBtn = activeOverlay ? activeOverlay.querySelector("#BTNToggleContacts") : null;
+  if (!contactsDropdown) contactsDropdown = document.getElementById("selectContacts");
+  if (!contactsBtn) contactsBtn = document.getElementById("BTNToggleContacts");
+  
   if (contactsDropdown && contactsBtn) {
     const inside =
       contactsDropdown.contains(e.target) || contactsBtn.contains(e.target);
     if (!inside) closeAssigned();
   }
-  const categoryDropdown = document.getElementById("selectCategory");
-  const categoryBtn = document.getElementById("categoryBtn");
+  
+  let categoryDropdown = activeOverlay ? activeOverlay.querySelector("#selectCategory") : null;
+  let categoryBtn = activeOverlay ? activeOverlay.querySelector("#categoryBtn") : null;
+  if (!categoryDropdown) categoryDropdown = document.getElementById("selectCategory");
+  if (!categoryBtn) categoryBtn = document.getElementById("categoryBtn");
+  
   if (categoryDropdown && categoryBtn) {
     const inside =
       categoryDropdown.contains(e.target) || categoryBtn.contains(e.target);
@@ -531,7 +651,9 @@ function handleGlobalInput(e) {
 function handleGlobalFocusIn(e) {
   if (!e.target) return;
   if (e.target.id === "subtasks") {
-    const subtaskBox = document.getElementById("showHiddenSubtasks");
+    const activeOverlay = getActiveOverlay();
+    let subtaskBox = activeOverlay ? activeOverlay.querySelector("#showHiddenSubtasks") : null;
+    if (!subtaskBox) subtaskBox = document.getElementById("showHiddenSubtasks");
     if (subtaskBox) subtaskBox.style.display = "flex";
   }
   if (e.target.id === "title" || e.target.id === "duedate") onFocus(e);

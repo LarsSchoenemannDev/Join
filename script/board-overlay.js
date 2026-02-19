@@ -1,15 +1,25 @@
 /**
  * Öffnet das Overlay zum Erstellen einer neuen Aufgabe.
  * Lädt das Formular in das Overlay, initialisiert die Daten und deaktiviert das Body-Scrolling.
- * @returns {void}
+ * @async
+ * @returns {Promise<void>}
  */
-function openAddTaskOverlay() {
-  const overlay = document.getElementById("addTaskOverlay");
-  overlay.style.display = "flex";
-  loadAddTaskFormIntoOverlay();
-  bindAddTaskListeners(document);
-  addTaskinit();
-  document.body.style.overflow = "hidden";
+async function openAddTaskOverlay() {
+  try {
+    const overlay = document.getElementById("addTaskOverlay");
+    if (!overlay) {
+      return;
+    }
+    overlay.style.display = "flex";
+    loadAddTaskFormIntoOverlay();
+    await addTaskinit();
+    clearInputs();
+    bindAddTaskListeners(document);
+    document.body.style.overflow = "hidden";
+  } catch (error) {
+    console.error("Error opening Add Task overlay:", error);
+    document.body.style.overflow = "auto";
+  }
 }
 
 /**
@@ -18,8 +28,10 @@ function openAddTaskOverlay() {
  */
 function closeAddTaskOverlay() {
   const overlay = document.getElementById("addTaskOverlay");
+  if (!overlay) return;
   overlay.style.display = "none";
   document.body.style.overflow = "auto";
+  clearInputs();
 }
 
 /**
@@ -30,16 +42,6 @@ function closeAddTaskOverlay() {
 async function addTaskinit() {
   await getData();
 }
-
-/**
- * function to close the add task overlay when clicking outside the form
- */
-const addTaskOverlayEl = document.getElementById("addTaskOverlay");
-addTaskOverlayEl.addEventListener("click", (event) => {
-  if (event.target === addTaskOverlayEl) {
-    closeAddTaskOverlay();
-  }
-});
 
 /**
  * Closes the task details overlay and re-renders the board.
@@ -55,11 +57,32 @@ function closeTaskDetailsOverlay() {
 }
 
 /**
- * function to close the task details overlay when clicking outside the form
+ * Initializes overlay click-outside-to-close handlers after DOM is ready.
+ * @returns {void}
  */
-const taskDetailsOverlayEl = document.getElementById("taskDetailsOverlay");
-taskDetailsOverlayEl.addEventListener("click", (event) => {
-  if (event.target === taskDetailsOverlayEl) {
-    closeTaskDetailsOverlay();
+function initOverlayClickHandlers() {
+  const addTaskOverlayEl = document.getElementById("addTaskOverlay");
+  if (addTaskOverlayEl) {
+    addTaskOverlayEl.addEventListener("click", (event) => {
+      if (event.target === addTaskOverlayEl) {
+        closeAddTaskOverlay();
+      }
+    });
   }
-});
+
+  const taskDetailsOverlayEl = document.getElementById("taskDetailsOverlay");
+  if (taskDetailsOverlayEl) {
+    taskDetailsOverlayEl.addEventListener("click", (event) => {
+      if (event.target === taskDetailsOverlayEl) {
+        closeTaskDetailsOverlay();
+      }
+    });
+  }
+}
+
+// Initialize overlay handlers when DOM is ready
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initOverlayClickHandlers);
+} else {
+  initOverlayClickHandlers();
+}
