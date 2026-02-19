@@ -360,20 +360,6 @@ taskDetailsOverlay {
   z-index: 10;
 }
 
-.overlay-container .overlay-content {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--color-white);
-
-  height: auto;
-  min-height: 400px;
-  max-height: 80vh;
-  overflow-y: auto;
-  position: relative;
-  z-index: 10;
-  border-radius: var(--radius-18);
-}
-
 .close-overlay {
   border: none;
   background: none;

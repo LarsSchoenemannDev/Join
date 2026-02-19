@@ -39,7 +39,17 @@
 }
 
 .overlay-container .overlay-content {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-white);
+  height: auto;
+  min-height: 400px;
+  max-height: 80vh;
   overflow-y: auto;
+  position: relative;
+  z-index: 10;
+  border-radius: var(--radius-18);
+
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   animation: slideIn 0.3s ease-out;
 }
@@ -69,9 +79,10 @@
     font-size: 48px;
     margin-bottom: 32px !important;
   }
-  .h1-content{
+  .h1-content {
     font-size: 32px;
-  }}
+  }
+}
 
 @media (max-width: 530px) {
   .overlay-container .add-task-content {
