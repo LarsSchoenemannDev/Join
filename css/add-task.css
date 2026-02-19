@@ -27,11 +27,19 @@
   --font-size-base: 1rem;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
 .add-task-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   padding: 80px 50px 50px 80px;
   width: 100%;
   max-width: 1920px;
@@ -48,18 +56,17 @@ main {
   flex: 1;
   min-width: 440px;
   max-width: 520px;
-  height: 376px;
 }
 
 .main-content {
   display: flex;
-  justify-content: center;
   flex-direction: row;
   gap: clamp(8px, 6vw, 120px);
   color: var(--color-text);
   font-family: var(--font-family);
   font-weight: 400;
   font-size: 1.25rem;
+  margin-bottom: 350px;
 }
 
 h1 {
@@ -71,6 +78,7 @@ h1 {
 .h1-content {
   display: flex;
   justify-content: start;
+  margin-bottom: 48px;
 }
 
 .div-field {
@@ -261,7 +269,7 @@ input[type="radio"] {
   cursor: pointer;
 }
 
-.checkbox-input:checked+.checkbox-box {
+.checkbox-input:checked + .checkbox-box {
   background-image: url("../assets/img/checkboxChecked.svg");
   background-size: 24px 24px;
 }
@@ -403,17 +411,17 @@ textarea:focus {
   border: 1px solid var(--color-border);
   align-items: center;
   background: var(--color-white);
-  padding: 15px 26px;
+  padding: 15px 18px;
   font-size: 20px;
   font-weight: 400;
   cursor: pointer;
 }
 
-#prio-urgent+label svg path {
+#prio-urgent + label svg path {
   fill: var(--color-urgent);
 }
 
-#prio-urgent:checked+label {
+#prio-urgent:checked + label {
   background-color: var(--color-urgent);
   border-color: var(--color-urgent);
   color: var(--color-white);
@@ -421,15 +429,15 @@ textarea:focus {
   font-size: 21px;
 }
 
-#prio-urgent:checked+label svg path {
+#prio-urgent:checked + label svg path {
   fill: var(--color-white);
 }
 
-#prio-medium+label svg path {
+#prio-medium + label svg path {
   fill: var(--color-medium);
 }
 
-#prio-medium:checked+label {
+#prio-medium:checked + label {
   background-color: var(--color-medium);
   border-color: var(--color-medium);
   color: var(--color-white);
@@ -437,15 +445,15 @@ textarea:focus {
   font-size: 21px;
 }
 
-#prio-medium:checked+label svg path {
+#prio-medium:checked + label svg path {
   fill: var(--color-white);
 }
 
-#prio-low+label svg path {
+#prio-low + label svg path {
   fill: var(--color-low);
 }
 
-#prio-low:checked+label {
+#prio-low:checked + label {
   background-color: var(--color-low);
   border-color: var(--color-low);
   color: var(--color-white);
@@ -453,7 +461,7 @@ textarea:focus {
   font-size: 21px;
 }
 
-#prio-low:checked+label svg path {
+#prio-low:checked + label svg path {
   fill: var(--color-white);
 }
 
@@ -539,7 +547,7 @@ textarea:focus {
   display: flex;
   justify-content: space-between;
   align-items: end;
-  margin-top: calc(100vh - 90px - 750px);
+  width: 100%;
 }
 
 .footer-flex {
@@ -626,12 +634,12 @@ textarea:focus {
     margin-bottom: 20px;
   }
 
-  .add-task-content {
-    padding: 24px 12px 24px 12px;
-  }
-
   .main-content {
     flex-direction: column;
+    gap: clamp(32px, 3vw, 60px);
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 150px;
   }
 
   .seperator {
@@ -639,8 +647,8 @@ textarea:focus {
     height: 1px;
   }
 
-  .main-content {
-    gap: clamp(32px, 3vw, 60px);
+  .card {
+    width: 620px;
   }
 
   .field {
@@ -649,7 +657,6 @@ textarea:focus {
 
   .footer-add-task {
     margin-top: 0px;
-    flex-direction: column;
   }
 }
 
@@ -661,13 +668,20 @@ textarea:focus {
 
 @media (max-width: 700px) {
   .add-task-content {
-    padding: 24px 12px 24px 12px;
+    padding: 20px;
   }
 }
 
 @media (max-width: 620px) {
   .card {
     min-width: 240px;
+    max-width: 360px;
+  }
+
+  .h1-content {
+    font-size: 48px;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .field {
@@ -675,6 +689,7 @@ textarea:focus {
   }
 
   .seperator {
+    display: none;
     width: 240px;
   }
 
@@ -687,7 +702,6 @@ textarea:focus {
   }
 
   .wrapper {
-    align-items: center;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -699,17 +713,25 @@ textarea:focus {
   }
 
   .footer-flex {
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
     gap: 6px;
   }
 
-  .footer-add-task edit {
+  .footer-add-task {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
   }
 
   .required {
     display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .card {
+    min-width: 240px;
+    max-width: 300px;
   }
 }
