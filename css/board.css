@@ -225,7 +225,7 @@ h4 {
   color: var(--color-text-heading);
 }
 
-.cards>span {
+.cards > span {
   display: block;
   margin: 0 0 var(--space-18);
   font-size: 16px;
@@ -252,17 +252,17 @@ progress {
   height: 12px;
   border-radius: 16px;
   border: none;
-  background-color: #c9cbcf94; 
-  overflow: hidden; 
+  background-color: #c9cbcf94;
+  overflow: hidden;
 }
 
 progress::-webkit-progress-bar {
-  background-color: #c9cbcf94; 
+  background-color: #c9cbcf94;
   border-radius: 16px;
 }
 
 progress::-webkit-progress-value {
-  background-color: var(--color-progress); 
+  background-color: var(--color-progress);
   border-radius: 16px;
 }
 
@@ -271,7 +271,7 @@ progress::-moz-progress-bar {
   border-radius: 16px;
 }
 
-.progress-scale{
+.progress-scale {
   margin-bottom: 12px;
   display: flex;
   flex-flow: row nowrap;
@@ -428,6 +428,7 @@ taskDetailsOverlay {
   position: relative;
   display: flex;
   flex-direction: column;
+  max-height: 90vh;
 }
 
 .detail-header {
@@ -445,7 +446,8 @@ taskDetailsOverlay {
 }
 
 .detail-title {
-  font-size: 48px;
+  font-size: 32px;
+  /* font-size: 48px; */
   font-weight: var(--fw-bold);
   color: var(--color-text-heading);
   margin-bottom: var(--space-24);
@@ -489,8 +491,10 @@ taskDetailsOverlay {
 .subtask-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-12);
+  /* gap: var(--space-12); */
   margin-top: var(--space-8);
+  overflow: auto;
+  max-height: 150px;
 }
 
 .checkbox-box {
@@ -504,7 +508,7 @@ taskDetailsOverlay {
   cursor: pointer;
 }
 
-.checkbox-input:checked+.checkbox-box {
+.checkbox-input:checked + .checkbox-box {
   background-image: url("../assets/img/checkboxChecked.svg");
   background-size: 24px 24px;
 }
@@ -512,7 +516,7 @@ taskDetailsOverlay {
 .assignee-item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  /* gap: 8px; */
   padding: 7px 3px;
   font-size: 19px;
 }
