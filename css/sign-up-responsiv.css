@@ -15,7 +15,7 @@
 
 @media (max-width: 767px) {
   #sign-up-header {
-    padding: 40px 40px 20px;
+    padding: 20px 40px;
   }
   #sign-up-header .header-img {
     max-width: 70px;
