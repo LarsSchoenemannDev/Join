@@ -25,7 +25,7 @@ function loadAddTaskFormIntoOverlay() {
                     <label for="title">
                       Title<span class="required">*</span>
                     </label>
-                    <input id="title" type="text" placeholder="Enter a title" class="input-Required">                    
+                    <input id="title" type="text" placeholder="Enter a title" class="input-Required" oninput="titleDuplicateCheck()">
                     <div class="invalid-feedback">This field is required.</div>
                   </div>
                 </div>
@@ -256,8 +256,6 @@ function taskPopup(task, taskID) {
  * @returns {string}
  */
 function taskPopupEditMode(task, id) {
-  console.dir(task);
-
   const isUrgent = task.priority === "urgent" ? "checked" : "";
   const isMedium = task.priority === "medium" ? "checked" : "";
   const isLow = task.priority === "low" ? "checked" : "";
@@ -275,9 +273,9 @@ function taskPopupEditMode(task, id) {
         <section class="card">
                   <div class="field">
                     <label for="title">
-                      Title<span class="required"></span>
+                      Title<span class="required">*</span>
                     </label>
-                    <input id="title" type="text" class="input-Required" value="${task.title}" >                    
+                    <input id="title" type="text" placeholder="Enter a title" class="input-Required" oninput="titleDuplicateCheck()">
                     <div class="invalid-feedback">This field is required.</div>
                   </div>
           <div class="field">

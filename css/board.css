@@ -588,7 +588,7 @@ taskDetailsOverlay {
 .edit-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  
 }
 
 .edit-mode-container {

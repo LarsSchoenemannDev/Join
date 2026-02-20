@@ -192,29 +192,29 @@ function createSubtasks() {
 function addSubtask() {
   // Try to find the subtask input field
   let subTask = null;
-  
+
   // First try in the active overlay context
   const activeOverlay = getActiveOverlay();
   if (activeOverlay) {
     subTask = activeOverlay.querySelector("#subtasks");
   }
-  
+
   // Fallback to document-wide search
   if (!subTask) {
     subTask = document.getElementById("subtasks");
   }
-  
+
   if (!subTask) {
     console.warn("Subtask input field #subtasks not found");
     return;
   }
-  
+
   const subTaskValue = subTask.value.trim();
   if (subTaskValue.length === 0) {
     console.log("Subtask value is empty");
     return;
   }
-  
+
   subTaskInput.push(subTaskValue);
   renderSubtasks();
   subTask.value = "";
@@ -230,16 +230,16 @@ function renderSubtasks() {
   // Check which overlay is currently active
   const addTaskOverlay = document.getElementById("addTaskOverlay");
   const taskDetailsOverlay = document.getElementById("taskDetailsOverlay");
-  
+
   let activeContainer = null;
-  
+
   // Determine the active overlay by checking display style
   if (addTaskOverlay && addTaskOverlay.style.display === "flex") {
     activeContainer = addTaskOverlay;
   } else if (taskDetailsOverlay && taskDetailsOverlay.style.display === "flex") {
     activeContainer = taskDetailsOverlay;
   }
-  
+
   // If no active overlay, try to find SubtaskList in the current document
   if (!activeContainer) {
     const subTaskContent = document.getElementById("SubtaskList");
@@ -248,11 +248,11 @@ function renderSubtasks() {
     }
     return;
   }
-  
+
   // Find SubtaskList within the active overlay only
   const subTaskContent = activeContainer.querySelector("#SubtaskList");
   if (!subTaskContent) return;
-  
+
   renderSubtaskList(subTaskContent);
 }
 
@@ -277,14 +277,14 @@ function renderSubtaskList(container) {
 function changeSubtask(i) {
   const activeOverlay = getActiveOverlay();
   const searchContext = activeOverlay || document;
-  
+
   const newSubtask = searchContext.querySelector(
     `.sub-container[data-index="${i}"]`,
   );
   if (!newSubtask) return;
   const currentValue = subTaskInput[i] || "";
   newSubtask.innerHTML = changeSubtaskHtml(i, currentValue);
-  
+
   let newInputField = searchContext.querySelector(`#edit-input-${i}`);
   if (!newInputField) {
     newInputField = document.getElementById(`edit-input-${i}`);
@@ -300,7 +300,7 @@ function changeSubtask(i) {
 function saveSubtaskEdit(i) {
   const activeOverlay = getActiveOverlay();
   const searchContext = activeOverlay || document;
-  
+
   let subEdit = searchContext.querySelector(`#edit-input-${i}`);
   if (!subEdit) {
     subEdit = document.getElementById(`edit-input-${i}`);
@@ -318,7 +318,7 @@ function saveSubtaskEdit(i) {
 function deleteSubtask(i) {
   subTaskInput.splice(i, 1);
   renderSubtasks();
-  
+
   let focusinput = null;
   const activeOverlay = getActiveOverlay();
   if (activeOverlay) {
@@ -337,13 +337,13 @@ function deleteSubtask(i) {
 function getActiveOverlay() {
   const addTaskOverlay = document.getElementById("addTaskOverlay");
   const taskDetailsOverlay = document.getElementById("taskDetailsOverlay");
-  
+
   if (addTaskOverlay && addTaskOverlay.style.display === "flex") {
     return addTaskOverlay;
   } else if (taskDetailsOverlay && taskDetailsOverlay.style.display === "flex") {
     return taskDetailsOverlay;
   }
-  
+
   return null;
 }
 
@@ -354,16 +354,16 @@ function getActiveOverlay() {
 function cancelSubtask() {
   let input = null;
   let box = null;
-  
+
   const activeOverlay = getActiveOverlay();
   if (activeOverlay) {
     input = activeOverlay.querySelector("#subtasks");
     box = activeOverlay.querySelector("#showHiddenSubtasks");
   }
-  
+
   if (!input) input = document.getElementById("subtasks");
   if (!box) box = document.getElementById("showHiddenSubtasks");
-  
+
   if (!input || !box) return;
   input.value = "";
   input.focus();
@@ -580,6 +580,20 @@ function popupHide() {
   }, 300);
 }
 
+function titleDuplicateCheck() {
+  const inputValue = document.getElementById("title").value.trim();
+  const taskArray = Object.values(fetchData.tasks);
+  const isDuplicate = taskArray.some(task => {
+    const taskText = (task.title || "").toLowerCase();
+    return taskText === inputValue.toLowerCase();
+  });
+  if (isDuplicate) {
+    let htmlFeedback = document.querySelector(".invalid-feedback");
+    htmlFeedback.innerHTML = "Oops! That title is already in use. Try a different one?";
+    htmlFeedback.style.visibility = "visible";
+  } 
+}
+
 /**
  * Creates a task by reading form data, posting it and resetting the UI.
  * @async
@@ -610,7 +624,7 @@ function bindAddTaskListeners(root = document) {
 
 function handleGlobalClick(e) {
   const activeOverlay = getActiveOverlay();
-  
+
   let subtaskBox = activeOverlay ? activeOverlay.querySelector("#showHiddenSubtasks") : null;
   if (!subtaskBox) subtaskBox = document.getElementById("showHiddenSubtasks");
   if (subtaskBox && !e.target.closest(".input-wrapper"))
@@ -620,18 +634,18 @@ function handleGlobalClick(e) {
   let contactsBtn = activeOverlay ? activeOverlay.querySelector("#BTNToggleContacts") : null;
   if (!contactsDropdown) contactsDropdown = document.getElementById("selectContacts");
   if (!contactsBtn) contactsBtn = document.getElementById("BTNToggleContacts");
-  
+
   if (contactsDropdown && contactsBtn) {
     const inside =
       contactsDropdown.contains(e.target) || contactsBtn.contains(e.target);
     if (!inside) closeAssigned();
   }
-  
+
   let categoryDropdown = activeOverlay ? activeOverlay.querySelector("#selectCategory") : null;
   let categoryBtn = activeOverlay ? activeOverlay.querySelector("#categoryBtn") : null;
   if (!categoryDropdown) categoryDropdown = document.getElementById("selectCategory");
   if (!categoryBtn) categoryBtn = document.getElementById("categoryBtn");
-  
+
   if (categoryDropdown && categoryBtn) {
     const inside =
       categoryDropdown.contains(e.target) || categoryBtn.contains(e.target);
@@ -670,3 +684,5 @@ function handleGlobalKeyDown(e) {
     addSubtask();
   }
 }
+
+
