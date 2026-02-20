@@ -7,6 +7,8 @@ let tempPageInputs = {};
 let taskData = {};
 let valid = { title: false, duedate: false, category: false };
 
+
+
 /**
  * Initializes the add-task page: loads data, resets inputs and registers event handlers.
  * @async
@@ -74,11 +76,11 @@ function assignedToLettersCheckContact() {
     .filter((c) => c.checked)
     .forEach((c) => {
       contactCounter++;
-      if (contactCounter <= 8) {
+      if (contactCounter <= 5) {
         container.innerHTML += letterInitials(c);
-      } else if (contactCounter === 9) {
+      } else if (contactCounter === 6) {
         const totalChecked = contactsState.filter((x) => x.checked).length;
-        container.innerHTML += letterInitialsMax(totalChecked - 8);
+        container.innerHTML += letterInitialsMax(totalChecked - 5);
       }
     });
 }
@@ -300,13 +302,18 @@ function changeSubtask(i) {
 function saveSubtaskEdit(i) {
   const activeOverlay = getActiveOverlay();
   const searchContext = activeOverlay || document;
-
   let subEdit = searchContext.querySelector(`#edit-input-${i}`);
   if (!subEdit) {
     subEdit = document.getElementById(`edit-input-${i}`);
   }
   if (!subEdit) return;
-  subTaskInput[i] = subEdit.value.trim();
+  const newValue = subEdit.value.trim();
+if (newValue === '') {
+  subTaskInput.splice(i, 1); 
+  renderSubtasks();
+  return;
+}
+  subTaskInput[i] = newValue;
   renderSubtasks();
 }
 
