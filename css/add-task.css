@@ -65,8 +65,8 @@ main {
   color: var(--color-text);
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 1.25rem;
-  margin-bottom: 350px;
+  font-size: 1.25rem; 
+  
 }
 
 h1 {

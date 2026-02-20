@@ -11,7 +11,7 @@ function loadAddTaskFormIntoOverlay() {
           </div>
         </div>  
   <section class="add-task-content">
-          <div class="wrapper">
+          <div class="wrapper-popup">
             <h1 class="h1-content">Add Task
           <button class="close-overlay" onclick="closeAddTaskOverlay()">
             <img class="icon normal" src="../assets/img/close-icon.svg" alt="close">
@@ -261,7 +261,7 @@ function taskPopupEditMode(task, id) {
   const isLow = task.priority === "low" ? "checked" : "";
   return `<div class="overlay-content">
   <section class="add-task-content">
-    <div class="edit-mode-popup">
+    <div class="wrapper-popup">
       <div class="edit-header">
         <h1 class="h1-content edit">Edit Task</h1>
         <button class="close-overlay" onclick="closetaskDetailsOverlay()">
@@ -275,7 +275,7 @@ function taskPopupEditMode(task, id) {
                     <label for="title">
                       Title<span class="required">*</span>
                     </label>
-                    <input id="title" type="text" placeholder="Enter a title" class="input-Required" oninput="titleDuplicateCheck()">
+                    <input id="title" type="text" class="input-Required" oninput="titleDuplicateCheck()" value=${task.title}>
                     <div class="invalid-feedback">This field is required.</div>
                   </div>
           <div class="field">
@@ -382,7 +382,7 @@ function taskPopupEditMode(task, id) {
                 <span style="color: #000000;">This field is required</span>
               </p>
         <div class="footer-flex">
-          <button class="btn-createTask btn-priority-flex" onclick="saveEditedTask('${id}')">
+          <button class="btn-ok" onclick="saveEditedTask('${id}')">
             Ok <img src="../assets/img/create-contact-check.svg" alt="check">
           </button>
         </div>

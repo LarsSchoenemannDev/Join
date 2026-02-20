@@ -225,7 +225,7 @@ h4 {
   color: var(--color-text-heading);
 }
 
-.cards > span {
+.cards>span {
   display: block;
   margin: 0 0 var(--space-18);
   font-size: 16px;
@@ -494,7 +494,7 @@ taskDetailsOverlay {
   cursor: pointer;
 }
 
-.checkbox-input:checked + .checkbox-box {
+.checkbox-input:checked+.checkbox-box {
   background-image: url("../assets/img/checkboxChecked.svg");
   background-size: 24px 24px;
 }
@@ -543,6 +543,14 @@ taskDetailsOverlay {
   background-color: var(--color-seperator);
 }
 
+.footer-add-task.edit {
+  margin-top: auto;
+  padding-top: 76px;
+  display: flex;
+  justify-content: space-between;
+
+}
+
 .subtask-item {
   display: flex;
   align-items: center;
@@ -588,14 +596,14 @@ taskDetailsOverlay {
 .edit-header {
   display: flex;
   justify-content: space-between;
-  
+
 }
 
 .edit-mode-container {
   background: #00000054;
 }
 
-.edit-mode-popup {
+.wrapper-popup {
   background-color: var(--color-white);
   padding-left: 20px;
   padding-right: 20px;
@@ -607,4 +615,29 @@ taskDetailsOverlay {
   padding-left: 20px;
   padding-right: 20px;
   align-items: flex-start !important;
+}
+
+.btn-ok {
+  border-radius: var(--radius-10);
+  border: 1px solid var(--color-border);
+  align-items: center;
+  background: var(--color-white);
+  padding: 15px 26px;
+  font-size: 20px;
+  font-weight: 400;
+  cursor: pointer;
+  background-color: var(--color-text);
+  color: var(--color-white);
+  font-weight: 700;
+  font-size: 1.313rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-ok:hover {
+  color: var(--color-white);
+  background-color: var(--color-focus-strong);
+  font-weight: 700;
+  font-size: 1.313rem;
 }
