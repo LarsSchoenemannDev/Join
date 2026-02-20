@@ -1,14 +1,14 @@
 /* Responsive */
 @media (max-width: 1424px) {
-  .board-container{
-   padding-left: 18px;
-   padding-top: 80px;
-   padding-right: 18px;
+  .board-container {
+    padding-left: 18px;
+    padding-top: 80px;
+    padding-right: 18px;
   }
   .board {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px
+    gap: 24px;
   }
 
   .cardsContainer {
@@ -26,7 +26,7 @@
     align-items: center;
     width: clamp(180px, 16vw, 320px);
   }
-  .in-progress{
+  .in-progress {
     width: clamp(180px, 16vw, 320px);
   }
 }
@@ -42,7 +42,8 @@
 }
 
 @media (max-width: 1065px) {
-  body {}
+  body {
+  }
 
   .board {
     grid-template-columns: repeat(1, 1fr);
@@ -105,8 +106,24 @@
     font-size: 48px;
   }
 
+  .detail-card {
+    max-width: 400px;
+    min-width: 350px;
+  }
+
   .button-task {
     width: 40px;
     height: 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .board-header h1 {
+    font-size: 40px;
+  }
+
+  .detail-card {
+    max-width: 320px;
+    min-width: 280px;
   }
 }
