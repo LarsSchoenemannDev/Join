@@ -105,18 +105,23 @@ function maincardHTML(contentId, tasks) {
  */
 function renderTaskContact(contacts = [], maxVisible = 4) {
   let html = "";
-  const checkedContacts = contacts.filter((c) => c.checked);
+  const checkedContacts = contacts.filter(c => c.checked);
   const totalChecked = checkedContacts.length;
   for (let i = 0; i < checkedContacts.length; i++) {
     if (i < maxVisible) {
-      html += letterInitials(checkedContacts[i]);
+      html += renderContactAvatarHTML(checkedContacts[i]);
     } else if (i === maxVisible) {
       const remaining = totalChecked - maxVisible;
-      html += letterInitialsMax(remaining);
+      html += `
+        <div class="avatar" style="background-color: #ffffff; color: #2a3647;">
+          +${remaining}
+        </div>
+      `;
     }
   }
   return html;
 }
+
 /**
  * Normalizes priority values and returns a CSS state string.
  * @param {string|string[]} priority

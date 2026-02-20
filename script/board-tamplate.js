@@ -439,12 +439,12 @@ function renderTasksHTML(task, id) {
  * @param {{color: string, initials: string}} contact
  * @returns {string}
  */
-// function renderContactAvatarHTML(contact) {
-//   return `<div class="avatar" style="background-color:${contact.color}">
-//       ${contact.initials}
-//     </div>
-//     `;
-// }
+function renderContactAvatarHTML(contact) {
+  return `<div class="avatar" style="background-color:${contact.color}">
+      ${contact.initials}
+    </div>
+    `;
+}
 
 /**
  * Builds HTML for a single subtask item in the details view.
