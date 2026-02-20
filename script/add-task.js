@@ -629,6 +629,17 @@ function bindAddTaskListeners(root = document) {
   root.addEventListener("keydown", handleGlobalKeyDown);
 }
 
+function unbindAddTaskListeners(root = document) {
+  if (!addTaskListenersBound) return;
+  addTaskListenersBound = false;
+
+  root.removeEventListener("click", handleGlobalClick);
+  root.removeEventListener("input", handleGlobalInput);
+  root.removeEventListener("focusin", handleGlobalFocusIn);
+  root.removeEventListener("focusout", handleGlobalFocusOut);
+  root.removeEventListener("keydown", handleGlobalKeyDown);
+}
+
 function handleGlobalClick(e) {
   const activeOverlay = getActiveOverlay();
 
