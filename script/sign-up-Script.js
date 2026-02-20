@@ -165,19 +165,20 @@ async function nameValidation() {
 
   if (!name) {
     showErrorMessage("Name cannot be empty.");
-    nameInput.value = "";
     nameInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
 
   if (/[0-9]/.test(name)) {
     showErrorMessage("Name cannot contain numbers.");
+    nameInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     // nameInput.value = name.replace(/[0-9]/g, "");
     return false;
   }
 
   const isNameAvailable = await existingNameValidation();
   if (!isNameAvailable) {
+    nameInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
 
