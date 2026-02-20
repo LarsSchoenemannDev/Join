@@ -126,7 +126,7 @@ function loadAddTaskFormIntoOverlay() {
                     </label>
                     <button type="button" id="categoryBtn"
                       class="input-styling input-icon-arrow-down custom-select-select input-Required"
-                      onclick="toggleCategory(),onblur=categorySelectorCheck()" >
+                      onclick="toggleCategory()" onblur="categorySelectorCheck()">
                       Select task category
                     </button>
                     <div id="selectCategory" class="dropdown">
