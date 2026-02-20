@@ -251,14 +251,12 @@ async function contactEmailValidation() {
 
   if (!contactEmail) {
     contactErrorMsg("Email cannot be empty.");
-    contactEmailInput.value = "";
     contactEmailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
 
   if (!emailRegex.test(contactEmail)) {
     contactErrorMsg("Please enter a valid email address.");
-    contactEmailInput.value = "";
     contactEmailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
@@ -291,7 +289,6 @@ async function existingEmailValidation() {
       )
     ) {
       contactErrorMsg("This email already exists.");
-      emailInput.value = "";
       emailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
       return false;
     }
@@ -324,16 +321,9 @@ async function contactNameValidation() {
 
   if (!contactName) {
     contactErrorMsg("Name cannot be empty.");
-    nameInput.value = "";
     nameInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
-
-  //   if (/[0-9]/.test(contactName)) {
-  //     contactErrorMsg("Name cannot contain numbers.");
-  //     nameInput.value = contactName.replace(/[0-9]/g, "");
-  //     return false;
-  //   }
 
   const isNameAvailable = await existingNameValidation();
   if (!isNameAvailable) {
@@ -364,7 +354,6 @@ async function existingNameValidation() {
       )
     ) {
       contactErrorMsg("Contact with this name already exists.");
-      nameInput.value = "";
       nameInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
       return false;
     }
@@ -383,14 +372,12 @@ function contactPhoneValidation() {
 
   if (!contactPhone) {
     contactErrorMsg("Phone number cannot be empty.");
-    phoneInput.value = "";
     phoneInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
 
   if (!phoneRegex.test(contactPhone)) {
     contactErrorMsg("Invalid phone number format.");
-    phoneInput.value = "";
     phoneInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }

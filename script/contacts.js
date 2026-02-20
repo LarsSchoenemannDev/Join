@@ -13,7 +13,7 @@ const contactAlphabet = document.querySelector(
   ".contacts .contact-list .contact-list-items .contact-alphabet",
 );
 const cancelBtn = document.getElementById("cancelBtn");
-const createContactBtn = document.getElementById("createContactBtn");
+
 const nameInput = document.getElementById("name_input");
 const emailInput = document.getElementById("email_input");
 const phoneInput = document.getElementById("phone_input");
@@ -425,19 +425,21 @@ async function addNewContact() {
   const contactName = document.getElementById("name_input").value.trim();
   const contactEmail = document.getElementById("email_input").value.trim();
   const contactPhone = document.getElementById("phone_input").value.trim();
-  // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  // if (!emailRegex.test(newContact.email)) {
-  //   alert("Please enter a valid email address");
-  //   return;
-  // }
+
   if (!contactName || !contactEmail || !contactPhone) {
     contactErrorMsg("Please fill in all fields");
-
     return;
   }
+
+  // Validate the form
+  const isValid = await validateContactForm();
+  if (!isValid) {
+    contactErrorMsg("Contact cannot be created. Please check your data.");
+    return;
+  }
+
   if (newContact.name && newContact.email && newContact.phone) {
     try {
-      await validateContactForm();
       await saveContact(newContact);
       await loadDataBase();
       await createContactList();
@@ -459,7 +461,7 @@ async function addNewContact() {
  * triggers slide-in animation
  * clears input fields, so it will be empty when opened
  */
-function openPopupOverlay() {
+async function openPopupOverlay() {
   addContactPopup.innerHTML = renderAddContactTemplate();
   const overlay = addContactPopup.querySelector(".add-contact-overlay");
   addContactPopup.classList.remove("d-none");
