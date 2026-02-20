@@ -275,7 +275,7 @@ function taskPopupEditMode(task, id) {
                     <label for="title">
                       Title<span class="required">*</span>
                     </label>
-                    <input id="title" type="text" class="input-Required" oninput="titleDuplicateCheck()" value=${task.title}>
+                    <input id="title" type="text" class="input-Required input-text" oninput="titleDuplicateCheck()" value=${task.title}>
                     <div class="invalid-feedback">This field is required.</div>
                   </div>
           <div class="field">
