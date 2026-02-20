@@ -336,7 +336,7 @@ function confirmPasswordValidation() {
     confirmPasswordInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
-  if (password === confirmPassword) {
+  if (confirmPassword.length >= 6 && password === confirmPassword) {
     errorMsg.style.visibility = "hidden";
     confirmPasswordInput.parentElement.style.borderColor = "#29abe2";
     checkboxAcceptance.style.visibility = policyCheckbox.checked
