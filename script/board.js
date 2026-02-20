@@ -537,13 +537,10 @@ function editTaskOnBoard(id) {
     const task = fetchData?.tasks?.[id];
     const overlay = document.getElementById("taskDetailsOverlay");
     if (!task || !overlay) return;
-
     loadEditState(task);
     overlay.innerHTML = taskPopupEditMode(task, id);
     overlay.style.display = "flex";
     document.body.style.overflow = "hidden";
-
-    bindAddTaskListeners(document);
     renderContact();
     assignedToLettersCheckContact();
     renderSubtasksDetailsEdit(id); // Renders subtasks into #SubtaskList
@@ -551,6 +548,7 @@ function editTaskOnBoard(id) {
     console.error("Error opening task edit mode:", error);
     document.body.style.overflow = "auto";
   }
+  bindAddTaskListeners(document);
 }
 
 /**

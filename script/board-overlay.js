@@ -20,6 +20,7 @@ async function openAddTaskOverlay() {
     console.error("Error opening Add Task overlay:", error);
     document.body.style.overflow = "auto";
   }
+  bindAddTaskListeners(document);
 }
 
 /**
@@ -32,6 +33,7 @@ function closeAddTaskOverlay() {
   overlay.style.display = "none";
   document.body.style.overflow = "auto";
   clearInputs();
+  renderBoard();
 }
 
 /**
@@ -54,6 +56,7 @@ function closeTaskDetailsOverlay() {
   wrapper.innerHTML = "";
   document.body.style.overflow = "auto";
   renderBoard();
+
 }
 
 /**
@@ -85,4 +88,5 @@ if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initOverlayClickHandlers);
 } else {
   initOverlayClickHandlers();
+  unbindAddTaskListeners();
 }
