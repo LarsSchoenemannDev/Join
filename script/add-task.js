@@ -308,11 +308,11 @@ function saveSubtaskEdit(i) {
   }
   if (!subEdit) return;
   const newValue = subEdit.value.trim();
-if (newValue === '') {
-  subTaskInput.splice(i, 1); 
-  renderSubtasks();
-  return;
-}
+  if (newValue === '') {
+    subTaskInput.splice(i, 1);
+    renderSubtasks();
+    return;
+  }
   subTaskInput[i] = newValue;
   renderSubtasks();
 }
@@ -460,12 +460,14 @@ function categorySelectorCheck() {
   const errorFeedBack = document.getElementById("errorCategory");
   if (!button || !errorFeedBack) return;
   if (valid.category) {
-    button.classList.remove("input-error");
     button.classList.add("input-focus");
     errorFeedBack.style.visibility = "hidden";
+    button.classList.remove("input-error")
   } else {
-    button.classList.add("input-error");
+    button.classList.remove("input-focus");
     errorFeedBack.style.visibility = "visible";
+    button.classList.add("input-error");
+
   }
 }
 
@@ -598,7 +600,7 @@ function titleDuplicateCheck() {
     let htmlFeedback = document.querySelector(".invalid-feedback");
     htmlFeedback.innerHTML = "Oops! That title is already in use. Try a different one?";
     htmlFeedback.style.visibility = "visible";
-  } 
+  }
 }
 
 /**
@@ -669,8 +671,7 @@ function handleGlobalClick(e) {
       categoryDropdown.contains(e.target) || categoryBtn.contains(e.target);
     if (!inside) {
       categoryDropdown.classList.remove("open");
-      categoryBtn.classList.remove("input-focus");
-      categoryBtn.classList.remove("input-error");
+      categoryBtn.classList.remove("input-focus");      
     }
   }
   if (typeof isValid === "function") isValid();
