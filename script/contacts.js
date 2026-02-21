@@ -440,7 +440,7 @@ async function addNewContact() {
 
   if (newContact.name && newContact.email && newContact.phone) {
     try {
-      createContactBtn.disabled = false;
+      // createContactBtn.disabled = false;
       await saveContact(newContact);
       await loadDataBase();
       await createContactList();

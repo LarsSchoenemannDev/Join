@@ -164,16 +164,12 @@ function closeEditContactOverlay() {
 
 /**
  * gets input values from shown contact data in floating contact card
- * @returns {object|null} editedName, editedEmail, editedPhone or null if validation fails
+ * @returns {object} editedName, editedEmail, editedPhone
  */
 function getEditedContactData() {
   const editedName = document.getElementById("nameInput").value.trim();
   const editedEmail = document.getElementById("emailInput").value.trim();
   const editedPhone = document.getElementById("phoneInput").value.trim();
-  if (!editedName || !editedEmail || !editedPhone) {
-    alert("Please fill in all fields");
-    return null;
-  }
   return { editedName, editedEmail, editedPhone };
 }
 
@@ -215,11 +211,30 @@ function findContactIdFromDisplayed() {
  * shows popup message on successful save
  */
 async function saveEditedContact() {
+  // Validate the form FIRST
+  const isValid = validateEditContactForm();
+  const isNameValid = editContactNameValidation();
+  const isEmailValid = editContactEmailValidation();
+  const isPhoneValid = editContactPhoneValidation();
+  if (!isValid) {
+    if (!isNameValid) {
+      editContactErrorMsg("Name cannot be empty.");
+      return;
+    }
+    if (!isEmailValid) {
+      editContactErrorMsg("please check Email input data.");
+      return;
+    }
+    if (!isPhoneValid) {
+      editContactErrorMsg("please check Phone input data.");
+      return;
+    }
+  }
+
   const editedData = getEditedContactData();
-  if (!editedData) return;
   const contactId = findContactIdFromDisplayed();
   if (!contactId) {
-    alert("Contact not found");
+    editContactErrorMsg("Contact not found");
     return;
   }
   const initials = getInitials(editedData.editedName);
@@ -311,6 +326,74 @@ function contactErrorMsg(message) {
   ErrorMsgBox.textContent = message;
 }
 
+function editContactEmailValidation() {
+  const contactEmail = document
+    .getElementById("emailInput")
+    .value.trim()
+    .toLowerCase();
+  const contactEmailInput = document.getElementById("emailInput");
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const ErrorMsgBox = document.getElementById("editValidationErrorMsg");
+
+  if (!contactEmail) {
+    editContactErrorMsg("Email cannot be empty.");
+    contactEmailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
+    return false;
+  }
+
+  if (!emailRegex.test(contactEmail)) {
+    editContactErrorMsg("Please enter a valid email address.");
+    contactEmailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
+    return false;
+  }
+  // const isEmailAvailable = await editExistingEmailValidation();
+  // if (!isEmailAvailable) {
+  //   return false;
+  // }
+
+  contactEmailInput.parentElement.style.borderColor = "#ccc";
+  if (ErrorMsgBox) {
+    ErrorMsgBox.style.visibility = "hidden";
+  }
+  return true;
+}
+
+/**
+ * an async function which checks if the email is already registered in Firebase by fetching the existing user emails and comparing them with the input email. If the email is already registered, it shows an error message and clears the input field.
+ * @returns {Promise<boolean>} Returns true if email is available, false if already exists
+ */
+// async function editExistingEmailValidation() {
+//   const contactEmail = document
+//     .getElementById("emailInput")
+//     .value.trim()
+//     .toLowerCase();
+//   const emailInput = document.getElementById("emailInput");
+
+//   try {
+//     const existingContactEmails = await fetchExistingContactEmail();
+//     if (
+//       existingContactEmails.find(
+//         (existingEmail) => existingEmail.toLowerCase() === contactEmail,
+//       )
+//     ) {
+//       editContactErrorMsg("This email already exists.");
+//       emailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
+//       return false;
+//     }
+//     return true;
+//   } catch (error) {
+//     console.error("Error validating email:", error);
+//     // Bei Fehler: Allow registration (fail-safe)
+//     return true;
+//   }
+// }
+
+function editContactErrorMsg(message) {
+  const ErrorMsgBox = document.getElementById("editValidationErrorMsg");
+  ErrorMsgBox.style.visibility = "visible";
+  ErrorMsgBox.textContent = message;
+}
+
 /**
  * a name validation function which checks if the name input is empty.
  * @returns {boolean} - Returns true if the name is valid, false otherwise.
@@ -392,11 +475,121 @@ function contactPhoneValidation() {
   return true;
 }
 
+function editContactNameValidation() {
+  const contactName = document
+    .getElementById("nameInput")
+    .value.trim()
+    .toLowerCase();
+  const nameInput = document.getElementById("nameInput");
+  const ErrorMsgBox = document.getElementById("editValidationErrorMsg");
+
+  if (!contactName) {
+    editContactErrorMsg("Name cannot be empty.");
+    nameInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
+    return false;
+  }
+
+  nameInput.parentElement.style.borderColor = "#ccc";
+  if (ErrorMsgBox) {
+    ErrorMsgBox.style.visibility = "hidden";
+  }
+  return true;
+}
+
+/**
+ * an async function which checks if the contact name is already exists in Firebase by fetching the existing contact names and comparing them with the input name. If the contact name is already exists, it shows an error message and clears the input field.
+ * @returns {Promise<boolean>} Returns true if name is available, false if already taken
+ */
+async function editExistingNameValidation() {
+  const contactName = document
+    .getElementById("nameInput")
+    .value.trim()
+    .toLowerCase();
+  const nameInput = document.getElementById("nameInput");
+
+  try {
+    const existingUserNames = await fetchExistingContactName();
+    if (
+      existingUserNames.find(
+        (existingName) => existingName.toLowerCase() === contactName,
+      )
+    ) {
+      editContactErrorMsg("Contact with this name already exists.");
+      nameInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error("Error validating name:", error);
+    return true;
+  }
+}
+
+function editContactPhoneValidation() {
+  const contactPhone = document.getElementById("phoneInput").value.trim();
+  const phoneInput = document.getElementById("phoneInput");
+  const phoneRegex = /^\+?[0-9\s\-()]{7,}$/;
+  const ErrorMsgBox = document.getElementById("editValidationErrorMsg");
+
+  if (!contactPhone) {
+    editContactErrorMsg("Phone number cannot be empty.");
+    phoneInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
+    return false;
+  }
+
+  if (!phoneRegex.test(contactPhone)) {
+    editContactErrorMsg("Invalid phone number format.");
+    phoneInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
+    return false;
+  }
+
+  phoneInput.parentElement.style.borderColor = "#ccc";
+  if (ErrorMsgBox) {
+    ErrorMsgBox.style.visibility = "hidden";
+  }
+  return true;
+}
+
 async function validateContactForm() {
+  // Hide error message before validation
+  const ErrorMsgBox = document.getElementById("validationErrorMsg");
+  if (ErrorMsgBox) {
+    ErrorMsgBox.style.visibility = "hidden";
+  }
+
+  // Execute all validations
   const isNameValid = await contactNameValidation();
   const isEmailValid = await contactEmailValidation();
   const isPhoneValid = contactPhoneValidation();
-  return isNameValid && isEmailValid && isPhoneValid;
+
+  // If all valid, hide error box
+  const allValid = isNameValid && isEmailValid && isPhoneValid;
+  if (allValid && ErrorMsgBox) {
+    ErrorMsgBox.style.visibility = "hidden";
+  }
+
+  return allValid;
+}
+
+function validateEditContactForm() {
+  // Hide error message before validation
+  const ErrorMsgBox = document.getElementById("editValidationErrorMsg");
+  if (ErrorMsgBox) {
+    ErrorMsgBox.style.visibility = "hidden";
+  }
+
+  // Execute all validations
+  const isNameValid = editContactNameValidation();
+  const isEmailValid = editContactEmailValidation();
+  const isPhoneValid = editContactPhoneValidation();
+
+  // If all valid, hide error box
+  const allValid = isNameValid && isEmailValid && isPhoneValid;
+  if (allValid && ErrorMsgBox) {
+    ErrorMsgBox.style.visibility = "hidden";
+  }
+
+  return allValid;
 }
 
 const editContactPopupEl = document.querySelector(".edit-contact-popup");
