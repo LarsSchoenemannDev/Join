@@ -31,40 +31,6 @@ function updateIcon() {
 }
 
 /**
- * validate input fields for email and password
- * @param {*String} input
- *
- */
-function validateInput(input) {
-  let isValid = true;
-
-  if (input.value.trim() === "") {
-    isValid = false;
-  }
-
-  if (input.type === "email") {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(input.value)) {
-      isValid = false;
-    }
-  }
-
-  if (input.type === "password") {
-    if (input.value.length < 6) {
-      isValid = false;
-    }
-  }
-
-  if (isValid) {
-    errorMsg.classList.add("d-none");
-    input.classList.remove("error");
-  } else {
-    input.classList.add("error");
-  }
-  return isValid;
-}
-
-/**
  *  function to show the logo animation on page load
  */
 async function loadImageSequence() {
@@ -77,8 +43,6 @@ async function loadImageSequence() {
     container.style.display = "none";
     document.querySelector(".logo").style.visibility = "visible";
   }, 1500);
-
-  // await new Promise((resolve) => setTimeout(resolve, 2000));
 }
 
 window.addEventListener("load", loadImageSequence);
@@ -90,32 +54,104 @@ function goToSignUp() {
 }
 
 /**
- * Function to check screen size and start login animation in mobile view max-width 991px
- * Called on page load in index.html
+ * a function which checks the password input for empty value, spaces and minimum length of 6 characters
+ * @returns boolean
  */
+function valildatePassword() {
+  const password = document.getElementById("password").value;
+  const passwordErrorMsg = document.getElementById("passwordErrorMsg");
+  const passwordInput = document.getElementById("password");
+  passwordErrorMsg.style.visibility = "hidden";
+  passwordInput.classList.remove("error");
 
-// function animateLoginMobile() {
-//   const checkqueries = window.matchMedia("(max-width: 991px)");
-//   if (checkqueries.matches) {
-//     startAnimateLoginMobile();
-//   } else {
-//     loadImageSequence();
+  if (!password || !password.trim()) {
+    passwordErrorMsg.style.visibility = "visible";
+    passwordErrorMsg.textContent = "password cannot be empty.";
+    passwordInput.classList.add("error");
+    return false;
+  }
+
+  if (/\s/.test(password)) {
+    passwordErrorMsg.style.visibility = "visible";
+    passwordErrorMsg.textContent = "Password cannot contain spaces.";
+    passwordInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
+    passwordInput.classList.add("error");
+    return false;
+  }
+
+  if (password.length < 6) {
+    passwordErrorMsg.style.visibility = "visible";
+    passwordErrorMsg.textContent =
+      "Password must be at least 6 characters long.";
+    passwordInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
+    passwordInput.classList.add("error");
+    return false;
+  }
+
+  passwordErrorMsg.style.visibility = "hidden";
+  passwordInput.classList.remove("error");
+  passwordInput.parentElement.style.borderColor = "#ccc";
+  return true;
+}
+
+/**
+ * a function which checks the email input for empty value and valid email format
+ * @returns boolean
+ */
+function validateEmail() {
+  const email = document.getElementById("email").value.trim();
+  const emailErrorMsg = document.getElementById("emailErrorMsg");
+  const emailInput = document.getElementById("email");
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!email) {
+    emailErrorMsg.style.visibility = "visible";
+    emailErrorMsg.textContent = "email cannot be empty.";
+    emailInput.classList.add("error");
+    return false;
+  }
+  if (!emailPattern.test(email)) {
+    emailErrorMsg.style.visibility = "visible";
+    emailErrorMsg.textContent = "Please enter a valid email address.";
+    emailInput.classList.add("error");
+    return false;
+  } else {
+    emailErrorMsg.style.visibility = "hidden";
+    emailInput.classList.remove("error");
+    return true;
+  }
+}
+
+/**
+ * validate input fields for email and password
+ * @param {*String} input
+ *
+ */
+// function validateInput(input) {
+//   let isValid = true;
+
+//   if (input.value.trim() === "") {
+//     isValid = false;
 //   }
-// }
 
-// function startAnimateLoginMobile() {
-//   const animateImage = document.getElementById("animate-image");
-//   const animationBackground = document.querySelector(".bgAnimationMobile");
-//   const bodyDiv = document.getElementById("login-page-div");
+//   if (input.type === "email") {
+//     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//     if (!emailPattern.test(input.value)) {
+//       isValid = false;
+//     }
+//   }
 
-//   bodyDiv.style.display = "none";
-//   animationBackground.classList.add("animate-bg-mobile");
-//   animationBackground.style.display = "block";
-//   animateImage.classList.add("animate-logo-mobile");
+//   if (input.type === "password") {
+//     if (input.value.length < 6) {
+//       isValid = false;
+//     }
+//   }
 
-//   setTimeout(() => {
-//     animationBackground.classList.remove("animate-bg-mobile");
-//     animationBackground.style.display = "none";
-//     bodyDiv.style.display = "block";
-//   }, 1000);
+//   if (isValid) {
+//     errorMsg.classList.add("d-none");
+//     input.classList.remove("error");
+//   } else {
+//     input.classList.add("error");
+//   }
+//   return isValid;
 // }

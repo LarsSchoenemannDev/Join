@@ -133,7 +133,7 @@
 
 .input-group {
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .input-group input {
@@ -159,6 +159,7 @@
   font-size: 14px;
   margin-bottom: 15px;
   visibility: hidden;
+  text-align: left;
 }
 
 /* .error-msg.d-none {
