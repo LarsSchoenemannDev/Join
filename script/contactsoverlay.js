@@ -222,10 +222,15 @@ async function saveEditedContact() {
     alert("Contact not found");
     return;
   }
+  const initials = getInitials(editedData.editedName);
+  const contactColor = fetchedData[contactId].color;
   const updatedContact = {
     name: editedData.editedName,
     email: editedData.editedEmail,
     phone: editedData.editedPhone,
+    initials: initials,
+    color: contactColor,
+    checked: false,
   };
   try {
     await updateContactInFirebase(contactId, updatedContact);
