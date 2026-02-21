@@ -546,6 +546,10 @@ main {
     font-size: 32px;
     font-weight: 600;
   }
+
+  .floating-contact {
+    animation: none;
+  } 
 }
 
 @media (max-width: 450px) {
