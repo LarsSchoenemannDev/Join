@@ -207,7 +207,7 @@ function renderEditContactTemplate(name, email, phone, contactColor, initials) {
 
                     <div class="contactForm">
                       <div class="inputContainer">
-                        <input type="text" placeholder="Name" id="nameInput" value="${name}" />
+                        <input type="text" placeholder="Name" id="nameInput" value="${name}" onblur="editContactNameValidation()" />
                         <img
                           src="../assets/img/add-contact-person-icon.svg"
                           alt=""
@@ -219,6 +219,7 @@ function renderEditContactTemplate(name, email, phone, contactColor, initials) {
                           placeholder="Email"
                           id="emailInput"
                           value="${email}"
+                          onblur="editContactEmailValidation()"
                         />
                         <img
                           src="../assets/img/add-contact-mail-icon.svg"
@@ -231,12 +232,15 @@ function renderEditContactTemplate(name, email, phone, contactColor, initials) {
                           placeholder="Phone"
                           id="phoneInput"
                           value="${phone}"
+                          onblur="editContactPhoneValidation()"
                         />
                         <img
                           src="../assets/img/add-contact-call-icon.svg"
                           alt=""
                         />
                       </div>
+
+                      <div id="editValidationErrorMsg"></div>
 
                       <div class="edit-contact-buttons">
                         <button
