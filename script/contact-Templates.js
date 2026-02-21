@@ -114,6 +114,9 @@ function renderAddContactTemplate() {
                           alt=""
                         />
                       </div>
+
+                      <div class="contactValidationErrorMsg" id="contactnameErrorMsg">Name cannot be empty</div>
+
                       <div class="inputContainer">
                         <input
                           type="email"
@@ -127,6 +130,9 @@ function renderAddContactTemplate() {
                           alt=""
                         />
                       </div>
+
+                       <div class="contactValidationErrorMsg" id="contactemailErrorMsg">Email cannot be empty</div>
+
                       <div class="inputContainer">
                         <input
                           type="tel"
@@ -141,7 +147,7 @@ function renderAddContactTemplate() {
                         />
                       </div>
 
-                      <div id="validationErrorMsg"></div>
+                       <div class="contactValidationErrorMsg" id="contactphoneErrorMsg">Phone cannot be empty</div>
 
                       <div class="add-contact-buttons">
                         <button

@@ -462,7 +462,7 @@ async function addNewContact() {
  * triggers slide-in animation
  * clears input fields, so it will be empty when opened
  */
-async function openPopupOverlay() {
+function openPopupOverlay() {
   addContactPopup.innerHTML = renderAddContactTemplate();
   const overlay = addContactPopup.querySelector(".add-contact-overlay");
   addContactPopup.classList.remove("d-none");
