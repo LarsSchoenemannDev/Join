@@ -143,6 +143,7 @@ h1 {
 
 .drop-target {
   background-color: var(--color-drop-bg);
+  border-radius: 30px;
   outline: 2px dashed var(--color-drop-outline);
   outline-offset: -4px;
   z-index: 30;
