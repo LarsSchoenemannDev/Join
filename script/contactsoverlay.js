@@ -331,7 +331,11 @@ async function existingEmailValidation() {
         (existingEmail) => existingEmail.toLowerCase() === contactEmail,
       )
     ) {
-      contactErrorMsg("This email already exists.");
+      const errorMsg = document.getElementById("contactemailErrorMsg");
+      if (errorMsg) {
+        errorMsg.style.visibility = "visible";
+        errorMsg.textContent = "Contact with this email already exists.";
+      }
       emailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
       return false;
     }
@@ -343,11 +347,11 @@ async function existingEmailValidation() {
   }
 }
 
-function contactErrorMsg(message) {
-  const ErrorMsgBox = document.getElementById("validationErrorMsg");
-  ErrorMsgBox.style.visibility = "visible";
-  ErrorMsgBox.textContent = message;
-}
+// function contactErrorMsg(message) {
+//   const ErrorMsgBox = document.getElementById("validationErrorMsg");
+//   ErrorMsgBox.style.visibility = "visible";
+//   ErrorMsgBox.textContent = message;
+// }
 
 function editContactEmailValidation() {
   const contactEmail = document

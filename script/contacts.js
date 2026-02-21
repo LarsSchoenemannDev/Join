@@ -387,7 +387,6 @@ async function getDataToMakeNewContact() {
 
   if (!nameInputField || !emailInputField || !phoneInputField) {
     console.error("Input fields not found in DOM");
-    alert("Error: Form fields not available");
     return;
   }
   const newContact = {
@@ -426,21 +425,39 @@ async function addNewContact() {
   const contactEmail = document.getElementById("email_input").value.trim();
   const contactPhone = document.getElementById("phone_input").value.trim();
 
+  const errorMsg = document.querySelectorAll(".contactValidationErrorMsg");
+  if (errorMsg) {
+    errorMsg.forEach((msgBox) => {
+      msgBox.style.visibility = "hidden";
+    });
+  }
+
+  // Check if fields are empty
   if (!contactName || !contactEmail || !contactPhone) {
-    contactErrorMsg("Please fill in all fields");
+    if (errorMsg) {
+      errorMsg.forEach((msgBox) => {
+        msgBox.style.visibility = "visible";
+        msgBox.textContent = "Please fill in all fields.";
+      });
+    }
     return;
   }
 
   // Validate the form
   const isValid = await validateContactForm();
   if (!isValid) {
-    contactErrorMsg("Contact cannot be created. Please check your data.");
+    if (errorMsg) {
+      errorMsg.forEach((msgBox) => {
+        msgBox.style.visibility = "visible";
+        msgBox.textContent = "Please check your data and try again.";
+      });
+    }
     return;
   }
 
+  // Save contact if all validations pass
   if (newContact.name && newContact.email && newContact.phone) {
     try {
-      // createContactBtn.disabled = false;
       await saveContact(newContact);
       await loadDataBase();
       await createContactList();
@@ -451,7 +468,8 @@ async function addNewContact() {
       alert("Failed to add contact. Please try again.");
     }
   } else {
-    contactErrorMsg("Please fill in all fields");
+    console.error("Contact data incomplete:", newContact);
+    alert("Error: Contact data is incomplete");
   }
 }
 
