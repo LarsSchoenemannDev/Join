@@ -86,8 +86,6 @@ async function fetchExistingUserEmail() {
     return [];
   }
 }
-fetchExistingUserEmail();
-fetchExistingUserName();
 
 /**
  * Function to show a success message after signing up
@@ -101,8 +99,26 @@ function showSuccessMessage() {
  * function to show an error message if registration fails
  * @param {String} message
  */
-function showErrorMessage(message) {
-  const errorMsg = document.getElementById("error-message");
+function nameErrorMessage(message) {
+  const errorMsg = document.getElementById("name-error-message");
+  errorMsg.textContent = message;
+  errorMsg.style.visibility = "visible";
+}
+
+function emailErrorMessage(message) {
+  const errorMsg = document.getElementById("email-error-message");
+  errorMsg.textContent = message;
+  errorMsg.style.visibility = "visible";
+}
+
+function passwordErrorMessage(message) {
+  const errorMsg = document.getElementById("password-error-message");
+  errorMsg.textContent = message;
+  errorMsg.style.visibility = "visible";
+}
+
+function confirmPasswordErrorMessage(message) {
+  const errorMsg = document.getElementById("confirmpassword-error-message");
   errorMsg.textContent = message;
   errorMsg.style.visibility = "visible";
 }
@@ -113,8 +129,10 @@ function showErrorMessage(message) {
 function resetPageDefaults() {
   const form = document.getElementById("signupForm");
   form.reset();
-  const errorMsg = document.getElementById("error-message");
-  errorMsg.style.visibility = "hidden";
+  const errorMsgs = document.querySelectorAll(".error-message");
+  errorMsgs.forEach((errorMsg) => {
+    errorMsg.style.visibility = "hidden";
+  });
   UpdateIcon(passwordInput, iconPasswordDivMain);
   UpdateIcon(passwordConfirm, iconPasswordDivConfirm);
 }

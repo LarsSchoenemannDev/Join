@@ -240,7 +240,7 @@ button:disabled {
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 6px 16px;
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 /* .input-icon svg {
@@ -399,7 +399,7 @@ button:disabled {
   color: rgba(230, 0, 38, 1);
   font-weight: 400;
   font-size: 16px;
-  margin-top: 20px;
+  margin-top: 8px;
   visibility: hidden;
 }
 

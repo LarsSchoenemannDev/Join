@@ -83,6 +83,12 @@
               </svg> -->
             </div>
 
+            <!-- Name Error Message-->
+
+            <div class="error-message" id="name-error-message">
+              Name shall not be empty.
+            </div>
+
             <div class="input-icon">
               <input
                 type="email"
@@ -102,6 +108,12 @@
                   fill="#A8A8A8"
                 />
               </svg> -->
+            </div>
+
+            <!-- Email Error Message-->
+
+            <div class="error-message" id="email-error-message">
+              Email shall not be empty.
             </div>
 
             <div class="input-icon">
@@ -126,12 +138,19 @@
               </div>
             </div>
 
+            <!-- Password Error Message-->
+
+            <div class="error-message" id="password-error-message">
+              Password should contain atleast 6 characters.
+            </div>
+
             <div class="input-icon" id="confirm-password-container">
               <input
                 type="password"
                 id="signup-confirm-password"
                 placeholder="Confirm Passwort"
                 oninput="confirmPasswordValidation()"
+                onblur="nullConfirmationPasswordValidation()"
               />
 
               <div
@@ -152,9 +171,9 @@
               </div>
             </div>
 
-            <!-- Error Message-->
+            <!-- Confirm Password Error Message-->
 
-            <div class="error-message" id="error-message">
+            <div class="error-message" id="confirmpassword-error-message">
               Your passwords don't match. Please try again.
             </div>
             <div class="checkbox-group">
