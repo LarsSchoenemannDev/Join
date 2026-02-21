@@ -15,7 +15,7 @@
   --color-seperator: rgba(209, 209, 209, 1);
 
   --color-progress: #4589ff;
-  --color-hover: #29ABE2; 
+  --color-hover: #29ABE2;
 
   --color-overlay-close: #666;
   --color-overlay-close-hover: #333;
@@ -121,7 +121,8 @@ h1 {
   align-content: center;
   gap: var(--space-8);
 }
-.button-task:hover{
+
+.button-task:hover {
   background-color: var(--color-hover)
 }
 
@@ -398,27 +399,13 @@ taskDetailsOverlay {
 .overlay-body-task {
   padding: 30px;
   background-color: var(--color-white);
-    animation: popup-in 1000ms ease forwards;
 }
-
-@keyframes popup-in {
-  from {
-    opacity: 0;
-    transform: translateZ(360px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 
 .add-task-content {
   padding: 0;
 }
 
-.plus{
+.plus {
   cursor: pointer;
 }
 
@@ -610,7 +597,7 @@ taskDetailsOverlay {
   justify-content: center;
   align-items: center;
   z-index: 10;
-  background-color: rgba(0, 0, 0, 0.2) !important;  
+  background-color: rgba(0, 0, 0, 0.2) !important;
 }
 
 .edit-header {
