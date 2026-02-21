@@ -2,7 +2,7 @@ const submitBtn = document.getElementById("submit_button");
 const policyCheckbox = document.getElementById("privacy");
 const inputFields = document.querySelectorAll(".input-icon input");
 const signupForm = document.getElementById("signupForm");
-const errorMsg = document.getElementById("error-message");
+// const errorMsg = document.getElementById("error-message");
 const checkboxAcceptance = document.getElementById("signupCheckedMsg");
 
 /**
@@ -24,9 +24,22 @@ submitBtn.disabled = !policyCheckbox.checked;
 policyCheckbox.addEventListener("change", async () => {
   if (policyCheckbox.checked) {
     const isValid = await signupValidation();
-    submitBtn.disabled = !isValid;
+    if (isValid) {
+      // Form is valid, checkbox is checked - enable submit
+      submitBtn.disabled = false;
+      checkboxAcceptance.style.visibility = "hidden";
+    } else {
+      // Form is NOT valid - uncheck and show validation message
+      policyCheckbox.checked = false;
+      submitBtn.disabled = true;
+      checkboxAcceptance.style.visibility = "visible";
+      checkboxAcceptance.textContent = "the form must be validated first.";
+    }
   } else {
+    // Checkbox unchecked - disable submit and show policy message
     submitBtn.disabled = true;
+    checkboxAcceptance.style.visibility = "visible";
+    checkboxAcceptance.textContent = "privacy policy must be accepted.";
   }
 });
 
@@ -76,11 +89,14 @@ async function signupValidation() {
       isPasswordValid &&
       isConfirmPasswordValid
     ) {
-      showErrorMessage("something went wrong. check the fields and try again.");
+      confirmPasswordErrorMessage(
+        "something went wrong. check the fields and try again.",
+      );
     }
     return false;
   } else {
     resetBorderColors();
+    const errorMsg = document.getElementById("confirmpassword-error-message");
     errorMsg.style.visibility = "hidden";
     return true;
   }
@@ -102,7 +118,7 @@ function nullCheckValidation() {
 
   if (!name || !email || !password || !confirmPassword) {
     inputBorderColorsRed();
-    showErrorMessage("Please fill in all fields.");
+    // showErrorMessage("Please fill in all fields.");
     return false;
   }
   return true;
@@ -164,13 +180,13 @@ async function nameValidation() {
   const nameInput = document.getElementById("signup-name");
 
   if (!name) {
-    showErrorMessage("Name cannot be empty.");
+    nameErrorMessage("Name cannot be empty.");
     nameInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
 
   if (/[0-9]/.test(name)) {
-    showErrorMessage("Name cannot contain numbers.");
+    nameErrorMessage("Name cannot contain numbers.");
     nameInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     // nameInput.value = name.replace(/[0-9]/g, "");
     return false;
@@ -182,6 +198,7 @@ async function nameValidation() {
     return false;
   }
 
+  const errorMsg = document.getElementById("name-error-message");
   errorMsg.style.visibility = "hidden";
   nameInput.parentElement.style.borderColor = "#ccc";
   return true;
@@ -205,9 +222,7 @@ async function existingNameValidation() {
         (existingName) => existingName.toLowerCase() === name,
       )
     ) {
-      showErrorMessage(
-        "This name is already taken. Please choose another one.",
-      );
+      nameErrorMessage("User with name already exists.");
       nameInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
       return false;
     }
@@ -231,15 +246,13 @@ async function emailValidation() {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!email) {
-    showErrorMessage("Email cannot be empty.");
-    emailInput.value = "";
+    emailErrorMessage("Email cannot be empty.");
     emailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
 
   if (!emailRegex.test(email)) {
-    showErrorMessage("Please enter a valid email address.");
-    // emailInput.value = "";
+    emailErrorMessage("Please enter a valid email address.");
     emailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
@@ -248,9 +261,9 @@ async function emailValidation() {
   if (!isEmailAvailable) {
     return false;
   }
-
-  emailInput.parentElement.style.borderColor = "#ccc";
+  const errorMsg = document.getElementById("email-error-message");
   errorMsg.style.visibility = "hidden";
+  emailInput.parentElement.style.borderColor = "#ccc";
   return true;
 }
 
@@ -272,10 +285,7 @@ async function existingEmailValidation() {
         (existingEmail) => existingEmail.toLowerCase() === email,
       )
     ) {
-      showErrorMessage(
-        "This email is already registered. Please use a different email.",
-      );
-      // emailInput.value = "";
+      emailErrorMessage("This email is already registered.");
       emailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
       return false;
     }
@@ -296,19 +306,19 @@ function passwordValidation() {
   const passwordInput = document.getElementById("signup-password");
 
   if (password.length < 6) {
-    showErrorMessage("Password must be at least 6 characters long.");
-    // passwordInput.value = "";
+    passwordErrorMessage("Password must be at least 6 characters long.");
     passwordInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
 
   if (/\s/.test(password)) {
-    showErrorMessage("Password cannot contain spaces.");
+    passwordErrorMessage("Password cannot contain spaces.");
     passwordInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
 
   // Password is valid
+  const errorMsg = document.getElementById("password-error-message");
   errorMsg.style.visibility = "hidden";
   passwordInput.parentElement.style.borderColor = "#ccc";
   return true;
@@ -326,29 +336,40 @@ function confirmPasswordValidation() {
   const confirmPasswordInput = document.getElementById(
     "signup-confirm-password",
   );
-  // if (!confirmPassword) {
-  //   showErrorMessage("please confirm your password.");
-  //   confirmPasswordInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
-  //   return false;
-  // }
+
   if (password !== confirmPassword) {
-    showErrorMessage("Your passwords don't match. Please try again.");
+    confirmPasswordErrorMessage(
+      "Your passwords don't match. Please try again.",
+    );
     confirmPasswordInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
   if (confirmPassword.length >= 6 && password === confirmPassword) {
+    const errorMsg = document.getElementById("confirmpassword-error-message");
     errorMsg.style.visibility = "hidden";
     confirmPasswordInput.parentElement.style.borderColor = "#29abe2";
-    checkboxAcceptance.style.visibility = policyCheckbox.checked
-      ? "hidden"
-      : "visible";
+    checkboxAcceptance.style.visibility = "visible";
+    checkboxAcceptance.textContent = "privacy policy must be accepted.";
+    // checkboxAcceptance.style.visibility = policyCheckbox.checked
+    //   ? "hidden"
+    //   : "visible";
     return true;
   }
-  // } else {
-  //   errorMsg.style.visibility = "hidden";
-  //   confirmPasswordInput.parentElement.style.borderColor = "#ccc";
-  //   return true;
-  // }
+}
+
+function nullConfirmationPasswordValidation() {
+  const confirmPassword = document
+    .getElementById("signup-confirm-password")
+    .value.trim();
+  const confirmPasswordInput = document.getElementById(
+    "signup-confirm-password",
+  );
+
+  if (!confirmPassword) {
+    confirmPasswordErrorMessage("please confirm your password.");
+    confirmPasswordInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
+    return false;
+  }
 }
 
 // function confirmPasswordValidationOnInput() {
@@ -398,7 +419,7 @@ async function signupRegistrationInFirebase() {
     }, 2000);
   } catch (error) {
     console.error("Registration error:", error);
-    showErrorMessage("Registration failed. Please try again.");
+    confirmPasswordErrorMessage("Registration failed. Please try again.");
     submitBtn.disabled = !policyCheckbox.checked;
     submitBtn.textContent = "Sign up";
   }
@@ -408,11 +429,11 @@ async function signupRegistrationInFirebase() {
  * function to show an error message if registration fails
  * @param {String} message
  */
-function showErrorMessage(message) {
-  const errorMsg = document.getElementById("error-message");
-  errorMsg.textContent = message;
-  errorMsg.style.visibility = "visible";
-}
+// function showErrorMessage(message) {
+//   const errorMsg = document.getElementById("error-message");
+//   errorMsg.textContent = message;
+//   errorMsg.style.visibility = "visible";
+// }
 
 /**
  * Toggles password visibility between hidden (type="password") and visible (type="text")
