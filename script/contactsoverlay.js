@@ -398,3 +398,19 @@ async function validateContactForm() {
   const isPhoneValid = contactPhoneValidation();
   return isNameValid && isEmailValid && isPhoneValid;
 }
+
+const editContactPopupEl = document.querySelector(".edit-contact-popup");
+
+editContactPopupEl.addEventListener("click", (e) => {
+  if (e.target === editContactPopupEl) {
+    closeEditContactOverlay();
+  }
+});
+
+const addContactPopupEl = document.querySelector(".add-contact-popup");
+
+addContactPopupEl.addEventListener("click", (e) => {
+  if (e.target === addContactPopupEl) {
+    closePopupOverlay();
+  }
+});
