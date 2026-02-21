@@ -96,7 +96,7 @@ main {
   justify-content: flex-start;
   align-items: center;
   /* gap: clamp(20px, 3vw, 35px); */
-  gap: 28px;
+  gap: 16px;
   border-radius: 10px;
   cursor: pointer;
   flex-grow: 1;
@@ -583,7 +583,8 @@ main {
   .contacts {
     width: 100%;
     margin-right: 0;
-    padding: clamp(12px, 4vw, 16px) clamp(16px, 4vw, 24px);
+    /* padding: 20px; */
+    /* padding: clamp(12px, 4vw, 16px) clamp(16px, 4vw, 24px); */
   }
   .contacts .contact-list {
     gap: 8px;
@@ -617,9 +618,7 @@ main {
   }
   .contacts .contact-list .contact-list-items .contact-container {
     padding: 16px 8px;
-    /* padding: 0; */
-    gap: 16px;
-    /* gap: clamp(20px, 4vw, 35px); */
+    gap: 8px;
   }
 
   .contacts
@@ -646,7 +645,7 @@ main {
     .contact-container
     .contactDetails
     .contactName {
-    font-size: 14px;
+    font-size: 16px;
     /* font-size: clamp(16px, 4vw, 20px); */
   }
   .contacts
