@@ -104,19 +104,12 @@ main {
 }
 
 .contacts .contact-list .contact-list-items .contact-container:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(249, 249, 249, 1),
-    rgba(240, 240, 240, 1)
-  );
+  background: linear-gradient(135deg,
+      rgba(249, 249, 249, 1),
+      rgba(240, 240, 240, 1));
 }
 
-.contacts
-  .contact-list
-  .contact-list-items
-  .contact-container.active
-  .contactDetails
-  .contactName {
+.contacts .contact-list .contact-list-items .contact-container.active .contactDetails .contactName {
   color: rgba(255, 255, 255, 1);
 }
 
@@ -141,23 +134,13 @@ main {
   align-items: flex-start;
 }
 
-.contacts
-  .contact-list
-  .contact-list-items
-  .contact-container
-  .contactDetails
-  .contactName {
+.contacts .contact-list .contact-list-items .contact-container .contactDetails .contactName {
   color: rgba(0, 0, 0, 1);
   font-size: 20px;
   font-weight: 400;
 }
 
-.contacts
-  .contact-list
-  .contact-list-items
-  .contact-container
-  .contactDetails
-  .contactEmail {
+.contacts .contact-list .contact-list-items .contact-container .contactDetails .contactEmail {
   font-size: 16px;
   font-weight: 400;
   color: rgba(0, 124, 238, 1);
@@ -210,17 +193,20 @@ main {
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
-  /* transform: translate(0, 0);
-  transition: transform 0.5s ease-in-out; */
+  animation: popup-in 1500ms ease forwards;
 }
 
-/* .floating-contact.slide-in {
-  transform: translate(100%, 0);
-} */
+@keyframes popup-in {
+  from {
+    opacity: 0;
+    transform: translateX(360px);
+  }
 
-/* .floating-contact.slide-out {
-  transform: translate(100%, -50%);
-} */
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 .floating-contact #contact-header {
   display: flex;
@@ -273,55 +259,26 @@ main {
   height: 24px;
 }
 
-.floating-contact
-  #contact-header
-  #contact-text
-  #contact-edit-tools
-  .edit-delete-component-default {
+.floating-contact #contact-header #contact-text #contact-edit-tools .edit-delete-component-default {
   transition: all 200ms linear;
 }
 
-.floating-contact
-  #contact-header
-  #contact-text
-  #contact-edit-tools
-  #edit:hover
-  img {
+.floating-contact #contact-header #contact-text #contact-edit-tools #edit:hover img {
   content: url("../assets/img/edit-hover-contact.svg");
 }
 
-.floating-contact
-  #contact-header
-  #contact-text
-  #contact-edit-tools
-  #delete
-  img {
+.floating-contact #contact-header #contact-text #contact-edit-tools #delete img {
   content: url("../assets/img/delete-contact.svg");
   width: 24px;
   height: 24px;
 }
 
-.floating-contact
-  #contact-header
-  #contact-text
-  #contact-edit-tools
-  #delete:hover
-  img {
+.floating-contact #contact-header #contact-text #contact-edit-tools #delete:hover img {
   content: url("../assets/img/delete-hover-contact.svg");
 }
 
-.floating-contact
-  #contact-header
-  #contact-text
-  #contact-edit-tools
-  #edit:hover
-  span,
-.floating-contact
-  #contact-header
-  #contact-text
-  #contact-edit-tools
-  #delete:hover
-  span {
+.floating-contact #contact-header #contact-text #contact-edit-tools #edit:hover span,
+.floating-contact #contact-header #contact-text #contact-edit-tools #delete:hover span {
   color: rgba(41, 171, 226, 1);
   font-weight: 700;
 }
@@ -392,32 +349,41 @@ main {
     width: clamp(360px, 4vw, 380px);
     padding: 24px 20px;
   }
+
   .contacts .contact-list {
     width: clamp(360px, 4vw, 380px);
   }
+
   .contacts .contact-list .contact-list-items .contact-container {
     padding: 15px 18px;
   }
+
   .contact-dashboard .contact-box {
     gap: 20px;
   }
+
   .contact-dashboard .contact-box h1 {
     font-size: clamp(38px, 4vw, 42px);
   }
+
   .contact-dashboard .contact-box #vector {
     height: 60px;
   }
+
   .contact-dashboard .contact-box h3 {
     font-size: 18px;
   }
+
   .floating-contact #contact-header {
     gap: 40px;
   }
+
   .floating-contact #contact-header .contact-badge {
     width: 80px;
     height: 80px;
     font-size: 36px;
   }
+
   .floating-contact #contact-header #contact-text #contact-name {
     font-size: 24px;
   }
@@ -427,17 +393,20 @@ main {
   main {
     padding: 0;
   }
+
   .contacts {
     width: 100%;
     margin-right: 0;
     padding: 12px;
     /* padding: clamp(12px, 4vw, 16px) clamp(16px, 4vw, 24px); */
   }
+
   .contacts .contact-list {
     gap: 8px;
     justify-content: flex-start;
     margin-top: 10px;
   }
+
   .contacts .contact-list .contact-list-items .contact-alphabet {
     font-weight: 400;
     font-size: clamp(20px, 4vw, 24px);
@@ -447,15 +416,12 @@ main {
     padding: 16px 24px;
   }
 
-  .contacts
-    .contact-list
-    .contact-list-items
-    .contact-container
-    .contact-badge {
+  .contacts .contact-list .contact-list-items .contact-container .contact-badge {
     width: 54px;
     height: 54px;
     font-size: 20px;
   }
+
   .contacts #add-contact {
     content: url("../assets/img/person_add-mobile.svg");
     position: fixed;
@@ -473,58 +439,58 @@ main {
     gap: 0;
     transition: all 125ms ease-in;
   }
+
   .contacts #add-contact:hover {
     background-color: #29abe2;
     border-radius: 50%;
   }
+
   .contacts .contact-list .contact-list-items .contact-container {
     padding: 15px 12px;
     gap: clamp(20px, 4vw, 35px);
   }
-  .contacts
-    .contact-list
-    .contact-list-items
-    .contact-container
-    .contactDetails
-    .contactName {
+
+  .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactName {
     font-size: clamp(16px, 4vw, 20px);
   }
-  .contacts
-    .contact-list
-    .contact-list-items
-    .contact-container
-    .contactDetails
-    .contactEmail {
+
+  .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactEmail {
     font-size: clamp(13px, 4vw, 16px);
   }
+
   .contact-dashboard {
     display: none;
     padding: 50px 25px 25px 25px;
     /* margin: 0 30px 30px 30px; */
   }
+
   .contact-dashboard .contact-box {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     gap: 16px;
   }
+
   .contact-dashboard .contact-box h1 {
     color: rgba(0, 0, 0, 1);
     font-size: 40px;
     font-weight: 700;
     margin: 0;
   }
+
   .contact-dashboard .contact-box #vector {
     width: 3px;
     height: 60px;
     background-color: rgba(41, 171, 226, 1);
   }
+
   .contact-dashboard .contact-box h3 {
     color: rgba(42, 54, 71, 1);
     font-size: 20px;
     font-weight: 400;
     margin: 0;
   }
+
   .blue-arrow {
     content: url("../assets/img/blue-arrow-left-contacts.svg");
     width: 36px;
@@ -534,11 +500,13 @@ main {
     top: 146px;
     cursor: pointer;
   }
+
   .contact-dashboard .contact-box #vector {
     height: 3px;
     width: 120px;
     order: 3;
   }
+
   #contact-edit-tools {
     content: url("../assets/img/more-options-vertical-mobile.svg");
     position: fixed;
@@ -559,17 +527,21 @@ main {
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     transition: all 125ms ease-in;
   }
+
   #contact-edit-tools:hover {
     background-color: #29abe2;
   }
+
   .floating-contact #contact-header {
     gap: 32px;
   }
+
   .floating-contact #contact-header .contact-badge {
     width: 80px;
     height: 80px;
     font-size: 36px;
   }
+
   .floating-contact #contact-header #contact-text #contact-name {
     font-size: 32px;
     font-weight: 600;
@@ -580,6 +552,7 @@ main {
   main {
     padding: 0;
   }
+
   .contacts {
     width: 100%;
     margin-right: 0;
@@ -587,15 +560,18 @@ main {
     /* padding: 20px; */
     /* padding: clamp(12px, 4vw, 16px) clamp(16px, 4vw, 24px); */
   }
+
   .contacts .contact-list {
     gap: 8px;
     justify-content: flex-start;
     margin-top: 10px;
   }
+
   .contacts .contact-list .contact-list-items .contact-alphabet {
     font-weight: 400;
     font-size: clamp(20px, 4vw, 24px);
   }
+
   .contacts #add-contact {
     content: url("../assets/img/person_add-mobile.svg");
     position: fixed;
@@ -613,56 +589,44 @@ main {
     gap: 0;
     transition: all 125ms ease-in;
   }
+
   .contacts #add-contact:hover {
     background-color: #29abe2;
     border-radius: 50%;
   }
+
   .contacts .contact-list .contact-list-items .contact-container {
     padding: 16px 8px;
     gap: 8px;
   }
 
-  .contacts
-    .contact-list
-    .contact-list-items
-    .contact-container
-    .contact-badge {
+  .contacts .contact-list .contact-list-items .contact-container .contact-badge {
     width: 42px;
     height: 42px;
     font-size: 16px;
   }
 
-  .contacts
-    .contact-list
-    .contact-list-items
-    .contact-container
-    .contactDetails {
+  .contacts .contact-list .contact-list-items .contact-container .contactDetails {
     display: flex;
     flex-flow: column wrap;
   }
-  .contacts
-    .contact-list
-    .contact-list-items
-    .contact-container
-    .contactDetails
-    .contactName {
+
+  .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactName {
     font-size: 16px;
     /* font-size: clamp(16px, 4vw, 20px); */
   }
-  .contacts
-    .contact-list
-    .contact-list-items
-    .contact-container
-    .contactDetails
-    .contactEmail {
+
+  .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactEmail {
     font-size: 12px;
     /* font-size: clamp(13px, 4vw, 16px); */
   }
+
   .contact-dashboard {
     display: none;
     padding: 50px 25px 25px 25px;
     /* margin: 0 30px 30px 30px; */
   }
+
   .contact-dashboard .contact-box {
     flex-direction: column;
     justify-content: flex-start;
@@ -670,23 +634,27 @@ main {
     gap: 16px;
     margin-bottom: 60px;
   }
+
   .contact-dashboard .contact-box h1 {
     color: rgba(0, 0, 0, 1);
     font-size: 34px;
     font-weight: 700;
     margin: 0;
   }
+
   .contact-dashboard .contact-box #vector {
     width: 3px;
     height: 60px;
     background-color: rgba(41, 171, 226, 1);
   }
+
   .contact-dashboard .contact-box h3 {
     color: rgba(42, 54, 71, 1);
     font-size: 20px;
     font-weight: 400;
     margin: 0;
   }
+
   .blue-arrow {
     content: url("../assets/img/blue-arrow-left-contacts.svg");
     width: 36px;
@@ -696,11 +664,13 @@ main {
     top: 146px;
     cursor: pointer;
   }
+
   .contact-dashboard .contact-box #vector {
     height: 3px;
     width: 120px;
     order: 3;
   }
+
   #contact-edit-tools {
     content: url("../assets/img/more-options-vertical-mobile.svg");
     position: fixed;
@@ -721,17 +691,21 @@ main {
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     transition: all 125ms ease-in;
   }
+
   #contact-edit-tools:hover {
     background-color: #29abe2;
   }
+
   .floating-contact #contact-header {
     gap: 16px;
   }
+
   .floating-contact #contact-header .contact-badge {
     width: 70px;
     height: 70px;
     font-size: 32px;
   }
+
   .floating-contact #contact-header #contact-text #contact-name {
     font-size: 20px;
     font-weight: 600;
@@ -782,9 +756,7 @@ main {
 }
 
 .editMenuDialogContainer #editDialog.edit-delete-component-default:hover span,
-.editMenuDialogContainer
-  #deleteDialog.edit-delete-component-default:hover
-  span {
+.editMenuDialogContainer #deleteDialog.edit-delete-component-default:hover span {
   color: rgba(41, 171, 226, 1);
   font-weight: 700;
 }
