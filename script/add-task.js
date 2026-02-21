@@ -484,6 +484,7 @@ function clearInputs() {
   const subtasks = document.getElementById("subtasks");
   const subtaskList = document.getElementById("SubtaskList");
   const selectContact = document.getElementById("selectContact");
+  valid = { title: false, duedate: false, category: false };
   if (title) title.value = "";
   if (description) description.value = "";
   if (duedate) duedate.value = "";
@@ -671,7 +672,7 @@ function handleGlobalClick(e) {
       categoryDropdown.contains(e.target) || categoryBtn.contains(e.target);
     if (!inside) {
       categoryDropdown.classList.remove("open");
-      categoryBtn.classList.remove("input-focus");      
+      categoryBtn.classList.remove("input-focus");
     }
   }
   if (typeof isValid === "function") isValid();

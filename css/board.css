@@ -15,6 +15,7 @@
   --color-seperator: rgba(209, 209, 209, 1);
 
   --color-progress: #4589ff;
+  --color-hover: #29ABE2; 
 
   --color-overlay-close: #666;
   --color-overlay-close-hover: #333;
@@ -119,6 +120,9 @@ h1 {
   display: flex;
   align-content: center;
   gap: var(--space-8);
+}
+.button-task:hover{
+  background-color: var(--color-hover)
 }
 
 .board-container {
