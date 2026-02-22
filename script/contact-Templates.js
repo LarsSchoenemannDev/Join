@@ -114,6 +114,9 @@ function renderAddContactTemplate() {
                           alt=""
                         />
                       </div>
+
+                      <div class="contactValidationErrorMsg" id="contactnameErrorMsg">Name cannot be empty</div>
+
                       <div class="inputContainer">
                         <input
                           type="email"
@@ -127,6 +130,9 @@ function renderAddContactTemplate() {
                           alt=""
                         />
                       </div>
+
+                       <div class="contactValidationErrorMsg" id="contactemailErrorMsg">Email cannot be empty</div>
+
                       <div class="inputContainer">
                         <input
                           type="tel"
@@ -141,7 +147,7 @@ function renderAddContactTemplate() {
                         />
                       </div>
 
-                      <div id="validationErrorMsg"></div>
+                       <div class="contactValidationErrorMsg" id="contactphoneErrorMsg">Phone cannot be empty</div>
 
                       <div class="add-contact-buttons">
                         <button
@@ -213,6 +219,9 @@ function renderEditContactTemplate(name, email, phone, contactColor, initials) {
                           alt=""
                         />
                       </div>
+
+                      <div class="editValidationErrorMsg" id="editnameErrorMsg">Name cannot be empty</div>
+
                       <div class="inputContainer">
                         <input
                           type="email"
@@ -226,6 +235,9 @@ function renderEditContactTemplate(name, email, phone, contactColor, initials) {
                           alt=""
                         />
                       </div>
+
+                      <div class="editValidationErrorMsg" id="editemailErrorMsg">Email cannot be empty</div>
+
                       <div class="inputContainer">
                         <input
                           type="tel"
@@ -240,7 +252,7 @@ function renderEditContactTemplate(name, email, phone, contactColor, initials) {
                         />
                       </div>
 
-                      <div id="editValidationErrorMsg"></div>
+                      <div class="editValidationErrorMsg" id="editphoneErrorMsg">Phone cannot be empty</div>
 
                       <div class="edit-contact-buttons">
                         <button

@@ -77,12 +77,17 @@
               type="email"
               placeholder="Email"
               required
-              onfocus="validateInput(this)"
-              oninput="validateInput(this)"
+              onblur="validateEmail()"
             />
             <span class="input-icon"
               ><img src="../assets/img/mail.svg" alt=""
             /></span>
+          </div>
+
+          <!-- Email Error Message-->
+
+          <div class="error-msg" id="emailErrorMsg">
+            Check your email and try again.
           </div>
 
           <div class="input-group">
@@ -90,12 +95,8 @@
               id="password"
               type="password"
               placeholder="Password"
-              required
-              onfocus="validateInput(this)"
-              oninput="
-                validateInput(this);
-                updateIcon();
-              "
+              onblur="valildatePassword()"
+              oninput="(updateIcon(), valildatePassword())"
             />
             <span
               id="togglePasswordIcon"
@@ -105,10 +106,10 @@
             /></span>
           </div>
 
-          <!-- Error Message-->
+          <!-- Password Error Message-->
 
-          <div class="error-msg d-none">
-            Check your email and password. Please try again.
+          <div class="error-msg" id="passwordErrorMsg">
+            Check your password and try again.
           </div>
 
           <div class="buttons">

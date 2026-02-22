@@ -4,12 +4,14 @@ const guestURL =
   "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/guest";
 
 const form = document.getElementById("login_form");
-let passwordInput = document.getElementById("password");
-let emailInput = document.getElementById("email");
+// let passwordInput = document.getElementById("password");
+// let emailInput = document.getElementById("email");
 let fetchedData;
 let fetchedDataGuest;
 let emailFound = false;
 const inputs = document.querySelectorAll("input");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
 
 async function hashPassword(password) {
   const encoder = new TextEncoder();
@@ -27,8 +29,11 @@ async function hashPassword(password) {
 }
 
 async function loginValidation() {
-  errorMsg.style.visibility = "hidden";
-  // errorMsg.classList.add("d-none");
+  const passwordErrorMsg = document.getElementById("passwordErrorMsg");
+  const emailErrorMsg = document.getElementById("emailErrorMsg");
+  passwordErrorMsg.style.visibility = "hidden";
+  emailErrorMsg.style.visibility = "hidden";
+
   inputs.forEach((input) => {
     input.style.borderColor = "#29abe2";
   });
@@ -42,29 +47,23 @@ async function loginValidation() {
       emailFound = true;
       let passwor2 = passwordInput.value;
       let passwordHased = await hashPassword(passwor2);
-      if (user.password === passwordHased) {        
+      if (user.password === passwordHased) {
         sessionStorage.setItem("userID", user.id);
         sessionStorage.setItem("userStatus", "loggedIn");
         sessionStorage.setItem("name", user.name);
 
         window.location.href = "../html/summary.html";
       } else {
-        console.error("Login daten sind falsch");
-        errorMsg.style.visibility = "visible";
-        // errorMsg.classList.remove("d-none");
-        inputs.forEach((input) => {
-          input.style.borderColor = "#e60026";
-        });
+        passwordErrorMsg.style.visibility = "visible";
+        passwordErrorMsg.textContent = "Check your password and try again.";
+        passwordInput.style.borderColor = "#e60026";
       }
     }
   }
   if (!emailFound) {
-    // console.error("Benutzer nicht gefunden");
-    errorMsg.style.visibility = "visible";
-    // errorMsg.classList.remove("d-none");
-    inputs.forEach((input) => {
-      input.style.borderColor = "#e60026";
-    });
+    emailErrorMsg.style.visibility = "visible";
+    emailErrorMsg.textContent = "Check your email and try again.";
+    emailInput.style.borderColor = "#e60026";
   }
 }
 
@@ -109,7 +108,7 @@ async function loginDatafetch() {
 async function guestLogin() {
   await loginDatafetchGuest();
 
-  if (fetchedDataGuest && fetchedDataGuest.name === "Guest") {    
+  if (fetchedDataGuest && fetchedDataGuest.name === "Guest") {
     sessionStorage.setItem("name", fetchedDataGuest.name);
     window.location.href = "../html/summary.html";
   } else {

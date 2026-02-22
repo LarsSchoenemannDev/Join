@@ -211,6 +211,12 @@ function findContactIdFromDisplayed() {
  * shows popup message on successful save
  */
 async function saveEditedContact() {
+  const nameError = document.getElementById("editnameErrorMsg");
+  const emailError = document.getElementById("editemailErrorMsg");
+  const phoneError = document.getElementById("editphoneErrorMsg");
+  if (nameError) nameError.style.visibility = "hidden";
+  if (emailError) emailError.style.visibility = "hidden";
+  if (phoneError) phoneError.style.visibility = "hidden";
   // Validate the form FIRST
   const isValid = validateEditContactForm();
   const isNameValid = editContactNameValidation();
@@ -218,15 +224,24 @@ async function saveEditedContact() {
   const isPhoneValid = editContactPhoneValidation();
   if (!isValid) {
     if (!isNameValid) {
-      editContactErrorMsg("Name cannot be empty.");
+      if (nameError) {
+        nameError.style.visibility = "visible";
+        nameError.textContent = "Name cannot be empty.";
+      }
       return;
     }
     if (!isEmailValid) {
-      editContactErrorMsg("please check Email input data.");
+      if (emailError) {
+        emailError.style.visibility = "visible";
+        emailError.textContent = "Please check Email input data.";
+      }
       return;
     }
     if (!isPhoneValid) {
-      editContactErrorMsg("please check Phone input data.");
+      if (phoneError) {
+        phoneError.style.visibility = "visible";
+        phoneError.textContent = "Please check Phone input data.";
+      }
       return;
     }
   }
@@ -267,16 +282,22 @@ async function contactEmailValidation() {
     .toLowerCase();
   const contactEmailInput = document.getElementById("email_input");
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const ErrorMsgBox = document.getElementById("validationErrorMsg");
+  const ErrorMsgBox = document.getElementById("contactemailErrorMsg");
 
   if (!contactEmail) {
-    contactErrorMsg("Email cannot be empty.");
+    if (ErrorMsgBox) {
+      ErrorMsgBox.style.visibility = "visible";
+      ErrorMsgBox.textContent = "Email cannot be empty.";
+    }
     contactEmailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
 
   if (!emailRegex.test(contactEmail)) {
-    contactErrorMsg("Please enter a valid email address.");
+    if (ErrorMsgBox) {
+      ErrorMsgBox.style.visibility = "visible";
+      ErrorMsgBox.textContent = "Please enter a valid email address.";
+    }
     contactEmailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
@@ -286,7 +307,9 @@ async function contactEmailValidation() {
   }
 
   contactEmailInput.parentElement.style.borderColor = "#ccc";
-  ErrorMsgBox.style.visibility = "hidden";
+  if (ErrorMsgBox) {
+    ErrorMsgBox.style.visibility = "hidden";
+  }
   return true;
 }
 
@@ -308,7 +331,11 @@ async function existingEmailValidation() {
         (existingEmail) => existingEmail.toLowerCase() === contactEmail,
       )
     ) {
-      contactErrorMsg("This email already exists.");
+      const errorMsg = document.getElementById("contactemailErrorMsg");
+      if (errorMsg) {
+        errorMsg.style.visibility = "visible";
+        errorMsg.textContent = "Contact with this email already exists.";
+      }
       emailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
       return false;
     }
@@ -320,11 +347,11 @@ async function existingEmailValidation() {
   }
 }
 
-function contactErrorMsg(message) {
-  const ErrorMsgBox = document.getElementById("validationErrorMsg");
-  ErrorMsgBox.style.visibility = "visible";
-  ErrorMsgBox.textContent = message;
-}
+// function contactErrorMsg(message) {
+//   const ErrorMsgBox = document.getElementById("validationErrorMsg");
+//   ErrorMsgBox.style.visibility = "visible";
+//   ErrorMsgBox.textContent = message;
+// }
 
 function editContactEmailValidation() {
   const contactEmail = document
@@ -333,60 +360,31 @@ function editContactEmailValidation() {
     .toLowerCase();
   const contactEmailInput = document.getElementById("emailInput");
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const ErrorMsgBox = document.getElementById("editValidationErrorMsg");
+  const ErrorMsgBox = document.getElementById("editemailErrorMsg");
 
   if (!contactEmail) {
-    editContactErrorMsg("Email cannot be empty.");
+    if (ErrorMsgBox) {
+      ErrorMsgBox.style.visibility = "visible";
+      ErrorMsgBox.textContent = "Email cannot be empty.";
+    }
     contactEmailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
 
   if (!emailRegex.test(contactEmail)) {
-    editContactErrorMsg("Please enter a valid email address.");
+    if (ErrorMsgBox) {
+      ErrorMsgBox.style.visibility = "visible";
+      ErrorMsgBox.textContent = "Please enter a valid email address.";
+    }
     contactEmailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
-  // const isEmailAvailable = await editExistingEmailValidation();
-  // if (!isEmailAvailable) {
-  //   return false;
-  // }
-
   contactEmailInput.parentElement.style.borderColor = "#ccc";
   if (ErrorMsgBox) {
     ErrorMsgBox.style.visibility = "hidden";
   }
   return true;
 }
-
-/**
- * an async function which checks if the email is already registered in Firebase by fetching the existing user emails and comparing them with the input email. If the email is already registered, it shows an error message and clears the input field.
- * @returns {Promise<boolean>} Returns true if email is available, false if already exists
- */
-// async function editExistingEmailValidation() {
-//   const contactEmail = document
-//     .getElementById("emailInput")
-//     .value.trim()
-//     .toLowerCase();
-//   const emailInput = document.getElementById("emailInput");
-
-//   try {
-//     const existingContactEmails = await fetchExistingContactEmail();
-//     if (
-//       existingContactEmails.find(
-//         (existingEmail) => existingEmail.toLowerCase() === contactEmail,
-//       )
-//     ) {
-//       editContactErrorMsg("This email already exists.");
-//       emailInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
-//       return false;
-//     }
-//     return true;
-//   } catch (error) {
-//     console.error("Error validating email:", error);
-//     // Bei Fehler: Allow registration (fail-safe)
-//     return true;
-//   }
-// }
 
 function editContactErrorMsg(message) {
   const ErrorMsgBox = document.getElementById("editValidationErrorMsg");
@@ -405,10 +403,13 @@ async function contactNameValidation() {
     .value.trim()
     .toLowerCase();
   const nameInput = document.getElementById("name_input");
-  const ErrorMsgBox = document.getElementById("validationErrorMsg");
+  const ErrorMsgBox = document.getElementById("contactnameErrorMsg");
 
   if (!contactName) {
-    contactErrorMsg("Name cannot be empty.");
+    if (ErrorMsgBox) {
+      ErrorMsgBox.style.visibility = "visible";
+      ErrorMsgBox.textContent = "Name cannot be empty.";
+    }
     nameInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
@@ -441,7 +442,11 @@ async function existingNameValidation() {
         (existingName) => existingName.toLowerCase() === contactName,
       )
     ) {
-      contactErrorMsg("Contact with this name already exists.");
+      const ErrorMsgBox = document.getElementById("contactnameErrorMsg");
+      if (ErrorMsgBox) {
+        ErrorMsgBox.style.visibility = "visible";
+        ErrorMsgBox.textContent = "Contact with this name already exists.";
+      }
       nameInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
       return false;
     }
@@ -455,22 +460,30 @@ async function existingNameValidation() {
 function contactPhoneValidation() {
   const contactPhone = document.getElementById("phone_input").value.trim();
   const phoneInput = document.getElementById("phone_input");
-  const ErrorMsgBox = document.getElementById("validationErrorMsg");
+  const ErrorMsgBox = document.getElementById("contactphoneErrorMsg");
   const phoneRegex = /^\+?[0-9\s\-()]{7,}$/;
 
   if (!contactPhone) {
-    contactErrorMsg("Phone number cannot be empty.");
+    if (ErrorMsgBox) {
+      ErrorMsgBox.style.visibility = "visible";
+      ErrorMsgBox.textContent = "Phone number cannot be empty.";
+    }
     phoneInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
 
   if (!phoneRegex.test(contactPhone)) {
-    contactErrorMsg("Invalid phone number format.");
+    if (ErrorMsgBox) {
+      ErrorMsgBox.style.visibility = "visible";
+      ErrorMsgBox.textContent = "Invalid phone number format.";
+    }
     phoneInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
 
-  ErrorMsgBox.style.visibility = "hidden";
+  if (ErrorMsgBox) {
+    ErrorMsgBox.style.visibility = "hidden";
+  }
   phoneInput.parentElement.style.borderColor = "#ccc";
   return true;
 }
@@ -481,10 +494,13 @@ function editContactNameValidation() {
     .value.trim()
     .toLowerCase();
   const nameInput = document.getElementById("nameInput");
-  const ErrorMsgBox = document.getElementById("editValidationErrorMsg");
+  const ErrorMsgBox = document.getElementById("editnameErrorMsg");
 
   if (!contactName) {
-    editContactErrorMsg("Name cannot be empty.");
+    if (ErrorMsgBox) {
+      ErrorMsgBox.style.visibility = "visible";
+      ErrorMsgBox.textContent = "Name cannot be empty.";
+    }
     nameInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
@@ -514,10 +530,15 @@ async function editExistingNameValidation() {
         (existingName) => existingName.toLowerCase() === contactName,
       )
     ) {
-      editContactErrorMsg("Contact with this name already exists.");
+      const ErrorMsgBox = document.getElementById("editnameErrorMsg");
+      if (ErrorMsgBox) {
+        ErrorMsgBox.style.visibility = "visible";
+        ErrorMsgBox.textContent = "Contact with this name already exists.";
+      }
       nameInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
       return false;
     }
+    nameInput.parentElement.style.borderColor = "#ccc";
     return true;
   } catch (error) {
     console.error("Error validating name:", error);
@@ -529,20 +550,24 @@ function editContactPhoneValidation() {
   const contactPhone = document.getElementById("phoneInput").value.trim();
   const phoneInput = document.getElementById("phoneInput");
   const phoneRegex = /^\+?[0-9\s\-()]{7,}$/;
-  const ErrorMsgBox = document.getElementById("editValidationErrorMsg");
+  const ErrorMsgBox = document.getElementById("editphoneErrorMsg");
 
   if (!contactPhone) {
-    editContactErrorMsg("Phone number cannot be empty.");
+    if (ErrorMsgBox) {
+      ErrorMsgBox.style.visibility = "visible";
+      ErrorMsgBox.textContent = "Phone number cannot be empty.";
+    }
     phoneInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
-
   if (!phoneRegex.test(contactPhone)) {
-    editContactErrorMsg("Invalid phone number format.");
+    if (ErrorMsgBox) {
+      ErrorMsgBox.style.visibility = "visible";
+      ErrorMsgBox.textContent = "Invalid phone number format.";
+    }
     phoneInput.parentElement.style.borderColor = "rgb(170, 22, 22)";
     return false;
   }
-
   phoneInput.parentElement.style.borderColor = "#ccc";
   if (ErrorMsgBox) {
     ErrorMsgBox.style.visibility = "hidden";
@@ -552,9 +577,11 @@ function editContactPhoneValidation() {
 
 async function validateContactForm() {
   // Hide error message before validation
-  const ErrorMsgBox = document.getElementById("validationErrorMsg");
+  const ErrorMsgBox = document.querySelectorAll(".contactValidationErrorMsg");
   if (ErrorMsgBox) {
-    ErrorMsgBox.style.visibility = "hidden";
+    ErrorMsgBox.forEach((msgBox) => {
+      msgBox.style.visibility = "hidden";
+    });
   }
 
   // Execute all validations
@@ -565,17 +592,20 @@ async function validateContactForm() {
   // If all valid, hide error box
   const allValid = isNameValid && isEmailValid && isPhoneValid;
   if (allValid && ErrorMsgBox) {
-    ErrorMsgBox.style.visibility = "hidden";
+    ErrorMsgBox.forEach((msgBox) => {
+      msgBox.style.visibility = "hidden";
+    });
   }
-
   return allValid;
 }
 
 function validateEditContactForm() {
   // Hide error message before validation
-  const ErrorMsgBox = document.getElementById("editValidationErrorMsg");
+  const ErrorMsgBox = document.querySelectorAll(".editValidationErrorMsg");
   if (ErrorMsgBox) {
-    ErrorMsgBox.style.visibility = "hidden";
+    ErrorMsgBox.forEach((msgBox) => {
+      msgBox.style.visibility = "hidden";
+    });
   }
 
   // Execute all validations
@@ -586,7 +616,9 @@ function validateEditContactForm() {
   // If all valid, hide error box
   const allValid = isNameValid && isEmailValid && isPhoneValid;
   if (allValid && ErrorMsgBox) {
-    ErrorMsgBox.style.visibility = "hidden";
+    ErrorMsgBox.forEach((msgBox) => {
+      msgBox.style.visibility = "hidden";
+    });
   }
 
   return allValid;
